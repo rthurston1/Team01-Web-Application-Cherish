@@ -1,3 +1,6 @@
+
+Project Team Leader: Nikolay
+=======
 # Team Roles and Commit Contributions
 
 ##  Insert Name Here  - Project Manager
@@ -48,3 +51,4 @@
   1. [Commit 1](https://github.com/repo/commit1): Organized the project repository and created a clear folder structure for all milestone documents.
   2. [Commit 2](https://github.com/repo/commit2): Drafted the initial version of the `data.md` file, outlining the core data types and attributes for the project.
   3. [Commit 3](https://github.com/repo/commit3): Updated the project’s `README.md` file with detailed instructions for setting up and using the project, ensuring that all team members understood how to contribute to the repository.
+
