@@ -1,6 +1,6 @@
 # Team Roles and Commit Contributions
 
-##  Insert Name Here  - Project Manager
+##  Anugrah George  - Project Manager
 - **Role**: Oversees the overall project timeline, ensures that milestones are met, and coordinates the team’s efforts. Alice is responsible for setting meeting agendas and ensuring that the team stays focused on project goals.
 - **Top 3 Commits**:
   1. [Commit 1](https://github.com/repo/commit1): Created the initial GitHub repository and set up the project structure, including the `team/m2` folder for milestone submissions.
