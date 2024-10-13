@@ -6,7 +6,7 @@
   1. [Commit 1](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/002debca589a17663e3ae6156a82ab5758d57051): Brought up an innovative project/application idea to work with the team.
   2. [Commit 2](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/pull/13/commits/b6886ba62c3b038292adc0aac9b0f75de4ec8863): Briefed the team on explaing how fork, merge, and pull requests work.
   3. [Commit 3](https://github.com/repo/commit3): Drafted and worked on roles.md making sure everyone has a role and responsibilities associated with the project.
-  
+  4.   
 
 ##  Liam Campbell  - Timekeeper
 - **Role**: Liam oversees the scheduling of all team activities, ensuring that meetings begin and end punctually. He monitors deadlines and regularly reminds the team of approaching due dates.
@@ -21,6 +21,7 @@
   1. [Commit 1](https://github.com/repo/commit1): Insert brief description here (1 sentence) and link your commit on the left.
   2. [Commit 2](https://github.com/repo/commit2): Insert brief description here (1 sentence) and link your commit on the left.
   3. [Commit 3](https://github.com/repo/commit3): Insert brief description here (1 sentence) and link your commit on the left.
+  4. 
 ##  Insert Name Here  - Task Manager
 - **Role**: Responsible for organizing and tracking team tasks. David manages the team’s Trello board and ensures that all tasks are properly assigned and completed on time.
 - **Top 3 Commits**:
@@ -48,3 +49,7 @@
   1. [Commit 1](https://github.com/repo/commit1): Insert brief description here (1 sentence) and link your commit on the left.
   2. [Commit 2](https://github.com/repo/commit2): Insert brief description here (1 sentence) and link your commit on the left.
   3. [Commit 3](https://github.com/repo/commit3): Insert brief description here (1 sentence) and link your commit on the left.
+
+
+
+
