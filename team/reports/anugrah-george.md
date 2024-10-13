@@ -9,4 +9,4 @@
 ### October 10, 2024
   - **Task**: Briefed the team on explaning how fork, merge, and pull requests work
   - **Details**: Led the team showing examples of branches and testing them by stage and commit. Also explored within the settings and discussed how many approvers
-  - required and what kind of privileges everyone needs.
+ required and what kind of privileges everyone needs.
