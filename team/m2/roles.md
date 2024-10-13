@@ -37,7 +37,7 @@
   3. [Commit 3](https://github.com/repo/commit3): Insert brief description here (1 sentence) and link your commit on the left.
 
 ##  Nikolay Ostroukhov - Quality Control
-- **Role**: Reviews team submissions and ensures that all deliverables meet the necessary quality standards. Frank is responsible for proofreading and ensuring the accuracy of all documents before submission.
+- **Role**: Reviews team submissions and ensures that all deliverables meet the necessary quality standards. Nikolay is responsible for proofreading and ensuring the accuracy of all documents before submission.
 - **Top 3 Commits**:
   1. [Commit 1](https://github.com/repo/commit1): Insert brief description here (1 sentence) and link your commit on the left.
   2. [Commit 2](https://github.com/repo/commit2): Insert brief description here (1 sentence) and link your commit on the left.
