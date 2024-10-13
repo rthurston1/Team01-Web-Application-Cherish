@@ -22,11 +22,11 @@
   2. [Commit 2](https://github.com/repo/commit2): Insert brief description here (1 sentence) and link your commit on the left.
   3. [Commit 3](https://github.com/repo/commit3): Insert brief description here (1 sentence) and link your commit on the left.
      
-##  Insert Name Here  - Task Manager
-- **Role**: Responsible for organizing and tracking team tasks. David manages the team’s Trello board and ensures that all tasks are properly assigned and completed on time.
+## Robert Thurston  - Task Manager
+- **Role**: Responsible for organizing and tracking team tasks. Robbie manages the team’s Trello board and ensures that all tasks are properly assigned and completed on time.
 - **Top 3 Commits**:
-  1. [Commit 1](https://github.com/repo/commit1): Insert brief description here (1 sentence) and link your commit on the left.
-  2. [Commit 2](https://github.com/repo/commit2): Insert brief description here (1 sentence) and link your commit on the left.
+  1. [Commit 1](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/b6e278808145d4e56364bb61ed128e34186cd2b8): Intialized the project repository
+  2. [Commit 2](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/f72220b2548c357816cb98a6076cc646692c1316): Created project folders and project issues.
   3. [Commit 3](https://github.com/repo/commit3): Insert brief description here (1 sentence) and link your commit on the left.
 
 ##  Insert Name Here  - Communication Lead
