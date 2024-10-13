@@ -6,7 +6,7 @@ Project Team Leader: Nikolay
 ##  Anugrah George  - Project Manager
 - **Role**: Oversees the overall project timeline, ensures that milestones are met, and coordinates the team’s efforts. Alice is responsible for setting meeting agendas and ensuring that the team stays focused on project goals.
 - **Top 3 Commits**:
-  1. [Commit 1](https://github.com/repo/commit1): Created the initial GitHub repository and set up the project structure, including the `team/m2` folder for milestone submissions.
+  1. [Commit 1](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/002debca589a17663e3ae6156a82ab5758d57051): Brought up an innovative project/application idea to work with the team.
   2. [Commit 2](https://github.com/repo/commit2): Organized and led the first team meeting, distributing tasks and ensuring deadlines were agreed upon.
   3. [Commit 3](https://github.com/repo/commit3): Drafted the initial version of the `problem.md` file and facilitated team feedback to finalize it.
 
