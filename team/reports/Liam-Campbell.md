@@ -5,5 +5,5 @@
   - **Details**: Met on zoom to talk about the project idea, created my own branch and worked on my markdown file.
 
 ### October 14, 2024
-  - **Task**:
-  - **Details**: 
+  - **Task**: Zoom meeting to discuss who is working on what & brainstorming
+  - **Details**: Talked about who wants to work on what for milestone2, I started to work on problems.md with Robert.
