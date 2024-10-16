@@ -6,6 +6,12 @@ The visual calendar dashboard will provide users with a calendar window where th
 
 **Assigned to**: TBD
 
+## User Profile Sync
+
+The user will be able to create a user profile that saves their mood rating progress.
+
+**Assigned to**: TBD
+
 ## Day Logging
 
 Users will be able to rate how their day went from four options. Users will also be able to describe their day using a textbox (optional). Day ratings and day descriptions will be stored for the user's analytics when summarizing a week, month, or year. 
