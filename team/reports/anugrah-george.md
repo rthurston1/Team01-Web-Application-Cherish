@@ -10,3 +10,7 @@
   - **Task**: Briefed the team on explaning how fork, merge, and pull requests work
   - **Details**: Led the team showing examples of branches and testing them by stage and commit. Also explored within the settings and discussed how many approvers
  required and what kind of privileges everyone needs.
+
+### October 13, 2024
+  - **Task**: Researching on user needs and why the team is working towards making the application
+  - **Details**: Documented and completed users.md as to what are the reasons behind making this app as well as specifying target audience and making sure we understand the user needs. 
