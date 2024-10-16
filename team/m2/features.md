@@ -14,7 +14,7 @@ The user will be able to create a user profile that saves their mood rating prog
 
 ## Day Logging
 
-Users will be able to rate how their day went from four options. Users will also be able to describe their day using a textbox (optional). Day ratings and day descriptions will be stored for the user's analytics when summarizing a week, month, or year. 
+Users will be able to rate how their day went from four options. Users will also be able to describe their day using a textbox (optional). We may introduce a feature that would allow the user to record an audio log instead of writing out an entry. Day ratings and day descriptions/potential audio logs will be stored for the user's analytics when summarizing a week, month, or year. 
 
 **Assigned to**: TBD
 
