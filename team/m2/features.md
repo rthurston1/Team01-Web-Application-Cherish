@@ -6,9 +6,9 @@ The visual calendar dashboard will provide users with a calendar window where th
 
 **Assigned to**: TBD
 
-## User Profile Sync
+## User Profiles
 
-The user will be able to create a user profile that saves their mood rating progress.
+The user will be able to create a user profile that saves their mood rating progress. The user will be able to change profiles.
 
 **Assigned to**: TBD
 
