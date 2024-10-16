@@ -5,7 +5,7 @@
 - **Top 3 Commits**:
   1. [Commit 1](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/002debca589a17663e3ae6156a82ab5758d57051): Brought up an innovative project/application idea to work with the team.
   2. [Commit 2](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/pull/13/commits/b6886ba62c3b038292adc0aac9b0f75de4ec8863): Briefed the team on explaing how fork, merge, and pull requests work.
-  3. [Commit 3](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/pull/15/commits/5b8261008a4113337b7f9e1457ba670b139bfc02): Drafted and worked on roles.md making sure everyone has a role and responsibilities associated with the project.
+  3. [Commit 3](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/pull/15/commits/5b8261008a4113337b7f9e1457ba670b139bfc02): Drafted and worked on roles.md making sure everyone has a role and responsibilities associated with the project and completed users.md to target specific audience and their user needs.
      
 
 ##  Liam Campbell  - Timekeeper
