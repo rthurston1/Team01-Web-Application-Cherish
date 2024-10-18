@@ -23,7 +23,7 @@
   3. [Commit 3](https://github.com/repo/commit3): Insert brief description here (1 sentence) and link your commit on the left.
      
 ## Robert Thurston  - Project Lead 
-- **Role**: Responsible for organizing and tracking the team's progress. Plans and leads meetings, facilitating open communication to keep everyone aligned with project goals. Prioritizes ensuring that every team member's voice is heard, addressing any communication challenges or roadblocks that may arise.
+- **Role**: Robbie organizes and tracks the team's progress. He plans and leads meetings, facilitating open communication to keep everyone aligned with project goals. Robbie prioritizes ensuring that every team member's voice is heard, addressing any communication challenges or roadblocks that may arise.
 - **Top 3 Commits**:
   1. [Commit 1](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/b6e278808145d4e56364bb61ed128e34186cd2b8): Intialized the project repository
   2. [Commit 2](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/f72220b2548c357816cb98a6076cc646692c1316): Created project folders and project issues.
