@@ -15,4 +15,4 @@
 ### October 16, 2024
   - **Task**: Designed UI for Application.
   - **Details**: Sketched out the general format of how the application will look and function.
-  - **Link To Commit** https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/489b01edb69bf12af90cfe140d005e8471e151e8
+  - [Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/489b01edb69bf12af90cfe140d005e8471e151e8)
