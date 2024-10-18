@@ -1,4 +1,4 @@
-***UI DIAGRAM***
+### UI DIAGRAM
 
 **Sketch**
 This is an initial sketch of our UI design, created by Robbie. The layout features a 
