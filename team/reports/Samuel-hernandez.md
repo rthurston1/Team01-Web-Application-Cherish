@@ -7,4 +7,3 @@
 ## October 15, 2024
 
 -**Task**: Meet up with Rob to start sketcihing our project design. -**Details**: Draw, and talked many differente ideas and features we can implement.
-ßß
