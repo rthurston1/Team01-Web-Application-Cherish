@@ -29,10 +29,10 @@
   2. [Commit 2](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/f72220b2548c357816cb98a6076cc646692c1316): Created project folders and project issues.
   3. [Commit 3](https://github.com/repo/commit3): Insert brief description here (1 sentence) and link your commit on the left.
 
-##  Insert Name Here  - Communication Lead
-- **Role**: Facilitates communication within the team. Eve is responsible for maintaining and managing the team’s Slack workspace and ensuring that all members stay informed and engaged.
+##  Samuel Hernandez  - Comunication lead.
+- **Role**: Facilitates communication within the team. Ensures for quality of project Design, and data keeping ensuring progress and ideas for the project. Ensuring to keep the team updated with our latest information, changes or ideas we are implementing. 
 - **Top 3 Commits**:
-  1. [Commit 1](https://github.com/repo/commit1): Insert brief description here (1 sentence) and link your commit on the left.
+  1. [Commit 1](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/c6da337d7228340dd19443be39f0506c9ba9aeb7): Insert brief description here (1 sentence) and link your commit on the left.
   2. [Commit 2](https://github.com/repo/commit2): Insert brief description here (1 sentence) and link your commit on the left.
   3. [Commit 3](https://github.com/repo/commit3): Insert brief description here (1 sentence) and link your commit on the left.
 
