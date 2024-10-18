@@ -41,4 +41,11 @@
 - **Meetings**:  
   - Team agreed to meet **every Sunday at 3 PM**.
    
+---
 
+### October 18, 2024
+- **TA Suggestions**:  
+  - Check out the pre-existing app **"How We Feel"** for examples of similar implementations for our app.  
+  - Consider supporting **multiple languages** (though not essential).  
+- **Team Reflection**:  
+  - Team agreed communication has been mostly okay but could be improved somewhat.
