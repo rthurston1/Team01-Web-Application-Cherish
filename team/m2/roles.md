@@ -1,7 +1,7 @@
 # Team Roles and Commit Contributions
 
-##  Anugrah George  - Project Lead
-- **Role**: George manages the overall project timeline, ensures milestones are achieved, and coordinates the team's efforts. He is also responsible for setting meeting agendas and keeping the team aligned with project goals.
+##  Anugrah George  - Task Lead
+- **Role**: George manages the overall tasks that the project needs and makes sure the task structure is coordinated. He also ensures milestones are achieved, and coordinates the team's efforts.
 - **Top 3 Commits**:
   1. [Commit 1](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/002debca589a17663e3ae6156a82ab5758d57051): Brought up an innovative project/application idea to work with the team.
   2. [Commit 2](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/pull/13/commits/b6886ba62c3b038292adc0aac9b0f75de4ec8863): Briefed the team on explaing how fork, merge, and pull requests work.
@@ -22,7 +22,7 @@
   2. [Commit 2](https://github.com/repo/commit2): Insert brief description here (1 sentence) and link your commit on the left.
   3. [Commit 3](https://github.com/repo/commit3): Insert brief description here (1 sentence) and link your commit on the left.
      
-## Robert Thurston  - Task Manager
+## Robert Thurston  - Project Lead 
 - **Role**: Responsible for organizing and tracking team tasks. Robbie manages the team’s Trello board and ensures that all tasks are properly assigned and completed on time.
 - **Top 3 Commits**:
   1. [Commit 1](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/b6e278808145d4e56364bb61ed128e34186cd2b8): Intialized the project repository
