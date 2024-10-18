@@ -1,2 +1,2 @@
 
-![alt text](https://imgur.com/a/FeMPpyk)
+[UI Diagram Sketch](https://imgur.com/a/FeMPpyk)
