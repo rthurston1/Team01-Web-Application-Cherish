@@ -10,6 +10,6 @@
 -**Task**: Took notes. 
 -**Details**: Met with the group to dicuss the roles and Project ideas. 
 
-## October 15, 2024
+## October 18, 2024
 -**Task**: Created Reports File. 
 -**Details**: Setting up a day to meet with Sam to do the data file.
