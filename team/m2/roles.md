@@ -23,15 +23,15 @@
   3. [Commit 3](https://github.com/repo/commit3): Insert brief description here (1 sentence) and link your commit on the left.
      
 ## Robert Thurston  - Project Lead 
-- **Role**: Responsible for organizing and tracking team tasks. Robbie manages the team’s Trello board and ensures that all tasks are properly assigned and completed on time.
+- **Role**: Responsible for organizing and tracking the team's progress. Plans and leads meetings, facilitating open communication to keep everyone aligned with project goals. Prioritizes ensuring that every team member's voice is heard, addressing any communication challenges or roadblocks that may arise.
 - **Top 3 Commits**:
   1. [Commit 1](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/b6e278808145d4e56364bb61ed128e34186cd2b8): Intialized the project repository
   2. [Commit 2](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/f72220b2548c357816cb98a6076cc646692c1316): Created project folders and project issues.
-  3. [Commit 3](https://github.com/repo/commit3): Insert brief description here (1 sentence) and link your commit on the left.
+  3. [Commit 3](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/489b01edb69bf12af90cfe140d005e8471e151e8): Added sketch of UI-Diagram
 
-##  Samuel Hernandez  - Comunication lead.
-- **Role**: Facilitates communication within the team. Ensures for quality of project Design, and data keeping ensuring progress and ideas for the project. Ensuring to keep the team updated with our latest information, changes or ideas we are implementing. 
-- **Top 3 Commits**:
+##  Samuel Hernandez  - Data Control.
+- **Role**: Responsible and in charge of 
+- **Top 3 Commits**: Responsible for the overall structure of the code, ensuring it is efficient and optimized for performance. Ensuring good coding practices and streamlining processes to enhance functionality and maintainability.
   1. [Commit 1](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/c6da337d7228340dd19443be39f0506c9ba9aeb7): Insert brief description here (1 sentence) and link your commit on the left.
   2. [Commit 2](https://github.com/repo/commit2): Insert brief description here (1 sentence) and link your commit on the left.
   3. [Commit 3](https://github.com/repo/commit3): Insert brief description here (1 sentence) and link your commit on the left.
