@@ -9,5 +9,5 @@
   - **Details**:
 
 ### October 18, 2024
-  - **Task**: 
-  - **Details**:
+  - **Task**: Updated TODO list, updated notes file in the main branch
+  - **Details**: 
