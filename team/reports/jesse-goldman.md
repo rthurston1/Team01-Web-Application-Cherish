@@ -9,5 +9,9 @@
   - **Details**:
 
 ### October 18, 2024
-  - **Task**: Updated TODO list, updated notes file in the main branch
-  - **Details**: 
+  - **Task**: Updated TODO list, pushed updated notes file in the main branch
+  - **Details**:
+
+### October 19, 2024
+  - **Task**: Worked with Sam on Figma diagram, Updated TODO list, updated notes file in the main branch
+  - **Details**: Sam and I are designing a FIgma diagram of Robbies UI sketch. This will reflect a rough idea of what the app's user interface might look like. 
