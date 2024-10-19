@@ -14,4 +14,4 @@
 
 ### October 19, 2024
   - **Task**: Worked with Sam on Figma diagram, Updated TODO list, updated notes file in the main branch
-  - **Details**: Sam and I are designing a FIgma diagram of Robbies UI sketch. This will reflect a rough idea of what the app's user interface might look like. 
+  - **Details**: Sam and I are designing a FIgma diagram of Robbies UI sketch. This will reflect a rough idea of what the app's user interface might look like. Brainstormed with team members on discord about what the final UI should look like.  
