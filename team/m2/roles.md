@@ -39,8 +39,8 @@
 ##  Nikolay Ostroukhov - Quality Control
 - **Role**: Reviews team submissions and ensures that all deliverables meet the necessary quality standards. Nikolay is responsible for proofreading and ensuring the accuracy of all documents before submission.
 - **Top 3 Commits**:
-  1. [Commit 1](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/14880d53801500d05fee2482b344c43f35d312c8): Edited and reviewed features.md
-  2. [Commit 2](https://github.com/repo/commit2): Insert brief description here (1 sentence) and link your commit on the left.
+  1. [Commit 1](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/14880d53801500d05fee2482b344c43f35d312c8): Reviewed and edited features.md
+  2. [Commit 2](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/743c75293655b8808375430500e12a8bd9f80018): Reviewed and edited problem.md
   3. [Commit 3](https://github.com/repo/commit3): Insert brief description here (1 sentence) and link your commit on the left.
 
 ##  Wacil Voltaire  - Documentation Lead
