@@ -29,8 +29,8 @@
   2. [Commit 2](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/f72220b2548c357816cb98a6076cc646692c1316): Created project folders and project issues.
   3. [Commit 3](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/489b01edb69bf12af90cfe140d005e8471e151e8): Added sketch of UI-Diagram
 
-##  Samuel Hernandez  - Data Control.
-- **Role**: Responsible for the overall structure of the code, ensuring it is efficient and optimized for performance. Ensuring good coding practices and streamlining processes to enhance functionality and maintainability.
+##  Samuel Hernandez  - Design Manager.
+- **Role**: Responsible for UI Design, make sure everything is functionaly, aesthetically pleasing.
 - **Top 3 Commits**: 
   1. [Commit 1](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/c6da337d7228340dd19443be39f0506c9ba9aeb7): Insert brief description here (1 sentence) and link your commit on the left.
   2. [Commit 2](https://github.com/repo/commit2): Insert brief description here (1 sentence) and link your commit on the left.
