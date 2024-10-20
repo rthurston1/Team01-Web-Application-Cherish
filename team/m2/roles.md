@@ -16,7 +16,7 @@
   3. [Commit 3](https://github.com/repo/commit3): Insert brief description here (1 sentence) and link your commit on the left.
 
 ##  Jesse Goldman  - Note-Taker
-- **Role**: Jesse takes comprehensive notes during meetings and makes sure that all action items are clearly conveyed. After each meeting, Jesse is in charge of sharing the minutes with the team.
+- **Role**: Jesse takes comprehensive notes during meetings and makes sure that all action items are clearly conveyed. After each meeting, Jesse is in charge of updating the notes file in the repository as well as the shared TODO list he created.
 - **Top 3 Commits**:
   1. [Commit 1](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/6c2ea8ac552fce25074cbeb870d86d244cfaf1c3): Created notes folder and file in the main branch.
   2. [Commit 2](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/62523bf0ff089fb33cf035d9464153367bd0e915): Updated notes file after team meeting.
