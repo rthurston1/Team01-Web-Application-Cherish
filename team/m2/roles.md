@@ -18,9 +18,9 @@
 ##  Jesse Goldman  - Note-Taker
 - **Role**: Jesse takes comprehensive notes during meetings and makes sure that all action items are clearly conveyed. After each meeting, Jesse is in charge of sharing the minutes with the team.
 - **Top 3 Commits**:
-  1. [Commit 1](https://github.com/repo/commit1): Insert brief description here (1 sentence) and link your commit on the left.
-  2. [Commit 2](https://github.com/repo/commit2): Insert brief description here (1 sentence) and link your commit on the left.
-  3. [Commit 3](https://github.com/repo/commit3): Insert brief description here (1 sentence) and link your commit on the left.
+  1. [Commit 1](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/6c2ea8ac552fce25074cbeb870d86d244cfaf1c3): Created notes folder and file in the main branch.
+  2. [Commit 2](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/62523bf0ff089fb33cf035d9464153367bd0e915): Updated notes file after team meeting.
+  3. [Commit 3](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/5a3f407e3883248521bf97da8ad44bb91acc77fe): Worked on Figma diagram of Robbies UI sketh, updated ui-diagrams.md with a link to the figma.
      
 ## Robert Thurston  - Project Lead 
 - **Role**: Robbie organizes and tracks the team's progress. He plans and leads meetings, facilitating open communication to keep everyone aligned with project goals. Robbie prioritizes ensuring that every team member's voice is heard, addressing any communication challenges or roadblocks that may arise.
