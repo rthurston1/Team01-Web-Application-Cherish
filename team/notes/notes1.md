@@ -49,3 +49,4 @@
   - Consider supporting **multiple languages** (though not essential).  
 - **Team Reflection**:  
   - Team agreed communication has been mostly okay but could be improved somewhat.
+  - Jesse and Sam will complete the Figma diagram for Rabbies sketch of app UI 
