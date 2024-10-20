@@ -3,7 +3,7 @@
 ## Data Types
 
 ### Calendar
-  - **Description**: Hold information regaurding the current month and the days. 
+  - **Description**: Hold information regarding the current month and the days. 
   - _Attributes:_
     - `days` (Day[]): The list of all the days in the current month.
     - `current_day` (date): Displays today's date.
