@@ -4,7 +4,7 @@
 
 ### Calendar
   - **Description**: Hold information regaurding the current month and the days. 
-  -_Attributes:_
+  - _Attributes:_
     - `days` (Day[]): The list of all the days in the current month.
     - `current_day` (date): Displays today's date.
     - `streak` (number): The number of consecutive days the user has logged their daily emotion.
