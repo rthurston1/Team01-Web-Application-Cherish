@@ -9,7 +9,7 @@ Our web app provides a simple yet impactful platform for users to reflect on and
 **Key Features**
   - Reflect their emotions daily either once or multiple times a day.
   - An overview / summary of their week or month.
-  - Rate their day with emotions.
+  - Rate their day with emotions and see previous days that are color coded with emotions.
   - Ability to export their data in a csv format for either personal records or sharing with a therapist.
 
 ## Why This Matters
