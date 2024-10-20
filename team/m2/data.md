@@ -30,12 +30,12 @@
   - **Data Source** User-input, the user will input their emotion with a breif decription.
 
 ## Data Relations
-- **Calendar to Day:** One-to-Many, the calednar has multiple days, all with unqiue entries.
+- **Calendar to Day:** One-to-Many, the calendar has multiple days, all with unique entries.
 - **Dat to Calendar:** Many-to-One, all days refer back to one calendar.
 - **Day to Emotion:** One-to-Many, each day can have multiple emotions.
 - **Emotion to Day:** Many-to-One, each emotion corresponds to one day.
 
 ## Data Sources
--**User-Input Data:** Entered by the user.
--**System-Generated Data:** Data is taken from user inputs and distributed to various sections in the application.
+- **User-Input Data:** Entered by the user.
+- **System-Generated Data:** Data is taken from user inputs and distributed to various sections in the application.
 
