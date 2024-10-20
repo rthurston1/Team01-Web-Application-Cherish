@@ -17,3 +17,9 @@ October 20, 2024
   - **Task**: Discuss current status of project with team.
   - **Details**:  Met with Team on Zoom to discuss the status of the project. 
   - **Link to Commit**: N/A
+
+October 20, 2024
+
+  - **Task**: Review users.md
+  - **Details**:  Proof read users.md
+  - **Link to Commit**: N/A
