@@ -17,7 +17,7 @@
    - `logged_in` (boolean): True if the user filled out information for the current day (false if the day was skipped).
    - `daily_emotions` (Emotion[]): A list of emotion that the user felt during the day.
    - `daily_rating` (number): The overall emotion score of the day. (The higher the score, the better day you had!).
-   - `jorunal_entry` (string): A space for users to write an overall summary for their day
+   - `journal_entry` (string): A space for users to write an overall summary for their day
  - **Data Source** System-generated, based on the users inputs from the emotions they've logged. Also User-input, for logging in journal entries
 
 ### Emotion
