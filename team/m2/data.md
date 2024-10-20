@@ -34,3 +34,5 @@
 
 ## Data Sources
 -**User-Input Data:** Data entered by user
+-**System-Generated:** Data is taken from user inputs and distributed to various section in the program
+
