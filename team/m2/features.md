@@ -38,7 +38,7 @@ Users will be able to choose from light or dark mode when using the app.
 
 ## Notifications and Alerts
 
-This feature will allow users to set a reminder to notify them to log their day.
+This feature will allow users to set a reminder to notify them to log their day through push notifications, email, or SMS.
 
 **Assigned to**: Wacil Volitaire
 
