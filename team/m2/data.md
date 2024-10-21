@@ -31,7 +31,7 @@
 
 ## Data Relations
 - **Calendar to Day:** One-to-Many, the calendar has multiple days, all with unique entries.
-- **Dat to Calendar:** Many-to-One, all days refer back to one calendar.
+- **Day to Calendar:** Many-to-One, all days refer back to one calendar.
 - **Day to Emotion:** One-to-Many, each day can have multiple emotions.
 - **Emotion to Day:** Many-to-One, each emotion corresponds to one day.
 
