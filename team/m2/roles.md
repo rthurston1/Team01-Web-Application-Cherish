@@ -4,8 +4,8 @@
 - **Role**: George manages the overall tasks that the project needs and makes sure the task structure is coordinated. He also ensures milestones are achieved, and coordinates the team's efforts.
 - **Top 3 Commits**:
   1. [Commit 1](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/002debca589a17663e3ae6156a82ab5758d57051): Brought up an innovative project/application idea to work with the team.
-  2. [Commit 2](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/pull/13/commits/b6886ba62c3b038292adc0aac9b0f75de4ec8863): Briefed the team on explaing how fork, merge, and pull requests work.
-  3. [Commit 3](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/pull/15/commits/5b8261008a4113337b7f9e1457ba670b139bfc02): Drafted and worked on roles.md making sure everyone has a role and responsibilities associated with the project and completed users.md to target specific audience and their user needs.
+  2. [Commit 2](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/d471ea48d0217f6a9b5ea471f60dc191ec0eb35e): Worked on user needs and primiary audience and summarized it well by documenting users.md.
+  3. [Commit 3](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/pull/15/commits/5b8261008a4113337b7f9e1457ba670b139bfc02): Drafted and worked on creating a template for roles.md; making sure everyone has a role and responsibilities associated with the project.
      
 
 ##  Liam Campbell  - Timekeeper
@@ -29,7 +29,7 @@
   2. [Commit 2](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/0b9961c7ea6281aeef4ef78296862550115b09ba): Created and worked on data.md, explaining which kinds of variables we will use to store our data.
   3. [Commit 3](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/489b01edb69bf12af90cfe140d005e8471e151e8): Added rough sketch of UI-Diagram.
 
-##  Samuel Hernandez  - Design Manager.
+##  Samuel Hernandez  - Design Manager
 - **Role**: Responsible for UI Design, make sure everything is functionaly, aesthetically pleasing.
 - **Top 3 Commits**: 
   1. [Commit 1](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/c6da337d7228340dd19443be39f0506c9ba9aeb7): Insert brief description here (1 sentence) and link your commit on the left.
