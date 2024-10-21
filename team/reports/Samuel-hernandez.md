@@ -7,3 +7,8 @@
 ## October 15, 2024
 
 -**Task**: Meet up with Rob to start sketcihing our project design. -**Details**: Draw, and talked many differente ideas and features we can implement.
+
+## October 19, 2024
+-**Task**: Worked with Robbie elaborating the overall UI from our calendar app.  
+--**Details**: Worked with Jesse implementing the overall design into figma. Introduced to our sketch icons library to ensure and onverall good loking and unique design of our app.
+
