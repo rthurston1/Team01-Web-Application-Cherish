@@ -1,11 +1,3 @@
-This is our Web Application Concept repository which includes all the brainstorm
-and plans we have for our final project.
+# TODO
+## Finish Milestone #2 
 
-Roles still need to be decided.
-
-**IMPORTANT NOTE** 
-Please make a branch off the main branch and then merge any changes to the main branch.
-DO NOT DIRECTLY COMMIT TO MAIN
-
-DO FIRST: Add your own report markdown file, name it "FIRST-LAST.md" with your first and last name.
-Please add it to team/reports folder.
