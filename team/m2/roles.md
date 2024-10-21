@@ -47,8 +47,8 @@
 - **Role**: Responsible for overseeing the organization and maintenance of all project documentation. Wacil ensures that all documents are up to date, well-organized, and accessible to team members.
 - **Top 3 Commits**:
   1. [Commit 1](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/a5b7d3dced591d55a70a7d1173ddd51a33cc3664): Reviewed and edited data.md.
-  2. [Commit 2]((https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/da4837d3521365be7f9dd21c42b0d5a710e88b46)): Brought up a features idea to the team meeting.
-  3. [Commit 3]((https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/fbf1078c7d1e63eb887a2525522c4d5edc36728c)): Reviewed and edited features.md file.
+  2. [Commit 2](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/da4837d3521365be7f9dd21c42b0d5a710e88b46): Brought up a features idea to the team meeting.
+  3. [Commit 3](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/fbf1078c7d1e63eb887a2525522c4d5edc36728c): Reviewed and edited features.md file.
 
 
 
