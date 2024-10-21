@@ -11,9 +11,9 @@
 ##  Liam Campbell  - Timekeeper
 - **Role**: Liam oversees the scheduling of all team activities, ensuring that meetings begin and end punctually. He monitors deadlines and regularly reminds the team of approaching due dates.
 - **Top 3 Commits**:
-  1. [Commit 1](https://github.com/repo/commit1): Insert brief description here (1 sentence) and link your commit on the left.
-  2. [Commit 2](https://github.com/repo/commit2): Insert brief description here (1 sentence) and link your commit on the left.
-  3. [Commit 3](https://github.com/repo/commit3): Insert brief description here (1 sentence) and link your commit on the left.
+  1. [Commit 1](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/b385dc2755c762ea2c05b4679bb04bc5ca9b7f5b): Added key features and added to problems.md
+  2. [Commit 2](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/6244cb5bab87484f2f0634da24e76ce88408ec89): Met with everyone and documented tasks and goals throughout the week.
+  3. [Commit 3](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/4cd1cecf806156e5ecf8a0c913983a2e37ea4f95): Created the format for problems.md
 
 ##  Jesse Goldman  - Note-Taker
 - **Role**: Jesse takes comprehensive notes during meetings and makes sure that all action items are clearly conveyed. After each meeting, Jesse is in charge of updating the notes file in the repository as well as the shared TODO list he created.
