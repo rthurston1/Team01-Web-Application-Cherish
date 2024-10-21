@@ -6,7 +6,7 @@
 - **Top 3 Commits**:
   1. [Commit 1](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/002debca589a17663e3ae6156a82ab5758d57051): Brought up an innovative project/application idea to work with the team.
   2. [Commit 2](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/d471ea48d0217f6a9b5ea471f60dc191ec0eb35e): Worked on user needs and primiary audience and summarized it well by documenting users.md.
-  3. [Commit 3](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/61f3845b2692120f7db973d9048a53f8117fafab): Drafted and worked on creating a template for roles.md; making sure everyone has a role and responsibilities associated with the project.
+  3. [Commit 3](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/6af3a14589e6eaa7cfb0c4ec4fc658dcdc344e2e): Drafted and worked on creating a template for roles.md; making sure everyone has a role and responsibilities associated with the project.
      
 
 ##  Liam Campbell  - Timekeeper
