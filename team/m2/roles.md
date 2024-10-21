@@ -24,14 +24,14 @@
   3. [Commit 3](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/5a3f407e3883248521bf97da8ad44bb91acc77fe): Worked on Figma diagram of Robbies UI sketch, updated ui-diagrams.md with a link to the figma.
      
 ## Robert Thurston  - Project Lead 
-- **Role**: Robbie organizes and tracks the team's progress. He plans and leads meetings, facilitating open communication to keep everyone aligned with project goals. Robbie prioritizes ensuring that every team member's voice is heard, addressing any communication challenges or roadblocks that may arise.
+- **Role**: Robbie organizes and tracks the team's progress. He plans and leads meetings to keep everyone aligned with project goals. Robbie ensures that every team member's voice is heard, addressing any communication challenges or roadblocks that may arise.
 - **Top 3 Commits**:
   1. [Commit 1](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/7c76b66e63da5389c1606f124f244b3153b4add9): Create and brainstormed a list of problems our application will solve. Wrote a rough draft in problems.md
   2. [Commit 2](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/0b9961c7ea6281aeef4ef78296862550115b09ba): Created and worked on data.md, explaining which kinds of variables we will use to store our data.
   3. [Commit 3](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/489b01edb69bf12af90cfe140d005e8471e151e8): Added rough sketch of UI-Diagram.
 
 ##  Samuel Hernandez  - Design Manager
-- **Role**: Responsible for UI Design, make sure everything is functionaly, aesthetically pleasing.
+- **Role**: Responsible for the overall UI design for the application. Samuel makes sure that our application is easy to navigate and aesthetically pleasing to look at.
 - **Top 3 Commits**: 
   1. [Commit 1](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/c6da337d7228340dd19443be39f0506c9ba9aeb7): Insert brief description here (1 sentence) and link your commit on the left.
   2. [Commit 2](https://github.com/repo/commit2): Insert brief description here (1 sentence) and link your commit on the left.
