@@ -23,3 +23,9 @@ October 20, 2024
   - **Task**: Review users.md
   - **Details**:  Proof read users.md
   - **Link to Commit**: N/A
+
+October 21, 2024
+
+  - **Task**: Review roles.md
+  - **Details**:  Fixed a couple of typos in the roles.md, specifically the links to a few commits
+  - **Link to Commit**: https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/d076fa77ce1eb273a130c33e251261a2bbe34be4
