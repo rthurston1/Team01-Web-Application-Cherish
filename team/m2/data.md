@@ -2,6 +2,15 @@
 
 ## Data Types
 
+### User Profile
+ -**Description**: Contains personal login information.
+ -_Attributes_
+   - `username` (`string`): The name chosen by the user.
+   - `name` (`string`): Preferred name of the user.
+   - `password` (`string`): An encrpyted string only visible to the user.
+   - `email` (`string`): The email linked to the profile.
+ - **Data Source**: User-input, when first signing up or updating.
+
 ### Calendar
   - **Description**: Hold information regarding the current month and the days. 
   - _Attributes:_
