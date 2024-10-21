@@ -34,7 +34,7 @@
 - **Role**: Responsible for the overall UI design for the application. Samuel makes sure that our application is easy to navigate and aesthetically pleasing to look at.
 - **Top 3 Commits**: 
   1. [Commit 1](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/c6da337d7228340dd19443be39f0506c9ba9aeb7): Created and linked my roles to that our group repository. 
-  2. [Commit 2](https://github.com/repo/commit2): Insert brief description here (1 sentence) and link your commit on the left.
+  2. [Commit 2]([https://github.com/repo/commit2](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/24f263514c34cd7079219bd054215bbf341cbe25)): Updated my roles file, by writing a description about U.I contribution. 
   3. [Commit 3](https://github.com/repo/commit3): Insert brief description here (1 sentence) and link your commit on the left.
 
 ##  Nikolay Ostroukhov - Quality Control
