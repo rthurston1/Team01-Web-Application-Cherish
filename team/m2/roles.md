@@ -1,11 +1,12 @@
 # Team Roles and Commit Contributions
 
+
 ##  Anugrah George  - Task Lead
 - **Role**: George manages the overall tasks that the project needs and makes sure the task structure is coordinated. He also ensures milestones are achieved, and coordinates the team's efforts.
 - **Top 3 Commits**:
   1. [Commit 1](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/002debca589a17663e3ae6156a82ab5758d57051): Brought up an innovative project/application idea to work with the team.
   2. [Commit 2](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/d471ea48d0217f6a9b5ea471f60dc191ec0eb35e): Worked on user needs and primiary audience and summarized it well by documenting users.md.
-  3. [Commit 3](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/d471ea48d0217f6a9b5ea471f60dc191ec0eb35e): Drafted and worked on creating a template for roles.md; making sure everyone has a role and responsibilities associated with the project.
+  3. [Commit 3](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/61f3845b2692120f7db973d9048a53f8117fafab): Drafted and worked on creating a template for roles.md; making sure everyone has a role and responsibilities associated with the project.
      
 
 ##  Liam Campbell  - Timekeeper
@@ -49,6 +50,3 @@
   1. [Commit 1](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/a5b7d3dced591d55a70a7d1173ddd51a33cc3664): Reviewed and edited data.md.
   2. [Commit 2](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/da4837d3521365be7f9dd21c42b0d5a710e88b46): Brought up a features idea to the team meeting.
   3. [Commit 3](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/fbf1078c7d1e63eb887a2525522c4d5edc36728c): Reviewed and edited features.md file.
-
-
-
