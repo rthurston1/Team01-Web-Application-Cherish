@@ -14,3 +14,7 @@
 ### October 13, 2024
   - **Task**: Researching on user needs and why the team is working towards making the application
   - **Details**: Documented and completed users.md as to what are the reasons behind making this app as well as specifying target audience and making sure we understand the user needs. 
+
+### October 15, 2024
+  - **Task**: Building few more features and understanding user impact with those feature implementation
+  - **Details**: Worked with team members to understand how certain features will affect users directly or indriectly and adding a few more features that users will find helpful
