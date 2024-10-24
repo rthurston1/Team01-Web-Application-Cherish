@@ -40,3 +40,10 @@
   
 ### Submitted Milestone #2
   -**Details:** Submitted Milestone #2 to Gradescope and added all group memebers to the submission.
+
+## October 23, 2024
+### Read Milestone 3 Documentation
+  -**Details:** Read through the guidelines and requirments for Milestone #3
+
+### Created Meeting Plan
+  -**Details:** Organized and planned meeting for tomorrow, also notfiying team memebers about the event
