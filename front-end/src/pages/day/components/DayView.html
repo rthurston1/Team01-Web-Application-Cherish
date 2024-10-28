@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesDay.css"/>
+    <title>Day Page</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Switches view to the Journal Page
+            document.getElementById('toJournalPage')
+            .addEventListener('click', () => 
+                window.location.href = '../../journal/components/JournalView.html'
+            )  
+        })
+    </script>
+</head>
+<body>
+    <center>
+        <h1>Today: (MM/DD/YYYY)</h1>
+
+        <div id="dayView">
+            <div class="scroll-container" id="emotionLog">
+                <!--Template, entry elements will be added through JS-->
+                <div class="entry">
+                    <button class="emotion-info">Emotion 1</button>
+                    <button class="delete">Delete</button>
+                </div>
+                <div class="entry">
+                    <button class="emotion-info">Emotion 2</button>
+                    <button class="delete">Delete</button>
+                </div>
+                <div class="entry">
+                    <button class="emotion-info">Emotion 3</button>
+                    <button class="delete">Delete</button>
+                </div>
+                <div class="entry">
+                    <button class="emotion-info">Emotion 4</button>
+                    <button class="delete">Delete</button>
+                </div>
+                <div class="entry">
+                    <button class="emotion-info">Emotion 5</button>
+                    <button class="delete">Delete</button>
+                </div>
+                <div class="entry">
+                    <button class="emotion-info">Emotion 6</button>
+                    <button class="delete">Delete</button>
+                </div>
+                <div class="entry">
+                    <button class="emotion-info">Emotion 7</button>
+                    <button class="delete">Delete</button>
+                </div>
+                <div class="entry">
+                    <button class="emotion-info">Emotion 8</button>
+                    <button class="delete">Delete</button>
+                </div>
+                <div class="entry">
+                    <button class="emotion-info">Emotion 9</button>
+                    <button class="delete">Delete</button>
+                </div>
+                <div class="entry">
+                    <button class="emotion-info">Emotion 10</button>
+                    <button class="delete">Delete</button>
+                </div>
+                <div class="entry">
+                    <button class="emotion-info">Emotion 11</button>
+                    <button class="delete">Delete</button>
+                </div>
+                <div class="entry">
+                    <button class="emotion-info">Emotion 12</button>
+                    <button class="delete">Delete</button>
+                </div>
+                <div class="entry">
+                    <button class="emotion-info">Emotion 13</button>
+                    <button class="delete">Delete</button>
+                </div>
+                <div class="entry">
+                    <button class="emotion-info">Emotion 14</button>
+                    <button class="delete">Delete</button>
+                </div>         
+            </div>
+    
+            <div class="journal-container" id="journalLog">
+                <button id="toJournalPage">Journal</button>
+                <textarea readonly id="journalEntry"></textarea>
+            </div>
+        </div>
+        
+        
+    </center>
+</body>
+</html>
