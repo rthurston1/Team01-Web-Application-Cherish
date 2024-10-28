@@ -12,6 +12,7 @@
   "license": "COMPSCI 326",
   "description": "The Cherish App",
   "dependencies": {
+    "cherish-app": "file:",
     "http-server": "^14.1.1"
   },
   "devDependencies": {
