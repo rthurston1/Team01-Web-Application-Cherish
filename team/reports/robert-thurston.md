@@ -10,7 +10,7 @@
 
 ## October 14, 2024
 ### Hosted meeting with team members.
-  - **Detalils:** Discussed roles and overall plan to complete milestone two by the deadline.
+  - **Details:** Discussed roles and overall plan to complete milestone two by the deadline.
 
 ## October 16, 2024
 ### Designed UI for Application.
@@ -19,7 +19,7 @@
 
 ## October 18, 2024
 ### Started working on problem.md
-  - **Details:** Started writting the problems we're going to solve with our application.
+  - **Details:** Started writing the problems we're going to solve with our application.
   - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/7c76b66e63da5389c1606f124f244b3153b4add9)
 
 ## October 20, 2024
@@ -27,7 +27,7 @@
   - **Details:** Planned out and hosted weekly meeting to discuss our progress and what's next to come.
 
 ### Created Project Folder
-  -**Details:** Created google drive folder to organize information regarding meetings and time availibility
+  -**Details:** Created google drive folder to organize information regarding meetings and time availability
 
 ### Started and Completed data.md
  - **Details:** Finished writing down details involving how our data will be stored.
@@ -39,11 +39,21 @@
   -[Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/3b4d89aee20f2e08b5e17f4736f12fcd0bcf8a56)
   
 ### Submitted Milestone #2
-  -**Details:** Submitted Milestone #2 to Gradescope and added all group memebers to the submission.
+  -**Details:** Submitted Milestone #2 to Gradescope and added all group members to the submission.
 
 ## October 23, 2024
 ### Read Milestone 3 Documentation
-  -**Details:** Read through the guidelines and requirments for Milestone #3
+  -**Details:** Read through the guidelines and requirements for Milestone #3
 
 ### Created Meeting Plan
-  -**Details:** Organized and planned meeting for tomorrow, also notfiying team memebers about the event
+  -**Details:** Organized and planned meeting for tomorrow, also notifying team members about the event
+
+## October 27, 2024
+### Hosted Weekly Meeting
+  -**Details:** Meet with teammates to discuss our plan to complete Milestone #3 on-time
+
+### Created Project Branch
+  -**Details:** Created a branch for Jesse and I to work on (We are responsible to the Day Page)
+
+### Drafted Journal Page
+  -**Details:** Created a branch for Jesse and I to work on (We are responsible to the Day Page)

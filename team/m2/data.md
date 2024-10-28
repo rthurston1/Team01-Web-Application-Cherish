@@ -7,7 +7,7 @@
  -_Attributes_
    - `username` (`string`): The name chosen by the user.
    - `name` (`string`): Preferred name of the user.
-   - `password` (`string`): An encrpyted string only visible to the user.
+   - `password` (`string`): An encrypted string only visible to the user.
    - `email` (`string`): The email linked to the profile.
  - **Data Source**: User-input, when first signing up or updating.
 
@@ -35,8 +35,8 @@
     - `emotion_id` (`number`): A unique identifier for the emotion (Ex: Happy: 0, Sad: 1, Angry: 2,...).
     - `emotion_intensity` (`number`): A ranking system on a scale of 1 to 10 on how strong the emotion is.
     - `emotion_color` (`color`): The color the belongs to this emotion (NOTE: We may implement a feature that allows users to pick custom colors for their emotions)
-    - `description` (`string`): An explaination to why a user feels the emotion (Not required, can be left empty).
-  - **Data Source** User-input, the user will input their emotion with a breif decription.
+    - `description` (`string`): An explanation to why a user feels the emotion (Not required, can be left empty).
+  - **Data Source** User-input, the user will input their emotion with a brief description.
 
 ## Data Relations
 - **Calendar to Day:** One-to-Many, the calendar has multiple days, all with unique entries.
