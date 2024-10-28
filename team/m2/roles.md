@@ -5,7 +5,7 @@
 - **Role**: George manages the overall tasks that the project needs and makes sure the task structure is coordinated. He also ensures milestones are achieved, and coordinates the team's efforts.
 - **Top 3 Commits**:
   1. [Commit 1](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/002debca589a17663e3ae6156a82ab5758d57051): Brought up an innovative project/application idea to work with the team.
-  2. [Commit 2](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/d471ea48d0217f6a9b5ea471f60dc191ec0eb35e): Worked on user needs and primiary audience and summarized it well by documenting users.md.
+  2. [Commit 2](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/d471ea48d0217f6a9b5ea471f60dc191ec0eb35e): Worked on user needs and primary audience and summarized it well by documenting users.md.
   3. [Commit 3](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/6af3a14589e6eaa7cfb0c4ec4fc658dcdc344e2e): Drafted and worked on creating a template for roles.md; making sure everyone has a role and responsibilities associated with the project.
      
 
@@ -21,7 +21,7 @@
 - **Top 3 Commits**:
   1. [Commit 1](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/6c2ea8ac552fce25074cbeb870d86d244cfaf1c3): Created notes folder and file in the main branch.
   2. [Commit 2](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/62523bf0ff089fb33cf035d9464153367bd0e915): Updated notes file after team meeting.
-  3. [Commit 3](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/5a3f407e3883248521bf97da8ad44bb91acc77fe): Worked on Figma diagram of Robbies UI sketch, updated ui-diagrams.md with a link to the figma.
+  3. [Commit 3](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/5a3f407e3883248521bf97da8ad44bb91acc77fe): Worked on Figma diagram of Robbie's UI sketch, updated ui-diagrams.md with a link to the figma.
      
 ## Robert Thurston  - Project Lead 
 - **Role**: Robbie organizes and tracks the team's progress. He plans and leads meetings to keep everyone aligned with project goals. Robbie ensures that every team member's voice is heard, addressing any communication challenges or roadblocks that may arise.

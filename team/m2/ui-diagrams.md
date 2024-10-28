@@ -9,4 +9,4 @@ on their calendar entries.
 [UI Diagram Sketch](https://imgur.com/a/FeMPpyk)
 
 **Figma Diagram:**
-This is a Figma diagram based off of Robbie's sktech, designed colaboratively by Sam and Jesse. [Figma Diagram](https://www.figma.com/design/NaU6qBRiFmnrodSsB5jwOu/Calendar-Cherish?node-id=102-86&t=SqWl5xl1dXUFfUVZ-1) 
+This is a Figma diagram based off of Robbie's sketch, designed collaboratively by Sam and Jesse. [Figma Diagram](https://www.figma.com/design/NaU6qBRiFmnrodSsB5jwOu/Calendar-Cherish?node-id=102-86&t=SqWl5xl1dXUFfUVZ-1) 
