@@ -18,4 +18,8 @@ export const Events = {
   // UnStoreEntry: 'UnStoreEntry', // user deletes an entry
   // UnStoreEntrySuccess: 'UnStoreEntrySuccess', // entry deleted successfully
   // UnStoreEntryFailure: 'UnStoreEntryFailure', // error deleting entry
+
+
+  LoadJournalEntry: 'LoadJournalEntry',
+  StoreJournalEntry: 'StoreJournalEntry'
 };
