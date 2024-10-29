@@ -4,20 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="stylesJournal.css"/>
+    <script type="module" src="JournalComponent.js"></script>
     <title>Journal Page</title>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Returns to Day Page 
-            const returnToDay = button => {
-                button.addEventListener('click', () =>
-                    window.location.href = '../DayView.html'
-                )
-            }
-
-            returnToDay(document.getElementById('save')) // Save Journal Entry (TODO: NOT implemented) 
-            returnToDay(document.getElementById('cancel')) // Cancels any changes (TODO: NOT implemented) 
-        })
-    </script>
 </head>
 <body>
     <center>
