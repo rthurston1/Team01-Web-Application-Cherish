@@ -29,6 +29,13 @@ body {
     height: 400px;
 }
 
+.button-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+
 #journalEntry {
     width: 100%;
     height: 200px;
