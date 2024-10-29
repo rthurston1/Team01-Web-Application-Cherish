@@ -10,7 +10,7 @@
             // Switches view to the Journal Page
             document.getElementById('toJournalPage')
             .addEventListener('click', () => 
-                window.location.href = '../../journal/components/JournalView.html'
+                window.location.href = './journal/JournalView.html'
             )  
         })
     </script>
@@ -82,6 +82,7 @@
     
             <div class="journal-container" id="journalLog">
                 <button id="toJournalPage">Journal</button>
+                <button id="toCheckInPage">Check In</button>
                 <textarea readonly id="journalEntry"></textarea>
             </div>
         </div>
