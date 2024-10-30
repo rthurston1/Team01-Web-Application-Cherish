@@ -1,4 +1,4 @@
-body {
+.view {
     display: flex;
     overflow: hidden; 
     flex-direction: column;
