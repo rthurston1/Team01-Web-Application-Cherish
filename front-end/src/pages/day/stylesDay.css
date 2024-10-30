@@ -2,7 +2,7 @@ body {
     overflow: hidden;
 }
 
-#view {
+.view {
     display: flex;
     flex-direction: column;
     justify-content: center; 
