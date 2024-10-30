@@ -57,3 +57,7 @@
 
 ### Drafted Journal Page
   -**Details:** Created a branch for Jesse and I to work on (We are responsible to the Day Page)
+
+## October 29, 2024
+### Complete Journal Feature
+  -**Details:** Finished the functionailty of adding a journal entry to a day. This may be updated later.
