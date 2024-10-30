@@ -1,44 +1,41 @@
 import { EventHub } from '../../eventhub/EventHub.js'
 import { Events } from '../../eventhub/Events.js'
+import { BaseComponent } from '../main/BaseComponent.js'
 import { JournalComponent } from './journal/JournalComponent.js'
 
-export class DayComponent {
+export class DayComponent extends BaseComponent {
     constructor() {
-        this.initialize()
+        super('dayPage')
         this.date = {}
     }
 
+// Methods
+
+    // Calls an event to load journal page
     #goToJournalPage() {
         const hub = EventHub.getInstance()
         hub.publish(Events.LoadJournalPage, this.date)
-        document.getElementById('dayPage').style.display = 'none'
     }
 
+    // Calls an event to load check-in page
     #goToCheckInPage() {
-
+        // TODO: Implement this method
     }
 
-
+    // Appends new emotion entry to Emotion Log
     #addEmotionEntry(emotion_entry) {
-        /**
-         * Adds new div element to the Emotion Log
-         * This function changes the HTML
-         */
+        // TODO: Implement this method
     }
 
+    // Removes the specified emotion element from the Emotion Log
     #removeEmotionEntry(emotion_entry) {
-        /**
-         * Removes the specified emotion element from the Emotion Log
-         * This function changes the HTML
-         */
+       // TODO: Implement this method
     }
 
-    #buildHTML() {
-        const view = document.getElementById('views')
-
-        const body = document.createElement('div')
-        body.id = 'dayPage'
-
+// Inherited Methods from BaseComponent
+  
+    // Builds HTML Structure return it (Very unreadable right now, will fix later)
+    _buildHTML() {
         // Body Children
         const header = document.createElement('h1')
         header.classList.add('body-element')
@@ -82,9 +79,8 @@ export class DayComponent {
 
 
         // Appends Children to their Mommies ~UwU~
-        view.appendChild(body)
-        body.appendChild(header)
-        body.appendChild(content)
+        this.body.appendChild(header)
+        this.body.appendChild(content)
         content.appendChild(emotions)
         content.appendChild(journal)
         journal.appendChild(buttons)
@@ -93,45 +89,22 @@ export class DayComponent {
         buttons.appendChild(checkInButton)
     }
 
-
-    #addCustomEventListeners() {
+    // Adds EventListeners that update class attributes
+    _addCustomEventListeners() {
         const hub = EventHub.getInstance()
-        hub.subscribe(Events.LoadDayPage, data => this.render(data))
-    }
-
-    // Called when application boots up
-    initialize() {
-        // Called when first loading application
-        this.#buildHTML()
-        this.#addCustomEventListeners()
+        hub.subscribe(Events.LoadDayPage, data => this._render(data))
     }
 
    // Changes view to Day Page
-    render(date) {
-        this.date = date
+    _render(data) {
+        document.querySelectorAll('.view').forEach(body => body.style.display = 'none')
+
+        this.date = data
         document.getElementById('date').textContent = this.date.format 
         document.getElementById('journalEntry').textContent = this.date.journal_entry
-        document.getElementById('dayPage').style.display = 'block' 
+
+        // Displays View
+        this._changeDisplay('flex')
     }
+
 }
-
-
-// This won't be here once we've fully implemented main calendar page
-const today = new Date()
-const dateArr = [today.getMonth() + 1, today.getDate(), today.getFullYear()]
-
-const date = {
-    month: dateArr[0], // ex: 10 (October)
-    day: dateArr[1], // ex: 29
-    year: dateArr[2], // ex: 2024
-    format: dateArr.join('/'), // Displays in header ex: 10/29/2024
-    id: dateArr.join('-'), // ID to pass as key to localStorage ex: 10-29-2024
-}
-
-
-const dayPage = new DayComponent()
-
-dayPage.render(date)
-const journalPage = new JournalComponent()
-
-console.log('Everything loaded')
