@@ -1,35 +1,29 @@
 import { EventHub } from '../../../eventhub/EventHub.js'
 import { Events } from '../../../eventhub/Events.js'
+import { BaseComponent } from '../../main/BaseComponent.js'
 
-export class JournalComponent {
+export class JournalComponent extends BaseComponent {
     constructor() {
-        this.#initialize()
+        super('journalPage')
         this.date = {}
     }
 
-    #changeDisplay(view) {
-        document.getElementById('journalPage').style.display = view
-    }
-
+// Methods
+    // Returns to Day Page, passes any changes to the date object through an event
     #returnToDayPage() {
        const hub = EventHub.getInstance()
        hub.publish(Events.LoadDayPage, this.date)
-       this.#changeDisplay('none')
     }
 
+    // Stores value in text area to date object
     #saveJournal() {
-        const text = document.getElementById('summary').value
-        this.date['journal_entry'] = text
+        this.date['journal_entry'] = document.getElementById('summary').value
         this.#returnToDayPage()
     }
 
-    #buildHTML() {
-        const views = document.getElementById('views')
-
-        // Creates Body Elements
-        const body = document.createElement('div')
-        body.id = 'journalPage'
-
+// Inherited Methods
+    // Builds the HTML Structure (Very unreadable right now, will try to implement it differently)
+    _buildHTML() { 
         // Body Children
         const header = document.createElement('h1')
         header.textContent = 'Journal Page'
@@ -63,32 +57,33 @@ export class JournalComponent {
         cancelButton.addEventListener('click', () => this.#returnToDayPage())
 
         // Appends Children to their Papas ~OwO~
-        views.appendChild(body)
-        body.appendChild(header)
-        body.appendChild(header2)
-        body.appendChild(form)
+        this.body.appendChild(header)
+        this.body.appendChild(header2)
+        this.body.appendChild(form)
         form.appendChild(textBox)
         form.appendChild(buttons)
         buttons.appendChild(saveButton)
         buttons.appendChild(cancelButton)
     }
 
-    #addCustomEventListeners() {
+    // Adds EventListeners that update attributes in the class
+    _addCustomEventListeners() {
         const hub = EventHub.getInstance()
-        hub.subscribe(Events.LoadJournalPage, data => this.#render(data))
+        hub.subscribe(Events.LoadJournalPage, data => this._render(data))
     }
 
-    #initialize() {
-        this.#buildHTML()
-        this.#addCustomEventListeners()
-        this.#changeDisplay('none')
-    }
-
-    #render(date_entry) {
+    // Changes the current view to the Journal Page
+    _render(date_entry) {
+        document.querySelectorAll('.view').forEach(body => body.style.display = 'none')
         this.date = date_entry
-        if (this.date.journal_entry) document.getElementById('summary').value = this.date.journal_entry
-        this.#changeDisplay('block')
+
+        document.getElementById('summary').value = 'journal_entry' in this.date
+        ? this.date.journal_entry
+        : ''
+        
+        this._changeDisplay('flex')
     }
+
 }
 
 
