@@ -1,0 +1,21 @@
+{
+  "name": "cherish-app",
+  "author": "Team 1",
+  "version": "1.0.0",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "start-server": "http-server ./source -p 3000",
+    "test": "npx playwright test",
+    "test:ui": "npx playwright test --ui"
+  },
+  "license": "COMPSCI 326",
+  "description": "The Cherish App",
+  "dependencies": {
+    "cherish-app": "file:",
+    "http-server": "^14.1.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.48.1"
+  }
+}

@@ -41,4 +41,28 @@
 - **Meetings**:  
   - Team agreed to meet **every Sunday at 3 PM**.
    
+---
 
+### October 18, 2024
+- **TA Suggestions**:  
+  - Check out the pre-existing app **"How We Feel"** for examples of similar implementations for our app.  
+  - Consider supporting **multiple languages** (though not essential).  
+- **Team Reflection**:  
+  - Team agreed communication has been mostly okay but could be improved somewhat.
+  - Jesse and Sam will complete the Figma diagram for Rabbies sketch of app UI
+ 
+---
+
+### October 20, 2024
+- **Journal Page Discussion**:  
+  - Niko believes the journal page is redundant.  
+  - Merge **stat page** with **summary page**.  
+  - Merge **journal page** with **day page**.  
+  - Add a button in the **check-in page** to create a journal entry.  
+
+- **Work-Time Tasks**:  
+  - **Robbie**: Finishing data.md  
+  - **Niko**: Waiting for commit  
+  - **Sam**: Fixing UI  
+  - **George**: Editing user.md  
+  - **Liam**: Adding to problem.md

@@ -2,7 +2,8 @@
 
 ## October 13,2024
 
--**Task**: Created own branch on both repository. -**Details**: Met on zoom with the team for updates, and to make sure we are working on our determine tasks.
+- **Task**: Created own branch on both repositories. 
+- **Details**: Met on Zoom with the team for updates, and to make sure we are working on our determined tasks.
 
 ## October 15, 2024
 
