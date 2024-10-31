@@ -20,7 +20,8 @@ export class CalendarComponent extends BaseComponent {
     const hub = EventHub.getInstance();
     switch (page) {
       case "check-in":
-        hub.publish(Events.LoadCheckInPage, this.dateData);
+        console.log("Check-in page will be here one day.");
+        // hub.publish(Events.LoadCheckInPage, this.dateData);
         break;
       case "journal":
         hub.publish(Events.LoadJournalPage, this.dateData);
@@ -72,8 +73,8 @@ export class CalendarComponent extends BaseComponent {
           <div class="feature-buttons">
             <button class="feature-button check-in" id="toCheckInPage">Check-in</button>
             <button class="feature-button journal" id="toJournalPage">Journal</button>
-            <button class="feature-button stats">Stats</button>
-            <button class="feature-button summary">Summary</button>
+            <button class="feature-button stats" id="toStatsPage">Stats</button>
+            <button class="feature-button summary" id="toSummaryPage">Summary</button>
           </div>
         </section>
       </div>`;
