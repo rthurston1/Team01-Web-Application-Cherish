@@ -1,39 +1,41 @@
 export class BaseComponent {
-  constructor(id) {
-    this.body = document.createElement('div')
-    this.body.classList.add('view')
-    this.body.id = id
-
-    const views = document.getElementById('views')
-
-    views.appendChild(this.body)
-    this.#initialize()
-    //   this.cssLoaded = false;
+  /**
+   * @param {string} id HTML body element id
+   * @param {string} cssLink file path from src folder
+   */
+  constructor(id, cssLink) {
+    this.#initialize(id, cssLink)
   }
 
 // Abstract Methods
   /**
-   * This is an abstract method that must be implemented by child classes.
-   * It must return an HTMLElement object.
+   * Builds the body's innerHTML
    * @abstract
+   * @returns {string}
    */
   _buildHTML() {
     throw new Error("_buildHTML method not implemented");
   }
 
   /**
-   * This is an abstract method that must be implemented by child classes.
-   * It must return an HTMLElement object.
+   * Adds event listeners to HTML elements
+   * Adds any custom events listeners
    * @abstract
+   * @returns {void}
    */
-  _addCustomEventListeners() {
+  _addEventListeners() {
     throw new Error("_addCustomEventListeners method not implemented");
   }
 
   /**
-   * This is an abstract method that must be implemented by child classes.
-   * It must return an HTMLElement object.
+   * Displays the current view. Attributes within 
+   * view dynamically change depending on the data
+   * passed as an argument.
+   * 
    * @abstract
+   * 
+   * @param {any} data
+   * @returns {void}
    */
   _render(data) {
     throw new Error("render method not implemented");
@@ -41,38 +43,29 @@ export class BaseComponent {
 
 // Methods
   _changeDisplay(view) {
-    document.getElementById(this.body.id).style.display = view
+    document.getElementById(this.bodyElement.id).style.display = view
   }
+  
+  #initialize(id, cssLink) {
+    // Adds CSS File to Head
+    this.cssFile = document.createElement('link')
+    this.cssFile.rel = 'stylesheet'
+    this.cssFile.href = cssLink
+    document.head.appendChild(this.cssFile)
 
-  #initialize() {
-    this._buildHTML()
-    this._addCustomEventListeners()
+    // Build Body
+    this.bodyElement = document.createElement('div')
+    document.getElementById('views').appendChild(this.bodyElement)
+
+    this.bodyElement.classList.add('view')
+    this.bodyElement.id = id
+    this.bodyElement.innerHTML = this._buildHTML()
+    
     this._changeDisplay('none')
+
+    
+    // Adds EventListens
+    this._addEventListeners()
   }
 
-
-
-  // ***********************************************
-  // **TODO**: Implement CSS (not a priority for M3)
-  // ***********************************************
-
-  // loadCSS(fileName) {
-  //   if (this.cssLoaded) return;
-
-  //   const link = document.createElement('link');
-  //   link.rel = 'stylesheet';
-  //   // Dynamically load CSS from the same directory as the JS file
-  //   link.href = `./components/${fileName}/${fileName}.css`;
-  //   document.head.appendChild(link);
-  //   this.cssLoaded = true;
-  // }
-
-  // dispatchCustomEvent(eventName, detail = {}) {
-  //   const event = new CustomEvent(eventName, { detail });
-  //   this.parent.dispatchEvent(event);
-  // }
-
-  // listenToEvent(eventName, callback) {
-  //   this.parent.addEventListener(eventName, callback);
-  // }
 }
