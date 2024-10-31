@@ -1,4 +1,4 @@
-# Milestone 2
+# Milestone 3
 
-Milestone #2 is complete!
+Due November 10th
 

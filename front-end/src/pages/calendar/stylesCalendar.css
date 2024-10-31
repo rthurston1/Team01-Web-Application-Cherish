@@ -1,0 +1,219 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #2320c2ab;
+}
+
+.container {
+  width: 100%;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.main-header {
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 20px;
+  background-color: #ccc;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.welcome-section h2 {
+  text-align: center;
+  margin-bottom: 10px;
+  color: #666;
+}
+
+.calendar {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.calendar h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+table {
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th,
+td {
+  padding: 5px;
+}
+
+.highlighted-date {
+  background-color: #ff5599;
+  color: white;
+  border-radius: 50%;
+}
+
+.welcome-back {
+  text-align: center;
+  background-color: yellow;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.features-section h3 {
+  text-align: center;
+  font-size: 1em;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.feature-buttons {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.feature-button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  flex: 1;
+  margin: 0 5px;
+  font-family: "Brush Script MT", cursive;
+  font-size: 1.2em;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.feature-button:hover {
+  transform: scale(1.05);
+  background-color: #d45b5b; /* Darken color on hover */
+  color: #f8f9fa; /* Lighten text color */
+}
+
+.check-in {
+  background-color: green;
+}
+.journal {
+  background-color: blue;
+}
+.stats {
+  background-color: orange;
+}
+.summary {
+  background-color: gray;
+}
+
+/* Container styling for responsiveness */
+.calendarContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+
+  background-color: rgb(255, 255, 255);
+}
+
+.calendar {
+  max-width: 350px; /* Adjust width as desired */
+  background-color: rgb(255, 255, 255);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.month {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2em;
+  cursor: pointer;
+  margin-bottom: 8%;
+}
+
+.month h1 {
+  font-size: 1rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+}
+
+.month p {
+  font-size: 1rem;
+  font-weight: 400;
+  font-weight: bolder;
+}
+
+.date h1 {
+  font-size: 1.5em;
+  margin: 0;
+}
+
+.date p {
+  font-size: 0.9em;
+  color: gray;
+}
+
+.weekdays,
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.weekdays div {
+  color: #888;
+  font-size: 1em;
+}
+
+.days div {
+  padding: 10px;
+  font-size: 1em;
+  transition: background 0.3s;
+  border-radius: 5px;
+}
+
+.days .prev-date,
+.days .next-date {
+  color: #ccc;
+}
+
+.days .today {
+  background: #ff69b4;
+  color: white;
+  font-weight: bold;
+}
+
+/* Responsive behavior */
+@media (max-width: 600px) {
+  .calendar {
+    max-width: 100%;
+    padding: 15px;
+  }
+
+  .weekdays div,
+  .days div {
+    font-size: 0.85em;
+  }
+}

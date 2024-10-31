@@ -2,20 +2,10 @@
  * An object containing various message types for task management.
  */
 export const Events = {
-  // ***********************************
-  // **TODO**: Add more events as needed
-  // ***********************************
-  // Examples:
-  // LoadCalendar: 'LoadCalendar', // loads the active user's calendar
-  // LoadCalendarSuccess: 'LoadCalendarSuccess', // calendar loaded successfully
-  // LoadCalendarFailure: 'LoadCalendarFailure', // error loading calendar
-  // LoadEntries: 'LoadEntries', // loads the entries for that day when user clicks on a day
-  // LoadEntriesSuccess: 'LoadTasksSuccess', // entries loaded successfully
-  // LoadEntriesFailure: 'LoadEntriesFailure', // error loading entries
-  // StoreEntry: 'StoreEntry', // user stores an entry
-  // StoreEntrySuccess: 'StoreEntrySuccess', // entry stored successfully
-  // StoreEntryFailure: 'StoreEntryFailure', // error storing entry
-  // UnStoreEntry: 'UnStoreEntry', // user deletes an entry
-  // UnStoreEntrySuccess: 'UnStoreEntrySuccess', // entry deleted successfully
-  // UnStoreEntryFailure: 'UnStoreEntryFailure', // error deleting entry
+  LoadMainPage: 'LoadMainPage', // Loads the main page (First thing called when application starts up)
+  LoadDayPage: 'LoadDayPage', // Loads the Day Component with content corresponding to the calendar day 
+  LoadJournalPage: 'LoadJournalPage', // Loads Journal Page, content based on current Day Page
+  LoadCheckInPage: 'LoadCheckInPage',
+  LoadSummaryPage: 'LoadSummaryPage',
+  StoreJournalEntry: 'StoreJournalEntry' // Updates day page when saving journal entry
 };
