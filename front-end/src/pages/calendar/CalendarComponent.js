@@ -8,19 +8,35 @@ export class CalendarComponent extends BaseComponent {
     this.dateData = {};
   }
 
-  // TODO: Implement four buttons to navigate to the following pages:
-  // 1. Check-In Page
-  // 2. Journal Page
-  // 3. Stats Page
-  // 4. Summary Page
-
-  #goToCheckInPage() {}
-  #goToJournalPage() {
+  /**
+   * Navigates to the specified page by publishing an event to the EventHub.
+   * Depending on the page parameter, it publishes different load page events.
+   * Work in progress: dateData
+   *
+   * @param {string} page - The name of the page to navigate to.
+   *                        Possible values are "check-in", "journal", "stats", "summary", or any other string for the main page.
+   */
+  #goToPage(page) {
     const hub = EventHub.getInstance();
-    hub.publish(Events.LoadJournalPage, this.dateData);
+    switch (page) {
+      case "check-in":
+        hub.publish(Events.LoadCheckInPage, this.dateData);
+        break;
+      case "journal":
+        hub.publish(Events.LoadJournalPage, this.dateData);
+        break;
+      case "stats":
+        console.log("Stats page will be here one day.");
+        // hub.publish(Events.LoadStatsPage, this.dateData);
+        break;
+      case "summary":
+        console.log("Summary page will be here one day.");
+        // hub.publish(Events.LoadSummaryPage, this.dateData);
+        break;
+      default:
+        hub.publish(Events.LoadMainPage, this.dateData);
+    }
   }
-  #goToStatsPage() {}
-  #goToSummaryPage() {}
 
   // Builds the HTML of the Calendar Page
   _buildHTML() {
@@ -63,6 +79,7 @@ export class CalendarComponent extends BaseComponent {
       </div>`;
   }
 
+  // Renders the calendar
   #renderCalendar() {
     const date = new Date();
     date.setDate(1);
@@ -132,6 +149,8 @@ export class CalendarComponent extends BaseComponent {
     }
   }
 
+  // Adds event listeners to the prev and next buttons as well as
+  // the feature buttons
   _addEventListeners() {
     const hub = EventHub.getInstance();
     hub.subscribe(Events.LoadMainPage, (data) => this._render(data));
@@ -147,10 +166,16 @@ export class CalendarComponent extends BaseComponent {
 
     document
       .getElementById("toJournalPage")
-      .addEventListener("click", () => this.#goToJournalPage());
+      .addEventListener("click", () => this.#goToPage("journal"));
     document
       .getElementById("toCheckInPage")
-      .addEventListener("click", () => this.#goToCheckInPage());
+      .addEventListener("click", () => this.#goToPage("check-in"));
+    document
+      .getElementById("toStatsPage")
+      .addEventListener("click", () => this.#goToPage("stats"));
+    document
+      .getElementById("toSummaryPage")
+      .addEventListener("click", () => this.#goToPage("summary"));
   }
 
   _render(data = null) {
