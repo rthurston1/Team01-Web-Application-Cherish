@@ -14,10 +14,12 @@ export class CalendarComponent extends BaseComponent {
    * Loads the Font Awesome stylesheet for icons.
    */
   _loadFontAwesome() {
-    if (!document.querySelector("link[href*='font-awesome']")) { // Check if not already added
+    if (!document.querySelector("link[href*='font-awesome']")) {
+      // Check if not already added
       const link = document.createElement("link");
       link.rel = "stylesheet";
-      link.href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css";
+      link.href =
+        "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css";
       document.head.appendChild(link);
     }
   }
@@ -85,10 +87,10 @@ export class CalendarComponent extends BaseComponent {
         <section class="features-section">
           <h3>Main page features/shortcuts:</h3>
           <div class="feature-buttons">
-            <button class="feature-button check-in" id="toCheckInPage">Check-in</button>
-            <button class="feature-button journal" id="toJournalPage">Journal</button>
-            <button class="feature-button stats" id="toStatsPage">Stats</button>
-            <button class="feature-button summary" id="toSummaryPage">Summary</button>
+            <button class="feature-button check-in" id="main_toCheckInPage">Check-in</button>
+            <button class="feature-button journal" id="main_toJournalPage">Journal</button>
+            <button class="feature-button stats" id="main_toStatsPage">Stats</button>
+            <button class="feature-button summary" id="main_toSummaryPage">Summary</button>
           </div>
         </section>
       </div>`;
@@ -161,7 +163,6 @@ export class CalendarComponent extends BaseComponent {
 
     for (let j = 1; j <= nextDays; j++) {
       days += `<div class="next-date">${j}</div>`;
-      
     }
     monthDays.innerHTML = days;
   }
@@ -183,16 +184,16 @@ export class CalendarComponent extends BaseComponent {
     });
 
     document
-      .getElementById("toJournalPage")
+      .getElementById("main_toJournalPage")
       .addEventListener("click", () => this.#goToPage("journal"));
     document
-      .getElementById("toCheckInPage")
+      .getElementById("main_toCheckInPage")
       .addEventListener("click", () => this.#goToPage("check-in"));
     document
-      .getElementById("toStatsPage")
+      .getElementById("main_toStatsPage")
       .addEventListener("click", () => this.#goToPage("stats"));
     document
-      .getElementById("toSummaryPage")
+      .getElementById("main_toSummaryPage")
       .addEventListener("click", () => this.#goToPage("summary"));
   }
 
