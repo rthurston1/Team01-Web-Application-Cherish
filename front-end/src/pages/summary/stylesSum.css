@@ -22,48 +22,27 @@
     gap: 20px;
 
 }
-.tab-Day{
+.tab-Day, .tab-Week, .tab-Month, .tab-Year {
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-left:  10%;
-    margin-top: 2px;
-    background-color: bisque;
-     border-radius: 10px;
-}
-.tab-Week{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
+    padding: 10px 20px;
     background-color: bisque;
     border-radius: 10px;
+    margin: 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
-.tab-Month{
+
+.tabs {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
-    background-color: bisque;
-    border-radius: 10px;
-}
-.tab-Year{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    background-color: bisque;
-    border-radius: 10px;
-}
-.tabs{
+    gap: 20px;
+    padding: 10px;
     background-color: rgb(150, 151, 151);
     border-radius: 30px;
-    margin-bottom: auto;
-
 }
 
 .text_box{
@@ -75,3 +54,26 @@
     background-color: rgb(196, 255, 225);
     border-radius: 10px;
 }
+
+/* Hover */
+.tab-Day:hover, .tab-Week:hover, .tab-Month:hover, .tab-Year:hover {
+    background-color: greenyellow;
+}
+
+/* Will keep the tab 'green', function not implemented yet due to buttons needed to be added*/
+.active-tab {
+    background-color: green;
+}
+
+.stats h3 {
+    font-size:1.2em;
+    margin-bottom: 10px;
+}
+
+.stats {
+    background-color: lightblue;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
