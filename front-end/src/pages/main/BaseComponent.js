@@ -1,7 +1,7 @@
 export class BaseComponent {
   /**
    * @param {string} id HTML body element id
-   * @param {string} cssLink file path from src folder
+   * @param {string} cssLink file path to file from src folder
    */
   constructor(id, cssLink) {
     this.#initialize(id, cssLink)
