@@ -42,7 +42,7 @@ export class DayComponent extends BaseComponent {
 
                 <div class="journal-container" id="journalLog">
 
-                    <div class"button-container" id="buttons">
+                    <div class="button-container" id="buttons">
                         <button id="toJournalPage">Journal</button>
                         <button id="toCheckInPage">Check-In</button>
                     </div>
