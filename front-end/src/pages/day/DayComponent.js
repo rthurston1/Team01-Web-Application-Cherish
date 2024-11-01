@@ -35,20 +35,22 @@ export class DayComponent extends BaseComponent {
 // Inherited Methods from BaseComponent
     _buildHTML() {
         return `
+         <div id="dayHeader">
+            <h1>Your Day</h1>
+        </div>
             <h1 class="body-element" id="date"></h1>
 
             <div class="body-element" id="content">
                 <div class="scroll-container" id="emotionLog"></div>
 
                 <div class="journal-container" id="journalLog">
+                    <textarea id="journalEntry" placeholder="No journal entry" readonly></textarea>
+                </div>
 
-                    <div class"button-container" id="buttons">
+                <div class"button-container" id="buttons">
                         <button id="toJournalPage">Journal</button>
                         <button id="toCheckInPage">Check-In</button>
                     </div>
-
-                    <textarea id="journalEntry" placeholder="No journal entry" readonly></textarea>
-                </div>
 
             </div>
         `

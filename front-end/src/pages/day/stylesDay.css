@@ -1,5 +1,23 @@
+#dayHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 0px;
+}
+
+#dayHeader h1 {
+    background-color: #ff69b4; 
+    color: black;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 2em;
+    text-align: center;
+}
+
 body {
     overflow: hidden;
+    background-color: #2320c2ab;
 }
 
 .view {
@@ -23,13 +41,28 @@ body {
     place-items: start center;
     width: 600px;
     height: 800px;
+    margin-bottom: 20px;
+}
+
+#date {
+    background-color: #fff; 
+    color: #000; 
+    padding: 10px 20px;
+    border-radius: 10px; 
+    font-size: 2em;
+    text-align: center;
+    margin-bottom: 20px; 
 }
 
 .scroll-container {
     width: 300px;          
-    height: 90%;         
+    height: 200%;         
     overflow-y: auto;      
-    border: 1px solid #4586ff;           
+    border: 1px solid #4586ff;
+    background-color: #fff; 
+    margin-bottom: 20px; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
 
 .entry {
@@ -47,6 +80,40 @@ body {
     align-items: center;
     width: 500px;
     height: 400px;
+    margin-top: 150px;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    font-family: 'Brush Script MT', cursive;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    transform: scale(1.05);
+    background-color: #d45b5b; 
+    color: #f8f9fa; 
+}
+
+#toJournalPage {
+    background-color: blue;
+}
+
+#toCheckInPage {
+    background-color: green;
+}
+
+#save {
+    background-color: rgb(0, 217, 255);
+}
+
+#cancel {
+    background-color: red;
 }
 
 .button-container {
@@ -62,9 +129,8 @@ body {
     resize: none;
     margin: 5px 0;
     font-size: 15px;
-    margin-bottom: 5px;
+    margin-bottom: 5px 0;
+    border-radius: 5px; 
     background-color: rgb(183, 241, 255);
 }
-
-
 
