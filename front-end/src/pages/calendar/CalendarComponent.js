@@ -148,8 +148,8 @@ export class CalendarComponent extends BaseComponent {
       days += `<div class="next-date">${j}</div>`;
       monthDays.innerHTML = days;
     }
-    monthDays.innerHTML = days;
   }
+  monthDays.innerHTML = days;
 
   // Adds event listeners to the prev and next buttons as well as
   // the feature buttons
