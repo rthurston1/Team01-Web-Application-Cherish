@@ -113,7 +113,8 @@ export class CalendarComponent extends BaseComponent {
       0
     ).getDate();
 
-    const firstDayIndex = this.date.getDay();
+    //const firstDayIndex = this.date.getDay();
+    const firstDayIndex = (this.date.getDay() + 7) % 7; // Adjust start day to Monday
 
     const lastDayIndex = new Date(
       this.date.getFullYear(),
