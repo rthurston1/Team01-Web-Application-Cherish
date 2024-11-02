@@ -1,0 +1,21 @@
+.feature-buttons {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.feature-button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  flex: 1;
+  margin: 0 5px;
+  font-family: "Brush Script MT", cursive;
+  font-size: 1.2em;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
