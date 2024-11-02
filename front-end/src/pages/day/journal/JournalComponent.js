@@ -1,39 +1,67 @@
-import { BaseComponent } from "../../main/BaseComponent"
-import { EventHub } from  '../../eventhub/EventHub'
-import { Events } from '../../eventhub/Events'
+import { EventHub } from '../../../eventhub/EventHub.js'
+import { Events } from '../../../eventhub/Events.js'
+import { BaseComponent } from '../../main/BaseComponent.js'
 
 export class JournalComponent extends BaseComponent {
     constructor() {
-        super()
-        this.render()
+        super('journalPage', './pages/day/journal/stylesJournal.css')
+        this.dateData = {}
     }
 
-    render() {
-        this.#addEventListener()
-    }
-
-    #loadJournal(data) {
-        this.journal = data
-    }
-
+// Methods
+    // Returns to Day Page, passes any changes to the date object through an event
     #returnToDayPage() {
-        window.location.href = '../DayView.html'
+       const hub = EventHub.getInstance()
+       hub.publish(Events.LoadDayPage, this.dateData)
     }
 
-    #saveJournal(journal) {
-        const hub = EventHub.getInstance()
-        hub.publish(Events[LoadJournalEntry], journal)
-
+    // Stores value in text area to date object
+    #saveJournal() {
+        this.dateData['journal_entry'] = document.getElementById('summary').value
         this.#returnToDayPage()
     }
 
-    #addEventListener() {
-        const hub = EventHub.getInstance()
+// Inherited Methods
+    // Builds and returns HTML structure
+    _buildHTML() { 
+        return `
+            <h1>Journal Page</h1>
+            <h2>Write Your Daily Summary Below!</h2>
 
-        hub.subscribe(Events[StoreJournalEntry], data => this.#loadJournal(data))
-        document.getElementById('save').addEventListener()
-        document.getElementById('cancel').addEventListener(this.#returnToDayPage)
+            <form class="text-submission" id="daySummary">
+                <textarea id="summary" placeholder="Write your summary here (2000 character limit)" maxlength="1000"></textarea>
+                <div class="button-container">
+                    <button id="save" type="button">Save</button>
+                    <button id="cancel" type="button">Cancel</button>
+                </div>
+            </form>
+        `   
     }
+
+    // Adds EventListeners that update attributes in the class
+    _addEventListeners() {
+        const hub = EventHub.getInstance()
+        hub.subscribe(Events.LoadJournalPage, data => this._render(data))
+
+        document.getElementById('save').addEventListener('click', () => this.#saveJournal())
+        document.getElementById('cancel').addEventListener('click', () => this.#returnToDayPage())
+    }
+
+    // Changes the current view to the Journal Page
+    _render(date_entry) {
+        document.querySelectorAll('.view').forEach(body => body.style.display = 'none')
+        this.dateData = date_entry
+
+        document.getElementById('summary').value = 'journal_entry' in this.dateData
+        ? this.dateData.journal_entry
+        : ''
+        
+        this._changeDisplay('flex')
+    }
+
 }
 
-const journal = new JournalComponent()
+
+
+
+

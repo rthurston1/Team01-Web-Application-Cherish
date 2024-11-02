@@ -1,38 +1,71 @@
 export class BaseComponent {
-  constructor() {
-    //   this.cssLoaded = false;
+  /**
+   * @param {string} id HTML body element id
+   * @param {string} cssLink file path to file from src folder
+   */
+  constructor(id, cssLink) {
+    this.#initialize(id, cssLink)
+  }
+
+// Abstract Methods
+  /**
+   * Builds the body's innerHTML
+   * @abstract
+   * @returns {string}
+   */
+  _buildHTML() {
+    throw new Error("_buildHTML method not implemented");
   }
 
   /**
-   * This is an abstract method that must be implemented by child classes.
-   * It must return an HTMLElement object.
+   * Adds event listeners to HTML elements
+   * Adds any custom events listeners
    * @abstract
-   * @returns {HTMLElement}
+   * @returns {void}
    */
-  render() {
+  _addEventListeners() {
+    throw new Error("_addCustomEventListeners method not implemented");
+  }
+
+  /**
+   * Displays the current view. Attributes within 
+   * view dynamically change depending on the data
+   * passed as an argument.
+   * 
+   * @abstract
+   * 
+   * @param {any} data
+   * @returns {void}
+   */
+  _render(data) {
     throw new Error("render method not implemented");
   }
-  // ***********************************************
-  // **TODO**: Implement CSS (not a priority for M3)
-  // ***********************************************
 
-  // loadCSS(fileName) {
-  //   if (this.cssLoaded) return;
+// Methods
+  _changeDisplay(view) {
+    document.getElementById(this.bodyElement.id).style.display = view
+  }
+  
+  #initialize(id, cssLink) {
+    // Adds CSS File to Head
+    this.cssFile = document.createElement('link')
+    this.cssFile.rel = 'stylesheet'
+    this.cssFile.href = cssLink
+    document.head.appendChild(this.cssFile)
 
-  //   const link = document.createElement('link');
-  //   link.rel = 'stylesheet';
-  //   // Dynamically load CSS from the same directory as the JS file
-  //   link.href = `./components/${fileName}/${fileName}.css`;
-  //   document.head.appendChild(link);
-  //   this.cssLoaded = true;
-  // }
+    // Build Body
+    this.bodyElement = document.createElement('div')
+    document.getElementById('views').appendChild(this.bodyElement)
 
-  dispatchCustomEvent(eventName, detail = {}) {
-    const event = new CustomEvent(eventName, { detail });
-    this.parent.dispatchEvent(event);
+    this.bodyElement.classList.add('view')
+    this.bodyElement.id = id
+    this.bodyElement.innerHTML = this._buildHTML()
+    
+    this._changeDisplay('none')
+
+    
+    // Adds EventListens
+    this._addEventListeners()
   }
 
-  listenToEvent(eventName, callback) {
-    this.parent.addEventListener(eventName, callback);
-  }
 }
