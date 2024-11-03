@@ -46,11 +46,10 @@ export class DayComponent extends BaseComponent {
                 <div class="journal-container" id="journalLog">
                     <textarea id="journalEntry" placeholder="No journal entry" readonly></textarea>
                 </div>
-
-                <div class"button-container" id="buttons">
-                        <button id="toJournalPage">Journal</button>
-                        <button id="toCheckInPage">Check-In</button>
-                    </div>
+                <div class="button-container" id="buttons">
+                    <button id="toJournalPage">Journal</button>
+                    <button id="toCheckInPage">Check-In</button>
+                </div>
 
             </div>
         `
