@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Check-in Window</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- page -->
+    <div class="container">
+      <h2>Check-in window</h2>
+
+      <!-- emotions section -->
+      <section class="Emotions">
+        <!-- label for emotions -->
+        <label>Emotions:</label>
+
+          <!-- happy -->
+          <label for="happy">
+            <input type="radio" name="emotion" id="happy" hidden />
+            <img src="img/smile.gif" alt="Happy" class="emoji" />
+          </label>
+          <!-- neutral -->
+          <label for="neutral">
+            <input type="radio" name="emotion" id="neutral" hidden />
+            <img src="img/neutral.gif" alt="Neutral" class="emoji" />
+          </label>
+          <!-- meh -->
+          <label for="meh">
+            <input type="radio" name="emotion" id="meh" hidden />
+            <img src="img/emotionless.gif" alt="Meh" class="emoji" />
+          </label>
+          <!-- goofy ahh -->
+          <label for="laugh">
+            <input type="radio" name="emotion" id="laugh" hidden />
+            <img src="img/laugh.gif" alt="Laugh" class="emoji" />
+          </label>
+          <!-- worried -->
+          <label for="worried">
+            <input type="radio" name="emotion" id="worried" hidden />
+            <img src="img/worried.gif" alt="Worried" class="emoji" />
+          </label>
+      </section>
+
+      <!-- magnitude section -->
+      <section class="MagnitudeEmotions">
+        <!-- label -->
+        <label for="magnitude">Magnitude of emotions:</label>
+        <!-- make a slider for the numbers -->
+        <input
+          type="range"
+          id="magnitude"
+          name="magnitude"
+          min="1"
+          max="10"
+          step="1"
+        />
+        <div class="range-labels">
+          <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span
+          ><span>6</span><span>7</span><span>8</span><span>9</span
+          ><span>10</span>
+        </div>
+      </section>
+
+      <!-- why section with text box -->
+      <section class="Why">
+        <label for="why">Why?</label>
+        <textarea
+          id="why"
+          rows="4"
+          placeholder="I had a test today which was pretty rough. I didn’t feel very prepared."
+        ></textarea>
+      </section>
+
+      <!-- cancel and confirm buttons -->
+      <div class="buttons">
+        <button class="cancel">Cancel</button>
+        <button class="confirm">Confirm</button>
+      </div>
+    </div>
+  </body>
+</html>
