@@ -8,6 +8,18 @@
   - **Task**: Zoom meeting to discuss who is working on what & brainstorming
   - **Details**: Talked about who wants to work on what for milestone2, I started to work on problems.md with Robert.
 
-### Octover 20, 2024
+### October 20, 2024
   - **Task**: Continue editing and finishing problems.md
   - **Details**: Editing and finishing problems.md after Robert's contributions to the markdown file. 
+
+### October 27, 2024
+  - **Task**: Notetake the meeting and discussed the plans for milestone3
+  - **Details**: Fulfilled notetaking for the first half of our meeting, discussed our approach to the front-end.
+
+### October 31 / Nov 1, 2024
+  - **Task**: Started and finish summary page
+  - **Details**: Sam and I started the summary page, Sam did a good chunk of the layout and coding, I finished the styling and added the stats section.
+
+### November 3, 2024
+  - **Task** Weekly meeting
+  - **Details** Fulfilled notetaking for our weekly sunday meeting. Including with finishing touches on the summary page

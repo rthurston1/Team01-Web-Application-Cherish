@@ -1,0 +1,79 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    
+    border-radius: 20px;
+    margin-bottom: 10px;
+    background-color: rgb(208,208,208);
+}
+.container h1{
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+.tabs{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 20px;
+
+}
+.tab-Day, .tab-Week, .tab-Month, .tab-Year {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: bisque;
+    border-radius: 10px;
+    margin: 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.tabs {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+    background-color: rgb(150, 151, 151);
+    border-radius: 30px;
+}
+
+.text_box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    background-color: rgb(196, 255, 225);
+    border-radius: 10px;
+}
+
+/* Hover */
+.tab-Day:hover, .tab-Week:hover, .tab-Month:hover, .tab-Year:hover {
+    background-color: greenyellow;
+}
+
+/* Will keep the tab 'green', function not implemented yet due to buttons needed to be added */
+.active-tab {
+    background-color: green;
+}
+
+.stats h3 {
+    font-size:1.2em;
+    margin-bottom: 10px;
+}
+
+.stats {
+    background-color: lightblue;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
