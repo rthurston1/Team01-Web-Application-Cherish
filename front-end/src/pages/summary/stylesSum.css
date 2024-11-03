@@ -60,7 +60,7 @@
     background-color: greenyellow;
 }
 
-/* Will keep the tab 'green', function not implemented yet due to buttons needed to be added*/
+/* Will keep the tab 'green', function not implemented yet due to buttons needed to be added */
 .active-tab {
     background-color: green;
 }

@@ -18,4 +18,8 @@
 
 ### October 31 / Nov 1, 2024
   - **Task**: Started and finish summary page
-  - **Details**: Sam and I started the summary page, Sam did a good chunk of the layout and coding, I finished the styling. 
+  - **Details**: Sam and I started the summary page, Sam did a good chunk of the layout and coding, I finished the styling and added the stats section.
+
+### November 3, 2024
+  - **Task** Weekly meeting
+  - **Details** Fulfilled notetaking for our weekly sunday meeting. Including with finishing touches on the summary page
