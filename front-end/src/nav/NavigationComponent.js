@@ -1,8 +1,31 @@
-export class ButtonsComponent extends BaseComponent {
+import { EventHub } from "../eventhub/EventHub.js";
+import { Events } from "../eventhub/Events.js";
+import { BaseComponent } from "../pages/main/BaseComponent.js";
+
+/**
+ * Temporary date object to pass to other pages. Will be replaced with a more
+ * dynamic solution in the future.
+ */
+const today = new Date();
+const dateArr = [today.getMonth() + 1, today.getDate(), today.getFullYear()];
+const date = {
+  month: dateArr[0], // ex: 10 (October)
+  day: dateArr[1], // ex: 29
+  year: dateArr[2], // ex: 2024
+  format: dateArr.join("/"), // Displays in header ex: 10/29/2024
+  id: dateArr.join("-"), // ID to pass as key to localStorage ex: 10-29-2024
+};
+
+export class NavigationComponent extends BaseComponent {
   constructor() {
-    super("buttons", "pages/main/stylesButtons.css");
+    super("nav", "./nav/stylesNav.css");
   }
 
+  /**
+   * Navigates to the specified page.
+   * @param {*} page The page to navigate to. Options are "check-in", "journal",
+   * "stats", "summary", and "calendar".
+   */
   #goToPage(page) {
     const hub = EventHub.getInstance();
     switch (page) {
@@ -11,7 +34,7 @@ export class ButtonsComponent extends BaseComponent {
         // hub.publish(Events.LoadCheckInPage, this.dateData);
         break;
       case "journal":
-        hub.publish(Events.LoadJournalPage, null);
+        hub.publish(Events.LoadJournalPage, date);
         break;
       case "stats":
         console.log("Stats page will be here one day.");
@@ -21,23 +44,31 @@ export class ButtonsComponent extends BaseComponent {
         console.log("Summary page will be here one day.");
         // hub.publish(Events.LoadSummaryPage, this.dateData);
         break;
+      case "calendar":
+        hub.publish(Events.LoadMainPage, date);
+        break;
       default:
-        hub.publish(Events.LoadMainPage, null);
+        console.log("Invalid page selection.");
+        break;
     }
   }
 
   _buildHTML() {
     return `
-      <div class="feature-buttons">
+            <button class="feature-button calendar-page" id="main_toCalendarPage">Calendar</button>
             <button class="feature-button check-in" id="main_toCheckInPage">Check-in</button>
             <button class="feature-button journal" id="main_toJournalPage">Journal</button>
             <button class="feature-button stats" id="main_toStatsPage">Stats</button>
             <button class="feature-button summary" id="main_toSummaryPage">Summary</button>
-          </div>
     `;
   }
 
   _addEventListeners() {
+    const hub = EventHub.getInstance();
+    hub.subscribe(Events.LoadNav, () => this._render());
+    document
+      .getElementById("main_toCalendarPage")
+      .addEventListener("click", () => this.#goToPage("calendar"));
     document
       .getElementById("main_toJournalPage")
       .addEventListener("click", () => this.#goToPage("journal"));
@@ -53,7 +84,8 @@ export class ButtonsComponent extends BaseComponent {
   }
 
   _render() {
-    this.bodyElement.innerHTML = this._buildHTML();
+    document.getElementById("nav").innerHTML = this._buildHTML();
     this._addEventListeners();
+    this._changeDisplay("flex");
   }
 }
