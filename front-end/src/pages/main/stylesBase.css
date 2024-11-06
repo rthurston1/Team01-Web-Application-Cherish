@@ -26,6 +26,7 @@ body {
 .app {
   width: 60%;
   padding: 20px;
+  min-width: 800px; /* Set a minimum width for the app */
   max-width: 1000px; /* Set a maximum width for the app */
   max-height: 100vh; /* Set a maximum height for the app */
   background-color: #fff;
