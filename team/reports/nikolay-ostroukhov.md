@@ -41,3 +41,28 @@ November 1, 2024
 - **Task**: Review Robbie and Jesse's pull request.
 - **Details**: Reviewed Robbie and Jesse's pull request for the day and journal pages and provided feedback. I also merged the pull request.
 - **Link to Commit**: https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/49f59ea7a235ebc58a3843af238552af6522e530
+
+November 3, 2024
+
+- **Task**: Review Liam and Sam's pull request.
+- **Details**: Reviewed Liam and Sam's pull request for the summary page and provided feedback. I also merged the pull request.
+- **Link to Commit**: https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/0e2de36874f9c024282495f460272a00c9257d7a
+
+- **Task**: Review Robbie's pull request.
+- **Details**: Reviewed Robbie's pull request for custom issue templates. I also merged the pull request.
+- **Link to Commit**: https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/73c4e3053f584b75159c9722cfb212e3a8d37883
+
+- **Task**: Review Wacil's pull request.
+- **Details**: Reviewed Wacil's pull request for the check in page. I also merged the pull request.
+- **Link to Commit**: https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/ee51850c68a966c66bffb3e0bbfff9f0f361f6e5
+
+November 6, 2024
+
+- **Task**: Start work on the global navigation feature.
+- **Details**: Created a new branch for the global navigation feature issue. Refactored the HTML and CSS to include the global navigation bar. Added the global navigation bar to the journal, summary, and check in pages.
+
+- **Links to Commits**:
+  - [Commit 1](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/2fdd64e451c18812953543aa26c8d670850c697a)
+  - [Commit 2](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/f0afe6238031d1e9e13c9e2f15cdfe1005537cc3)
+  - [Commit 3](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/4a38e0c779491ea3250ee69b16b55e60f1baf657)
+  - [Commit 4](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/d6e20fe49299e7b8b9edf6d944930387b9aa8d16)
