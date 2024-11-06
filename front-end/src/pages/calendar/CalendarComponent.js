@@ -24,37 +24,6 @@ export class CalendarComponent extends BaseComponent {
     }
   }
 
-  /**
-   * Navigates to the specified page by publishing an event to the EventHub.
-   * Depending on the page parameter, it publishes different load page events.
-   * Work in progress: dateData
-   *
-   * @param {string} page - The name of the page to navigate to.
-   *                        Possible values are "check-in", "journal", "stats", "summary", or any other string for the main page.
-   */
-  #goToPage(page) {
-    const hub = EventHub.getInstance();
-    switch (page) {
-      case "check-in":
-        console.log("Check-in page will be here one day.");
-        // hub.publish(Events.LoadCheckInPage, this.dateData);
-        break;
-      case "journal":
-        hub.publish(Events.LoadJournalPage, this.dateData);
-        break;
-      case "stats":
-        console.log("Stats page will be here one day.");
-        // hub.publish(Events.LoadStatsPage, this.dateData);
-        break;
-      case "summary":
-        console.log("Summary page will be here one day.");
-        // hub.publish(Events.LoadSummaryPage, this.dateData);
-        break;
-      default:
-        hub.publish(Events.LoadMainPage, this.dateData);
-    }
-  }
-
   // Builds the HTML of the Calendar Page
   _buildHTML() {
     return `<div class="container">
@@ -82,17 +51,6 @@ export class CalendarComponent extends BaseComponent {
           </div>
         </div>
           <div class="welcome-back">Welcome back, Jack! How’s it going?</div>
-        </section>
-        
-        <section class="features-section">
-          <h3>Main page features/shortcuts:</h3>
-          <div class="feature-buttons">
-            <button class="feature-button check-in" id="main_toCheckInPage">Check-in</button>
-            <button class="feature-button journal" id="main_toJournalPage">Journal</button>
-            <button class="feature-button stats" id="main_toStatsPage">Stats</button>
-            <button class="feature-button summary" id="main_toSummaryPage">Summary</button>
-          </div>
-        </section>
       </div>`;
   }
 
@@ -182,19 +140,6 @@ export class CalendarComponent extends BaseComponent {
       this.date.setMonth(this.date.getMonth() + 1);
       this.#renderCalendar();
     });
-
-    document
-      .getElementById("main_toJournalPage")
-      .addEventListener("click", () => this.#goToPage("journal"));
-    document
-      .getElementById("main_toCheckInPage")
-      .addEventListener("click", () => this.#goToPage("check-in"));
-    document
-      .getElementById("main_toStatsPage")
-      .addEventListener("click", () => this.#goToPage("stats"));
-    document
-      .getElementById("main_toSummaryPage")
-      .addEventListener("click", () => this.#goToPage("summary"));
   }
 
   _render(data = null) {
