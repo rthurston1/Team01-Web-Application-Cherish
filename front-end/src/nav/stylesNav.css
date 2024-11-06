@@ -1,14 +1,10 @@
 .feature-buttons {
   display: grid;
   grid-template-columns: repeat(5, 1fr); /* Creates 5 equal columns */
-  gap: 10px; /* Space between buttons */
   margin-top: 20px;
-  padding: 30px;
 }
 
 .feature-button {
-  padding: 10px 15px;
-  width: 100%; /* Make buttons take up full width of column */
   border: none;
   border-radius: 8px;
   color: white;
