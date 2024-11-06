@@ -18,7 +18,7 @@ const date = {
 
 export class NavigationComponent extends BaseComponent {
   constructor() {
-    super("nav", "./nav/stylesNav.css");
+    super("nav", "./nav/stylesNav.css", true);
   }
 
   /**
