@@ -1,7 +1,17 @@
+#nav {
+  display: flex;
+  justify-content: space-between;
+  border: none;
+  border-radius: 8px;
+  background-color: #f0f0f0; /* Temporary background color for visibility */
+  padding: 10px; /* Temporary padding for visibility */
+}
+
 .feature-buttons {
   display: grid;
   grid-template-columns: repeat(5, 1fr); /* Creates 5 equal columns */
-  margin-top: 20px;
+  gap: 10px; /* Add some gap between the buttons */
+  width: 100%; /* Ensure it takes up full width */
 }
 
 .feature-button {
@@ -13,7 +23,6 @@
   font-family: "Brush Script MT", cursive;
   font-size: 1.5em;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  height: 50px; /* Set a fixed height */
   display: flex;
   align-items: center;
   justify-content: center;
