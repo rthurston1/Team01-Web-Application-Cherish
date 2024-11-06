@@ -5,10 +5,10 @@ import { NavigationComponent } from "./nav/NavigationComponent.js";
 import { EventHub } from "./eventhub/EventHub.js";
 import { Events } from "./eventhub/Events.js";
 
-new NavigationComponent();
 new CalendarComponent();
 new DayComponent();
 new JournalComponent();
+new NavigationComponent();
 console.log("Everything loaded");
 
 const today = new Date();
@@ -22,5 +22,5 @@ const date = {
   id: dateArr.join("-"), // ID to pass as key to localStorage ex: 10-29-2024
 };
 
-EventHub.getInstance().publish(Events.LoadNav, date);
 EventHub.getInstance().publish(Events.LoadMainPage, date);
+EventHub.getInstance().publish(Events.LoadNav, date);
