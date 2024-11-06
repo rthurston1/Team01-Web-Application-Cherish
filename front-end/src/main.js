@@ -1,9 +1,11 @@
 import { DayComponent } from "./pages/day/DayComponent.js";
 import { JournalComponent } from "./pages/day/journal/JournalComponent.js";
+import { CalendarComponent } from "./pages/calendar/CalendarComponent.js";
+import { NavigationComponent } from "./nav/NavigationComponent.js";
 import { EventHub } from "./eventhub/EventHub.js";
 import { Events } from "./eventhub/Events.js";
-import { CalendarComponent } from "./pages/calendar/CalendarComponent.js";
 
+new NavigationComponent();
 new CalendarComponent();
 new DayComponent();
 new JournalComponent();
@@ -20,4 +22,5 @@ const date = {
   id: dateArr.join("-"), // ID to pass as key to localStorage ex: 10-29-2024
 };
 
+EventHub.getInstance().publish(Events.LoadNav, date);
 EventHub.getInstance().publish(Events.LoadMainPage, date);

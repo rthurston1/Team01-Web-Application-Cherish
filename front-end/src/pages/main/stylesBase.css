@@ -1,0 +1,41 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #2320c2ab;
+}
+
+.app #content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%; /* Ensure the content div takes up the full height of its parent */
+  flex-grow: 1; /* Allow the content div to grow and fill the available space */
+}
+
+.app {
+  width: 60%;
+  padding: 20px;
+  max-width: 1000px; /* Set a maximum width for the app */
+  max-height: 100vh; /* Set a maximum height for the app */
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#nav {
+  display: flex;
+  justify-content: space-between;
+  border: none;
+  border-radius: 8px;
+}
