@@ -66,3 +66,10 @@ November 6, 2024
   - [Commit 2](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/f0afe6238031d1e9e13c9e2f15cdfe1005537cc3)
   - [Commit 3](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/4a38e0c779491ea3250ee69b16b55e60f1baf657)
   - [Commit 4](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/d6e20fe49299e7b8b9edf6d944930387b9aa8d16)
+
+November 8, 2024
+
+- **Task**: Create a pull request for the global navigation feature.
+- **Details**: Created a pull request for the global navigation feature. I also added screenshots of the global navigation bar to the pull request.
+- **Link to Pull Request**:
+  - [Pull Request](https://github.com/rthurston1/Team01-Web-Application-Cherish/pull/36)
