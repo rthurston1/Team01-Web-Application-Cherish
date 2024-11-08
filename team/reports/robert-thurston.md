@@ -61,3 +61,7 @@
 ## October 29, 2024
 ### Completed Journal Feature
   -**Details:** Finished the functionailty of adding a journal entry to a day (This may be updated later).
+
+## October 30, 2024
+### Designed BaseComponent
+  -**Details:** Designed abstract class for each application component to extend from.
