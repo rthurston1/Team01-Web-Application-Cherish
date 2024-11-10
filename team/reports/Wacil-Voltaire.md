@@ -38,5 +38,9 @@
 ## November 10, 2024
 - **Task**: Commiting COmponent.js to project repo
 - - **Details**: Created a branch called Wacil-CheckInComponent.js that has the javascript file implemented
+ 
+## November 10, 2024
+- **Task**: Group meeting (Ranking tasks)
+- **Details**: Ranked my task a 2 out of 5. The HTML and CSS were pretty straight foward.The main challenges lie in structuring the JavaScript to handle user input consistently and ensuring a smooth user experience. 
 
 
