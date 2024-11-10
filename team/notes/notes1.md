@@ -66,3 +66,50 @@
   - **Sam**: Fixing UI  
   - **George**: Editing user.md  
   - **Liam**: Adding to problem.md
+
+---
+
+### October 27, 2024
+- **Milestone 3 Planning**:  
+  - Roughly planned out **Milestone 3**.  
+  - Features breakdown and assigned points per feature in the `md` file.  
+  - Design the main **calendar view** as the starting point and build off from there.  
+  - Start with **calendar dashboard** and **day logging**.  
+  - Begin basic design with an HTML/CSS template, then gradually transition to JavaScript.
+
+- **Niko’s Skeleton Code**:  
+  - `events.(event)`
+
+- **Goals for the Week (aim for Thursday)**:  
+  - Make individual branches/copy the repo into each team member’s local system.  
+  - Assign components to team members:
+    - **Day page**: Robert and Jesse  
+    - **Journal page**: Robert and Jesse  
+    - **Check-in**: Wacil  
+    - **Main page**: George  
+    - **Summary**: Liam and Sam  
+  - Discuss which files should be associated with each component (by Monday).  
+  - Work on HTML and CSS; gradually publish to the main branch.
+---
+
+### October 30, 2024
+- **File Structure Decision**:  
+  - Team decided to go with Robert’s file structure for the project, based loosely on Tim’s example code.  
+
+---
+
+### November 1, 2024
+- **Progress Update**:  
+  - Team is making good progress.  
+  - Hoping to have started **IndexedDB** work by the next standup meeting.  
+
+---
+
+### November 3, 2024
+- **Work Tasks for the Week**:  
+  - **Robby**: Fix formatting for the day page and remove duplicate code; work with Wacil on storing the emotion onto the day page.  
+  - **Liam**: Implement the `.js` file and make any tweaks with HTML and CSS with Sam.  
+  - **Niko**: Implement navigation feature for buttons/pages.  
+  - **Wacil**: Implement the `.js` file and make tweaks to HTML and CSS.  
+
+---
