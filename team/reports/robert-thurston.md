@@ -91,8 +91,8 @@
 ### Created Meeting Plan
   - **Details:** Made for today's meeting agenda.
 
-### Implemented Add Emotion Feature
- - **Details:** Completed functions responsible for adding emotions to the day page.
+### Implemented Add/Remove Emotion Feature
+ - **Details:** Completed functions responsible for adding and removing emotions from the day page.
  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/0c1a3ddb1245fc406d04f97541d751f83da2b402)
 
 
