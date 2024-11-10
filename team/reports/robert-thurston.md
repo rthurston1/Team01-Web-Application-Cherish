@@ -87,6 +87,12 @@
   - **Details** Tried to fix issues with the CSS files, there's a major issue with the format of the Day Page.
   - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/640d0261b66699141f3c572a78bb41089f808e0d)
 
+## November 10, 2024
+### Created Meeting Plan
+  - **Details:** Made for today's meeting agenda.
 
+### Implemented Add Emotion Feature
+ - **Details:** Completed functions responsible for adding emotions to the day page.
+ - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/0c1a3ddb1245fc406d04f97541d751f83da2b402)
 
 
