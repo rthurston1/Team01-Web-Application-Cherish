@@ -38,3 +38,7 @@
 ### November 8th, 2024
   - **Task**: Feedback on aestheics of App.
   - **Details**: Gave feedback on what component needs to be consistent looking across all pages
+
+### November 10th, 2024
+  - **Task**: Deciding points for Visual Calendar Dashboard.
+  - **Details**: Clarified to upgrade this feature as a big feature from 3 points to 5 points due to its coding complexity.
