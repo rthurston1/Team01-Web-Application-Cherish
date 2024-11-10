@@ -16,7 +16,7 @@ export class JournalComponent extends BaseComponent {
 
     // Stores value in text area to date object
     #saveJournal() {
-        this.dateData['journal_entry'] = document.getElementById('summary').value
+        EventHub.getInstance().publish(Events.SummarySubmitted, document.getElementById('journalSummary').value)
         this.#returnToDayPage()
     }
 
@@ -28,7 +28,7 @@ export class JournalComponent extends BaseComponent {
             <h2>Write Your Daily Summary Below!</h2>
 
             <form class="text-submission" id="daySummary">
-                <textarea id="summary" placeholder="Write your summary here (2000 character limit)" maxlength="1000"></textarea>
+                <textarea id="journalSummary" placeholder="Write your summary here (2000 character limit)" maxlength="1000"></textarea>
                 <div class="button-container">
                     <button id="saveJournal" type="button">Save</button>
                     <button id="cancelJournal" type="button">Cancel</button>
@@ -50,7 +50,7 @@ export class JournalComponent extends BaseComponent {
     _render(data) {
         this.dateData = data
 
-        document.getElementById('summary').value = 'journal_entry' in this.dateData
+        document.getElementById('journalSummary').value = 'journal_entry' in this.dateData
         ? this.dateData.journal_entry
         : ''
     }
