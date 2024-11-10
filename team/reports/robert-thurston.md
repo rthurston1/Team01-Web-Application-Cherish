@@ -70,7 +70,7 @@
   - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/228abee85e2bee59234fecf12293bf539583ca02)
 
 ### Added Custom Issues
-  - **Details** Created custom issues for us to easily assign tasks to team members.
+  - **Details** Created custom issues for us to easily assign tasks to team members. Done on a new branch called robbie-custom-issues.
   - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/dbd244dca768e7cfdf86dfba7c01cc9c4ca2ae11)
 
 ## November 3, 2024
@@ -95,4 +95,14 @@
  - **Details:** Completed functions responsible for adding and removing emotions from the day page.
  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/0c1a3ddb1245fc406d04f97541d751f83da2b402)
 
-
+### Deleted Branches
+ - **Details:** Deleted the following branches from the repository
+    - george-niko-mainpage
+    - testing-niko
+    - georgeAndNiko-MainPageEdits
+    - niko-frontend-starter
+    - robbie-custom-issues
+    - jesse-robbie-daypage
+    - Wacil-ChangingFileName
+    - Wacil-CheckInWindow
+    - featuremd-update-robbie
