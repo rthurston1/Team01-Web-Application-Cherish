@@ -1,7 +1,6 @@
 import { EventHub } from '../../eventhub/EventHub.js'
 import { Events } from '../../eventhub/Events.js'
 import { BaseComponent } from '../main/BaseComponent.js'
-import { JournalComponent } from './journal/JournalComponent.js'
 
 export class DayComponent extends BaseComponent {
     constructor() {
@@ -11,66 +10,96 @@ export class DayComponent extends BaseComponent {
 
 // Methods
 
+    #goToMainPage() {
+        EventHub.getInstance().publish(Events.LoadMainPage, this.dateData)
+    }
+
     // Calls an event to load journal page
     #goToJournalPage() {
-        const hub = EventHub.getInstance()
-        hub.publish(Events.LoadJournalPage, this.dateData)
+        EventHub.getInstance().publish(Events.LoadJournalPage, this.dateData)
     }
 
     // Calls an event to load check-in page
     #goToCheckInPage() {
-        // TODO: Implement this method
+        EventHub.getInstance().publish(Events.LoadCheckInPage, this.dateData)
+    }
+
+    #addJournalEntry(journal) {
+        this.dateData['journal_entry'] = journal
+        EventHub.getInstance().publish(Events.UpdateDatabase, this.dateData)
     }
 
     // Appends new emotion entry to Emotion Log
     #addEmotionEntry(emotion_entry) {
-        // TODO: Implement this method
+        if (!this.dateData['emotions']) this.dateData['emotions'] = []
+        this.dateData.emotions.push(emotion_entry)
+        this.#calculateRating()
     }
 
     // Removes the specified emotion element from the Emotion Log
     #removeEmotionEntry(emotion_entry) {
-       // TODO: Implement this method
+       this.dateDate.emotions = this.dateData.emotions.filter(e => e !== emotion_entry)
+       this.#calculateRating()
+    }
+
+    // Calculates Daily Ranking based on emotions logged also saves any changed to database
+    #calculateRating() {
+
+        EventHub.getInstance().publish(Events.UpdateDatabase, this.dateData)
     }
 
 // Inherited Methods from BaseComponent
     _buildHTML() {
         return `
-            <h1 class="body-element" id="date"></h1>
-
-            <div class="body-element" id="content">
-                <div class="scroll-container" id="emotionLog"></div>
-
-                <div class="journal-container" id="journalLog">
-                    <div class="button-container" id="buttons">
-                        <button id="toJournalPage">Journal</button>
-                        <button id="toCheckInPage">Check-In</button>
+            <div class="day-container">
+                <div class="day-head-element">
+                    <h1>Day Page<h1>
+                    <h2 id="dayDate">Hello</h2>
+                </div>
+                
+                <div class="day-body-element" id="dayContent">
+                    <div class="day-emotion-container">
+                        <div class="day-log-entry">
+                            <label>Hello1</label>
+                        </div>
+                        <div class="day-log-entry">
+                            <label>Hello2</label>
+                        </div>
+                        
                     </div>
 
-                    <textarea id="journalEntry" placeholder="No journal entry" readonly></textarea>
-                </div>
+                    <div class="day-journal-container">
+                        <textarea id="dayJournalEntry" placeholder="No journal entry" readonly></textarea>
 
+                        <div id="dayButtons">
+                            <button id="dayToMain">Main Page</button>
+                            <button id="dayToJournal">Journal</button>
+                            <button id="dayToCheckIn">Check-In</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         `
     }
 
     _addEventListeners() {
         const hub = EventHub.getInstance()
-        hub.subscribe(Events.LoadDayPage, data => this._render(data))
+        hub.subscribe(Events.LoadDayPage, data => this.loadPage(data))
+        hub.subscribe(Events.SummarySubmitted, journal => this.#addJournalEntry(journal))
+        hub.subscribe(Events.CheckInSubmitted, emotion => this.#addEmotionEntry(emotion))
 
-        document.getElementById('toJournalPage').addEventListener('click', () => this.#goToJournalPage())
-        document.getElementById('toCheckInPage').addEventListener('click', () => this.#goToCheckInPage())
+        document.getElementById('dayToMain').addEventListener('click', () => this.#goToMainPage())
+        document.getElementById('dayToJournal').addEventListener('click', () => this.#goToJournalPage())
+        document.getElementById('dayToCheckIn').addEventListener('click', () => this.#goToCheckInPage())
     }
 
    // Changes view to Day Page
     _render(data) {
-        document.querySelectorAll('.view').forEach(body => body.style.display = 'none')
-
         this.dateData = data
-        document.getElementById('date').textContent = this.dateData.format 
-        document.getElementById('journalEntry').textContent = this.dateData.journal_entry
+        document.getElementById('dayDate').textContent = this.dateData.format 
+        document.getElementById('dayJournalEntry').textContent = this.dateData.journal_entry
 
-        // Displays View
-        this._changeDisplay('flex')
+        // Added Emotions to Log
     }
 
 }

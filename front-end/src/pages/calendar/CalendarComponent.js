@@ -54,9 +54,39 @@ export class CalendarComponent extends BaseComponent {
       </div>`;
   }
 
-  // Renders the calendar
-  #renderCalendar() {
+  // Adds event listeners to the prev and next buttons as well as
+  // the feature buttons
+  _addEventListeners() {
+    const hub = EventHub.getInstance();
+    hub.subscribe(Events.LoadMainPage, (data) => this.loadPage(data));
+
+    document.querySelector(".prev").addEventListener("click", () => {
+      this.date.setMonth(this.date.getMonth() - 1);
+      this._render();
+    });
+
+    document.querySelector(".next").addEventListener("click", () => {
+      this.date.setMonth(this.date.getMonth() + 1);
+      this._render();
+    });
+
+    document
+      .getElementById("main_toJournalPage")
+      .addEventListener("click", () => this.#goToPage("journal"));
+    document
+      .getElementById("main_toCheckInPage")
+      .addEventListener("click", () => this.#goToPage("check-in"));
+    document
+      .getElementById("main_toStatsPage")
+      .addEventListener("click", () => this.#goToPage("stats"));
+    document
+      .getElementById("main_toSummaryPage")
+      .addEventListener("click", () => this.#goToPage("summary"));
+  }
+
+  _render(data = null) {
     //const date = new Date();
+    this.dateData = data;
     this.date.setDate(1);
 
     const monthDays = document.querySelector(".days");
@@ -123,35 +153,5 @@ export class CalendarComponent extends BaseComponent {
       days += `<div class="next-date">${j}</div>`;
     }
     monthDays.innerHTML = days;
-  }
-
-  // Adds event listeners to the prev and next buttons as well as
-  // the feature buttons
-  _addEventListeners() {
-    const hub = EventHub.getInstance();
-    hub.subscribe(Events.LoadMainPage, (data) => this._render(data));
-
-    document.querySelector(".prev").addEventListener("click", () => {
-      this.date.setMonth(this.date.getMonth() - 1);
-      this.#renderCalendar();
-    });
-
-    document.querySelector(".next").addEventListener("click", () => {
-      this.date.setMonth(this.date.getMonth() + 1);
-      this.#renderCalendar();
-    });
-  }
-
-  _render(data = null) {
-    document
-      .querySelectorAll(".view")
-      .forEach((body) => (body.style.display = "none"));
-    this.#renderCalendar();
-
-    // this.dateData = data;
-    // document.getElementById("date").textContent = this.dateData.format;
-
-    // Displays View
-    this._changeDisplay("flex");
   }
 }

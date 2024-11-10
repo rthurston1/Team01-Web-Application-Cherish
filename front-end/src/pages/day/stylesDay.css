@@ -1,70 +1,91 @@
-body {
-    overflow: hidden;
-}
-
-.view {
+.day-container {
     display: flex;
     flex-direction: column;
     justify-content: center; 
     align-items: center;               
+    height: 90vh;
+    width: 70vh;
     margin: 0; 
 }
 
-#dayPage {
-    display: flex;
-    flex-direction: column;
-    justify-content: center; 
-    align-items: center;               
-    margin: 0;  
-}
-
-#content {
+.day-head-element {
     display: grid;
-    place-items: start center;
-    width: 600px;
-    height: 800px;
+    justify-content: center;
+    width: 100%;
+    height: 10%;
 }
 
-.scroll-container {
-    width: 300px;          
-    height: 90%;         
+.day-body-element {
+    display: grid;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.day-emotion-container {
+    display: grid;
+    justify-items: center;
+    width: 100%;
+    height: 70%;
+    overflow-y: scroll; 
+    overflow-x: hidden;
+    border: 1px solid #dd1010; 
+    padding: 10px; 
+}
+
+.day-journal-container {
+    display: grid;
+    width: 500px;
+    height: 30%;
+}
+
+/* .day-scroll-container {
+    width: 100%;          
+    height: 10;        
     overflow-y: auto;      
     border: 1px solid #4586ff;           
-}
+} */
 
-.entry {
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    align-items: center;
-    padding: 10px;         
-    border-bottom: 1px solid #eee; 
-}
-
-.journal-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 500px;
-    height: 400px;
-}
-
-.button-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-
-#journalEntry {
+/* .day-log-container {
     width: 100%;
-    height: 200px;
+} */
+
+/* #dayEmotionLog {
+    height: 600px;
+    overflow-y: auto; 
+    overflow-x: hidden;
+    border: 1px solid #dd1010; 
+    padding: 10px; 
+}
+
+.day-button-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 10px;
+}
+
+.day-emotion-entry {
+    height: 100%;
+}
+
+#dayEmotionLog {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #4586ff;
+    width: 500px;
+    height: 100%;
+}
+
+#dayJournalEntry {
+    width: 500px;
+    height: 80%;
     resize: none;
     margin: 5px 0;
     font-size: 15px;
-    margin-bottom: 5px;
     background-color: rgb(183, 241, 255);
 }
 
-
+ */
 

@@ -1,7 +1,5 @@
 import { DayComponent } from "./pages/day/DayComponent.js";
-import { JournalComponent } from "./pages/day/journal/JournalComponent.js";
-import { CalendarComponent } from "./pages/calendar/CalendarComponent.js";
-import { NavigationComponent } from "./nav/NavigationComponent.js";
+import { JournalComponent } from "./pages/journal/JournalComponent.js";
 import { EventHub } from "./eventhub/EventHub.js";
 import { Events } from "./eventhub/Events.js";
 

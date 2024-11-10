@@ -42,9 +42,19 @@ export class BaseComponent {
     throw new Error("render method not implemented");
   }
 
-  // Methods
-  _changeDisplay(view) {
-    document.getElementById(this.bodyElement.id).style.display = view;
+// Methods
+  // Switches the view and renders the page
+  loadPage(data) {
+    document
+      .querySelectorAll(".view")
+      .forEach((body) => (body.style.display = "none"));
+
+    this._render(data);
+    this.#changeDisplay('flex');
+  }
+
+  #changeDisplay(view) {
+    document.getElementById(this.bodyElement.id).style.display = view
   }
 
   #initialize(id, cssLink, isNav = false) {
@@ -62,7 +72,11 @@ export class BaseComponent {
     this.bodyElement.id = id;
     this.bodyElement.innerHTML = this._buildHTML();
 
-    this._changeDisplay("none");
+    this.bodyElement.classList.add('view')
+    this.bodyElement.id = id
+    this.bodyElement.innerHTML = this._buildHTML()
+    
+    this.#changeDisplay('none')
 
     // Adds EventListens
     this._addEventListeners();

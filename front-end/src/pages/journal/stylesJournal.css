@@ -1,10 +1,17 @@
+
 .view {
     display: flex;
     overflow: hidden; 
     flex-direction: column;
     justify-content: center; 
     align-items: center;               
-    margin: 0; 
+    margin: 0;
+    
+    width: 100%;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .text-submission {
@@ -12,7 +19,7 @@
     place-items: center; 
 }
 
-#summary {
+#journalSummary {
     width: 700px;
     height: 400px;
     resize: none;
