@@ -17,4 +17,26 @@
 ## October 20, 2024
 
 - **Task**: Reviewed notes.
-- **Details**: reviewed notes from group meeting and updated roles.md file. 
+- **Details**: reviewed notes from group meeting and updated roles.md file.
+
+## October 27, 2024
+- **Task**: Front end for checkin page
+- **Details**: Worked on the basic HTML and CSS for the check-in window of the Cherish app.
+
+## October 27, 2024
+-**Task**: Implementing code to project repo
+- **Details**: commited my checkin page folder and html and css files into porject repo
+
+## November 3, 2024
+- **Task**: Changing file name
+- **Details**: Created a new branch, Wacil-ChangingFileName(11/3/24), to rename the check-in window feature according to a specific naming convention.
+
+## November 7, 2024
+- **Task**: Component.js file
+- **Details**: Worked on creating my javascript file
+
+## November 10, 2024
+- **Task**: Commiting COmponent.js to project repo
+- - **Details**: Created a branch called Wacil-CheckInComponent.js that has the javascript file implemented
+
+
