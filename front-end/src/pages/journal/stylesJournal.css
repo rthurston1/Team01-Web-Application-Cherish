@@ -19,7 +19,7 @@
     place-items: center; 
 }
 
-#summary {
+#journalSummary {
     width: 700px;
     height: 400px;
     resize: none;

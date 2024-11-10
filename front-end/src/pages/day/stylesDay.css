@@ -8,6 +8,13 @@
     margin: 0; 
 }
 
+.day-head-element {
+    display: grid;
+    justify-content: center;
+    width: 100%;
+    height: 10%;
+}
+
 .day-body-element {
     display: grid;
     justify-content: center;
@@ -15,15 +22,40 @@
     height: 100%;
 }
 
-.day-scroll-container {
+.day-emotion-container {
+    display: grid;
+    justify-items: center;
+    width: 100%;
+    height: 70%;
+    overflow-y: scroll; 
+    overflow-x: hidden;
+    border: 1px solid #dd1010; 
+    padding: 10px; 
+}
+
+.day-journal-container {
+    display: grid;
+    width: 500px;
+    height: 30%;
+}
+
+/* .day-scroll-container {
     width: 100%;          
     height: 10;        
     overflow-y: auto;      
     border: 1px solid #4586ff;           
-}
+} */
 
-.day-log-container {
+/* .day-log-container {
     width: 100%;
+} */
+
+/* #dayEmotionLog {
+    height: 600px;
+    overflow-y: auto; 
+    overflow-x: hidden;
+    border: 1px solid #dd1010; 
+    padding: 10px; 
 }
 
 .day-button-container {
@@ -55,5 +87,5 @@
     background-color: rgb(183, 241, 255);
 }
 
-
+ */
 
