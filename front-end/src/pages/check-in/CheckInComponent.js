@@ -99,6 +99,9 @@ export class CheckInComponent extends BaseComponent {
 
   // Method to add event listeners
   _addEventListeners() {
+    //add event listeners for all pages 
+    EventHub.getInstance().subscribe(Events.LoadCheckInPage, data => this._render(data))
+
     // Listen for emotion selection
     document.querySelectorAll("input[name='emotion']").forEach((input) => {
       input.addEventListener("change", (event) => {
