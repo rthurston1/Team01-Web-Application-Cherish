@@ -75,9 +75,10 @@
 
 ## November 3, 2024
 ### Added New Branches
-  - **Details:** Created two new branches for the upcoming week. (jesse-robbie-daypage-week2 AND robbie-daypage-week2)
-
-
+  - **Details:** Created two new branches for the upcoming week.
+    - jesse-robbie-daypage-week2
+    - robbie-daypage-week2
+  
 ## November 4, 2024
 ### Added Function to BaseComponent
   - **Details:** Added a function that removes the need for individual components to change the display of every view (reduces a lot of code duplication).
@@ -89,14 +90,17 @@
 
 ## November 10, 2024
 ### Created Meeting Plan
-  - **Details:** Made for today's meeting agenda.
+  - **Details:** Made today's meeting agenda.
 
 ### Implemented Add/Remove Emotion Feature
  - **Details:** Completed functions responsible for adding and removing emotions from the day page.
  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/0c1a3ddb1245fc406d04f97541d751f83da2b402)
 
+### Added New Branch
+  - **Details:** Created new branch, robbie-emotion-log-feature
+
 ### Deleted Branches
- - **Details:** Deleted the following branches from the repository
+ - **Details:** Deleted the following branches from the repository:
     - george-niko-mainpage
     - testing-niko
     - georgeAndNiko-MainPageEdits
@@ -106,3 +110,7 @@
     - Wacil-ChangingFileName
     - Wacil-CheckInWindow
     - featuremd-update-robbie
+    - robbie-daypage-week2
+
+### Removed Features
+  - **Details** Removed the Mood Trends and CSV Data Import/Export feature from our project plan.
