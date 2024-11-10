@@ -42,7 +42,17 @@ export class BaseComponent {
   }
 
 // Methods
-  _changeDisplay(view) {
+  // Switches the view and renders the page
+  loadPage(data) {
+    document
+      .querySelectorAll(".view")
+      .forEach((body) => (body.style.display = "none"));
+
+    this._render(data);
+    this.#changeDisplay('flex');
+  }
+
+  #changeDisplay(view) {
     document.getElementById(this.bodyElement.id).style.display = view
   }
   
@@ -61,7 +71,7 @@ export class BaseComponent {
     this.bodyElement.id = id
     this.bodyElement.innerHTML = this._buildHTML()
     
-    this._changeDisplay('none')
+    this.#changeDisplay('none')
 
     
     // Adds EventListens
