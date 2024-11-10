@@ -5,9 +5,18 @@ import { BaseComponent } from "../main/BaseComponent.js";
 export class CheckInComponent extends BaseComponent {
   constructor() {
     super("checkInPage", "./pages/check-in/styles.css");
-    this.emotion = null;
-    this.magnitude = 5; // Default magnitude
-    this.reason = "";
+    this.emotionData = {
+      emotion_id: null,
+      emotion_intensity: 5, // Default intensity
+      description: ""
+    };
+    this.dayData = {
+      date_id: new Date(),
+      logged_in: false,
+      daily_emotions: [],
+      daily_rating: 5, // Default daily rating
+      journal_entry: ""
+    };
   }
 
   // Build HTML structure for the check-in page
@@ -52,12 +61,12 @@ export class CheckInComponent extends BaseComponent {
       <!-- magnitude section -->
       <section class="MagnitudeEmotions">
         <!-- label -->
-        <label for="magnitude">Magnitude of emotions:</label>
-        <!-- make a slider for the numbers -->
+        <label for="emotion_intensity">Intensity of emotions:</label>
+        <!-- make a slider for the intensity -->
         <input
           type="range"
-          id="magnitude"
-          name="magnitude"
+          id="emotion_intensity"
+          name="emotion_intensity"
           min="1"
           max="10"
           step="1"
@@ -71,9 +80,9 @@ export class CheckInComponent extends BaseComponent {
 
       <!-- why section with text box -->
       <section class="Why">
-        <label for="why">Why?</label>
+        <label for="description">Why?</label>
         <textarea
-          id="why"
+          id="description"
           rows="4"
           placeholder="I had a test today which was pretty rough. I didn’t feel very prepared."
         ></textarea>
@@ -93,18 +102,18 @@ export class CheckInComponent extends BaseComponent {
     // Listen for emotion selection
     document.querySelectorAll("input[name='emotion']").forEach((input) => {
       input.addEventListener("change", (event) => {
-        this.emotion = event.target.id;
+        this.emotionData.emotion_id = event.target.id;
       });
     });
 
-    // Listen for magnitude slider change
-    document.getElementById("magnitude").addEventListener("input", (event) => {
-      this.magnitude = event.target.value;
+    // Listen for intensity slider change
+    document.getElementById("emotion_intensity").addEventListener("input", (event) => {
+      this.emotionData.emotion_intensity = event.target.value;
     });
 
-    // Listen for text area input
-    document.getElementById("why").addEventListener("input", (event) => {
-      this.reason = event.target.value;
+    // Listen for text area input for description
+    document.getElementById("description").addEventListener("input", (event) => {
+      this.emotionData.description = event.target.value;
     });
 
     // Cancel button listener
@@ -120,21 +129,22 @@ export class CheckInComponent extends BaseComponent {
 
   // Reset the check-in form
   _resetCheckIn() {
-    this.emotion = null;
-    this.magnitude = 5;
-    this.reason = "";
+    this.emotionData = {
+      emotion_id: null,
+      emotion_intensity: 5,
+      description: ""
+    };
     document.querySelectorAll("input[name='emotion']").forEach((input) => (input.checked = false));
-    document.getElementById("magnitude").value = 5;
-    document.getElementById("why").value = "";
+    document.getElementById("emotion_intensity").value = 5;
+    document.getElementById("description").value = "";
   }
 
   // Submit the check-in data
   _submitCheckIn() {
     const hub = EventHub.getInstance();
     const checkInData = {
-      emotion: this.emotion,
-      magnitude: this.magnitude,
-      reason: this.reason,
+      dayData: this.dayData,
+      emotionData: this.emotionData
     };
 
     console.log("Check-in data submitted:", checkInData);
