@@ -3,11 +3,12 @@ export class BaseComponent {
    * @param {string} id HTML body element id
    * @param {string} cssLink file path to file from src folder
    */
-  constructor(id, cssLink) {
-    this.#initialize(id, cssLink)
+
+  constructor(id, cssLink, isNav = false) {
+    this.#initialize(id, cssLink, isNav);
   }
 
-// Abstract Methods
+  // Abstract Methods
   /**
    * Builds the body's innerHTML
    * @abstract
@@ -28,12 +29,12 @@ export class BaseComponent {
   }
 
   /**
-   * Displays the current view. Attributes within 
+   * Displays the current view. Attributes within
    * view dynamically change depending on the data
    * passed as an argument.
-   * 
+   *
    * @abstract
-   * 
+   *
    * @param {any} data
    * @returns {void}
    */
@@ -41,31 +42,29 @@ export class BaseComponent {
     throw new Error("render method not implemented");
   }
 
-// Methods
+  // Methods
   _changeDisplay(view) {
-    document.getElementById(this.bodyElement.id).style.display = view
+    document.getElementById(this.bodyElement.id).style.display = view;
   }
-  
-  #initialize(id, cssLink) {
+
+  #initialize(id, cssLink, isNav = false) {
     // Adds CSS File to Head
-    this.cssFile = document.createElement('link')
-    this.cssFile.rel = 'stylesheet'
-    this.cssFile.href = cssLink
-    document.head.appendChild(this.cssFile)
+    this.cssFile = document.createElement("link");
+    this.cssFile.rel = "stylesheet";
+    this.cssFile.href = cssLink;
+    document.head.appendChild(this.cssFile);
 
     // Build Body
-    this.bodyElement = document.createElement('div')
-    document.getElementById('views').appendChild(this.bodyElement)
+    this.bodyElement = document.createElement("div");
+    document.getElementById("views").appendChild(this.bodyElement);
+    // Add component to class "feature-buttons" or "view" depending on if it's navigational or page component
+    this.bodyElement.classList.add(isNav ? "feature-buttons" : "view");
+    this.bodyElement.id = id;
+    this.bodyElement.innerHTML = this._buildHTML();
 
-    this.bodyElement.classList.add('view')
-    this.bodyElement.id = id
-    this.bodyElement.innerHTML = this._buildHTML()
-    
-    this._changeDisplay('none')
+    this._changeDisplay("none");
 
-    
     // Adds EventListens
-    this._addEventListeners()
+    this._addEventListeners();
   }
-
 }
