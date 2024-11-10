@@ -59,7 +59,7 @@ November 3, 2024
 November 6, 2024
 
 - **Task**: Start work on the global navigation feature.
-- **Details**: Created a new branch for the global navigation feature issue. Refactored the HTML and CSS to include the global navigation bar. Added the global navigation bar to the journal, summary, and check in pages.
+- **Details**: Created a new branch for the global navigation feature issue called `feature-buttons-component-niko`. Refactored the HTML and CSS to include the global navigation bar. Added the global navigation bar to the journal, summary, and check in pages.
 
 - **Links to Commits**:
   - [Commit 1](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/2fdd64e451c18812953543aa26c8d670850c697a)
