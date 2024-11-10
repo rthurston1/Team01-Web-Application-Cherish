@@ -14,7 +14,6 @@
 ### Calendar
   - **Description**: Hold information regarding the current month and the days. 
   - _Attributes:_
-    - `days` (`Day[]`): The list of all the days in the current month.
     - `current_day` (`date`): Displays today's date.
     - `streak` (`number`): The number of consecutive days the user has logged their daily emotion.
   - **Data Source**: System-generated, based on user's inputs for each day.
@@ -34,7 +33,6 @@
   - _Attributes:_
     - `emotion_id` (`number`): A unique identifier for the emotion (Ex: Happy: 0, Sad: 1, Angry: 2,...).
     - `emotion_intensity` (`number`): A ranking system on a scale of 1 to 10 on how strong the emotion is.
-    - `emotion_color` (`color`): The color the belongs to this emotion (NOTE: We may implement a feature that allows users to pick custom colors for their emotions)
     - `description` (`string`): An explanation to why a user feels the emotion (Not required, can be left empty).
   - **Data Source** User-input, the user will input their emotion with a brief description.
 

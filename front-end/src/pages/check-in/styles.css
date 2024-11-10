@@ -1,0 +1,134 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #0a5a90;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    height: 50vh;
+    width: 50vh;
+}
+
+.container h2 {
+    background-color: #00cc00;
+    color: rgb(0, 0, 0);
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    
+}
+
+.Emotions {
+    margin-bottom: 15px;
+}
+
+.Emotions label {
+    display: inline-block;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+
+.emoji {
+    width: 30px;
+    transition: transform 0.2s;
+}
+
+input[type="radio"]:checked + .emoji {
+    transform: scale(1.2);
+}
+
+.MagnitudeEmotions {
+    margin-bottom: 15px;
+}
+
+.MagnitudeEmotions input[type="range"] {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.range-labels {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Why {
+    margin-bottom: 15px;
+}
+
+.Why textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    resize: none;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttons button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.cancel {
+    background-color: #ff4d4d;
+    color: rgb(0, 0, 0);
+}
+
+.confirm {
+    background-color: #33cc33;
+    color: rgb(0, 0, 0);
+}
+
+.cancel:hover, .confirm:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.cancel:hover {
+    background-color: #ff3333;
+}
+
+.confirm:hover {
+    background-color: #2eb82e;
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 20px;
+    }
+
+    .emotion-options {
+        gap: 10px;
+    }
+
+    .emoji {
+        width: 30px;
+    }
+
+    .buttons button {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+}
