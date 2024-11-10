@@ -7,4 +7,7 @@ export const Events = {
   LoadJournalPage: 'LoadJournalPage', // Loads Journal Page, content based on current Day Page
   LoadCheckInPage: 'LoadCheckInPage',
   LoadSummaryPage: 'LoadSummaryPage',
+  SummarySubmitted: 'SummarySubmitted',
+  CheckInSubmitted: 'CheckInSubmitted',
+  UpdateDatabase: 'UpdateDatabase', // Async stores any submissions to database
 };
