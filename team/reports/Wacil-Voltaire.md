@@ -25,7 +25,7 @@
 
 ## October 27, 2024
 -**Task**: Implementing code to project repo
-- **Details**: commited my checkin page folder and html and css files into porject repo
+- [Link to Commit] ()
 
 ## November 3, 2024
 - **Task**: Changing file name
@@ -37,10 +37,15 @@
 
 ## November 10, 2024
 - **Task**: Commiting COmponent.js to project repo
-- - **Details**: Created a branch called Wacil-CheckInComponent.js that has the javascript file implemented
+- [Link to Commit] (https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/8d86c75747bf5f8a5e96a027a437a1ed94324cdf)
  
 ## November 10, 2024
 - **Task**: Group meeting (Ranking tasks)
-- **Details**: Ranked my task a 2 out of 5. The HTML and CSS were pretty straight foward.The main challenges lie in structuring the JavaScript to handle user input consistently and ensuring a smooth user experience. 
+- **Details**: Ranked my task a 2 out of 5. The HTML and CSS were pretty straight foward.The main challenges lie in structuring the JavaScript to handle user input consistently and ensuring a smooth user experience.
+
+
+ ## November 11, 2024
+- **Task**: Updated reports file
+- [Link to Commit] (https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/8beb666872df535b33446205409a730f36aacfa9)
 
 
