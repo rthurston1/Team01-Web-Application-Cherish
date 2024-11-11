@@ -25,7 +25,7 @@
 
 ## October 27, 2024
 -**Task**: Implementing code to project repo
-- [Link to Commit] ()
+- [Link to Commit]()
 
 ## November 3, 2024
 - **Task**: Changing file name
@@ -37,7 +37,7 @@
 
 ## November 10, 2024
 - **Task**: Commiting COmponent.js to project repo
-- [Link to Commit] (https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/8d86c75747bf5f8a5e96a027a437a1ed94324cdf)
+- [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/8d86c75747bf5f8a5e96a027a437a1ed94324cdf)
  
 ## November 10, 2024
 - **Task**: Group meeting (Ranking tasks)
@@ -46,6 +46,6 @@
 
  ## November 11, 2024
 - **Task**: Updated reports file
-- [Link to Commit] (https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/8beb666872df535b33446205409a730f36aacfa9)
+- [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/8beb666872df535b33446205409a730f36aacfa9)
 
 
