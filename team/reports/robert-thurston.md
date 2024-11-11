@@ -136,5 +136,5 @@
     - robbie-fix-checkin-page
 
 ### Fixed Issue with File Explorer
-  -**Details:** Fixed issue where Check-in Page would not show up (simply had to import it into main.js and create new class).
+  - **Details:** Fixed issue where Check-in Page would not show up (simply had to import it into main.js and create new class).
   - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
