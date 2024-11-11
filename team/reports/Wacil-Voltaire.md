@@ -25,7 +25,7 @@
 
 ## October 27, 2024
 -**Task**: Implementing code to project repo
-- [Link to Commit]()
+- [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Cherish/pull/29/commits/036c4f5cd093e49d1c8be375c9d1185515b4ce43)
 
 ## November 3, 2024
 - **Task**: Changing file name
