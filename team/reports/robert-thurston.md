@@ -75,7 +75,7 @@
 
 ## November 3, 2024
 ### Added New Branches
-  - **Details:** Created two new branches for the upcoming week.
+  - **Details:** Created the following branches:
     - jesse-robbie-daypage-week2
     - robbie-daypage-week2
   
@@ -97,7 +97,8 @@
  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/0c1a3ddb1245fc406d04f97541d751f83da2b402)
 
 ### Added New Branch
-  - **Details:** Created new branch, robbie-emotion-log-feature
+  - **Details:** Created the following branches:
+    - robbie-emotion-log-feature
 
 ### Deleted Branches
  - **Details:** Deleted the following branches from the repository:
@@ -112,5 +113,14 @@
     - featuremd-update-robbie
     - robbie-daypage-week2
 
+### Report New Features
+  - **Details:** Specified the Journal page and Check-In page as their own feature within feature.md.
+  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/52fb9f426e326f7e0b54788f92885d0b066a5eca)
+
 ### Removed Features
-  - **Details** Removed the Mood Trends and CSV Data Import/Export feature from our project plan.
+  - **Details:** Removed the Mood Trends and CSV Data Import/Export feature from our project plan.
+  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/52fb9f426e326f7e0b54788f92885d0b066a5eca)
+
+### First Implementation of Emotion Log
+  - **Details:** Added some functionality to dynamically displaying emotions onto day page
+  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/5136eca1edb37bfa95f994ca14b1e663c05f4b1c)
