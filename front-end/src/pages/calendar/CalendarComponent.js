@@ -1,6 +1,6 @@
 import { EventHub } from "../../eventhub/EventHub.js";
 import { Events } from "../../eventhub/Events.js";
-import { BaseComponent } from "../main/BaseComponent.js";
+import { BaseComponent } from "../../BaseComponent.js";
 
 export const MONTHS = [
   "January",
