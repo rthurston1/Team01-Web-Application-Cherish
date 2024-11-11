@@ -1,6 +1,7 @@
 import { EventHub } from '../../eventhub/EventHub.js'
 import { Events } from '../../eventhub/Events.js'
 import { BaseComponent } from '../main/BaseComponent.js'
+import { dateFormat } from '../day/DayComponent.js'
 
 export class JournalComponent extends BaseComponent {
     constructor() {
@@ -25,6 +26,7 @@ export class JournalComponent extends BaseComponent {
     _buildHTML() { 
         return `
             <h1>Journal Page</h1>
+            <h2 id="journalDate"><h2>
             <h2>Write Your Daily Summary Below!</h2>
 
             <form class="text-submission" id="daySummary">
@@ -51,8 +53,10 @@ export class JournalComponent extends BaseComponent {
         this.dateData = data
 
         document.getElementById('journalSummary').value = 'journal_entry' in this.dateData
-        ? this.dateData.journal_entry
+        ? this.dateData.journal
         : ''
+
+        document.getElementById('journalDate').textContent = dateFormat(this.dateData.date_id)
     }
 
 }
