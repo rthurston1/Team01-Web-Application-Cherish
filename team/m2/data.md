@@ -21,7 +21,7 @@
 ### Day
  - **Description**: Tracks an individual day's user-logged information
  - _Attributes:_
-   - `date_id` (`date`): The date corresponding to the day.
+   - `date_id` (`string`): The date corresponding to the day.
    - `logged_in` (`boolean`): True if the user filled out information for the current day (false if the day was skipped).
    - `emotions` (`Emotion[]`): A list of emotions that the user felt during the day.
    - `rating` (`number`): The overall emotion score of the day. (The higher the score, the better day you had!).
