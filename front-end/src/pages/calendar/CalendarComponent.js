@@ -51,19 +51,16 @@ export class CalendarComponent extends BaseComponent {
     const hub = EventHub.getInstance();
     switch (page) {
       case "check-in":
-        console.log("Check-in page will be here one day.");
-        // hub.publish(Events.LoadCheckInPage, this.dateData);
+        hub.publish(Events.LoadCheckInPage, this.dateData);
         break;
       case "journal":
         hub.publish(Events.LoadJournalPage, this.dateData);
         break;
       case "stats":
-        console.log("Stats page will be here one day.");
-        // hub.publish(Events.LoadStatsPage, this.dateData);
+        hub.publish(Events.LoadStatsPage, this.dateData);
         break;
       case "summary":
-        console.log("Summary page will be here one day.");
-        // hub.publish(Events.LoadSummaryPage, this.dateData);
+        hub.publish(Events.LoadSummaryPage, this.dateData);
         break;
       default:
         hub.publish(Events.LoadMainPage, this.dateData);
