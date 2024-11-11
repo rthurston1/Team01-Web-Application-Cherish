@@ -1,6 +1,31 @@
 import { EventHub } from '../../eventhub/EventHub.js'
 import { Events } from '../../eventhub/Events.js'
 import { BaseComponent } from '../main/BaseComponent.js'
+import { MONTHS } from '../calendar/CalendarComponent.js'
+
+// Converts date id into a readable Date (ex. 11-10-2024 => November 10, 2024)
+export function dateFormat(dataId) {
+    const arr = dataId.split('-')
+    return `${MONTHS[parseInt(arr[0], 10) - 1]} ${arr[1]}, ${arr[2]}`
+}
+
+export function getEmotionById(emotion_id) {
+    switch (emotion_id) {
+        case 0:
+            return 'happy'
+        case 1:
+            return 'sad'
+        case 2:
+            return 'angry'
+        case 3:
+            return 'anxious'
+        case 4:
+            return 'disgusted'
+        default:
+            return 'neutral'
+    }
+}
+
 
 export class DayComponent extends BaseComponent {
     constructor() {
@@ -34,18 +59,62 @@ export class DayComponent extends BaseComponent {
         if (!this.dateData['emotions']) this.dateData['emotions'] = []
         this.dateData.emotions.push(emotion_entry)
         this.#calculateRating()
+        alert('emotion added!')
     }
 
     // Removes the specified emotion element from the Emotion Log
     #removeEmotionEntry(emotion_entry) {
-       this.dateDate.emotions = this.dateData.emotions.filter(e => e !== emotion_entry)
-       this.#calculateRating()
+        document.getElementById('dayEmotionLog').innerHTML = ""
+
+        const filteredArr = this.dateData.emotions.filter(e => e !== emotion_entry)
+        this.dateData.emotions = filteredArr
+
+        this.#calculateRating()
+        this.#renderEmotions()
+        alert('emotion deleted!')
     }
 
     // Calculates Daily Ranking based on emotions logged also saves any changed to database
     #calculateRating() {
 
         EventHub.getInstance().publish(Events.UpdateDatabase, this.dateData)
+    }
+
+    #renderEmotions() {
+        const emotionLog = document.getElementById('dayEmotionLog')
+        if (!this.dateData.emotions) {
+            emotionLog.textContent = 'NO EMOTIONS LOGGED'
+            return;
+        }
+
+        this.dateData.emotions.forEach(emotion => {
+            const emotionEntry = document.createElement('div')
+            emotionEntry.classList.add('day-log-entry')
+            emotionLog.appendChild(emotionEntry)
+
+          
+            const entryInfo = document.createElement('div')
+            emotionEntry.appendChild(entryInfo)
+
+            const emotionName = document.createElement('label')
+            emotionName.textContent = getEmotionById(emotion.emotion_id)
+
+            const emotionMag = document.createElement('label')
+            emotionMag.textContent = emotion.magnitude
+
+            const timestamp = document.createElement('label')
+            timestamp.textContent = emotion.timestamp
+
+            entryInfo.appendChild(emotionName)
+            entryInfo.appendChild(emotionMag)
+            entryInfo.appendChild(timestamp)
+
+            const deleteButton = document.createElement('button')
+            deleteButton.textContent = 'DELETE'
+            deleteButton.addEventListener('click', () => this.#removeEmotionEntry(emotion))
+
+            emotionEntry.appendChild(deleteButton)
+        })
     }
 
 // Inherited Methods from BaseComponent
@@ -58,15 +127,7 @@ export class DayComponent extends BaseComponent {
                 </div>
                 
                 <div class="day-body-element" id="dayContent">
-                    <div class="day-emotion-container">
-                        <div class="day-log-entry">
-                            <label>Hello1</label>
-                        </div>
-                        <div class="day-log-entry">
-                            <label>Hello2</label>
-                        </div>
-                        
-                    </div>
+                    <div class="day-emotion-container" id="dayEmotionLog"></div>
 
                     <div class="day-journal-container">
                         <textarea id="dayJournalEntry" placeholder="No journal entry" readonly></textarea>
@@ -95,11 +156,61 @@ export class DayComponent extends BaseComponent {
 
    // Changes view to Day Page
     _render(data) {
-        this.dateData = data
-        document.getElementById('dayDate').textContent = this.dateData.format 
-        document.getElementById('dayJournalEntry').textContent = this.dateData.journal_entry
+        if (data) this.dateData = data
+
+        document.getElementById('dayDate').textContent = dateFormat(this.dateData.date_id)
+        document.getElementById('dayJournalEntry').textContent = this.dateData.journal
 
         // Added Emotions to Log
+
+        // MOCK EMOTION
+        this.dateData['emotions'] = []
+
+        this.dateData.emotions.push({
+            emotion_id: 0,
+            magnitude: 10,
+            description: 'I ate cake',
+            timestamp: '08:32'
+        })
+
+        this.dateData.emotions.push({
+            emotion_id: 0,
+            magnitude: 10,
+            description: 'I ate cake',
+            timestamp: '08:32'
+        })
+
+        this.dateData.emotions.push({
+            emotion_id: 0,
+            magnitude: 10,
+            description: 'I ate cake',
+            timestamp: '08:32'
+        })
+
+        this.dateData.emotions.push({
+            emotion_id: 0,
+            magnitude: 10,
+            description: 'I ate cake',
+            timestamp: '08:32'
+        })
+
+        this.dateData.emotions.push({
+            emotion_id: 0,
+            magnitude: 10,
+            description: 'I ate cake',
+            timestamp: '08:32'
+        })
+
+        this.dateData.emotions.push({
+            emotion_id: 0,
+            magnitude: 10,
+            description: 'I ate cake',
+            timestamp: '08:32'
+        })
+
+        this.#renderEmotions()
+
+        
     }
 
 }
