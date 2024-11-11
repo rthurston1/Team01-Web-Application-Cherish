@@ -126,9 +126,14 @@
   - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/5136eca1edb37bfa95f994ca14b1e663c05f4b1c)
 
 ## November 11, 2024
-### Created Branch
+### Added Branches
  - **Details:** Created a new branch: robbie-fix-checkin-page
  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
+
+### Deleted Branches
+  - **Details** Deleted the following branches:
+    - robbie-daypage
+    - robbie-fix-checkin-page
 
 ### Fixed Issue with File Explorer
   -**Details:** Fixed issue where Check-in Page would not show up (simply had to import it into main.js and create new class).
