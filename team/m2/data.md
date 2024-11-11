@@ -32,7 +32,7 @@
   - **Description**: Represents an emotion the user is feeling during the day
   - _Attributes:_
     - `emotion_id` (`number`): A unique identifier for the emotion (Ex: Happy: 0, Sad: 1, Angry: 2,...).
-    - `emotion_intensity` (`number`): A ranking system on a scale of 1 to 10 on how strong the emotion is.
+    - `magnitude` (`number`): A ranking system on a scale of 1 to 10 on how strong the emotion is.
     - `description` (`string`): An explanation to why a user feels the emotion (Not required, can be left empty).
     - `timestamp` (`string`): The time (hour:minute) an emotion was logged.
   - **Data Source** User-input, the user will input their emotion with a brief description.
