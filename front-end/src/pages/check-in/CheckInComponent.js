@@ -100,7 +100,7 @@ export class CheckInComponent extends BaseComponent {
   // Method to add event listeners
   _addEventListeners() {
     //add event listeners for all pages 
-    EventHub.getInstance().subscribe(Events.LoadCheckInPage, data => this._render(data))
+    EventHub.getInstance().subscribe(Events.LoadCheckInPage, (data) => this._render(data));
 
     // Listen for emotion selection
     document.querySelectorAll("input[name='emotion']").forEach((input) => {
@@ -161,5 +161,14 @@ export class CheckInComponent extends BaseComponent {
   _render(data = null) {
     document.querySelectorAll(".view").forEach((body) => (body.style.display = "none"));
     this._changeDisplay("flex");
+  }
+   // Method to change display for check-in component
+  _changeDisplay(displayStyle) {
+    const checkInContainer = document.querySelector("#checkInPage");
+    if (checkInContainer) {
+      checkInContainer.style.display = displayStyle;
+    } else {
+      console.error("Check-in container not found!");
+    }
   }
 }
