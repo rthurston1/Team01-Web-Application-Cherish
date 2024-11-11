@@ -2,6 +2,21 @@ import { EventHub } from "../../eventhub/EventHub.js";
 import { Events } from "../../eventhub/Events.js";
 import { BaseComponent } from "../main/BaseComponent.js";
 
+export const MONTHS = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
 export class CalendarComponent extends BaseComponent {
   constructor() {
     super("calendarPage", "./pages/calendar/stylesCalendar.css");
@@ -156,22 +171,8 @@ export class CalendarComponent extends BaseComponent {
 
     const nextDays = 7 - lastDayIndex - 1;
 
-    const months = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
 
-    document.querySelector(".date h1").innerHTML = months[this.date.getMonth()];
+    document.querySelector(".date h1").innerHTML = MONTHS[this.date.getMonth()];
     document.querySelector(".date p").innerHTML = new Date().toDateString();
 
     let days = "";
