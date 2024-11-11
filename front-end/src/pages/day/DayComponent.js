@@ -1,29 +1,13 @@
 import { EventHub } from '../../eventhub/EventHub.js'
 import { Events } from '../../eventhub/Events.js'
-import { BaseComponent } from '../main/BaseComponent.js'
+import { BaseComponent } from '../../BaseComponent.js'
 import { MONTHS } from '../calendar/CalendarComponent.js'
+import { getEmotionById } from '../check-in/CheckInComponent.js'
 
 // Converts date id into a readable Date (ex. 11-10-2024 => November 10, 2024)
 export function dateFormat(dataId) {
     const arr = dataId.split('-')
     return `${MONTHS[parseInt(arr[0], 10) - 1]} ${arr[1]}, ${arr[2]}`
-}
-
-export function getEmotionById(emotion_id) {
-    switch (emotion_id) {
-        case 0:
-            return 'happy'
-        case 1:
-            return 'sad'
-        case 2:
-            return 'angry'
-        case 3:
-            return 'anxious'
-        case 4:
-            return 'disgusted'
-        default:
-            return 'neutral'
-    }
 }
 
 
