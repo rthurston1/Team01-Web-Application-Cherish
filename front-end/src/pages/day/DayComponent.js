@@ -19,22 +19,6 @@ export class DayComponent extends BaseComponent {
     this.dateData = {};
   }
 
-  // Methods
-
-  #goToMainPage() {
-    EventHub.getInstance().publish(Events.LoadMainPage, this.dateData);
-  }
-
-  // Calls an event to load journal page
-  #goToJournalPage() {
-    EventHub.getInstance().publish(Events.LoadJournalPage, this.dateData);
-  }
-
-  // Calls an event to load check-in page
-  #goToCheckInPage() {
-    EventHub.getInstance().publish(Events.LoadCheckInPage, this.dateData);
-  }
-
   #addJournalEntry(journal) {
     this.dateData["journal_entry"] = journal;
     EventHub.getInstance().publish(Events.UpdateDatabase, this.dateData);
@@ -69,6 +53,8 @@ export class DayComponent extends BaseComponent {
 
   #renderEmotions() {
     const emotionLog = document.getElementById("dayEmotionLog");
+    emotionLog.innerHTML = "" // Clears HTML
+
     if (!this.dateData.emotions) {
       emotionLog.textContent = "NO EMOTIONS LOGGED";
       return;
@@ -83,7 +69,7 @@ export class DayComponent extends BaseComponent {
       emotionEntry.appendChild(entryInfo);
 
       const emotionName = document.createElement("label");
-      emotionName.textContent = getEmotionById(emotion.emotion_id);
+      emotionName.textContent = emotion.emotion_id;
 
       const emotionMag = document.createElement("label");
       emotionMag.textContent = emotion.magnitude;
@@ -116,16 +102,7 @@ export class DayComponent extends BaseComponent {
                 
                 <div class="day-body-element" id="dayContent">
                     <div class="day-emotion-container" id="dayEmotionLog"></div>
-
-                    <div class="day-journal-container">
-                        <textarea id="dayJournalEntry" placeholder="No journal entry" readonly></textarea>
-
-                        <div id="dayButtons">
-                            <button id="dayToMain">Main Page</button>
-                            <button id="dayToJournal">Journal</button>
-                            <button id="dayToCheckIn">Check-In</button>
-                        </div>
-                    </div>
+                    <textarea id="dayJournalEntry" placeholder="No journal entry" readonly></textarea>
                 </div>
             </div>
         `;
@@ -140,16 +117,6 @@ export class DayComponent extends BaseComponent {
     hub.subscribe(Events.CheckInSubmitted, (emotion) =>
       this.#addEmotionEntry(emotion)
     );
-
-    document
-      .getElementById("dayToMain")
-      .addEventListener("click", () => this.#goToMainPage());
-    document
-      .getElementById("dayToJournal")
-      .addEventListener("click", () => this.#goToJournalPage());
-    document
-      .getElementById("dayToCheckIn")
-      .addEventListener("click", () => this.#goToCheckInPage());
   }
 
   // Changes view to Day Page
