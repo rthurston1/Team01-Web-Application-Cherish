@@ -127,14 +127,21 @@
 
 ## November 11, 2024
 ### Added Branches
- - **Details:** Created a new branch: robbie-fix-checkin-page
- - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
+ - **Details:** Created the following branches: 
+  - robbie-fix-checkin-page
+  - robbie-testing-niko-merge
 
 ### Deleted Branches
   - **Details** Deleted the following branches:
     - robbie-daypage
     - robbie-fix-checkin-page
+    - jesse-dayPage
+    - jesse-robbie-daypage-week2
 
 ### Fixed Issue with File Explorer
   - **Details:** Fixed issue where Check-in Page would not show up (simply had to import it into main.js and create new class).
+  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
+
+### Combined Button Navigation with My Branch
+  - **Details:** Combined 
   - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
