@@ -1,6 +1,6 @@
 import { EventHub } from "../eventhub/EventHub.js";
 import { Events } from "../eventhub/Events.js";
-import { BaseComponent } from "../pages/main/BaseComponent.js";
+import { BaseComponent } from "../BaseComponent.js";
 
 /**
  * Temporary date object to pass to other pages. Will be replaced with a more
