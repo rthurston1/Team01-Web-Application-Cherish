@@ -1,6 +1,6 @@
 import { EventHub } from "../eventhub/EventHub.js";
 import { Events } from "../eventhub/Events.js";
-import { BaseComponent } from "../pages/main/BaseComponent.js";
+import { BaseComponent } from "../BaseComponent.js";
 
 /**
  * Temporary date object to pass to other pages. Will be replaced with a more
@@ -30,19 +30,16 @@ export class NavigationComponent extends BaseComponent {
     const hub = EventHub.getInstance();
     switch (page) {
       case "check-in":
-        console.log("Check-in page will be here one day.");
-        // hub.publish(Events.LoadCheckInPage, this.dateData);
+        hub.publish(Events.LoadCheckInPage, this.dateData);
         break;
       case "journal":
         hub.publish(Events.LoadJournalPage, date);
         break;
       case "stats":
-        console.log("Stats page will be here one day.");
-        // hub.publish(Events.LoadStatsPage, this.dateData);
+        hub.publish(Events.LoadStatsPage, this.dateData);
         break;
       case "summary":
-        console.log("Summary page will be here one day.");
-        // hub.publish(Events.LoadSummaryPage, this.dateData);
+        hub.publish(Events.LoadSummaryPage, this.dateData);
         break;
       case "calendar":
         hub.publish(Events.LoadMainPage, date);
