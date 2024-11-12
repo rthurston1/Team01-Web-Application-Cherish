@@ -1,49 +1,53 @@
 # Application Features
 
-## Visual Calendar Dashboard (3 pts)
+## Visual Calendar Dashboard (5 pts)
 
 The visual calendar dashboard will provide users with a calendar window where they can review or record their rating for each day. The calendar will be visually appealing and employ a modern look. The calendar will be the main view of the application.
 
-**Assigned to**: Anugrah George
+**Assigned to**: Anugrah George, Nikolay Ostroukhov
+
+## Dynamic Button Naviation (3 pts)
+
+A system-wide button system that easily allows the user to switch between different pages in the application.
 
 ## User Profiles (1 pt)
 
 The user will be able to create a user profile that saves their mood rating progress. The user will be able to change profiles.
 
-**Assigned to**: Nikolay Ostroukhov
+**Assigned to**: TBD
 
-## Day Logging (1 pt)
+## Check-In Page (1 pt)
 
 Users will be able to rate how their day went from four options. Users will also be able to describe their day using a textbox (optional). We may introduce a feature that would allow the user to record an audio log instead of writing out an entry. Day ratings and day descriptions/potential audio logs will be stored for the user's analytics when summarizing a week, month, or year. 
 
-**Assigned to**: Robert Thurston
+**Assigned to**: Wacil Volitaire
 
-## Mood Trends (4' pts)
+## Visual Day Display (3 pts)
 
-Users will be able to view a simple trend graph showing the user's mood over time to provide visual feedback of their emotional patterns.
+A display page where the user can view any emotions they have logged for a given day. They are also able to add a journal response to summerize their overall day. In additon, the user will be given a score out of 10 based on how good their day was. A 10 being the best, 0 being the worst.
 
-**Assigned to**: Samuel Hernandez
+**Assigned to**: Robert Thurston, Jesse Goldman
+
+## Journal Page (1 pt)
+A page that allows the user to type in a summary for their day, it's a simple text box which automatically saves when changing the view.
+
+**Assigned to** Robert Thurston, Jesse Goldman
 
 ## Summary Reports (5 pts)
 
 Users will be able to review their weekly or monthly summary reports that highlight consecutive good or bad days or significant changes in mood.
 
-**Assigned to**: Liam Campbell
+**Assigned to**: Liam Campbell, Samuel Hernandez 
 
 ## Customizable Themes (3' pts)
 
 Users will be able to choose from light or dark mode when using the app.
 
-**Assigned to**: Jesse Goldman 
+**Assigned to**: TBD
 
 ## Notifications and Alerts (4' pts)
 
 This feature will allow users to set a reminder to notify them to log their day through push notifications, email, or SMS.
 
-**Assigned to**: Wacil Volitaire
+**Assigned to**: TBD
 
-## CSV Data Import/Export
-
-Users will have the ability to import or export their mood data in CSV format for personal records or sharing with a therapist.
-
-**Assigned to**: Nikolay Ostroukhov

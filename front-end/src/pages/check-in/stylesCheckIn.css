@@ -1,0 +1,104 @@
+
+.container h2 {
+    background-color: #c7cfc7;
+    color: rgb(0, 0, 0);
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    
+}
+
+.Emotions {
+    margin-bottom: 15px;
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 30px;
+}
+
+.Emotions label {
+
+    display: inline-block;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+
+.emoji {
+    width: 35px;
+    transition: transform 0.2s;
+}
+
+.emoji:hover {
+    background-color: #2320c2ab;
+}
+
+input[type="radio"]:checked + .emoji {
+    transform: scale(1.2);
+}
+
+.MagnitudeEmotions {
+    margin-bottom: 15px;
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 25px;
+}
+
+.MagnitudeEmotions input[type="range"] {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.range-labels {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Why {
+    margin-bottom: 15px;
+    font-family: 'Bubblegum Sans', cursive;
+}
+
+.Why textarea {
+    font-family: 'Bubblegum Sans', cursive;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #000000;
+    resize: none;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttons button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.cancel {
+    font-family: 'Bubblegum Sans', cursive;
+    background-color: #ff4d4d;
+    color: rgb(0, 0, 0);
+}
+
+.confirm {
+    font-family: 'Bubblegum Sans', cursive;
+    background-color: #33cc33;
+    color: rgb(0, 0, 0);
+}
+
+.cancel:hover, .confirm:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.cancel:hover {
+    background-color: #2320c2ab;
+}
+
+.confirm:hover {
+    background-color: #2320c2ab;
+}

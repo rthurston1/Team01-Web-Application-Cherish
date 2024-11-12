@@ -1,6 +1,21 @@
 import { EventHub } from "../../eventhub/EventHub.js";
 import { Events } from "../../eventhub/Events.js";
-import { BaseComponent } from "../main/BaseComponent.js";
+import { BaseComponent } from "../../BaseComponent.js";
+
+export const MONTHS = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
 
 export class CalendarComponent extends BaseComponent {
   constructor() {
@@ -21,6 +36,33 @@ export class CalendarComponent extends BaseComponent {
       link.href =
         "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css";
       document.head.appendChild(link);
+    }
+  }
+  /**
+   * Navigates to the specified page by publishing an event to the EventHub.
+   * Depending on the page parameter, it publishes different load page events.
+   * Work in progress: dateData
+   *
+   * @param {string} page - The name of the page to navigate to.
+   *                        Possible values are "check-in", "journal", "stats", "summary", or any other string for the main page.
+   */
+  #goToPage(page) {
+    const hub = EventHub.getInstance();
+    switch (page) {
+      case "check-in":
+        hub.publish(Events.LoadCheckInPage, this.dateData);
+        break;
+      case "journal":
+        hub.publish(Events.LoadJournalPage, this.dateData);
+        break;
+      case "stats":
+        hub.publish(Events.LoadStatsPage, this.dateData);
+        break;
+      case "summary":
+        hub.publish(Events.LoadSummaryPage, this.dateData);
+        break;
+      default:
+        hub.publish(Events.LoadMainPage, this.dateData);
     }
   }
 
@@ -54,13 +96,52 @@ export class CalendarComponent extends BaseComponent {
       </div>`;
   }
 
-  // Renders the calendar
-  #renderCalendar() {
+
+  // Adds event listeners to the prev and next buttons as well as
+  // the feature buttons
+  _addEventListeners() {
+    const hub = EventHub.getInstance();
+    hub.subscribe(Events.LoadMainPage, (data) => this.loadPage(data));
+
+    document.querySelector(".days").addEventListener("click", (e) => {
+      const t = e.target;
+      if (t.classList.contains("day")) {
+        const date = t.dataset.date;
+        hub.publish(Events.LoadDayPage, date);
+      }
+    });
+
+    document.querySelector(".prev").addEventListener("click", () => {
+      this.date.setMonth(this.date.getMonth() - 1);
+      this._render();
+    });
+
+    document.querySelector(".next").addEventListener("click", () => {
+      this.date.setMonth(this.date.getMonth() + 1);
+      this._render();
+    });
+
+    document
+      .getElementById("main_toJournalPage")
+      .addEventListener("click", () => this.#goToPage("journal"));
+    document
+      .getElementById("main_toCheckInPage")
+      .addEventListener("click", () => this.#goToPage("check-in"));
+    document
+      .getElementById("main_toStatsPage")
+      .addEventListener("click", () => this.#goToPage("stats"));
+    document
+      .getElementById("main_toSummaryPage")
+      .addEventListener("click", () => this.#goToPage("summary"));
+  }
+
+  _render(data = null) {
     // Month offset constants for previous, current, and next month
     const PREV = 0,
       CURR = 1,
       NEXT = 2;
     //const date = new Date();
+    this.dateData = data;
     this.date.setDate(1);
 
     const monthDays = document.querySelector(".days");
@@ -90,22 +171,7 @@ export class CalendarComponent extends BaseComponent {
 
     const nextDays = 7 - lastDayIndex - 1;
 
-    const months = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-
-    document.querySelector(".date h1").innerHTML = months[this.date.getMonth()];
+    document.querySelector(".date h1").innerHTML = MONTHS[this.date.getMonth()];
     document.querySelector(".date p").innerHTML = new Date().toDateString();
 
     // **** Helper functions ****//
@@ -152,43 +218,5 @@ export class CalendarComponent extends BaseComponent {
       const div = generateDayDiv(NEXT, "next-date", j);
       monthDays.appendChild(div);
     }
-  }
-
-  // Adds event listeners to the prev and next buttons as well as
-  // the feature buttons
-  _addEventListeners() {
-    const hub = EventHub.getInstance();
-    hub.subscribe(Events.LoadMainPage, (data) => this._render(data));
-
-    document.querySelector(".days").addEventListener("click", (e) => {
-      const t = e.target;
-      if (t.classList.contains("day")) {
-        const date = t.dataset.date;
-        hub.publish(Events.LoadDayPage, date);
-      }
-    });
-
-    document.querySelector(".prev").addEventListener("click", () => {
-      this.date.setMonth(this.date.getMonth() - 1);
-      this.#renderCalendar();
-    });
-
-    document.querySelector(".next").addEventListener("click", () => {
-      this.date.setMonth(this.date.getMonth() + 1);
-      this.#renderCalendar();
-    });
-  }
-
-  _render(data = null) {
-    document
-      .querySelectorAll(".view")
-      .forEach((body) => (body.style.display = "none"));
-    this.#renderCalendar();
-
-    // this.dateData = data;
-    // document.getElementById("date").textContent = this.dateData.format;
-
-    // Displays View
-    this._changeDisplay("flex");
   }
 }
