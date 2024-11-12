@@ -61,6 +61,9 @@
 .tab-Day:hover, .tab-Week:hover, .tab-Month:hover, .tab-Year:hover {
     background-color: rgb(121, 200, 3);
 }
+.active-tab {
+    background-color: green;
+}
  .text_box h2{
     font-size: 1.5em;
     margin-bottom: 10px;
