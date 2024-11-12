@@ -1,5 +1,5 @@
 function handleClick(element, period) {
-    // Remove 'active-tab' class from all tabs
+
     document.querySelectorAll('.tab-Day, .tab-Week, .tab-Month, .tab-Year').forEach(tab => {
         tab.classList.remove('active-tab');
     });
