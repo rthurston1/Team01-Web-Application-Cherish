@@ -138,6 +138,7 @@
     - robbie-fix-checkin-page
     - jesse-dayPage
     - jesse-robbie-daypage-week2
+    - Samuel
 
 ### Fixed Issue with File Explorer
   - **Details:** Fixed issue where Check-in Page would not show up (simply had to import it into main.js and create new class).
