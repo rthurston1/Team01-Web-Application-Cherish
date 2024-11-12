@@ -87,7 +87,7 @@ export class CalendarComponent extends BaseComponent {
       const t = e.target;
       if (t.classList.contains("day")) {
         const date = t.dataset.date;
-        hub.publish(Events.LoadDayPage, date);
+        hub.publish(Events.LoadDayPage, {date_id: date});
       }
     });
 
