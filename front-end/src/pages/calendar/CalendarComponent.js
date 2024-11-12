@@ -96,6 +96,7 @@ export class CalendarComponent extends BaseComponent {
       </div>`;
   }
 
+
   // Adds event listeners to the prev and next buttons as well as
   // the feature buttons
   _addEventListeners() {
