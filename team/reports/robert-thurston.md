@@ -143,5 +143,5 @@
   - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
 
 ### Combined Button Navigation with My Branch
-  - **Details:** Combined 
+  - **Details:** Combined the button navigation Niko implemented into my own branch for testing purposes.
   - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
