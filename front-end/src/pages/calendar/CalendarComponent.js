@@ -46,25 +46,6 @@ export class CalendarComponent extends BaseComponent {
    * @param {string} page - The name of the page to navigate to.
    *                        Possible values are "check-in", "journal", "stats", "summary", or any other string for the main page.
    */
-  #goToPage(page) {
-    const hub = EventHub.getInstance();
-    switch (page) {
-      case "check-in":
-        hub.publish(Events.LoadCheckInPage, this.dateData);
-        break;
-      case "journal":
-        hub.publish(Events.LoadJournalPage, this.dateData);
-        break;
-      case "stats":
-        hub.publish(Events.LoadStatsPage, this.dateData);
-        break;
-      case "summary":
-        hub.publish(Events.LoadSummaryPage, this.dateData);
-        break;
-      default:
-        hub.publish(Events.LoadMainPage, this.dateData);
-    }
-  }
 
   // Builds the HTML of the Calendar Page
   _buildHTML() {
@@ -96,7 +77,6 @@ export class CalendarComponent extends BaseComponent {
       </div>`;
   }
 
-
   // Adds event listeners to the prev and next buttons as well as
   // the feature buttons
   _addEventListeners() {
@@ -120,19 +100,6 @@ export class CalendarComponent extends BaseComponent {
       this.date.setMonth(this.date.getMonth() + 1);
       this._render();
     });
-
-    document
-      .getElementById("main_toJournalPage")
-      .addEventListener("click", () => this.#goToPage("journal"));
-    document
-      .getElementById("main_toCheckInPage")
-      .addEventListener("click", () => this.#goToPage("check-in"));
-    document
-      .getElementById("main_toStatsPage")
-      .addEventListener("click", () => this.#goToPage("stats"));
-    document
-      .getElementById("main_toSummaryPage")
-      .addEventListener("click", () => this.#goToPage("summary"));
   }
 
   _render(data = null) {

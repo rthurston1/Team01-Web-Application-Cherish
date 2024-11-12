@@ -1,5 +1,6 @@
 import { EventHub } from "../eventhub/EventHub.js";
 import { Events } from "../eventhub/Events.js";
+import { date } from "../main.js";
 
 /**
  * Navigates to the specified page.
@@ -11,25 +12,22 @@ function goToPage(page) {
   const hub = EventHub.getInstance();
   switch (page) {
     case "check-in":
-      console.log("Check-in page will be here one day.");
-      // hub.publish(Events.LoadCheckInPage, this.dateData);
+      hub.publish(Events.LoadCheckInPage, date);
       break;
     case "journal":
       hub.publish(Events.LoadJournalPage, date);
       break;
     case "stats":
-      console.log("Stats page will be here one day.");
-      // hub.publish(Events.LoadStatsPage, this.dateData);
+      hub.publish(Events.LoadStatsPage, date);
       break;
     case "summary":
-      console.log("Summary page will be here one day.");
-      // hub.publish(Events.LoadSummaryPage, this.dateData);
+      hub.publish(Events.LoadSummaryPage, date);
       break;
     case "calendar":
       hub.publish(Events.LoadMainPage, date);
       break;
     default:
-      console.log("Invalid page selection.");
+      hub.publish(Events.LoadMainPage, date);
       break;
   }
 }

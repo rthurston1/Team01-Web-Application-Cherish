@@ -14,7 +14,7 @@ console.log("Everything loaded");
 const today = new Date();
 const dateArr = [today.getMonth() + 1, today.getDate(), today.getFullYear()];
 
-const date = {
+export const date = {
   date_id: dateArr.join("-"), // ID to pass as key to localStorage ex: 10-29-2024
 };
 
