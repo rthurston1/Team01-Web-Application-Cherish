@@ -10,5 +10,6 @@ export const Events = {
   LoadSummaryPage: "LoadSummaryPage",
   SummarySubmitted: "SummarySubmitted",
   CheckInSubmitted: "CheckInSubmitted",
+  StoreJournalEntry: "StoreJournalEntry", // Updates day page when saving journal entry
   UpdateDatabase: "UpdateDatabase", // Async stores any submissions to database
 };
