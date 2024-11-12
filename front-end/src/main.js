@@ -12,14 +12,14 @@ new DayComponent();
 new JournalComponent();
 new CheckInComponent();
 
-console.log("Everything loaded");
-
 const today = new Date();
 const dateArr = [today.getMonth() + 1, today.getDate(), today.getFullYear()];
 
-const date = {
+const dateObj = {
   date_id: dateArr.join("-"), // ID to pass as key to localStorage ex: 10-29-2024
 };
 
-EventHub.getInstance().publish(Events.LoadMainPage, date);
-EventHub.getInstance().publish(Events.LoadNav, date);
+EventHub.getInstance().publish(Events.LoadMainPage, dateObj);
+EventHub.getInstance().publish(Events.LoadNav, dateObj);
+
+console.log("Everything loaded");
