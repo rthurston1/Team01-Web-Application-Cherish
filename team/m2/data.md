@@ -21,19 +21,20 @@
 ### Day
  - **Description**: Tracks an individual day's user-logged information
  - _Attributes:_
-   - `date_id` (`date`): The date corresponding to the day.
+   - `date_id` (`string`): The date corresponding to the day.
    - `logged_in` (`boolean`): True if the user filled out information for the current day (false if the day was skipped).
-   - `daily_emotions` (`Emotion[]`): A list of emotions that the user felt during the day.
-   - `daily_rating` (`number`): The overall emotion score of the day. (The higher the score, the better day you had!).
-   - `journal_entry` (`string`): A space for users to write an overall summary for their day (not required, can be left empty).
+   - `emotions` (`Emotion[]`): A list of emotions that the user felt during the day.
+   - `rating` (`number`): The overall emotion score of the day. (The higher the score, the better day you had!).
+   - `journal` (`string`): A space for users to write an overall summary for their day (not required, can be left empty).
  - **Data Source** System-generated, based on the users inputs from the emotions they've logged. Also User-input, for recording in journal entries
 
 ### Emotion
   - **Description**: Represents an emotion the user is feeling during the day
   - _Attributes:_
-    - `emotion_id` (`number`): A unique identifier for the emotion (Ex: Happy: 0, Sad: 1, Angry: 2,...).
-    - `emotion_intensity` (`number`): A ranking system on a scale of 1 to 10 on how strong the emotion is.
+    - `emotion_id` (`number`): A unique identifier for the emotion (Happy: 0, Sad: 1, Angry: 2, Anxious: 3, Disgusted: 4).
+    - `magnitude` (`number`): A ranking system on a scale of 1 to 10 on how strong the emotion is.
     - `description` (`string`): An explanation to why a user feels the emotion (Not required, can be left empty).
+    - `timestamp` (`string`): The time (hour:minute) an emotion was logged.
   - **Data Source** User-input, the user will input their emotion with a brief description.
 
 ## Data Relations
