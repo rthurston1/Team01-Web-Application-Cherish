@@ -6,11 +6,11 @@ import { NavigationComponent } from "./nav/NavigationComponent.js";
 import { EventHub } from "./eventhub/EventHub.js";
 import { Events } from "./eventhub/Events.js";
 
+new NavigationComponent();
 new CalendarComponent();
 new DayComponent();
 new JournalComponent();
 new CheckInComponent();
-new NavigationComponent();
 
 console.log("Everything loaded");
 

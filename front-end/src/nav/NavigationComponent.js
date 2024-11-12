@@ -84,8 +84,6 @@ export class NavigationComponent extends BaseComponent {
   }
 
   _render() {
-    document.getElementById("nav").innerHTML = this._buildHTML();
-    this._addEventListeners();
-    this._changeDisplay("flex");
+
   }
 }

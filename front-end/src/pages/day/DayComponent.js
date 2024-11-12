@@ -146,55 +146,7 @@ export class DayComponent extends BaseComponent {
         document.getElementById('dayJournalEntry').textContent = this.dateData.journal
 
         // Added Emotions to Log
-
-        // MOCK EMOTION
-        this.dateData['emotions'] = []
-
-        this.dateData.emotions.push({
-            emotion_id: 0,
-            magnitude: 10,
-            description: 'I ate cake',
-            timestamp: '08:32'
-        })
-
-        this.dateData.emotions.push({
-            emotion_id: 0,
-            magnitude: 10,
-            description: 'I ate cake',
-            timestamp: '08:32'
-        })
-
-        this.dateData.emotions.push({
-            emotion_id: 0,
-            magnitude: 10,
-            description: 'I ate cake',
-            timestamp: '08:32'
-        })
-
-        this.dateData.emotions.push({
-            emotion_id: 0,
-            magnitude: 10,
-            description: 'I ate cake',
-            timestamp: '08:32'
-        })
-
-        this.dateData.emotions.push({
-            emotion_id: 0,
-            magnitude: 10,
-            description: 'I ate cake',
-            timestamp: '08:32'
-        })
-
-        this.dateData.emotions.push({
-            emotion_id: 0,
-            magnitude: 10,
-            description: 'I ate cake',
-            timestamp: '08:32'
-        })
-
-        this.#renderEmotions()
-
-        
+        this.#renderEmotions()  
     }
 
 }
