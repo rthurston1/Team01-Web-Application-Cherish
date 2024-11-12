@@ -91,3 +91,15 @@ November 10, 2024
   **Task**: Review Wacil's pull request.
   **Details**: Reviewed Wacil's pull request for the check in page. I left a comment regarding the merging of Robbie's branch which caused too many files to be changed at once. I requested that Wacil created a new branch from main and submitted his changes there.
   **Link to Pull Request**: [Pull Request](https://github.com/rthurston1/Team01-Web-Application-Cherish/pull/39)
+
+November 11, 2024
+
+- **Task**: Refactor navigation component from a class to a script.
+- **Details**: Created new branch `experimental-navigation-niko`. Refactored the navigation component from a class to a script to decouple it from the base component. The base component class is more suited for pages.
+- **Link to Commit**: [Commit](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/fdf109f8186408fe81764324cbeed22c19f3052f)
+
+November 12, 2024
+
+- **Task**: Create pull request from experimental-navigation-niko branch.
+- **Details**: Created a pull request for the experimental-navigation-niko branch.
+- **Link to Commit**: [Commit](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/529be60ef997c2ac9de6ee2a1a7f9140d3ba559e)
