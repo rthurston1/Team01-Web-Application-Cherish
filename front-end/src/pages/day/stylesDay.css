@@ -1,42 +1,40 @@
 .day-container {
     display: flex;
     flex-direction: column;
-    justify-content: center; 
     align-items: center;               
-    height: 90vh;
+    height: 80vh;
     width: 70vh;
     margin: 0; 
 }
 
 .day-head-element {
-    display: grid;
-    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
     height: 10%;
 }
 
 .day-body-element {
     display: grid;
-    justify-content: center;
+    grid-template-columns: repeat(2, 1fr);
     width: 100%;
     height: 100%;
+    padding: 20px;
+    margin: 20px;
 }
 
 .day-emotion-container {
-    display: grid;
     justify-items: center;
-    width: 100%;
-    height: 70%;
     overflow-y: scroll; 
     overflow-x: hidden;
     border: 1px solid #dd1010; 
-    padding: 10px; 
+    margin: 20px;
 }
 
 .day-journal-container {
-    display: grid;
-    width: 500px;
-    height: 30%;
+    display: flex;
+
 }
 
 /* .day-scroll-container {
