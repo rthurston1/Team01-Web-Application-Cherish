@@ -1,6 +1,7 @@
 import { EventHub } from "../../eventhub/EventHub.js";
 import { Events } from "../../eventhub/Events.js";
 import { BaseComponent } from "../../BaseComponent.js";
+import { dateFormat } from "../day/DayComponent.js";
 
 // Gets current time, formats as (HH:MM)
 export function getCurrentTime() {
@@ -45,6 +46,7 @@ export class CheckInComponent extends BaseComponent {
       <!-- page -->
     <div class="container">
         <div>
+            <h1 id="checkInCurrentDate"></h1>
             <h2>Check-in window</h2>
 
             <!-- ROBBIE CHANGE: New Head Element -->
@@ -193,8 +195,8 @@ export class CheckInComponent extends BaseComponent {
   }
 
   // Render the check-in page
-  _render(data = null) {
-
+  _render(data) {
+    document.getElementById("checkInCurrentDate").textContent = dateFormat(data.date_id);
   }
  
 }
