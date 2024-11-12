@@ -162,4 +162,9 @@
     - feature-buttons-component-niko
     - george-fixingCSSIssue
     - niko-documentation-updates
+    - Wacil-ReportsFile
+
+### Added Issue Templated
+  - **Details:** Added a new issue template for features that need to be fixed.
+  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
 
