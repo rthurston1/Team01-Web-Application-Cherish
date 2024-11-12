@@ -55,7 +55,6 @@ export class BaseComponent {
 
   #changeDisplay(view) {
     document.getElementById(this.bodyElement.id).style.display = view;
-    document.getElementById("nav").style.display = 'flex'; // Navigation view always in display
   }
 
   #initialize(id, cssLink) {
@@ -69,7 +68,7 @@ export class BaseComponent {
     this.bodyElement = document.createElement("div");
     document.getElementById("views").appendChild(this.bodyElement);
     // Add component to class "feature-buttons" or "view" depending on if it's navigational or page component
-    this.bodyElement.classList.add(id === "nav" ? "feature-buttons" : "view");
+    this.bodyElement.classList.add("view");
     this.bodyElement.id = id;
     this.bodyElement.innerHTML = this._buildHTML();
 
