@@ -7,8 +7,7 @@
 
 ## October 15, 2024
 
-- **Task**: Meet up with Rob to start sketching our project design.
-- **Details**: Draw, and talked many different ideas and features we can implement.
+-**Task**: Meet up with Rob to start sketcihing our project design. -**Details**: Draw, and talked many differente ideas and features we can implement.
 
 ## October 19, 2024
 - **Task**: Worked with Robbie elaborating the overall UI from our calendar app.  
@@ -30,4 +29,3 @@
 ## November 10,2024
 - **Task**: Huge improvement on the summary page.
 - **Link**: Here is the link of the commit. : https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/5d900f96974d3515c1d48a4fd53c74a2a788586d 
-
