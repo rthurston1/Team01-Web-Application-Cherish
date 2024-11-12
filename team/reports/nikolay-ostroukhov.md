@@ -48,9 +48,13 @@ November 3, 2024
 - **Details**: Reviewed Liam and Sam's pull request for the summary page and provided feedback. I also merged the pull request.
 - **Link to Commit**: https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/0e2de36874f9c024282495f460272a00c9257d7a
 
+November 3, 2024
+
 - **Task**: Review Robbie's pull request.
 - **Details**: Reviewed Robbie's pull request for custom issue templates. I also merged the pull request.
 - **Link to Commit**: https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/73c4e3053f584b75159c9722cfb212e3a8d37883
+
+November 3, 2024
 
 - **Task**: Review Wacil's pull request.
 - **Details**: Reviewed Wacil's pull request for the check in page. I also merged the pull request.
@@ -84,9 +88,13 @@ November 10, 2024
   - [CalendarComponent.js: refactor div creation for the calendar days](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/da6ece0a68a491c7cc5f537b62edc839501dfb34)
   - [stylesCalendar: add some hovering css styles to the day divs](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/0a43318f0c1a1ee6b36b60c5f5e9bfc3e7c7f671)
 
+November 10, 2024
+
   **Task**: Review old branches and clean up the repository.
   **Details**: Reviewed old branches and cleaned up the repository. Deleted branches that were no longer needed. The following branches were deleted: `feature-buttons-component-niko`, `georgeAndNiko-MainPageEdits`, `niko-front-end-starter`, `george-niko-mainpage`.
   **Link to Commit**: N/A
+  
+November 10, 2024
 
   **Task**: Review Wacil's pull request.
   **Details**: Reviewed Wacil's pull request for the check in page. I left a comment regarding the merging of Robbie's branch which caused too many files to be changed at once. I requested that Wacil created a new branch from main and submitted his changes there.

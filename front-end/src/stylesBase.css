@@ -1,0 +1,89 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #2320c2ab;
+}
+
+.app #content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%; /* Ensure the content div takes up the full height of its parent */
+  flex-grow: 1; /* Allow the content div to grow and fill the available space */
+}
+
+.app {
+  width: 60%;
+  padding: 20px;
+  min-width: 800px; /* Set a minimum width for the app */
+  max-width: 1000px; /* Set a maximum width for the app */
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Navigation Button Styles */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  border: none;
+  border-radius: 8px;
+  margin-top: 30px;
+  background-color: #f0f0f0; /* Temporary background color for visibility */
+  padding: 10px; /* Temporary padding for visibility */
+}
+
+.feature-buttons {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* Creates 5 equal columns */
+  gap: 10px; /* Add some gap between the buttons */
+  width: 100%; /* Ensure it takes up full width */
+}
+
+.feature-button {
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  text-shadow: 0.07em 0 black, 0 0.07em black, -0.07em 0 black, 0 -0.07em black;
+  font-family: "Brush Script MT", cursive;
+  font-size: 1.5em;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-button:hover {
+  transform: scale(1.05);
+  background-color: #d45b5b; /* Darken color on hover */
+  color: #f8f9fa; /* Lighten text color */
+}
+
+.calendar-page {
+  background-color: blueviolet;
+}
+
+.check-in {
+  background-color: green;
+}
+.journal {
+  background-color: blue;
+}
+.stats {
+  background-color: orange;
+}
+.summary {
+  background-color: gray;
+}
