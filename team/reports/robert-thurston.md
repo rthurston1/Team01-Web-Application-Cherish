@@ -139,6 +139,8 @@
     - jesse-dayPage
     - jesse-robbie-daypage-week2
     - Samuel
+    - robbie-testing-niko-merge
+    - robbie-emotion-log-feature
 
 ### Fixed Issue with File Explorer
   - **Details:** Fixed issue where Check-in Page would not show up (simply had to import it into main.js and create new class).
