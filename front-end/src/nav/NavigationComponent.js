@@ -2,20 +2,6 @@ import { EventHub } from "../eventhub/EventHub.js";
 import { Events } from "../eventhub/Events.js";
 import { BaseComponent } from "../BaseComponent.js";
 
-/**
- * Temporary date object to pass to other pages. Will be replaced with a more
- * dynamic solution in the future.
- */
-const today = new Date();
-const dateArr = [today.getMonth() + 1, today.getDate(), today.getFullYear()];
-const date = {
-  month: dateArr[0], // ex: 10 (October)
-  day: dateArr[1], // ex: 29
-  year: dateArr[2], // ex: 2024
-  format: dateArr.join("/"), // Displays in header ex: 10/29/2024
-  id: dateArr.join("-"), // ID to pass as key to localStorage ex: 10-29-2024
-};
-
 export class NavigationComponent extends BaseComponent {
   constructor() {
     super("nav", "./nav/stylesNav.css", true);
@@ -33,7 +19,7 @@ export class NavigationComponent extends BaseComponent {
         hub.publish(Events.LoadCheckInPage, this.dateData);
         break;
       case "journal":
-        hub.publish(Events.LoadJournalPage, date);
+        hub.publish(Events.LoadJournalPage, this.dateData);
         break;
       case "stats":
         hub.publish(Events.LoadStatsPage, this.dateData);
@@ -42,7 +28,7 @@ export class NavigationComponent extends BaseComponent {
         hub.publish(Events.LoadSummaryPage, this.dateData);
         break;
       case "calendar":
-        hub.publish(Events.LoadMainPage, date);
+        hub.publish(Events.LoadMainPage, this.dateData);
         break;
       default:
         console.log("Invalid page selection.");
@@ -62,7 +48,7 @@ export class NavigationComponent extends BaseComponent {
 
   _addEventListeners() {
     const hub = EventHub.getInstance();
-    hub.subscribe(Events.LoadNav, () => this._render());
+    hub.subscribe(Events.LoadNav, (data) => this._render(data));
     document
       .getElementById("main_toCalendarPage")
       .addEventListener("click", () => this.#goToPage("calendar"));
@@ -80,9 +66,7 @@ export class NavigationComponent extends BaseComponent {
       .addEventListener("click", () => this.#goToPage("summary"));
   }
 
-  _render() {
-    document.getElementById("nav").innerHTML = this._buildHTML();
-    this._addEventListeners();
-    this._changeDisplay("flex");
+  _render(data) {
+    this.dateData = data;
   }
 }
