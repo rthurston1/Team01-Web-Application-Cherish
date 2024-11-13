@@ -1,17 +1,14 @@
-import { EventHub } from '../../eventhub/EventHub.js'
-import { Events } from '../../eventhub/Events.js'
-import { BaseComponent } from '../main/BaseComponent.js'
+import { EventHub } from "../../eventhub/EventHub.js";
+import { Events } from "../../eventhub/Events.js";
+import { BaseComponent } from "../../BaseComponent.js";
 
 export class SummaryComponent extends BaseComponent {
     constructor() {
-        super('./pages/day/journal/stylesSum.css'); // Call the constructor of the parent class
-        // this._buildHTML();
-        // this._addEventListeners();
+        super('summaryPage', './pages/summary/stylesSum.css'); // Call the constructor of the parent class
         this.dateData = {};
     } 
 
-    _buildHTML(){
-        //document.body.innerHTML Sam's previous code (kept just incase)
+    _buildHTML() {
         return `
         <div class="container">
             <div class="tabs">
@@ -59,10 +56,10 @@ export class SummaryComponent extends BaseComponent {
 
     _addEventListeners() {
         const hub = EventHub.getInstance()
-        hub.subscribe(Events.LoadDayPage, data => this._render(data))
+        hub.subscribe(Events.LoadSummaryPage, data => this._render(data))
 
-        document.getElementById('toSummaryPage').addEventListener('click', () => this.#LoadSummaryPage());
-        document.getElementById('returnToDayPage').addEventListener('click', () => this.#returnToDayPage());
+        //document.getElementById('toSummaryPage').addEventListener('click', () => this.#LoadSummaryPage());
+        //document.getElementById('returnToDayPage').addEventListener('click', () => this.#returnToDayPage());
     }
 
     _render(data) {
@@ -101,6 +98,3 @@ export function handleClick(element, period) {
             break;
     }
 }
-
-
-export default SummaryComponent;
