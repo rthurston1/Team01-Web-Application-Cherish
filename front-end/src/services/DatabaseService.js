@@ -1,21 +1,29 @@
 import { Events } from "../eventhub/Events.js";
 import Service from "./Service.js";
 
-export class MoodRepositoryService extends Service {
+export class DatabaseService extends Service {
   constructor() {
     super();
-    this.dbName = "moodDB";
-    this.storeName = "moods";
+    this.dbName = "cherishDB";
+    this.storeName = "day";
     this.db = null;
 
     // Initialize the database
     this.initDB()
       .then(() => {
-        this.loadTasksFromDB(); // Load tasks on initialization
+        this.addSubscriptions()
+      })
+      .then(() => {
+        console.log("Database initialized")
       })
       .catch((error) => {
         console.error(error);
       });
+  }
+
+  addSubscriptions() {
+    this.addEvent(Events.UpdateDatabase, (data) => this.storeDay(data));
+    this.addEvent(Events.RestoreDatabase, (id) => this.storeDay(id));
   }
 
   async initDB() {
@@ -40,6 +48,20 @@ export class MoodRepositoryService extends Service {
       };
     });
   }
+
+  // Returns the Day Object specificed by the id
+  async restoreDay(date_id) {
+
+  }
+
+  async storeDay(data) {
+    // If Entry does not exist, create new entry
+
+    // Else overwrite entry with new data
+
+    // If there's any error (DO NOT ADD/OVERWRITE)
+  }
+
   // ************************************************************************
   // TODO: Use the following example methods as a guide for our mood services
   // ************************************************************************
