@@ -56,30 +56,30 @@ export class CheckInComponent extends BaseComponent {
             <!-- label for emotions -->
             <label>Emotions:</label>
 
-            <!-- happy -->
-            <label for="happy">
-                <input type="radio" name="emotion" id="happy" hidden />
-                <img src="./img/smile.gif" alt="Happy" class="emoji" />
+            <!-- Happy -->
+            <label for="Happy">
+                <input type="radio" name="emotion" id="Happy" hidden />
+                <img src="./img/Happy.gif" alt="Happy" class="emoji" />
             </label>
-            <!-- neutral -->
-            <label for="sad">
-                <input type="radio" name="emotion" id="sad" hidden />
-                <img src="./img/neutral.gif" alt="sad" class="emoji" />
+            <!-- Sad -->
+            <label for="Sad">
+                <input type="radio" name="emotion" id="Sad" hidden />
+                <img src="./img/Sad.gif" alt="Sad" class="emoji" />
             </label>
-            <!-- meh -->
-            <label for="angry">
-                <input type="radio" name="emotion" id="angry" hidden />
-                <img src="./img/emotionless.gif" alt="angry" class="emoji" />
+            <!-- Angry -->
+            <label for="Angry">
+                <input type="radio" name="emotion" id="Angry" hidden />
+                <img src="./img/Angry.gif" alt="Angry" class="emoji" />
             </label>
-            <!-- goofy ahh -->
-            <label for="anxious">
-                <input type="radio" name="emotion" id="anxious" hidden />
-                <img src="./img/laugh.gif" alt="anxious" class="emoji" />
+            <!-- Anxious -->
+            <label for="Anxious">
+                <input type="radio" name="emotion" id="Anxious" hidden />
+                <img src="./img/Anxious.gif" alt="Anxious" class="emoji" />
             </label>
-            <!-- worried -->
-            <label for="disgusted">
-                <input type="radio" name="emotion" id="disgusted" hidden />
-                <img src="./img/worried.gif" alt="Worried" class="emoji" />
+            <!-- Disgusted -->
+            <label for="Disgusted">
+                <input type="radio" name="emotion" id="Disgusted" hidden />
+                <img src="./img/Disgusted.gif" alt="Disgusted" class="emoji" />
             </label>
         </section>
 
