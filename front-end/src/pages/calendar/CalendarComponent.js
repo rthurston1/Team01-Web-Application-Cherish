@@ -1,4 +1,3 @@
-import { EventHub } from "../../eventhub/EventHub.js";
 import { Events } from "../../eventhub/Events.js";
 import { BaseComponent } from "../../BaseComponent.js";
 
@@ -20,7 +19,7 @@ export const MONTHS = [
 export class CalendarComponent extends BaseComponent {
   constructor() {
     super("calendarPage", "./pages/calendar/stylesCalendar.css");
-    this.dateData = {};
+    this.currentDate = {};
     this._loadFontAwesome();
     this.date = new Date(); // Define `this.date` as a class property
   }
@@ -80,8 +79,7 @@ export class CalendarComponent extends BaseComponent {
   // Adds event listeners to the prev and next buttons as well as
   // the feature buttons
   _addEventListeners() {
-    const hub = EventHub.getInstance();
-    hub.subscribe(Events.LoadMainPage, (data) => this.loadPage(data));
+    this.addEvent(Events.LoadMainPage, (data) => this.loadPage(data));
 
     document.querySelector(".days").addEventListener("click", (e) => {
       const t = e.target;
@@ -102,13 +100,13 @@ export class CalendarComponent extends BaseComponent {
     });
   }
 
-  _render(data = null) {
+  _render(data) {
     // Month offset constants for previous, current, and next month
     const PREV = 0,
       CURR = 1,
       NEXT = 2;
     //const date = new Date();
-    this.dateData = data;
+    this.currentDate = data;
     this.date.setDate(1);
 
     const monthDays = document.querySelector(".days");
