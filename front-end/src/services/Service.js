@@ -26,7 +26,7 @@ export default class Service {
     return EventHub.getInstance().subscribe(event, listener);
   }
 
-  update(event, data) {
+  update(event, data = null) {
     EventHub.getInstance().publish(event, data);
   }
 }
