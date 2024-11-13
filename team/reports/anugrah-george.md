@@ -42,3 +42,7 @@
 ### November 10th, 2024
   - **Task**: Deciding points for Visual Calendar Dashboard.
   - **Details**: Clarified to upgrade this feature as a big feature from 3 points to 5 points due to its coding complexity.
+
+### November 12th, 2024
+  - **Task**: Voicing out unit / edge test cases and errors from the client's side
+  - **Details**: Noticing errors from development as there could be timing issue regarding submission of data from user's end. For example, since the app is a lot like journal app that takes in present date, the app should consider the fact that user might use the app features from 11:55pm - 12:05am that results in the next day submission.
