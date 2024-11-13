@@ -6,15 +6,16 @@ export class DatabaseService extends Service {
     super();
     this.dbName = "cherishDB";
     this.storeName = "day";
-    this.db = null;
+    this.db = {};
 
     // Initialize the database
     this.initDB()
       .then(() => {
-        this.addSubscriptions()
+        this.addSubscriptions();
       })
       .then(() => {
-        console.log("Database initialized")
+        console.log("Database initialized");
+        console.log(this.db);
       })
       .catch((error) => {
         console.error(error);
@@ -32,10 +33,7 @@ export class DatabaseService extends Service {
 
       request.onupgradeneeded = (event) => {
         const db = event.target.result;
-        db.createObjectStore(this.storeName, {
-          keyPath: "id",
-          autoIncrement: true,
-        });
+        db.createObjectStore(this.storeName, {keyPath: "date_id"});
       };
 
       request.onsuccess = (event) => {
@@ -44,91 +42,66 @@ export class DatabaseService extends Service {
       };
 
       request.onerror = (event) => {
-        reject("Error initializing IndexedDB");
+        reject(event.target.error);
       };
     });
   }
 
-  // Returns the Day Object specificed by the id
-  async restoreDay(date_id) {
+  // Returns the Day Object specified by the id
+  async restoreDay(key) {
+    return new Promise((resolve, reject) => {
+      const transaction = this.db.transaction([this.storeName], "readonly");
+      const objectStore = transaction.objectStore(this.storeName);
+      const request = objectStore.get(key);
 
+      request.onsuccess = (event) => {
+        this.update(Events.RestoredDataSuccess, event.target.result);
+        resolve("Data retrieved!");
+      };
+
+      request.onerror = () => {
+        this.update(Events.RestoredDataFailed)
+        reject("Failed to retrieve data");
+      }; 
+    });
   }
 
+  // Stores the day entry into the database 
   async storeDay(data) {
-    // If Entry does not exist, create new entry
+    return new Promise((resolve, reject) => {
+      const transaction = this.db.transaction([this.storeName], "readwrite");
+      const objectStore = transaction.objectStore(this.storeName);
+      const request = objectStore.put(data); // Updates entry if already exists, adds it otherwise
 
-    // Else overwrite entry with new data
+      request.onsuccess = (event) => {
+        this.update(Events.StoredDataSuccess, event.target.result);
+        resolve("Data Stored Successfully");
+      };
 
-    // If there's any error (DO NOT ADD/OVERWRITE)
+      request.onerror = () => {
+        this.update(Events.StoredDataFailed)
+        reject("Failed to store data");
+      };
+    });
   }
 
-  // ************************************************************************
-  // TODO: Use the following example methods as a guide for our mood services
-  // ************************************************************************
+  // Clears all Saved Data from the database
+  async clearDatabase() {
+    return new Promise((resolve, reject) => {
+      const transaction = this.db.transaction([this.storeName], "readwrite");
+      const objectStore = transaction.objectStore(this.storeName);
+      const request = objectStore.clear();
 
-  // async storeTask(taskData) {
-  //   return new Promise((resolve, reject) => {
-  //     const transaction = this.db.transaction([this.storeName], 'readwrite');
-  //     const store = transaction.objectStore(this.storeName);
-  //     const request = store.add(taskData);
+      request.onsuccess = () => {
+        this.update(Events.ClearedDataSuccess);
+        resolve("All Data Cleared!");
+      };
 
-  //     request.onsuccess = () => {
-  //       this.publish(Events.StoreTaskSuccess, taskData);
-  //       resolve('Task stored successfully');
-  //     };
+      request.onerror = () => {
+        this.update(Events.ClearedDataFailed);
+        reject("Failed to Clear Data");
+      }
+    });
+  }
 
-  //     request.onerror = () => {
-  //       this.publish(Events.StoreTaskFailure, taskData);
-  //       reject('Error storing task: ');
-  //     };
-  //   });
-  // }
-
-  // async loadTasksFromDB() {
-  //   return new Promise((resolve, reject) => {
-  //     const transaction = this.db.transaction([this.storeName], 'readonly');
-  //     const store = transaction.objectStore(this.storeName);
-  //     const request = store.getAll();
-
-  //     request.onsuccess = event => {
-  //       const tasks = event.target.result;
-  //       tasks.forEach(task => this.publish('NewTask', task));
-  //       resolve(tasks);
-  //     };
-
-  //     request.onerror = () => {
-  //       this.publish(Events.LoadTasksFailure);
-  //       reject('Error retrieving tasks');
-  //     };
-  //   });
-  // }
-
-  // async clearTasks() {
-  //   return new Promise((resolve, reject) => {
-  //     const transaction = this.db.transaction([this.storeName], 'readwrite');
-  //     const store = transaction.objectStore(this.storeName);
-  //     const request = store.clear();
-
-  //     request.onsuccess = () => {
-  //       this.publish(Events.UnStoreTasksSuccess);
-  //       resolve('All tasks cleared');
-  //     };
-
-  //     request.onerror = () => {
-  //       this.publish(Events.UnStoreTasksFailure);
-  //       reject('Error clearing tasks');
-  //     };
-  //   });
-  // }
-
-  // **TODO**: Implement addSubscriptions with mood-related events
-  // addSubscriptions() {
-  //   this.subscribe(Events.StoreTask, data => {
-  //     this.storeTask(data);
-  //   });
-
-  //   this.subscribe(Events.UnStoreTasks, () => {
-  //     this.clearTasks();
-  //   });
-  // }
 }
