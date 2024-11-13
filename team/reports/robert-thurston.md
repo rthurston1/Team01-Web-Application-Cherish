@@ -145,3 +145,15 @@
 ### Combined Button Navigation with My Branch
   - **Details:** Combined the button navigation Niko implemented into my own branch for testing purposes.
   - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
+
+## November 12, 2024
+### Added Branches
+ - **Details:** Created the following branches: 
+  - robbie-indexedDB-feature
+
+### Started Implementation of IndexedDB
+  - **Details:** Brainstormed ideas with Niko and George on how to store/retrieve data from a client-side database.
+  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
+
+
+
