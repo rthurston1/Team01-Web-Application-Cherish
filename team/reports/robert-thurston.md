@@ -145,3 +145,13 @@
 ### Combined Button Navigation with My Branch
   - **Details:** Combined the button navigation Niko implemented into my own branch for testing purposes.
   - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
+
+## November 13, 2024
+### Added Branches
+ - **Details:** Created the following branches: 
+  - robbie-fix-summary-view
+
+### Fixed Display Bug
+  - **Details:** Fixed a bug where summary view would not properly show up fully.
+  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
+

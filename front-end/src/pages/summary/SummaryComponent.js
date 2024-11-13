@@ -46,13 +46,11 @@ export class SummaryComponent extends BaseComponent {
 
     _addEventListeners() {
         const hub = EventHub.getInstance()
-        hub.subscribe(Events.LoadSummaryPage, data => this._render(data))
+        hub.subscribe(Events.LoadSummaryPage, data => this.loadPage(data))
 
     }
 
     _render(data) {
-        document.querySelectorAll('.view').forEach(body => body.style.display = 'none')
-
         this.dateData = data
     }   
 }
