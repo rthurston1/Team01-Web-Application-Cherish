@@ -151,9 +151,20 @@
  - **Details:** Created the following branches: 
   - robbie-indexedDB-feature
 
+### Deleted Branches
+  - **Details** Deleted the following branches:
+    - Wacil-ReportsFile
+    - Wacil-CheckInJavaScriptFile
+    - Wacil-ChangesOnlyToCheck-inComponent.js
+
 ### Started Implementation of IndexedDB
   - **Details:** Brainstormed ideas with Niko and George on how to store/retrieve data from a client-side database.
   - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
+
+### Designed First Draft of IndexedDB
+ - **Details:** Used indexedDB to successfully pass data between different components and saves any changes to the database.
+ - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
+
 
 
 
