@@ -17,11 +17,11 @@ export const MONTHS = [
 ];
 
 export class CalendarComponent extends BaseComponent {
-  constructor() {
+  constructor(date) {
     super("calendarPage", "./pages/calendar/stylesCalendar.css");
     this.currentDate = {};
     this._loadFontAwesome();
-    this.date = new Date(); // Define `this.date` as a class property
+    this.date = date; // Define `this.date` as a class property
   }
 
   /**
