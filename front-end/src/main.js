@@ -4,18 +4,27 @@ import { JournalComponent } from "./pages/journal/JournalComponent.js";
 import { CheckInComponent } from "./pages/check-in/CheckInComponent.js";
 import { EventHub } from "./eventhub/EventHub.js";
 import { Events } from "./eventhub/Events.js";
+import { DatabaseService } from "./services/DatabaseService.js";
 
+new DatabaseService();
 new CalendarComponent();
 new DayComponent();
 new JournalComponent();
 new CheckInComponent();
+
+
+
 console.log("Everything loaded");
 
 const today = new Date();
 const dateArr = [today.getMonth() + 1, today.getDate(), today.getFullYear()];
 
-export const date = {
+const id = dateArr.join('-');
+
+export const currentDate = {
   date_id: dateArr.join("-"), // ID to pass as key to localStorage ex: 10-29-2024
 };
 
-EventHub.getInstance().publish(Events.LoadMainPage, date);
+// const currentDate = indexedDB.getEntry(id)
+
+EventHub.getInstance().publish(Events.LoadMainPage, currentDate);
