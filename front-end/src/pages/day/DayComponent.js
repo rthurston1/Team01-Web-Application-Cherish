@@ -16,17 +16,11 @@ export class DayComponent extends BaseComponent {
   constructor() {
     super("dayPage", "./pages/day/stylesDay.css");
     this.dateData = {};
-
-    // Elements
-    this.titleDate = document.getElementById("dayDate");
-    this.journalEntry =  document.getElementById("dayJournalEntry");
   }
 
 // Methods
   // Removes the specified emotion element from the Emotion Log
   #removeEmotionEntry(emotion_entry) {
-    document.getElementById("dayEmotionLog").innerHTML = "";
-
     const filteredArr = this.dateData.emotions.filter((e) => e !== emotion_entry);
     this.dateData.emotions = filteredArr;
 
@@ -41,7 +35,7 @@ export class DayComponent extends BaseComponent {
   }
 
   #renderEmotions() {
-    const emotionLog = document.getElementById("dayEmotionLog");
+    this.emotionLog.innerHTML = "" // Clears html 
     if (!this.dateData.emotions) {
       emotionLog.textContent = "NO EMOTIONS LOGGED";
       return;
@@ -50,7 +44,7 @@ export class DayComponent extends BaseComponent {
     this.dateData.emotions.forEach((emotion) => {
       const emotionEntry = document.createElement("div");
       emotionEntry.classList.add("day-log-entry");
-      emotionLog.appendChild(emotionEntry);
+      this.emotionLog.appendChild(emotionEntry);
 
       const entryInfo = document.createElement("div");
       emotionEntry.appendChild(entryInfo);
@@ -100,6 +94,13 @@ export class DayComponent extends BaseComponent {
                 </div>
             </div>
         `;
+  }
+
+  _createElementObjs() {
+     // Elements
+     this.titleDate = document.getElementById("dayDate");
+     this.journalEntry =  document.getElementById("dayJournalEntry");
+     this.emotionLog = document.getElementById("dayEmotionLog");
   }
 
   _addEventListeners() {
