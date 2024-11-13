@@ -6,25 +6,27 @@ import { EventHub } from "./eventhub/EventHub.js";
 import { Events } from "./eventhub/Events.js";
 import { DatabaseService } from "./services/DatabaseService.js";
 
-new DatabaseService();
-new CalendarComponent();
-new DayComponent();
-new JournalComponent();
-new CheckInComponent();
-
-
-
-console.log("Everything loaded");
-
+const hub = EventHub.getInstance();
 const today = new Date();
 const dateArr = [today.getMonth() + 1, today.getDate(), today.getFullYear()];
-
 const id = dateArr.join('-');
 
-export const currentDate = {
-  date_id: dateArr.join("-"), // ID to pass as key to localStorage ex: 10-29-2024
-};
+const database = new DatabaseService();
+const calendar = new CalendarComponent(today);
+const day = new DayComponent();
+const journal = new JournalComponent();
+const checkIn = new CheckInComponent();
 
-// const currentDate = indexedDB.getEntry(id)
+let gotData = false;
 
-EventHub.getInstance().publish(Events.LoadMainPage, currentDate);
+// ONLY WORKS ON START-UP
+hub.subscribe(Events.RestoredDataSuccess, (data) => {
+  if (gotData) return;
+
+  gotData = true;
+  hub.publish(Events.LoadMainPage, data);
+})
+
+// Retrieves data for the current day, on success passes data through an event
+database.restoreDay(id);
+console.log("Everything loaded");
