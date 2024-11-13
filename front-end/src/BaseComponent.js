@@ -54,11 +54,14 @@ export class BaseComponent {
   }
 
 // Methods
+
+  // Adds a custom event listener to the component
   addEvent(event, listener) {
     return EventHub.getInstance().subscribe(event, listener);
   }
 
-  update(event, data) {
+  // Publishes an event and passes data to its subscribers
+  update(event, data = null) {
     return EventHub.getInstance().publish(event, data);
   }
 
