@@ -44,22 +44,10 @@ export class SummaryComponent extends BaseComponent {
             `;
     }
 
-   #returnToDayPage() {
-       const hub = EventHub.getInstance()
-       hub.publish(Events.LoadDayPage, this.dateData)
-    }
-
-    #LoadSummaryPage() {
-        const hub = EventHub.getInstance()
-        hub.publish(Events.LoadSummaryPage, this.dateData)
-    }
-
     _addEventListeners() {
         const hub = EventHub.getInstance()
         hub.subscribe(Events.LoadSummaryPage, data => this._render(data))
 
-        //document.getElementById('toSummaryPage').addEventListener('click', () => this.#LoadSummaryPage());
-        //document.getElementById('returnToDayPage').addEventListener('click', () => this.#returnToDayPage());
     }
 
     _render(data) {
