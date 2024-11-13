@@ -1,6 +1,6 @@
 import { EventHub } from "../eventhub/EventHub.js";
 import { Events } from "../eventhub/Events.js";
-import { date } from "../main.js";
+import { currentDate as date} from "../main.js";
 
 /**
  * Navigates to the specified page.
