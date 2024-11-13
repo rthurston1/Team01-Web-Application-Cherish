@@ -10,7 +10,7 @@ new CalendarComponent();
 new DayComponent();
 new JournalComponent();
 new CheckInComponent();
-//new SummaryComponent();
+new SummaryComponent();
 console.log("Everything loaded");
 
 const today = new Date();
