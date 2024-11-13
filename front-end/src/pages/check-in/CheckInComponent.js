@@ -1,6 +1,6 @@
-import { EventHub } from "../../eventhub/EventHub.js";
 import { Events } from "../../eventhub/Events.js";
 import { BaseComponent } from "../../BaseComponent.js";
+import { dateFormat } from "../day/DayComponent.js";
 
 // Gets current time, formats as (HH:MM)
 export function getCurrentTime() {
@@ -32,11 +32,11 @@ export function getEmotionById(emotion_id) {
 export class CheckInComponent extends BaseComponent {
   constructor() {
     super("checkInPage", "./pages/check-in/stylesCheckIn.css");
-    this.emotionData = {
-      emotion_id: null,
-      magnitude: 5, // Default intensity
-      description: ""
-    };
+    this.dateData = {};
+
+    // Elements
+    this.selectEmotionLabel = document.getElementById("selectedEmotion");
+    this.titleDate = document.getElementById("checkInDate");
   }
 
   // Build HTML structure for the check-in page
@@ -45,6 +45,7 @@ export class CheckInComponent extends BaseComponent {
       <!-- page -->
     <div class="container">
         <div>
+            <h1 id="checkInDate"></h1>
             <h2>Check-in window</h2>
 
             <!-- ROBBIE CHANGE: New Head Element -->
@@ -125,7 +126,7 @@ export class CheckInComponent extends BaseComponent {
   // Method to add event listeners
   _addEventListeners() {
     //add event listeners for all pages 
-    EventHub.getInstance().subscribe(Events.LoadCheckInPage, (data) => this.loadPage(data));
+    this.addEvent(Events.LoadCheckInPage, (data) => this.loadPage(data));
 
     // Listen for emotion selection
     document.querySelectorAll("input[name='emotion']").forEach((input) => {
@@ -133,7 +134,7 @@ export class CheckInComponent extends BaseComponent {
         this.emotionData.emotion_id = event.target.id;
 
         // ROBBIE CHANGE: Updates the Current Emotion Text
-        document.getElementById("selectedEmotion").textContent = this.emotionData.emotion_id; 
+        this.selectEmotionLabel.textContent = this.emotionData.emotion_id; 
       });
     });
 
@@ -182,19 +183,24 @@ export class CheckInComponent extends BaseComponent {
         return;
     }
 
-    const hub = EventHub.getInstance();
-
     // Get timestamp
     this.emotionData['timestamp'] = getCurrentTime();
-    hub.publish(Events.CheckInSubmitted, this.emotionData);
+    this.update(Events.CheckInSubmitted, this.emotionData);
 
     // Reset after submission
     this._resetCheckIn();
   }
 
   // Render the check-in page
-  _render(data = null) {
+  _render(data) {
+    this.dateData = data;
+    this.emotionData = {
+      emotion_id: null,
+      magnitude: 5, // Default intensity
+      description: ""
+    };
 
+    this.titleDate.textContent = dateFormat(data.date_id);
   }
  
 }
