@@ -127,6 +127,8 @@ export class CheckInComponent extends BaseComponent {
   _addEventListeners() {
     //add event listeners for all pages 
     this.addEvent(Events.LoadCheckInPage, (data) => this.loadPage(data));
+    this.addEvent(Events.StoredDataSuccess, () => console.log(`Stored new emotion in database`))
+    this.addEvent(Events.StoredDataFailed, () => console.log(`Failed to store emotion in database`))
 
     // Listen for emotion selection
     document.querySelectorAll("input[name='emotion']").forEach((input) => {
@@ -185,7 +187,12 @@ export class CheckInComponent extends BaseComponent {
 
     // Get timestamp
     this.emotionData['timestamp'] = getCurrentTime();
-    this.update(Events.CheckInSubmitted, this.emotionData);
+
+    // Adds Emotion to Date Object
+    if (!this.dateData["emotions"]) this.dateData["emotions"] = []
+    this.dateData.emotions.push(this.emotionData);
+
+    this.update(Events.StoreData, this.dateData);
 
     // Reset after submission
     this._resetCheckIn();

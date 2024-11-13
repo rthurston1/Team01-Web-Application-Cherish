@@ -13,10 +13,12 @@ export const Events = {
   ClearData: "ClearData", // Async call to clear all data stored in database
   RestoreData: "RestoreDatabase", // Async call to restore/retrieve data
 
+  InitDataSuccess: "InitDatabaseSuccess", // Successful database init call
   StoredDataSuccess: "StoredDataSuccessfully", // Successful database store call
   RestoredDataSuccess: "RestoredDataSuccessfully", // Successful database restore call
-  ClearedDataSuccess: "ClearedDataSuccess",
+  ClearedDataSuccess: "ClearedDataSuccess", // Successful database clear call
 
+  InitDataFailed: "InitDatabaseFailed", // Failed database init call
   StoredDataFailed: "StoredDataSuccessfully", // Failed database store call
   RestoredDataFailed: "RestoredDataSuccessfully", // Failed database restore call
   ClearedDataFailed: "ClearedDataFailed", // Failed database clear call

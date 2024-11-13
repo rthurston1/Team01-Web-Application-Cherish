@@ -1,5 +1,6 @@
 import { Events } from "../../eventhub/Events.js";
 import { BaseComponent } from "../../BaseComponent.js";
+import { DATABASE } from "../../main.js";
 
 export const MONTHS = [
   "January",
@@ -85,7 +86,15 @@ export class CalendarComponent extends BaseComponent {
       const t = e.target;
       if (t.classList.contains("day")) {
         const date = t.dataset.date;
-        hub.publish(Events.LoadDayPage, date);
+
+        DATABASE.restoreDay(date)
+        .then((data) => {
+          console.log("Done!")
+          this.update(Events.LoadDayPage, data);
+        });
+
+        console.log(`Loading ${date}...`)
+
       }
     });
 

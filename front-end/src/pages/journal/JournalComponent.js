@@ -12,7 +12,7 @@ export class JournalComponent extends BaseComponent {
     // Stores value in text area to date object
     #saveJournal() {
         this.dateData['journal'] = this.summaryElement.value
-        this.update(Events.UpdateDatabase, this.dateData)
+        this.update(Events.StoreData, this.dateData)
     }
 
     // Reverts any changes to journal submission
@@ -50,6 +50,12 @@ export class JournalComponent extends BaseComponent {
     // Adds EventListeners that update attributes in the class
     _addEventListeners() {
         this.addEvent(Events.LoadJournalPage, data => this.loadPage(data))
+        this.addEvent(Events.StoredDataSuccess, () => {
+            console.log(`Stored new journal in database:`);
+          })
+          this.addEvent(Events.StoredDataFailed, () => {
+            console.log(`Failed to store journal in database`);
+          })
 
         this.saveButton.addEventListener('click', () => this.#saveJournal())
         this.cancelButton.addEventListener('click', () => this.#restoreJournal())

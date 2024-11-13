@@ -6,16 +6,13 @@ export class DatabaseService extends Service {
     super();
     this.dbName = "cherishDB";
     this.storeName = "day";
-    this.db = {};
+    this.db = null;
 
     // Initialize the database
     this.initDB()
       .then(() => {
         this.addSubscriptions();
-      })
-      .then(() => {
-        console.log("Database initialized");
-        console.log(this.db);
+        console.log("Database events initialized")
       })
       .catch((error) => {
         console.error(error);
@@ -23,8 +20,8 @@ export class DatabaseService extends Service {
   }
 
   addSubscriptions() {
-    this.addEvent(Events.UpdateDatabase, (data) => this.storeDay(data));
-    this.addEvent(Events.RestoreDatabase, (id) => this.storeDay(id));
+    this.addEvent(Events.StoreData, (data) => this.storeDay(data));
+    this.addEvent(Events.RestoreData, (id) => this.restoreDay(id));
   }
 
   async initDB() {
@@ -38,10 +35,12 @@ export class DatabaseService extends Service {
 
       request.onsuccess = (event) => {
         this.db = event.target.result;
+        this.update(Events.InitDataSuccess);
         resolve(this.db);
       };
 
       request.onerror = (event) => {
+        this.update(Events.InitDataFailed);
         reject(event.target.error);
       };
     });
@@ -49,14 +48,17 @@ export class DatabaseService extends Service {
 
   // Returns the Day Object specified by the id
   async restoreDay(key) {
+    const transaction = this.db.transaction([this.storeName], "readonly");
+    const objectStore = transaction.objectStore(this.storeName);
+
     return new Promise((resolve, reject) => {
-      const transaction = this.db.transaction([this.storeName], "readonly");
-      const objectStore = transaction.objectStore(this.storeName);
+
       const request = objectStore.get(key);
 
       request.onsuccess = (event) => {
-        this.update(Events.RestoredDataSuccess, event.target.result);
-        resolve("Data retrieved!");
+        // If result is undefined creates new date object
+        const obj = event.target.result ? event.target.result : {date_id: key};
+        resolve(obj);
       };
 
       request.onerror = () => {
@@ -68,13 +70,13 @@ export class DatabaseService extends Service {
 
   // Stores the day entry into the database 
   async storeDay(data) {
-    return new Promise((resolve, reject) => {
-      const transaction = this.db.transaction([this.storeName], "readwrite");
-      const objectStore = transaction.objectStore(this.storeName);
-      const request = objectStore.put(data); // Updates entry if already exists, adds it otherwise
+    const transaction = this.db.transaction([this.storeName], "readwrite");
+    const objectStore = transaction.objectStore(this.storeName);
 
+    return new Promise((resolve, reject) => {
+      const request = objectStore.put(data); // Updates entry if already exists, adds it otherwise
       request.onsuccess = (event) => {
-        this.update(Events.StoredDataSuccess, event.target.result);
+        this.update(Events.StoredDataSuccess);
         resolve("Data Stored Successfully");
       };
 
@@ -88,9 +90,7 @@ export class DatabaseService extends Service {
   // Clears all Saved Data from the database
   async clearDatabase() {
     return new Promise((resolve, reject) => {
-      const transaction = this.db.transaction([this.storeName], "readwrite");
-      const objectStore = transaction.objectStore(this.storeName);
-      const request = objectStore.clear();
+      const request = indexedDB.deleteDatabase(this.dbName);
 
       request.onsuccess = () => {
         this.update(Events.ClearedDataSuccess);
