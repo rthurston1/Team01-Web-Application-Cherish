@@ -148,23 +148,6 @@
   - **Details:** Combined the button navigation Niko implemented into my own branch for testing purposes.
   - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
 
-## November 13, 2024
-### Added Branches
- - **Details:** Created the following branches: 
-  - robbie-fix-summary-view
-
-### Fixed Display Bug
-  - **Details:** Fixed a bug where summary view would not properly show up fully.
-  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
-
-## November 14, 2024
-### Added Branches
- - **Details:** Created the following branches: 
-  - robbie-fix-summary-buttons
-
-### Fixed Summary Page Buttons
-  - **Details:** Fixed a bug where clicking on tabs would not change the text content within the page.
-=======
 ## November 12, 2024
 ### Added Branches
   - **Details:** Created the following branches: 
@@ -186,10 +169,33 @@
   - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
 
 ## November 13, 2024
+### Added Branches
+ - **Details:** Created the following branches: 
+  - robbie-fix-summary-view
+
 ### Deleted Branches
   - **Details:** Deleted the following branches:
     - robbie-fix-summary-view
 
+### Fixed Display Bug
+  - **Details:** Fixed a bug where summary view would not properly show up fully.
+  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
+
 ### Fixed Day Page Format/Style
   - **Details:** Finally formatted of the day page so that the emotion log entries and journal render nicely. (There's still more to be done, but that's a much later problem).
   - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
+
+## November 14, 2024
+### Added Branches
+ - **Details:** Created the following branches: 
+  - robbie-fix-summary-buttons
+
+### Deleted Branches
+  - **Details:** Deleted the following branches:
+    - robbie-fix-summary-view
+    - robbie-fix-summary-buttons
+
+
+### Fixed Summary Page Buttons
+  - **Details:** Fixed a bug where clicking on tabs would not change the text content within the page.
+
