@@ -12,10 +12,10 @@ export class SummaryComponent extends BaseComponent {
         return `
         <div class="container">
             <div class="tabs">
-                <div class="tab-Day" onclick="handleClick(this, 'Day')">Day</div>
-                <div class="tab-Week" onclick="handleClick(this, 'Week')">Week</div>
-                <div class="tab-Month" onclick="handleClick(this, 'Month')">Month</div>
-                <div class="tab-Year" onclick="handleClick(this, 'Year')">Year</div>
+                <div class="tab" id="tab-Day">Day</div>
+                <div class="tab" id="tab-Week">Week</div>
+                <div class="tab" id="tab-Month">Month</div>
+                <div class="tab" id="tab-Year">Year</div>
             </div>
             <div class="text_box">
                 <h2>Summary</h2>
@@ -45,9 +45,20 @@ export class SummaryComponent extends BaseComponent {
     }
 
     _addEventListeners() {
-        const hub = EventHub.getInstance()
-        hub.subscribe(Events.LoadSummaryPage, data => this.loadPage(data))
+        const hub = EventHub.getInstance();
+        hub.subscribe(Events.LoadSummaryPage, (data) => this.loadPage(data))
 
+        const dayTab = document.getElementById("tab-Day");
+        dayTab.addEventListener("click", () => handleClick(dayTab, "Day"));
+
+        const weekTab = document.getElementById("tab-Week");
+        weekTab.addEventListener("click", () => handleClick(dayTab, "Week"));
+
+        const monthTab = document.getElementById("tab-Month");
+        monthTab.addEventListener("click", () => handleClick(dayTab, "Month"));
+
+        const yearTab = document.getElementById("tab-Year");
+        yearTab.addEventListener("click", () => handleClick(dayTab, "Year"));
     }
 
     _render(data) {
@@ -57,7 +68,7 @@ export class SummaryComponent extends BaseComponent {
 
 export function handleClick(element, period) {
 
-    document.querySelectorAll('.tab-Day, .tab-Week, .tab-Month, .tab-Year').forEach(tab => {
+    document.querySelectorAll('.tab').forEach(tab => {
         tab.classList.remove('active-tab');
     });
 

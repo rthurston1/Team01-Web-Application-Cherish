@@ -1,13 +1,4 @@
-.tabs{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    gap: 20px;
-
-}
-.tab-Day, .tab-Week, .tab-Month, .tab-Year {
+.tab {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -41,7 +32,7 @@
 }
 
 /* Hover */
-.tab-Day:hover, .tab-Week:hover, .tab-Month:hover, .tab-Year:hover {
+.tab:hover {
     background-color: rgb(121, 200, 3);
 }
 .active-tab {
