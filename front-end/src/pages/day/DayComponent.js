@@ -154,7 +154,10 @@ export class DayComponent extends BaseComponent {
     return `
             <div class="day-container">
                 <div class="day-head-element">
-                    <h1>Day Page<h1>
+
+                    <div id="dayHeader">
+                      <h1>Your Day</h1>
+                    </div>
                     <h2 id="dayDate">Hello</h2>
                 </div>
                 

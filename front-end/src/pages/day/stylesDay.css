@@ -15,6 +15,16 @@
     height: 10%;
 }
 
+#dayHeader h1 {
+    background-color: #fbff00; 
+    color: black; 
+    padding: 5px 5px;
+    border-radius: 10px; 
+    font-size: 2em;
+    text-align: center;
+}
+
+
 .day-body-element {
     display: grid;
     justify-content: center;
