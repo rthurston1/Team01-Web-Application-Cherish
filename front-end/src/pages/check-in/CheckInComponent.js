@@ -12,21 +12,38 @@ export function getCurrentTime() {
 
 
 // Gets the emotion name based on its id
+// export function getEmotionById(emotion_id) {
+//     switch (emotion_id) {
+//         case 0:
+//             return 'Happy';
+//         case 1:
+//             return 'Sad';
+//         case 2:
+//             return 'Angry';
+//         case 3:
+//             return 'Anxious';
+//         case 4:
+//             return 'Disgusted';
+//         default:
+//             return 'Neutral';
+//     }
+// }
+
 export function getEmotionById(emotion_id) {
-    switch (emotion_id) {
-        case 0:
-            return 'Happy';
-        case 1:
-            return 'Sad';
-        case 2:
-            return 'Angry';
-        case 3:
-            return 'Anxious';
-        case 4:
-            return 'Disgusted';
-        default:
-            return 'Neutral';
-    }
+  switch (emotion_id) {
+      case 0:
+          return 'happy';
+      case 1:
+          return 'neutral';
+      case 2:
+          return 'sad';
+      case 3:
+          return 'anxious';
+      case 4:
+          return 'angry';
+      default:
+          return 'neutral';
+  }
 }
 
 export class CheckInComponent extends BaseComponent {
@@ -53,6 +70,7 @@ export class CheckInComponent extends BaseComponent {
         </div>
 
         <!-- emotions section -->
+        <!--emojis in order from best to worst: happy -> neutral -> anxious -> sad -> angry -->
         <section class="Emotions">
             <!-- label for emotions -->
             <label>Emotions:</label>
@@ -82,6 +100,7 @@ export class CheckInComponent extends BaseComponent {
                 <input type="radio" name="emotion" id="Disgusted" hidden />
                 <img src="./img/Disgusted.gif" alt="Disgusted" class="emoji" />
             </label>
+
         </section>
 
         <!-- magnitude section -->

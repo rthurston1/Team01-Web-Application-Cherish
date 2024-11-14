@@ -30,7 +30,51 @@ export class DayComponent extends BaseComponent {
 
   // Calculates Daily Ranking based on emotions logged also saves any changed to database
   #calculateRating() {
-    this.update(Events.UpdateDatabase, this.dateData);
+    //each emoji will have a baseline value from -3 to 2 
+    //to get the check-in numeric rating, we will multiply baseline emoji value by magnitude of emotion value 
+    //e.g. highest possible rating is happy with 10 magnitude (2 * 10 = 20), lowest possible rating is Angry with 10 magnitude (-3 * 10 = -30)
+    //then we avg together all of these check-in ratings for the day for the final rating 
+    
+    let totalRating = 0, count = 0, dailyRating = 0; 
+
+    if(!this.dateData.emotions || this.dateData.emotions.length === 0){
+      dailyRating = 0; //if emotions attribute doesn't exist or no emotions stored yet, set to 0 (neutral)
+    }else{
+      const emotionsArr = this.dateData.emotions;
+
+        emotionsArr.forEach((emotionObj) => {
+          let base = 0; 
+          const magnitude = emotionObj.magnitude;
+          switch(emotionObj.emotion_id){
+            case 'happy':
+              base = 2;
+              break;
+            case 'neutral':
+              base = 0; 
+              break; 
+            case 'anxious':
+              base = -1
+              break;
+            case 'sad':
+              base = -2;
+              break; 
+            case 'angry':
+              base = -3; 
+              break; 
+            default:
+              base = 0; 
+              break; 
+          }
+
+          const checkInRating = base * magnitude; //the rating for a single check-in 
+          totalRating += checkInRating; //add each check-in rating to an accumulating totalRating value
+          count++;  
+        });
+    }
+
+    dailyRating = count > 0 ? totalRating / count : 0; //set daily rating to avg of all rating values in that day
+    this.dateData["rating"] = dailyRating; //store the daily rating in dateData object
+    EventHub.getInstance().publish(Events.UpdateDatabase, this.dateData);
   }
 
   #renderEmotions() {

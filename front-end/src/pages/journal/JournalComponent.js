@@ -22,17 +22,27 @@ export class JournalComponent extends BaseComponent {
         : ""
     }
 
+    #updateCharCount() {
+        const journalText = document.getElementById('journalSummary').value;
+        const characterCount = journalText.length; 
+        document.getElementById('wordCount').innerText = `Character Count: ${characterCount}`;
+    }
+
 // Inherited Methods
     // Builds and returns HTML structure
     _buildHTML() { 
         return `
             <div class="journal-container">
-                <h1>Journal Page</h1>
+                <div id="journalHeader">
+                    <h1>Journal</h1>
+                </div>
+
                 <h2 id="journalDate"><h2>
-                <h2>Write Your Daily Summary Below!</h2>
+                <h2>What's on your mind?</h2>
 
                 <form class="text-submission" id="daySummary">
-                    <textarea id="journalSummary" placeholder="Write your summary here (2000 character limit)" maxlength="1000"></textarea>
+                    <textarea id="journalSummary" placeholder="Write your summary here (2000 character limit)" maxlength="2000"></textarea>
+                    <div id="wordCount">Character Count: 0</div> 
                     <div class="button-container">
                         <button id="saveJournal" type="button">Save</button>
                         <button id="cancelJournal" type="button">Cancel</button>
@@ -40,6 +50,13 @@ export class JournalComponent extends BaseComponent {
                 </form>
             </div>
         `   
+    }
+
+    _createElementObjs() {
+        this.titleDate = document.getElementById('journalDate')
+        this.summaryElement = document.getElementById('journalSummary')
+        this.saveButton = document.getElementById('saveJournal')
+        this.cancelButton = document.getElementById('cancelJournal')
     }
 
     _createElementObjs() {
@@ -61,6 +78,7 @@ export class JournalComponent extends BaseComponent {
 
         this.saveButton.addEventListener('click', () => this.#saveJournal())
         this.cancelButton.addEventListener('click', () => this.#restoreJournal())
+        document.getElementById('journalSummary').addEventListener('input', () => this.#updateCharCount());
     }
 
     // Changes the current view to the Journal Page
