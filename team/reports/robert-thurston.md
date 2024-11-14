@@ -130,6 +130,7 @@
  - **Details:** Created the following branches: 
   - robbie-fix-checkin-page
   - robbie-testing-niko-merge
+  - robbie-passing-data-feature
 
 ### Deleted Branches
   - **Details** Deleted the following branches:
@@ -137,6 +138,7 @@
     - robbie-fix-checkin-page
     - jesse-dayPage
     - jesse-robbie-daypage-week2
+    - robbie-testing-niko-merge
 
 ### Fixed Issue with File Explorer
   - **Details:** Fixed issue where Check-in Page would not show up (simply had to import it into main.js and create new class).
@@ -148,14 +150,26 @@
 
 ## November 12, 2024
 ### Added Branches
- - **Details:** Created the following branches: 
-  - robbie-indexedDB-feature
+  - **Details:** Created the following branches: 
+   - robbie-day-page-styling
+   - robbie-indexedDB-feature
 
 ### Deleted Branches
   - **Details** Deleted the following branches:
+    - experimental-navigation-niko
+    - cleanup-main-niko
+    - feature-main-page-clickable-calendar-niko
+    - robbie-passing-data-feature
+    - feature-buttons-component-niko
+    - george-fixingCSSIssue
+    - niko-documentation-updates
     - Wacil-ReportsFile
     - Wacil-CheckInJavaScriptFile
     - Wacil-ChangesOnlyToCheck-inComponent.js
+
+### Added Issue Template
+  - **Details:** Added a new issue template for features that need to be fixed.
+  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
 
 ### Started Implementation of IndexedDB
   - **Details:** Brainstormed ideas with Niko and George on how to store/retrieve data from a client-side database.
@@ -171,5 +185,10 @@
   - robbie-test-display-data
 
 ### Deleted Branches
-  - **Details** Deleted the following branches:
+  - **Details:** Deleted the following branches:
+    - robbie-fix-summary-view
     - Wacil-CheckInEmojis
+
+### Fixed Day Page Format/Style
+  - **Details:** Finally formatted of the day page so that the emotion log entries and journal render nicely. (There's still more to be done, but that's a much later problem).
+  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
