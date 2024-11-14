@@ -166,6 +166,10 @@
  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
 
 ## November 13, 2024
+### Added Branches
+ - **Details:** Created the following branches: 
+  - robbie-test-display-data
+
 ### Deleted Branches
   - **Details** Deleted the following branches:
     - Wacil-CheckInEmojis
