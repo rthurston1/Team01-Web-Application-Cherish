@@ -21,6 +21,12 @@ export class JournalComponent extends BaseComponent {
         this.#returnToDayPage()
     }
 
+    #updateCharCount() {
+        const journalText = document.getElementById('journalSummary').value;
+        const characterCount = journalText.length; 
+        document.getElementById('wordCount').innerText = `Character Count: ${characterCount}`;
+    }
+
 // Inherited Methods
     // Builds and returns HTML structure
     _buildHTML() { 
@@ -30,7 +36,8 @@ export class JournalComponent extends BaseComponent {
             <h2>Write Your Daily Summary Below!</h2>
 
             <form class="text-submission" id="daySummary">
-                <textarea id="journalSummary" placeholder="Write your summary here (2000 character limit)" maxlength="1000"></textarea>
+                <textarea id="journalSummary" placeholder="Write your summary here (2000 character limit)" maxlength="2000"></textarea>
+                <div id="wordCount">Character Count: 0</div> 
                 <div class="button-container">
                     <button id="saveJournal" type="button">Save</button>
                     <button id="cancelJournal" type="button">Cancel</button>
@@ -46,6 +53,7 @@ export class JournalComponent extends BaseComponent {
 
         document.getElementById('saveJournal').addEventListener('click', () => this.#saveJournal())
         document.getElementById('cancelJournal').addEventListener('click', () => this.#returnToDayPage())
+        document.getElementById('journalSummary').addEventListener('input', () => this.#updateCharCount());
     }
 
     // Changes the current view to the Journal Page
