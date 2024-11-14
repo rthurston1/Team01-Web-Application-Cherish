@@ -20,23 +20,8 @@ export class DayComponent extends BaseComponent {
   }
 
   // Methods
-
-  #goToMainPage() {
-    EventHub.getInstance().publish(Events.LoadMainPage, this.dateData);
-  }
-
-  // Calls an event to load journal page
-  #goToJournalPage() {
-    EventHub.getInstance().publish(Events.LoadJournalPage, this.dateData);
-  }
-
-  // Calls an event to load check-in page
-  #goToCheckInPage() {
-    EventHub.getInstance().publish(Events.LoadCheckInPage, this.dateData);
-  }
-
   #addJournalEntry(journal) {
-    this.dateData["journal_entry"] = journal;
+    this.dateData["journal"] = journal;
     EventHub.getInstance().publish(Events.UpdateDatabase, this.dateData);
   }
 
@@ -109,23 +94,78 @@ export class DayComponent extends BaseComponent {
   _buildHTML() {
     return `
             <div class="day-container">
-                <div class="day-head-element">
-                    <h1>Day Page<h1>
+                <div class="day-head-container">
+                    <h1>Day Page</h1>
                     <h2 id="dayDate">Hello</h2>
                 </div>
                 
-                <div class="day-body-element" id="dayContent">
-                    <div class="day-emotion-container" id="dayEmotionLog"></div>
-
-                    <div class="day-journal-container">
-                        <textarea id="dayJournalEntry" placeholder="No journal entry" readonly></textarea>
-
-                        <div id="dayButtons">
-                            <button id="dayToMain">Main Page</button>
-                            <button id="dayToJournal">Journal</button>
-                            <button id="dayToCheckIn">Check-In</button>
-                        </div>
+                <div class="day-body-container">
+                    <div class="day-body-element" id="dayEmotionLog">
+                      <div class="day-emotion-entry">
+                        <section>
+                          <ul>
+                            <li>HH:MM</li>
+                            <li>Rating: 10</li>
+                            <li>
+                              Description: I hate Comp 250 still, 
+                              even though I'm not taking it right now.
+                              I NEVER want to see that class ever again.
+                              I don't want to think about it, it makes me
+                              too mad. It's insane that they expect you 
+                              to learn that much in such a short amount of time.
+                            </li>
+                          </ul>  
+                        </section>
+                        
+                        <figure>
+                          <img src="img/smile.gif" alt="image">
+                        </figure>
+                        
+                      </div>
+                      <div class="day-emotion-entry">
+                        <section>
+                          <ul>
+                            <li>HH:MM</li>
+                            <li>Rating: 10</li>
+                            <li>
+                              Description: I hate Comp 250 still, 
+                              even though I'm not taking it right now.
+                              I NEVER want to see that class ever again.
+                              I don't want to think about it, it makes me
+                              too mad. It's insane that they expect you 
+                              to learn that much in such a short amount of time.
+                            </li>
+                          </ul>  
+                        </section>
+                        
+                        <figure>
+                          <img src="img/smile.gif" alt="image">
+                        </figure>
+                        
+                      </div>
+                      <div class="day-emotion-entry">
+                        <section>
+                          <ul>
+                            <li>Time: HH:MM</li>
+                            <li>Rating: 10</li>
+                            <li>
+                              Description: I hate Comp 250 still, 
+                              even though I'm not taking it right now.
+                              I NEVER want to see that class ever again.
+                              I don't want to think about it, it makes me
+                              too mad. It's insane that they expect you 
+                              to learn that much in such a short amount of time.
+                            </li>
+                          </ul>  
+                        </section>
+                        
+                        <figure>
+                          <img src="img/smile.gif" alt="image">
+                        </figure>
+                        
+                      </div>
                     </div>
+                    <textarea class="day-body-element" id="dayJournalEntry" placeholder="No journal entry" readonly></textarea>
                 </div>
             </div>
         `;
@@ -133,7 +173,10 @@ export class DayComponent extends BaseComponent {
 
   _addEventListeners() {
     const hub = EventHub.getInstance();
-    hub.subscribe(Events.LoadDayPage, (data) => this.loadPage(data));
+
+    hub.subscribe(Events.LoadDayPage, (data) => 
+      this.loadPage(data)
+    );
     hub.subscribe(Events.SummarySubmitted, (journal) =>
       this.#addJournalEntry(journal)
     );
@@ -141,28 +184,22 @@ export class DayComponent extends BaseComponent {
       this.#addEmotionEntry(emotion)
     );
 
-    document
-      .getElementById("dayToMain")
-      .addEventListener("click", () => this.#goToMainPage());
-    document
-      .getElementById("dayToJournal")
-      .addEventListener("click", () => this.#goToJournalPage());
-    document
-      .getElementById("dayToCheckIn")
-      .addEventListener("click", () => this.#goToCheckInPage());
   }
 
   // Changes view to Day Page
   _render(data) {
     if (data) this.dateData = data;
 
-    document.getElementById("dayDate").textContent = dateFormat(
-      this.dateData.date_id
-    );
-    document.getElementById("dayJournalEntry").textContent =
-      this.dateData.journal;
+    // Mock Summary
+    const daySummary = `My day was productive! I tackled some ongoing projects and made solid progress, especially on my web app. I worked on centering elements within a container class, trying to get everything aligned just right on the page, which took a bit of trial and error. I also reviewed some concepts related to IndexedDB, focusing on setting date_id as the key path in my object store, which will be useful for handling data accurately`;
+    
+    this.dateData['journal'] = daySummary
+
+    document.getElementById("dayDate").textContent = dateFormat(this.dateData.date_id);
+    document.getElementById("dayJournalEntry").textContent = this.dateData.journal;
 
     // Added Emotions to Log
-    this.#renderEmotions();
+    // this.#renderEmotions();
   }
 }
+
