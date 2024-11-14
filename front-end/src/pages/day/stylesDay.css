@@ -24,6 +24,7 @@
 }
 
 .day-body-element {  
+    font-size: 2rem;
     border: 5px solid #10a3dd;
     margin: 10px;
     padding: 10px;
@@ -70,7 +71,6 @@ img {
 }
 
 #dayJournalEntry {
-    font-size: 2rem;
     letter-spacing: 2px; /* Adjusts space between characters */
     line-height: 1.5; /* Adjusts space between lines */
 }
