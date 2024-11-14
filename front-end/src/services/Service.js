@@ -22,11 +22,11 @@ export default class Service {
     throw new Error('Subclasses must implement the addSubscriptions method');
   }
 
-  subscribe(event, listener) {
+  addEvent(event, listener) {
     return EventHub.getInstance().subscribe(event, listener);
   }
 
-  publish(event, data) {
+  update(event, data = null) {
     EventHub.getInstance().publish(event, data);
   }
 }
