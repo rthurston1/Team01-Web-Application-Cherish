@@ -199,3 +199,9 @@
 ### Completed IndexedDB Functionality
   - **Details:** Fully integrated IndexedDB into program. Users can now safely log emotions and journal entries which then display onto the day page.
   - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
+
+## November 14, 2024
+### Deleted Branches
+  - **Details:** Deleted the following branches:
+    - LiamAndSam-SummaryPage
+
