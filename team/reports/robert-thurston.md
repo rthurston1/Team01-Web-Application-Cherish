@@ -168,3 +168,8 @@
   - **Details:** Added a new issue template for features that need to be fixed.
   - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
 
+## November 13, 2024
+### Deleted Branches
+  - **Details** Deleted the following branches:
+    - robbie-
+

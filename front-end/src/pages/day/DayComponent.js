@@ -94,14 +94,24 @@ export class DayComponent extends BaseComponent {
   _buildHTML() {
     return `
             <div class="day-container">
-                <div class="day-head-element">
+                <div class="day-head-container">
                     <h1>Day Page</h1>
                     <h2 id="dayDate">Hello</h2>
                 </div>
                 
-                <div class="day-body-element" id="dayContent">
-                    <div class="day-emotion-container" id="dayEmotionLog"></div>
-                    <textarea class="day-journal-container"id="dayJournalEntry" placeholder="No journal entry" readonly></textarea>
+                <div class="day-body-container">
+                    <div class="day-body-element" id="dayEmotionLog">
+                      <div class="day-emotion-entry">Item 1</div>
+                      <div class="day-emotion-entry">Item 2</div>
+                      <div class="day-emotion-entry">Item 3</div>
+                      <div class="day-emotion-entry">Item 4</div>
+                      <div class="day-emotion-entry">Item 5</div>
+                      <div class="day-emotion-entry">Item 6</div>  
+                      <div class="day-emotion-entry">Item 7</div>
+                      <div class="day-emotion-entry">Item 8</div>
+                      <div class="day-emotion-entry">Item 9</div> 
+                    </div>
+                    <textarea class="day-body-element" id="dayJournalEntry" placeholder="No journal entry" readonly></textarea>
                 </div>
             </div>
         `;
@@ -126,10 +136,16 @@ export class DayComponent extends BaseComponent {
   _render(data) {
     if (data) this.dateData = data;
 
+    // Mock Summary
+    const daySummary = `My day was productive! I tackled some ongoing projects and made solid progress, especially on my web app. I worked on centering elements within a container class, trying to get everything aligned just right on the page, which took a bit of trial and error. I also reviewed some concepts related to IndexedDB, focusing on setting date_id as the key path in my object store, which will be useful for handling data accurately.In between work, I took`;
+    
+    this.dateData['journal'] = daySummary
+
     document.getElementById("dayDate").textContent = dateFormat(this.dateData.date_id);
     document.getElementById("dayJournalEntry").textContent = this.dateData.journal;
 
     // Added Emotions to Log
-    this.#renderEmotions();
+    // this.#renderEmotions();
   }
 }
+
