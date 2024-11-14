@@ -16,4 +16,36 @@
 
 ### October 19, 2024
   - **Task**: Worked with Sam on Figma diagram, Updated TODO list, updated notes file in the main branch
-  - **Details**: Sam and I are designing a FIgma diagram of Robbies UI sketch. This will reflect a rough idea of what the app's user interface might look like. Brainstormed with team members on discord about what the final UI should look like.  
+  - **Details**: Sam and I are designing a FIgma diagram of Robbies UI sketch. This will reflect a rough idea of what the app's user interface might look like. Brainstormed with team members on discord about what the final UI should look like.
+
+### October 20, 2024
+  - **Task**: took notes in team meeting, updated notes file in Repo 
+  - **Details**:
+
+### October 27, 2024
+  - **Task**: took notes in team meeting  
+  - **Details**: 
+
+### October 30, 2024
+  - **Task**: took notes in team meeting
+  - **Details**: 
+
+### November 1, 2024
+  - **Task**: took notes in team standup meeting
+  - **Details**:
+
+### November 8, 2024
+  - **Task**: took notes in standup meeting, Updated notes file in Repo
+  - **Details**:
+
+### November 10, 2024
+  - **Task**: took notes in team meeting, worked with Robbie to assign myself tasks 
+  - **Details**:
+
+### November 11, 2024
+  - **Task**: Fixed date not showing on journal page
+  - **Details**: Got help from Niko to fix HTML preventing current date showing on the journal page
+
+### November 13, 2024
+  - **Task**: Implemented logic for calculating daily rating, replaced and rearranged emotion emojis 
+  - **Details**: calculateRating() function will calculate the daily rating based on user-selected emotion and magnitude of emotion. I replaced and rearranged the emotion emojis so that they better represent a descending order of emotions: happy -> neutral -> anxious -> sad -> angry 
