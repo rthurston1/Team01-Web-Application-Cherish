@@ -155,3 +155,11 @@
   - **Details:** Fixed a bug where summary view would not properly show up fully.
   - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
 
+## November 14, 2024
+### Added Branches
+ - **Details:** Created the following branches: 
+  - robbie-fix-summary-buttons
+
+### Fixed Summary Page Buttons
+  - **Details:** Fixed a bug where clicking on tabs would not change the text content within the page.
+  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
