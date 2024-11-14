@@ -12,21 +12,38 @@ export function getCurrentTime() {
 
 
 // Gets the emotion name based on its id
+// export function getEmotionById(emotion_id) {
+//     switch (emotion_id) {
+//         case 0:
+//             return 'Happy';
+//         case 1:
+//             return 'Sad';
+//         case 2:
+//             return 'Angry';
+//         case 3:
+//             return 'Anxious';
+//         case 4:
+//             return 'Disgusted';
+//         default:
+//             return 'Neutral';
+//     }
+// }
+
 export function getEmotionById(emotion_id) {
-    switch (emotion_id) {
-        case 0:
-            return 'Happy';
-        case 1:
-            return 'Sad';
-        case 2:
-            return 'Angry';
-        case 3:
-            return 'Anxious';
-        case 4:
-            return 'Disgusted';
-        default:
-            return 'Neutral';
-    }
+  switch (emotion_id) {
+      case 0:
+          return 'happy';
+      case 1:
+          return 'neutral';
+      case 2:
+          return 'sad';
+      case 3:
+          return 'anxious';
+      case 4:
+          return 'angry';
+      default:
+          return 'neutral';
+  }
 }
 
 export class CheckInComponent extends BaseComponent {
@@ -52,6 +69,7 @@ export class CheckInComponent extends BaseComponent {
         </div>
 
         <!-- emotions section -->
+        <!--emojis in order from best to worst: happy -> neutral -> anxious -> sad -> angry -->
         <section class="Emotions">
             <!-- label for emotions -->
             <label>Emotions:</label>
@@ -59,28 +77,33 @@ export class CheckInComponent extends BaseComponent {
             <!-- happy -->
             <label for="happy">
                 <input type="radio" name="emotion" id="happy" hidden />
-                <img src="./img/smile.gif" alt="Happy" class="emoji" />
+                <img src="./img/happy.gif" alt="happy" class="emoji" />
             </label>
+
             <!-- neutral -->
             <label for="sad">
-                <input type="radio" name="emotion" id="sad" hidden />
-                <img src="./img/neutral.gif" alt="sad" class="emoji" />
+                <input type="radio" name="emotion" id="neutral" hidden />
+                <img src="./img/neutral.gif" alt="neutral" class="emoji" />
             </label>
-            <!-- meh -->
-            <label for="angry">
-                <input type="radio" name="emotion" id="angry" hidden />
-                <img src="./img/emotionless.gif" alt="angry" class="emoji" />
-            </label>
-            <!-- goofy ahh -->
+
+            <!-- anxious -->
             <label for="anxious">
                 <input type="radio" name="emotion" id="anxious" hidden />
-                <img src="./img/laugh.gif" alt="anxious" class="emoji" />
+                <img src="./img/anxious.gif" alt="anxious" class="emoji" />
             </label>
-            <!-- worried -->
-            <label for="disgusted">
-                <input type="radio" name="emotion" id="disgusted" hidden />
-                <img src="./img/worried.gif" alt="Worried" class="emoji" />
+
+            <!-- sad -->
+            <label for="sad">
+                <input type="radio" name="emotion" id="sad" hidden />
+                <img src="./img/sad.gif" alt="sad" class="emoji" />
+            </label>  
+
+            <!-- angry -->
+            <label for="angry">
+                <input type="radio" name="emotion" id="angry" hidden />
+                <img src="./img/angry.gif" alt="angry" class="emoji" />
             </label>
+
         </section>
 
         <!-- magnitude section -->
