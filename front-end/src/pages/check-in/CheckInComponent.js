@@ -81,7 +81,7 @@ export class CheckInComponent extends BaseComponent {
             </label>
 
             <!-- neutral -->
-            <label for="sad">
+            <label for="neutral">
                 <input type="radio" name="emotion" id="neutral" hidden />
                 <img src="./img/neutral.gif" alt="neutral" class="emoji" />
             </label>
