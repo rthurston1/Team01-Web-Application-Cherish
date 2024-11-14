@@ -188,7 +188,14 @@
   - **Details:** Deleted the following branches:
     - robbie-fix-summary-view
     - Wacil-CheckInEmojis
+    - jesse-branch-from-niko-clickable-calendar
+    - robbie-day-page-styling
+    - robbie-indexedDB-feature
 
 ### Fixed Day Page Format/Style
   - **Details:** Finally formatted of the day page so that the emotion log entries and journal render nicely. (There's still more to be done, but that's a much later problem).
+  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
+
+### Completed IndexedDB Functionality
+  - **Details:** Fully integrated IndexedDB into program. Users can now safely log emotions and journal entries which then display onto the day page.
   - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
