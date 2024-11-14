@@ -165,6 +165,7 @@
  - **Details:** Used indexedDB to successfully pass data between different components and saves any changes to the database.
  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
 
-
-
-
+## November 13, 2024
+### Deleted Branches
+  - **Details** Deleted the following branches:
+    - Wacil-CheckInEmojis
