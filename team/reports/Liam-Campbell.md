@@ -23,3 +23,8 @@
 ### November 3, 2024
   - **Task** Weekly meeting
   - **Details** Fulfilled notetaking for our weekly sunday meeting. Including with finishing touches on the summary page
+
+### November 12, 2024
+  - **Task** Create SummaryComponent with Sam
+  - **Details** Worked with Sam to change our .html file to a _buildHTML() function within a .js and also use events. Added _addEventListeners()
+  and worked on _render(data).
