@@ -90,15 +90,15 @@ November 10, 2024
 
 November 10, 2024
 
-  **Task**: Review old branches and clean up the repository.
-  **Details**: Reviewed old branches and cleaned up the repository. Deleted branches that were no longer needed. The following branches were deleted: `feature-buttons-component-niko`, `georgeAndNiko-MainPageEdits`, `niko-front-end-starter`, `george-niko-mainpage`.
-  **Link to Commit**: N/A
-  
+**Task**: Review old branches and clean up the repository.
+**Details**: Reviewed old branches and cleaned up the repository. Deleted branches that were no longer needed. The following branches were deleted: `feature-buttons-component-niko`, `georgeAndNiko-MainPageEdits`, `niko-front-end-starter`, `george-niko-mainpage`.
+**Link to Commit**: N/A
+
 November 10, 2024
 
-  **Task**: Review Wacil's pull request.
-  **Details**: Reviewed Wacil's pull request for the check in page. I left a comment regarding the merging of Robbie's branch which caused too many files to be changed at once. I requested that Wacil created a new branch from main and submitted his changes there.
-  **Link to Pull Request**: [Pull Request](https://github.com/rthurston1/Team01-Web-Application-Cherish/pull/39)
+**Task**: Review Wacil's pull request.
+**Details**: Reviewed Wacil's pull request for the check in page. I left a comment regarding the merging of Robbie's branch which caused too many files to be changed at once. I requested that Wacil created a new branch from main and submitted his changes there.
+**Link to Pull Request**: [Pull Request](https://github.com/rthurston1/Team01-Web-Application-Cherish/pull/39)
 
 November 11, 2024
 
@@ -111,3 +111,9 @@ November 12, 2024
 - **Task**: Create pull request from experimental-navigation-niko branch.
 - **Details**: Created a pull request for the experimental-navigation-niko branch.
 - **Link to Commit**: [Commit](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/529be60ef997c2ac9de6ee2a1a7f9140d3ba559e)
+
+November 14, 2024
+
+- **Task**: Look into issue #60 and create a branch for it.
+- **Details**: Created a new branch `bugfix-date-id-formatting-niko` to address issue #60. The issue is about changing the dataset id format from two year digits to four year digits.
+- **Link to Commit**: [Commit](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/781a5234d71c42bc4956a5d6088e8d109208afc6)
