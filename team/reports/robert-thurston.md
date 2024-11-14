@@ -130,6 +130,7 @@
  - **Details:** Created the following branches: 
   - robbie-fix-checkin-page
   - robbie-testing-niko-merge
+  - robbie-passing-data-feature
 
 ### Deleted Branches
   - **Details** Deleted the following branches:
@@ -137,6 +138,7 @@
     - robbie-fix-checkin-page
     - jesse-dayPage
     - jesse-robbie-daypage-week2
+    - robbie-testing-niko-merge
 
 ### Fixed Issue with File Explorer
   - **Details:** Fixed issue where Check-in Page would not show up (simply had to import it into main.js and create new class).
@@ -162,4 +164,32 @@
 
 ### Fixed Summary Page Buttons
   - **Details:** Fixed a bug where clicking on tabs would not change the text content within the page.
+=======
+## November 12, 2024
+### Added Branches
+  - **Details:** Created the following branches: 
+   - robbie-day-page-styling
+
+### Deleted Branches
+  - **Details** Deleted the following branches:
+    - experimental-navigation-niko
+    - cleanup-main-niko
+    - feature-main-page-clickable-calendar-niko
+    - robbie-passing-data-feature
+    - feature-buttons-component-niko
+    - george-fixingCSSIssue
+    - niko-documentation-updates
+    - Wacil-ReportsFile
+
+### Added Issue Templated
+  - **Details:** Added a new issue template for features that need to be fixed.
+  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
+
+## November 13, 2024
+### Deleted Branches
+  - **Details:** Deleted the following branches:
+    - robbie-fix-summary-view
+
+### Fixed Day Page Format/Style
+  - **Details:** Finally formatted of the day page so that the emotion log entries and journal render nicely. (There's still more to be done, but that's a much later problem).
   - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
