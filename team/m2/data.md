@@ -31,7 +31,7 @@
 ### Emotion
   - **Description**: Represents an emotion the user is feeling during the day
   - _Attributes:_
-    - `emotion_id` (`string`): A unique identifier for the emotion.
+    - `emotion_id` (`string`): A unique identifier for the emotion. (Emotions: Happy, Sad, Angry, Anxious, Disgusted)
     - `magnitude` (`number`): A ranking system on a scale of 1 to 10 on how strong the emotion is.
     - `description` (`string`): An explanation to why a user feels the emotion (Not required, can be left empty).
     - `timestamp` (`string`): The time (hour:minute) an emotion was logged.
