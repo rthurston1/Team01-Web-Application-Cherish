@@ -152,6 +152,7 @@
 ### Added Branches
   - **Details:** Created the following branches: 
    - robbie-day-page-styling
+   - robbie-indexedDB-feature
 
 ### Deleted Branches
   - **Details** Deleted the following branches:
@@ -163,15 +164,30 @@
     - george-fixingCSSIssue
     - niko-documentation-updates
     - Wacil-ReportsFile
+    - Wacil-CheckInJavaScriptFile
+    - Wacil-ChangesOnlyToCheck-inComponent.js
 
-### Added Issue Templated
+### Added Issue Template
   - **Details:** Added a new issue template for features that need to be fixed.
   - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
 
+### Started Implementation of IndexedDB
+  - **Details:** Brainstormed ideas with Niko and George on how to store/retrieve data from a client-side database.
+  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
+
+### Designed First Draft of IndexedDB
+ - **Details:** Used indexedDB to successfully pass data between different components and saves any changes to the database.
+ - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
+
 ## November 13, 2024
+### Added Branches
+ - **Details:** Created the following branches: 
+  - robbie-test-display-data
+
 ### Deleted Branches
   - **Details:** Deleted the following branches:
     - robbie-fix-summary-view
+    - Wacil-CheckInEmojis
 
 ### Fixed Day Page Format/Style
   - **Details:** Finally formatted of the day page so that the emotion log entries and journal render nicely. (There's still more to be done, but that's a much later problem).

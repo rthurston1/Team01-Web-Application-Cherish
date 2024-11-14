@@ -1,4 +1,3 @@
-import { EventHub } from '../../eventhub/EventHub.js'
 import { Events } from '../../eventhub/Events.js'
 import { BaseComponent } from '../../BaseComponent.js'
 import { dateFormat } from '../day/DayComponent.js'
@@ -10,15 +9,17 @@ export class JournalComponent extends BaseComponent {
     }
 
 // Methods
-    // Returns to Day Page, passes any changes to the date object through an event
-    #returnToDayPage() {
-       EventHub.getInstance().publish(Events.LoadDayPage, this.dateData)
-    }
-
     // Stores value in text area to date object
     #saveJournal() {
-        EventHub.getInstance().publish(Events.SummarySubmitted, document.getElementById('journalSummary').value)
-        this.#returnToDayPage()
+        this.dateData['journal'] = this.summaryElement.value
+        this.update(Events.StoreData, this.dateData)
+    }
+
+    // Reverts any changes to journal submission
+    #restoreJournal() {
+        this.summaryElement.value = this.dateData['journal']
+        ? this.dateData.journal
+        : ""
     }
 
 // Inherited Methods
@@ -41,24 +42,33 @@ export class JournalComponent extends BaseComponent {
         `   
     }
 
+    _createElementObjs() {
+        this.titleDate = document.getElementById('journalDate')
+        this.summaryElement = document.getElementById('journalSummary')
+        this.saveButton = document.getElementById('saveJournal')
+        this.cancelButton = document.getElementById('cancelJournal')
+    }
+
     // Adds EventListeners that update attributes in the class
     _addEventListeners() {
-        const hub = EventHub.getInstance()
-        hub.subscribe(Events.LoadJournalPage, data => this.loadPage(data))
+        this.addEvent(Events.LoadJournalPage, data => this.loadPage(data))
+        this.addEvent(Events.StoredDataSuccess, () => {
+            console.log(`Stored new journal in database:`);
+          })
+          this.addEvent(Events.StoredDataFailed, () => {
+            console.log(`Failed to store journal in database`);
+          })
 
-        document.getElementById('saveJournal').addEventListener('click', () => this.#saveJournal())
-        document.getElementById('cancelJournal').addEventListener('click', () => this.#returnToDayPage())
+        this.saveButton.addEventListener('click', () => this.#saveJournal())
+        this.cancelButton.addEventListener('click', () => this.#restoreJournal())
     }
 
     // Changes the current view to the Journal Page
     _render(data) {
         this.dateData = data
 
-        document.getElementById('journalSummary').value = 'journal_entry' in this.dateData
-        ? this.dateData.journal
-        : ''
-
-        document.getElementById('journalDate').textContent = dateFormat(this.dateData.date_id)
+        this.titleDate.textContent = dateFormat(this.dateData.date_id)
+        this.#restoreJournal()
     }
 
 }

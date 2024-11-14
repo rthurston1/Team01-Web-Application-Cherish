@@ -1,3 +1,5 @@
+import { EventHub } from "./eventhub/EventHub.js";
+
 export class BaseComponent {
   /**
    * @param {string} id HTML body element id
@@ -42,7 +44,27 @@ export class BaseComponent {
     throw new Error("render method not implemented");
   }
 
-  // Methods
+  /**
+   * OPTIONAL FUNCTION
+   * Creates references to HTML elements in Component
+   * Does not need to be implemented
+   */
+  _createElementObjs() {
+    
+  }
+
+// Methods
+
+  // Adds a custom event listener to the component
+  addEvent(event, listener) {
+    return EventHub.getInstance().subscribe(event, listener);
+  }
+
+  // Publishes an event and passes data to its subscribers
+  update(event, data = null) {
+    return EventHub.getInstance().publish(event, data);
+  }
+
   // Switches the view and renders the page
   loadPage(data) {
     document
@@ -53,6 +75,7 @@ export class BaseComponent {
     this.#changeDisplay("flex");
   }
 
+// Private Methods
   #changeDisplay(view) {
     document.getElementById(this.bodyElement.id).style.display = view;
   }
@@ -71,6 +94,7 @@ export class BaseComponent {
     this.bodyElement.classList.add("view");
     this.bodyElement.id = id;
     this.bodyElement.innerHTML = this._buildHTML();
+    this._createElementObjs();
 
     this.#changeDisplay("none");
 

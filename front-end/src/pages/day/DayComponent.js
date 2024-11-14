@@ -1,4 +1,3 @@
-import { EventHub } from "../../eventhub/EventHub.js";
 import { Events } from "../../eventhub/Events.js";
 import { BaseComponent } from "../../BaseComponent.js";
 import { MONTHS } from "../calendar/CalendarComponent.js";
@@ -19,27 +18,10 @@ export class DayComponent extends BaseComponent {
     this.dateData = {};
   }
 
-  // Methods
-  #addJournalEntry(journal) {
-    this.dateData["journal"] = journal;
-    EventHub.getInstance().publish(Events.UpdateDatabase, this.dateData);
-  }
-
-  // Appends new emotion entry to Emotion Log
-  #addEmotionEntry(emotion_entry) {
-    if (!this.dateData["emotions"]) this.dateData["emotions"] = [];
-    this.dateData.emotions.push(emotion_entry);
-    this.#calculateRating();
-    alert("emotion added!");
-  }
-
+// Methods
   // Removes the specified emotion element from the Emotion Log
   #removeEmotionEntry(emotion_entry) {
-    document.getElementById("dayEmotionLog").innerHTML = "";
-
-    const filteredArr = this.dateData.emotions.filter(
-      (e) => e !== emotion_entry
-    );
+    const filteredArr = this.dateData.emotions.filter((e) => e !== emotion_entry);
     this.dateData.emotions = filteredArr;
 
     this.#calculateRating();
@@ -49,11 +31,11 @@ export class DayComponent extends BaseComponent {
 
   // Calculates Daily Ranking based on emotions logged also saves any changed to database
   #calculateRating() {
-    EventHub.getInstance().publish(Events.UpdateDatabase, this.dateData);
+    this.update(Events.UpdateDatabase, this.dateData);
   }
 
   #renderEmotions() {
-    const emotionLog = document.getElementById("dayEmotionLog");
+    this.emotionLog.innerHTML = "" // Clears html 
     if (!this.dateData.emotions) {
       emotionLog.textContent = "NO EMOTIONS LOGGED";
       return;
@@ -62,7 +44,7 @@ export class DayComponent extends BaseComponent {
     this.dateData.emotions.forEach((emotion) => {
       const emotionEntry = document.createElement("div");
       emotionEntry.classList.add("day-log-entry");
-      emotionLog.appendChild(emotionEntry);
+      this.emotionLog.appendChild(emotionEntry);
 
       const entryInfo = document.createElement("div");
       emotionEntry.appendChild(entryInfo);
@@ -82,9 +64,7 @@ export class DayComponent extends BaseComponent {
 
       const deleteButton = document.createElement("button");
       deleteButton.textContent = "DELETE";
-      deleteButton.addEventListener("click", () =>
-        this.#removeEmotionEntry(emotion)
-      );
+      deleteButton.addEventListener("click", () => this.#removeEmotionEntry(emotion));
 
       emotionEntry.appendChild(deleteButton);
     });
@@ -171,19 +151,15 @@ export class DayComponent extends BaseComponent {
         `;
   }
 
+  _createElementObjs() {
+     // Elements
+     this.titleDate = document.getElementById("dayDate");
+     this.journalEntry =  document.getElementById("dayJournalEntry");
+     this.emotionLog = document.getElementById("dayEmotionLog");
+  }
+
   _addEventListeners() {
-    const hub = EventHub.getInstance();
-
-    hub.subscribe(Events.LoadDayPage, (data) => 
-      this.loadPage(data)
-    );
-    hub.subscribe(Events.SummarySubmitted, (journal) =>
-      this.#addJournalEntry(journal)
-    );
-    hub.subscribe(Events.CheckInSubmitted, (emotion) =>
-      this.#addEmotionEntry(emotion)
-    );
-
+    this.addEvent(Events.LoadDayPage, (data) => this.loadPage(data));
   }
 
   // Changes view to Day Page
@@ -192,11 +168,10 @@ export class DayComponent extends BaseComponent {
 
     // Mock Summary
     const daySummary = `My day was productive! I tackled some ongoing projects and made solid progress, especially on my web app. I worked on centering elements within a container class, trying to get everything aligned just right on the page, which took a bit of trial and error. I also reviewed some concepts related to IndexedDB, focusing on setting date_id as the key path in my object store, which will be useful for handling data accurately`;
-    
     this.dateData['journal'] = daySummary
 
-    document.getElementById("dayDate").textContent = dateFormat(this.dateData.date_id);
-    document.getElementById("dayJournalEntry").textContent = this.dateData.journal;
+    this.titleDate.textContent = dateFormat(this.dateData.date_id);
+    this.journalEntry.textContent = this.dateData.journal;
 
     // Added Emotions to Log
     // this.#renderEmotions();
