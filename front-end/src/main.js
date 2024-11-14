@@ -6,7 +6,6 @@ import { EventHub } from "./eventhub/EventHub.js";
 import { Events } from "./eventhub/Events.js";
 import { DatabaseService } from "./services/DatabaseService.js";
 
-
 const hub = EventHub.getInstance();
 
 // Initializes database then loads in Main Page
@@ -38,3 +37,8 @@ const checkIn = new CheckInComponent();
 // Retrieves data for the current day, on success passes data through an event
 
 console.log("Everything loaded");
+
+
+// hub.subscribe(Events.ClearedDataSuccess, () => console.log("Data cleared"));
+// hub.subscribe(Events.ClearedDataFailed, () => console.log("Failed to clear data"));
+// DATABASE.clearDatabase().then()
