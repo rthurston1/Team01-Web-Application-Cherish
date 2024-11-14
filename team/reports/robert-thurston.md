@@ -170,6 +170,9 @@
 
 ## November 13, 2024
 ### Deleted Branches
-  - **Details** Deleted the following branches:
-    - robbie-
+  - **Details:** Deleted the following branches:
+    - robbie-fix-summary-view
 
+### Fixed Day Page Format/Style
+  - **Details:** Finally formatted of the day page so that the emotion log entries and journal render nicely. (There's still more to be done, but that's a much later problem).
+  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)

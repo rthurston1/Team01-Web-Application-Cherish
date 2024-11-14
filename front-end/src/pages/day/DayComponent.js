@@ -101,15 +101,69 @@ export class DayComponent extends BaseComponent {
                 
                 <div class="day-body-container">
                     <div class="day-body-element" id="dayEmotionLog">
-                      <div class="day-emotion-entry">Item 1</div>
-                      <div class="day-emotion-entry">Item 2</div>
-                      <div class="day-emotion-entry">Item 3</div>
-                      <div class="day-emotion-entry">Item 4</div>
-                      <div class="day-emotion-entry">Item 5</div>
-                      <div class="day-emotion-entry">Item 6</div>  
-                      <div class="day-emotion-entry">Item 7</div>
-                      <div class="day-emotion-entry">Item 8</div>
-                      <div class="day-emotion-entry">Item 9</div> 
+                      <div class="day-emotion-entry">
+                        <section>
+                          <ul>
+                            <li>HH:MM</li>
+                            <li>Rating: 10</li>
+                            <li>
+                              Description: I hate Comp 250 still, 
+                              even though I'm not taking it right now.
+                              I NEVER want to see that class ever again.
+                              I don't want to think about it, it makes me
+                              too mad. It's insane that they expect you 
+                              to learn that much in such a short amount of time.
+                            </li>
+                          </ul>  
+                        </section>
+                        
+                        <figure>
+                          <img src="img/smile.gif" alt="image">
+                        </figure>
+                        
+                      </div>
+                      <div class="day-emotion-entry">
+                        <section>
+                          <ul>
+                            <li>HH:MM</li>
+                            <li>Rating: 10</li>
+                            <li>
+                              Description: I hate Comp 250 still, 
+                              even though I'm not taking it right now.
+                              I NEVER want to see that class ever again.
+                              I don't want to think about it, it makes me
+                              too mad. It's insane that they expect you 
+                              to learn that much in such a short amount of time.
+                            </li>
+                          </ul>  
+                        </section>
+                        
+                        <figure>
+                          <img src="img/smile.gif" alt="image">
+                        </figure>
+                        
+                      </div>
+                      <div class="day-emotion-entry">
+                        <section>
+                          <ul>
+                            <li>Time: HH:MM</li>
+                            <li>Rating: 10</li>
+                            <li>
+                              Description: I hate Comp 250 still, 
+                              even though I'm not taking it right now.
+                              I NEVER want to see that class ever again.
+                              I don't want to think about it, it makes me
+                              too mad. It's insane that they expect you 
+                              to learn that much in such a short amount of time.
+                            </li>
+                          </ul>  
+                        </section>
+                        
+                        <figure>
+                          <img src="img/smile.gif" alt="image">
+                        </figure>
+                        
+                      </div>
                     </div>
                     <textarea class="day-body-element" id="dayJournalEntry" placeholder="No journal entry" readonly></textarea>
                 </div>
@@ -137,7 +191,7 @@ export class DayComponent extends BaseComponent {
     if (data) this.dateData = data;
 
     // Mock Summary
-    const daySummary = `My day was productive! I tackled some ongoing projects and made solid progress, especially on my web app. I worked on centering elements within a container class, trying to get everything aligned just right on the page, which took a bit of trial and error. I also reviewed some concepts related to IndexedDB, focusing on setting date_id as the key path in my object store, which will be useful for handling data accurately.In between work, I took`;
+    const daySummary = `My day was productive! I tackled some ongoing projects and made solid progress, especially on my web app. I worked on centering elements within a container class, trying to get everything aligned just right on the page, which took a bit of trial and error. I also reviewed some concepts related to IndexedDB, focusing on setting date_id as the key path in my object store, which will be useful for handling data accurately`;
     
     this.dateData['journal'] = daySummary
 
