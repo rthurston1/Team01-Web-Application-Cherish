@@ -1,3 +1,6 @@
+.container h1 {
+    justify-self: center;
+}
 
 .container h2 {
     background-color: #c7cfc7;

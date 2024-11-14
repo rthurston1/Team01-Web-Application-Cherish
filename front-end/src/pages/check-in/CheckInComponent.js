@@ -1,6 +1,6 @@
-import { EventHub } from "../../eventhub/EventHub.js";
 import { Events } from "../../eventhub/Events.js";
 import { BaseComponent } from "../../BaseComponent.js";
+import { dateFormat } from "../day/DayComponent.js";
 
 // Gets current time, formats as (HH:MM)
 export function getCurrentTime() {
@@ -49,11 +49,11 @@ export function getEmotionById(emotion_id) {
 export class CheckInComponent extends BaseComponent {
   constructor() {
     super("checkInPage", "./pages/check-in/stylesCheckIn.css");
-    this.emotionData = {
-      emotion_id: null,
-      magnitude: 5, // Default intensity
-      description: ""
-    };
+    this.dateData = {};
+
+    // Elements
+    this.selectEmotionLabel = document.getElementById("selectedEmotion");
+    this.titleDate = document.getElementById("checkInDate");
   }
 
   // Build HTML structure for the check-in page
@@ -62,6 +62,7 @@ export class CheckInComponent extends BaseComponent {
       <!-- page -->
     <div class="container">
         <div>
+            <h1 id="checkInDate"></h1>
             <h2>Check-in window</h2>
 
             <!-- ROBBIE CHANGE: New Head Element -->
@@ -74,34 +75,30 @@ export class CheckInComponent extends BaseComponent {
             <!-- label for emotions -->
             <label>Emotions:</label>
 
-            <!-- happy -->
-            <label for="happy">
-                <input type="radio" name="emotion" id="happy" hidden />
-                <img src="./img/happy.gif" alt="happy" class="emoji" />
+            <!-- Happy -->
+            <label for="Happy">
+                <input type="radio" name="emotion" id="Happy" hidden />
+                <img src="./img/Happy.gif" alt="Happy" class="emoji" />
             </label>
-
-            <!-- neutral -->
-            <label for="neutral">
-                <input type="radio" name="emotion" id="neutral" hidden />
-                <img src="./img/neutral.gif" alt="neutral" class="emoji" />
+            <!-- Sad -->
+            <label for="Sad">
+                <input type="radio" name="emotion" id="Sad" hidden />
+                <img src="./img/Sad.gif" alt="Sad" class="emoji" />
             </label>
-
-            <!-- anxious -->
-            <label for="anxious">
-                <input type="radio" name="emotion" id="anxious" hidden />
-                <img src="./img/anxious.gif" alt="anxious" class="emoji" />
+            <!-- Angry -->
+            <label for="Angry">
+                <input type="radio" name="emotion" id="Angry" hidden />
+                <img src="./img/Angry.gif" alt="Angry" class="emoji" />
             </label>
-
-            <!-- sad -->
-            <label for="sad">
-                <input type="radio" name="emotion" id="sad" hidden />
-                <img src="./img/sad.gif" alt="sad" class="emoji" />
-            </label>  
-
-            <!-- angry -->
-            <label for="angry">
-                <input type="radio" name="emotion" id="angry" hidden />
-                <img src="./img/angry.gif" alt="angry" class="emoji" />
+            <!-- Anxious -->
+            <label for="Anxious">
+                <input type="radio" name="emotion" id="Anxious" hidden />
+                <img src="./img/Anxious.gif" alt="Anxious" class="emoji" />
+            </label>
+            <!-- Disgusted -->
+            <label for="Disgusted">
+                <input type="radio" name="emotion" id="Disgusted" hidden />
+                <img src="./img/Disgusted.gif" alt="Disgusted" class="emoji" />
             </label>
 
         </section>
@@ -148,7 +145,9 @@ export class CheckInComponent extends BaseComponent {
   // Method to add event listeners
   _addEventListeners() {
     //add event listeners for all pages 
-    EventHub.getInstance().subscribe(Events.LoadCheckInPage, (data) => this.loadPage(data));
+    this.addEvent(Events.LoadCheckInPage, (data) => this.loadPage(data));
+    this.addEvent(Events.StoredDataSuccess, () => console.log(`Stored new emotion in database`))
+    this.addEvent(Events.StoredDataFailed, () => console.log(`Failed to store emotion in database`))
 
     // Listen for emotion selection
     document.querySelectorAll("input[name='emotion']").forEach((input) => {
@@ -156,7 +155,7 @@ export class CheckInComponent extends BaseComponent {
         this.emotionData.emotion_id = event.target.id;
 
         // ROBBIE CHANGE: Updates the Current Emotion Text
-        document.getElementById("selectedEmotion").textContent = this.emotionData.emotion_id; 
+        this.selectEmotionLabel.textContent = this.emotionData.emotion_id; 
       });
     });
 
@@ -205,19 +204,29 @@ export class CheckInComponent extends BaseComponent {
         return;
     }
 
-    const hub = EventHub.getInstance();
-
     // Get timestamp
     this.emotionData['timestamp'] = getCurrentTime();
-    hub.publish(Events.CheckInSubmitted, this.emotionData);
+
+    // Adds Emotion to Date Object
+    if (!this.dateData["emotions"]) this.dateData["emotions"] = []
+    this.dateData.emotions.push(this.emotionData);
+
+    this.update(Events.StoreData, this.dateData);
 
     // Reset after submission
     this._resetCheckIn();
   }
 
   // Render the check-in page
-  _render(data = null) {
+  _render(data) {
+    this.dateData = data;
+    this.emotionData = {
+      emotion_id: null,
+      magnitude: 5, // Default intensity
+      description: ""
+    };
 
+    this.titleDate.textContent = dateFormat(data.date_id);
   }
  
 }

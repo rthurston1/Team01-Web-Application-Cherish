@@ -1,5 +1,5 @@
 
-.view {
+.journal-container {
     display: flex;
     overflow: hidden; 
     flex-direction: column;
@@ -41,6 +41,7 @@
     height: 400px;
     resize: none;
     margin: 5px auto;
-    font-size: 20px;
+    font-size: 2rem;
+    padding: 20px;
     background-color: rgb(183, 241, 255);
 }

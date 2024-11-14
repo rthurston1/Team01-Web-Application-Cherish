@@ -1,8 +1,6 @@
-import { EventHub } from "../../eventhub/EventHub.js";
 import { Events } from "../../eventhub/Events.js";
 import { BaseComponent } from "../../BaseComponent.js";
 import { MONTHS } from "../calendar/CalendarComponent.js";
-import { getEmotionById } from "../check-in/CheckInComponent.js";
 
 // Converts date id into a readable Date (ex. 11-10-2024 => November 10, 2024)
 export function dateFormat(dataId) {
@@ -19,42 +17,10 @@ export class DayComponent extends BaseComponent {
     this.dateData = {};
   }
 
-  // Methods
-
-  #goToMainPage() {
-    EventHub.getInstance().publish(Events.LoadMainPage, this.dateData);
-  }
-
-  // Calls an event to load journal page
-  #goToJournalPage() {
-    EventHub.getInstance().publish(Events.LoadJournalPage, this.dateData);
-  }
-
-  // Calls an event to load check-in page
-  #goToCheckInPage() {
-    EventHub.getInstance().publish(Events.LoadCheckInPage, this.dateData);
-  }
-
-  #addJournalEntry(journal) {
-    this.dateData["journal_entry"] = journal;
-    EventHub.getInstance().publish(Events.UpdateDatabase, this.dateData);
-  }
-
-  // Appends new emotion entry to Emotion Log
-  #addEmotionEntry(emotion_entry) {
-    if (!this.dateData["emotions"]) this.dateData["emotions"] = [];
-    this.dateData.emotions.push(emotion_entry);
-    this.#calculateRating();
-    alert("emotion added!");
-  }
-
+// Methods
   // Removes the specified emotion element from the Emotion Log
   #removeEmotionEntry(emotion_entry) {
-    document.getElementById("dayEmotionLog").innerHTML = "";
-
-    const filteredArr = this.dateData.emotions.filter(
-      (e) => e !== emotion_entry
-    );
+    const filteredArr = this.dateData.emotions.filter((e) => e !== emotion_entry);
     this.dateData.emotions = filteredArr;
 
     this.#calculateRating();
@@ -112,40 +78,58 @@ export class DayComponent extends BaseComponent {
   }
 
   #renderEmotions() {
-    const emotionLog = document.getElementById("dayEmotionLog");
+    this.emotionLog.innerHTML = "" // Clears html 
     if (!this.dateData.emotions) {
-      emotionLog.textContent = "NO EMOTIONS LOGGED";
+      this.emotionLog.textContent = "NO EMOTIONS LOGGED";
       return;
     }
 
     this.dateData.emotions.forEach((emotion) => {
       const emotionEntry = document.createElement("div");
-      emotionEntry.classList.add("day-log-entry");
-      emotionLog.appendChild(emotionEntry);
+      emotionEntry.classList.add('day-emotion-entry');
 
-      const entryInfo = document.createElement("div");
-      emotionEntry.appendChild(entryInfo);
+      emotionEntry.innerHTML = `
+        <section>
+          <ul>
+            <li id="emotionEntryTime"></li>
+            <li id="emotionEntryRating"></li>
+            <li id="emotionEntryDescription"></li>
+          </ul>  
+        </section>
+        
+        <figure>
+          <img id="emotionEntryImage">
+        </figure>
+      `;
 
-      const emotionName = document.createElement("label");
-      emotionName.textContent = getEmotionById(emotion.emotion_id);
+      // Adds to emotion log
+      this.emotionLog.appendChild(emotionEntry);
 
-      const emotionMag = document.createElement("label");
-      emotionMag.textContent = emotion.magnitude;
+      // Gets Elements
+      const time = document.getElementById("emotionEntryTime");
+      const rating = document.getElementById("emotionEntryRating");
+      const description = document.getElementById("emotionEntryDescription");
+      const image = document.getElementById("emotionEntryImage");
+    
+      // Set Data
+      time.textContent = emotion.timestamp;
+      rating.textContent = emotion.magnitude;
+      description.textContent = emotion.description;
 
-      const timestamp = document.createElement("label");
-      timestamp.textContent = emotion.timestamp;
+      image.src = `img/${emotion.emotion_id}.gif`
+      image.alt = emotion.emotion_id;
 
-      entryInfo.appendChild(emotionName);
-      entryInfo.appendChild(emotionMag);
-      entryInfo.appendChild(timestamp);
+      // Remove ids (Allows next entry to use ids)
+      time.removeAttribute("id");
+      rating.removeAttribute("id");
+      description.removeAttribute("id");
+      image.removeAttribute("id");
 
-      const deleteButton = document.createElement("button");
-      deleteButton.textContent = "DELETE";
-      deleteButton.addEventListener("click", () =>
-        this.#removeEmotionEntry(emotion)
-      );
+      // Will need set src
 
-      emotionEntry.appendChild(deleteButton);
+
+  
+      // TODO: ADD DELETE BUTTON
     });
   }
 
@@ -153,63 +137,43 @@ export class DayComponent extends BaseComponent {
   _buildHTML() {
     return `
             <div class="day-container">
-                <div class="day-head-element">
-
-                    <div id="dayHeader">
-                      <h1>Your Day</h1>
-                    </div>
+                <div class="day-head-container">
+                    <h1>Day Page</h1>
                     <h2 id="dayDate">Hello</h2>
                 </div>
                 
-                <div class="day-body-element" id="dayContent">
-                    <div class="day-emotion-container" id="dayEmotionLog"></div>
-
-                    <div class="day-journal-container">
-                        <textarea id="dayJournalEntry" placeholder="No journal entry" readonly></textarea>
-
-                        <div id="dayButtons">
-                            <button id="dayToMain">Main Page</button>
-                            <button id="dayToJournal">Journal</button>
-                            <button id="dayToCheckIn">Check-In</button>
-                        </div>
-                    </div>
+                <div class="day-body-container">
+                    <div class="day-body-element" id="dayEmotionLog"></div>
+                    <textarea class="day-body-element" id="dayJournalEntry" placeholder="No journal entry" readonly></textarea>
                 </div>
             </div>
         `;
   }
 
-  _addEventListeners() {
-    const hub = EventHub.getInstance();
-    hub.subscribe(Events.LoadDayPage, (data) => this.loadPage(data));
-    hub.subscribe(Events.SummarySubmitted, (journal) =>
-      this.#addJournalEntry(journal)
-    );
-    hub.subscribe(Events.CheckInSubmitted, (emotion) =>
-      this.#addEmotionEntry(emotion)
-    );
+  _createElementObjs() {
+     // Elements
+     this.titleDate = document.getElementById("dayDate");
+     this.journalEntry =  document.getElementById("dayJournalEntry");
+     this.emotionLog = document.getElementById("dayEmotionLog");
+  }
 
-    document
-      .getElementById("dayToMain")
-      .addEventListener("click", () => this.#goToMainPage());
-    document
-      .getElementById("dayToJournal")
-      .addEventListener("click", () => this.#goToJournalPage());
-    document
-      .getElementById("dayToCheckIn")
-      .addEventListener("click", () => this.#goToCheckInPage());
+  _addEventListeners() {
+    this.addEvent(Events.LoadDayPage, (data) => this.loadPage(data));
   }
 
   // Changes view to Day Page
   _render(data) {
     if (data) this.dateData = data;
 
-    document.getElementById("dayDate").textContent = dateFormat(
-      this.dateData.date_id
-    );
-    document.getElementById("dayJournalEntry").textContent =
-      this.dateData.journal;
+    this.dateData['journal'] = this.dateData['journal'] 
+    ? this.dateData.journal
+    : "";
+
+    this.titleDate.textContent = dateFormat(this.dateData.date_id);
+    this.journalEntry.textContent = this.dateData.journal;
 
     // Added Emotions to Log
     this.#renderEmotions();
   }
 }
+
