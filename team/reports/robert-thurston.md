@@ -216,6 +216,8 @@
     - robbie-fix-summary-view
     - robbie-fix-summary-buttons
     - LiamAndSam-SummaryPage
+    - bugfix-date-id-formatting-niko
+
 
 ### Fixed Summary Page Buttons
   - **Details:** Fixed a bug where clicking on tabs would not change the text content within the page.
