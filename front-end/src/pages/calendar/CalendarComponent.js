@@ -87,14 +87,12 @@ export class CalendarComponent extends BaseComponent {
       if (t.classList.contains("day")) {
         const date = t.dataset.date;
 
-        DATABASE.restoreDay(date)
-        .then((data) => {
-          console.log("Done!")
+        DATABASE.restoreDay(date).then((data) => {
+          console.log("Done!");
           this.update(Events.LoadDayPage, data);
         });
 
-        console.log(`Loading ${date}...`)
-
+        console.log(`Loading ${date}...`);
       }
     });
 
@@ -166,9 +164,7 @@ export class CalendarComponent extends BaseComponent {
         month = 12;
         year--;
       }
-      div.dataset.date = `${month}-${day}-${
-        year % 100 /* just get last 2 digits */
-      }`;
+      div.dataset.date = `${month}-${day}-${year}`;
       return div;
     };
     // Returns if the day is today

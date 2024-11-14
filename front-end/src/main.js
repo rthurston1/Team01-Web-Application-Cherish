@@ -13,21 +13,21 @@ const hub = EventHub.getInstance();
 hub.subscribe(Events.InitDataSuccess, () => {
   console.log("Initialized database successfully");
 
-  DATABASE.restoreDay(id)
-  .then((data) => {
+  DATABASE.restoreDay(id).then((data) => {
     hub.publish(Events.LoadMainPage, data);
     hub.publish(Events.LoadNav, data);
   });
 });
 
-hub.subscribe(Events.InitDataFailed, () => console.log("Failed to initialize database"));
+hub.subscribe(Events.InitDataFailed, () =>
+  console.log("Failed to initialize database")
+);
 
 const today = new Date();
 
-const dateArr = [today.getMonth() + 1, today.getDate(), today.getFullYear() % 100 ]; 
-// Will not mod Year by 100 once Niko and George fix the calendar elements
+const dateArr = [today.getMonth() + 1, today.getDate(), today.getFullYear()];
 
-const id = dateArr.join('-');
+const id = dateArr.join("-");
 
 export const DATABASE = new DatabaseService();
 const calendar = new CalendarComponent(today);
@@ -38,7 +38,6 @@ const checkIn = new CheckInComponent();
 // Retrieves data for the current day, on success passes data through an event
 
 console.log("Everything loaded");
-
 
 // hub.subscribe(Events.ClearedDataSuccess, () => console.log("Data cleared"));
 // hub.subscribe(Events.ClearedDataFailed, () => console.log("Failed to clear data"));
