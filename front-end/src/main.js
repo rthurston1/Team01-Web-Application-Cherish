@@ -34,6 +34,7 @@ const calendar = new CalendarComponent(today);
 const day = new DayComponent();
 const journal = new JournalComponent();
 const checkIn = new CheckInComponent();
+const summary = new SummaryComponent();
 
 // Retrieves data for the current day, on success passes data through an event
 

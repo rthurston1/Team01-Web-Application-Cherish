@@ -218,4 +218,10 @@
 
 ### Fixed Summary Page Buttons
   - **Details:** Fixed a bug where clicking on tabs would not change the text content within the page.
+  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
+
+### Reworked CSS
+  - **Details:** Fixed multiple issues with the CSS files. All global styles are set by `stylesBase.css`. This solved a lot of inconsistencies and resizing of different pages.
+  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
+
 
