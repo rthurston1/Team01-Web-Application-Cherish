@@ -32,21 +32,23 @@ export class JournalComponent extends BaseComponent {
     // Builds and returns HTML structure
     _buildHTML() { 
         return `
-            <div id="journalHeader">
-                <h1>Journal</h1>
-            </div>
-
-            <h2 id="journalDate"><h2>
-            <h2>What's on your mind?</h2>
-
-            <form class="text-submission" id="daySummary">
-                <textarea id="journalSummary" placeholder="Write your summary here (2000 character limit)" maxlength="2000"></textarea>
-                <div id="wordCount">Character Count: 0</div> 
-                <div class="button-container">
-                    <button id="saveJournal" type="button">Save</button>
-                    <button id="cancelJournal" type="button">Cancel</button>
+            <div class="journal-container">
+                <div id="journalHeader">
+                    <h1>Journal</h1>
                 </div>
-            </form>
+
+                <h2 id="journalDate"><h2>
+                <h2>What's on your mind?</h2>
+
+                <form class="text-submission" id="daySummary">
+                    <textarea id="journalSummary" placeholder="Write your summary here (2000 character limit)" maxlength="2000"></textarea>
+                    <div id="wordCount">Character Count: 0</div> 
+                    <div class="button-container">
+                        <button id="saveJournal" type="button">Save</button>
+                        <button id="cancelJournal" type="button">Cancel</button>
+                    </div>
+                </form>
+            </div>
         `   
     }
 
