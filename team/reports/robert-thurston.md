@@ -217,7 +217,10 @@
     - robbie-fix-summary-buttons
     - LiamAndSam-SummaryPage
     - bugfix-date-id-formatting-niko
-
+    - robbie-test-display-data
+    - jesse-day-rating-feature
+    - robbie-fix-css
+    - feature-tweak-nav-button-niko
 
 ### Fixed Summary Page Buttons
   - **Details:** Fixed a bug where clicking on tabs would not change the text content within the page.
@@ -242,6 +245,11 @@
 ### Synced Character Count
   - **Details:** Character count now displays the correct number of characters typed when rending the Journal Page.
   - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
+
+## November 15, 2024
+### Deleted Branches
+  - **Details:** Deleted the following branches:
+    - indexeddb-experimental-george-niko
 
 
 
