@@ -227,4 +227,21 @@
   - **Details:** Fixed multiple issues with the CSS files. All global styles are set by `stylesBase.css`. This solved a lot of inconsistencies and resizing of different pages.
   - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
 
+### Added Way to Delete Emotion Entries
+  - **Details:** Can now delete an emotion by clicking a button.
+  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
+
+### Confirmation Checks for Journal
+  - **Details:** Application confirms with the user before reverting any changes made to journal entry.
+  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
+
+### Tweaked Daily Rating Calculations
+   - **Details:** Changed method of calculating the daily rating (It's far from being perfect). Now displays that rating on the day page.
+  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
+
+### Synced Character Count
+  - **Details:** Character count now displays the correct number of characters typed when rending the Journal Page.
+  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
+
+
 
