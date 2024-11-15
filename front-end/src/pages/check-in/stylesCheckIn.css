@@ -65,6 +65,7 @@ input[type="radio"]:checked + .emoji {
     border-radius: 5px;
     border: 1px solid #000000;
     resize: none;
+    font-size: 1.2rem;
 }
 
 .buttons {

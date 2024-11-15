@@ -10,42 +10,6 @@ export function getCurrentTime() {
     return `${hours}:${minutes}`;
 }
 
-
-// Gets the emotion name based on its id
-// export function getEmotionById(emotion_id) {
-//     switch (emotion_id) {
-//         case 0:
-//             return 'Happy';
-//         case 1:
-//             return 'Sad';
-//         case 2:
-//             return 'Angry';
-//         case 3:
-//             return 'Anxious';
-//         case 4:
-//             return 'Disgusted';
-//         default:
-//             return 'Neutral';
-//     }
-// }
-
-export function getEmotionById(emotion_id) {
-  switch (emotion_id) {
-      case 0:
-          return 'happy';
-      case 1:
-          return 'neutral';
-      case 2:
-          return 'sad';
-      case 3:
-          return 'anxious';
-      case 4:
-          return 'angry';
-      default:
-          return 'neutral';
-  }
-}
-
 export class CheckInComponent extends BaseComponent {
   constructor() {
     super("checkInPage", "./pages/check-in/stylesCheckIn.css");
@@ -129,7 +93,8 @@ export class CheckInComponent extends BaseComponent {
             <textarea
             id="description"
             rows="4"
-            placeholder="I had a test today which was pretty rough. I didn’t feel very prepared."
+            placeholder="Write your reasoning here (250 character limit)"
+            maxLength="250"
             ></textarea>
         </section>
 
@@ -215,6 +180,7 @@ export class CheckInComponent extends BaseComponent {
 
     // Reset after submission
     this._resetCheckIn();
+    alert("Emotion Saved!")
   }
 
   // Render the check-in page
