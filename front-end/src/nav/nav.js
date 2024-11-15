@@ -1,4 +1,3 @@
-import { BaseComponent } from "../BaseComponent.js";
 import { EventHub } from "../eventhub/EventHub.js";
 import { Events } from "../eventhub/Events.js";
 
@@ -45,24 +44,22 @@ hub.subscribe(Events.LoadNav, (data) => {
   }
 
   function addEventListeners() {
-    document
-      .getElementById("toCalendarPage")
-      .addEventListener("click", () => goToPage("calendar"));
-    document
-      .getElementById("toJournalPage")
-      .addEventListener("click", () => goToPage("journal"));
-    document
-      .getElementById("toCheckInPage")
-      .addEventListener("click", () => goToPage("check-in"));
-    document
-      .getElementById("toDayPage")
-      .addEventListener("click", () => goToPage("today"));
-    document
-      .getElementById("toSummaryPage")
-      .addEventListener("click", () => goToPage("summary"));
+    // Use event delegation to handle button clicks
+    // and navigate to the appropriate page using the text content of the button
+    document.getElementsByClassName("nav")[0].addEventListener("click", (e) => {
+      if (e.target.classList.contains("nav-btns")) {
+        // Remove the active class from all buttons
+        document.querySelectorAll(".nav-btns").forEach((btn) => {
+          btn.classList.remove("active");
+        });
+        e.target.classList.add("active");
+        goToPage(e.target.textContent.toLowerCase());
+      }
+    });
   }
 
   function render() {
+    // Render the navigation bar
     document.getElementsByClassName("nav")[0].innerHTML = buildHTML();
     addEventListeners();
   }

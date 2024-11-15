@@ -81,6 +81,10 @@ body {
   background-color: #d45b5b; /* Darken color on hover */
   color: #f8f9fa; /* Lighten text color */
 }
+/* Give the clicked button some oompth */
+.nav-btns:active {
+  transform: scale(0.95);
+}
 
 #toCalendarPage {
   background-color: blueviolet;
