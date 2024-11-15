@@ -62,7 +62,7 @@ body {
 .nav-btns {
   display: flex;
   gap: 10px; /* Add some gap between the buttons */
-  min-width: 15%;
+  min-width: 19%;
   border: none;
   border-radius: 8px;
   color: white;
