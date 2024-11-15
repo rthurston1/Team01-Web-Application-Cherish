@@ -75,7 +75,7 @@ export class DatabaseService extends Service {
 
     return new Promise((resolve, reject) => {
       const request = objectStore.put(data); // Updates entry if already exists, adds it otherwise
-      request.onsuccess = (event) => {
+      request.onsuccess = () => {
         this.update(Events.StoredDataSuccess);
         resolve("Data Stored Successfully");
       };
