@@ -131,7 +131,8 @@ export class CheckInComponent extends BaseComponent {
             <textarea
             id="description"
             rows="4"
-            placeholder="I had a test today which was pretty rough. I didn’t feel very prepared."
+            placeholder="Write your reasoning here (250 character limit)"
+            maxLength="250"
             ></textarea>
         </section>
 
@@ -234,6 +235,7 @@ export class CheckInComponent extends BaseComponent {
 
     // Reset after submission
     this._resetCheckIn();
+    alert("Emotion Saved!")
   }
 
   // Render the check-in page

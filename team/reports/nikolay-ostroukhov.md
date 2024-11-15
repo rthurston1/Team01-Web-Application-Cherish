@@ -117,3 +117,9 @@ November 14, 2024
 - **Task**: Look into issue #60 and create a branch for it.
 - **Details**: Created a new branch `bugfix-date-id-formatting-niko` to address issue #60. The issue is about changing the dataset id format from two year digits to four year digits.
 - **Link to Commit**: [Commit](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/781a5234d71c42bc4956a5d6088e8d109208afc6)
+
+November 14, 2024
+
+- **Task**: Replace the stats button with a button to today's day page.
+- **Details**: Swapped out the stats button with a button that redirects to today's day page. The button is located in the global navigation bar. Refactored a class name and button ids inside nav.js.
+- **Link to Commit**: [Commit](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/479eea30b04ae69417a92307edf8feb8a77bf72e)

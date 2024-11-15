@@ -6,15 +6,17 @@ The visual calendar dashboard will provide users with a calendar window where th
 
 **Assigned to**: Anugrah George, Nikolay Ostroukhov
 
-## Dynamic Button Naviation (3 pts)
+## Previous and Next Month Navigation (3 pts)
+
+Within the visual calendar dashboard, users can navigate to previous and next month if they prefer to view. This is coded within the calendar component as it only impacts the calendar dashboard.
+
+**Assigned to**: Anugrah George
+
+## Dynamic Button Navigation (3 pts)
 
 A system-wide button system that easily allows the user to switch between different pages in the application.
 
-## User Profiles (1 pt)
-
-The user will be able to create a user profile that saves their mood rating progress. The user will be able to change profiles.
-
-**Assigned to**: TBD
+**Assigned to**: Robert Thurston 
 
 ## Check-In Page (1 pt)
 
@@ -39,15 +41,9 @@ Users will be able to review their weekly or monthly summary reports that highli
 
 **Assigned to**: Liam Campbell, Samuel Hernandez 
 
-## Customizable Themes (3' pts)
-
-Users will be able to choose from light or dark mode when using the app.
-
-**Assigned to**: TBD
-
 ## Notifications and Alerts (4' pts)
 
 This feature will allow users to set a reminder to notify them to log their day through push notifications, email, or SMS.
 
-**Assigned to**: TBD
+**Assigned to**: Anugrah George and Nikolay Ostroukhov
 
