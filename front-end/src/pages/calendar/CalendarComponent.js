@@ -82,11 +82,14 @@ export class CalendarComponent extends BaseComponent {
   _addEventListeners() {
     this.addEvent(Events.LoadMainPage, (data) => this.loadPage(data));
 
+    // Add event listener to the days container
+    // When a day is clicked, load the day page and
+    // pass the date as a parameter in the format "MM-DD-YYYY"
     document.querySelector(".days").addEventListener("click", (e) => {
       const t = e.target;
       if (t.classList.contains("day")) {
         const date = t.dataset.date;
-
+        // Restore the data for the selected day
         DATABASE.restoreDay(date).then((data) => {
           console.log("Done!");
           this.update(Events.LoadDayPage, data);
