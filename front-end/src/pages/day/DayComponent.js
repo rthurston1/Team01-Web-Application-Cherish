@@ -1,6 +1,7 @@
 import { Events } from "../../eventhub/Events.js";
 import { BaseComponent } from "../../BaseComponent.js";
 import { MONTHS } from "../calendar/CalendarComponent.js";
+import { EMOTIONS } from "../check-in/CheckInComponent.js";
 
 // Converts date id into a readable Date (ex. 11-10-2024 => November 10, 2024)
 export function dateFormat(dataId) {
@@ -32,7 +33,7 @@ export class DayComponent extends BaseComponent {
   #calculateRating() {
     //each emoji will have a baseline value from -3 to 2 
     //to get the check-in numeric rating, we will multiply baseline emoji value by magnitude of emotion value 
-    //e.g. highest possible rating is happy with 10 magnitude (2 * 10 = 20), lowest possible rating is Angry with 10 magnitude (-3 * 10 = -30)
+    //e.g. highest possible rating is happy with 10 magnitude (3 * 10 = 30), lowest possible rating is Disgusted with 10 magnitude (-5 * 10 = -50)
     //then we avg together all of these check-in ratings for the day for the final rating 
     
     let totalRating = 0, count = 0, dailyRating = 0; 
@@ -47,7 +48,7 @@ export class DayComponent extends BaseComponent {
           const magnitude = emotionObj.magnitude;
           switch(emotionObj.emotion_id){
             case 'happy':
-              base = 2;
+              base = 3;
               break;
             case 'neutral':
               base = 0; 
@@ -61,6 +62,9 @@ export class DayComponent extends BaseComponent {
             case 'angry':
               base = -3; 
               break; 
+              case 'disgusted':
+                base = -5; 
+                break; 
             default:
               base = 0; 
               break; 
