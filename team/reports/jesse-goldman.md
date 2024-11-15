@@ -49,3 +49,11 @@
 ### November 13, 2024
   - **Task**: Implemented logic for calculating daily rating, replaced and rearranged emotion emojis 
   - **Details**: calculateRating() function will calculate the daily rating based on user-selected emotion and magnitude of emotion. I replaced and rearranged the emotion emojis so that they better represent a descending order of emotions: happy -> neutral -> anxious -> sad -> angry 
+
+### November 14, 2024
+  - **Task**: Worked more on emojis and day rating 
+  - **Details**: Met with Robbie to discuss emojis, day rating logic.
+
+### November 15, 2024
+  - **Task**: Worked more on emojis and day rating, sequence diagram, Finalizing Figma   
+  - **Details**: working with Sam on updating Figma to accommodate final frontend design 
