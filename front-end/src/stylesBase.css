@@ -3,14 +3,29 @@
   padding: 0;
   box-sizing: border-box;
   font-family: Arial, sans-serif;
+  overflow: hidden;
 }
 
 body {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100vw;
   height: 100vh;
   background-color: #2320c2ab;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
 }
 
 .app #content {
@@ -44,14 +59,10 @@ body {
   padding: 10px; /* Temporary padding for visibility */
 }
 
-.feature-buttons {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr); /* Creates 5 equal columns */
+.nav-btns {
+  display: flex;
   gap: 10px; /* Add some gap between the buttons */
-  width: 100%; /* Ensure it takes up full width */
-}
-
-.feature-button {
+  min-width: 19%;
   border: none;
   border-radius: 8px;
   color: white;
@@ -60,30 +71,34 @@ body {
   font-family: "Brush Script MT", cursive;
   font-size: 1.5em;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  display: flex;
   align-items: center;
   justify-content: center;
+  padding: 10px;
 }
 
-.feature-button:hover {
+.nav-btns:hover {
   transform: scale(1.05);
   background-color: #d45b5b; /* Darken color on hover */
   color: #f8f9fa; /* Lighten text color */
 }
+/* Give the clicked button some oompth */
+.nav-btns:active {
+  transform: scale(0.95);
+}
 
-.calendar-page {
+#toCalendarPage {
   background-color: blueviolet;
 }
 
-.check-in {
+#toCheckInPage {
   background-color: green;
 }
-.journal {
+#toJournalPage {
   background-color: blue;
 }
-.stats {
+#toDayPage {
   background-color: orange;
 }
-.summary {
+#toSummaryPage {
   background-color: gray;
 }
