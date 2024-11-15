@@ -5,7 +5,7 @@ import { Events } from "../eventhub/Events.js";
 const hub = EventHub.getInstance();
 
 hub.subscribe(Events.LoadNav, (data) => {
-    /**
+  /**
    * Navigates to the specified page.
    * @param {*} page The page to navigate to. Options are "check-in", "journal",
    * "stats", "summary", and "calendar".
@@ -19,8 +19,8 @@ hub.subscribe(Events.LoadNav, (data) => {
       case "journal":
         hub.publish(Events.LoadJournalPage, data);
         break;
-      case "stats":
-        hub.publish(Events.LoadStatsPage, data);
+      case "today":
+        hub.publish(Events.LoadDayPage, data);
         break;
       case "summary":
         hub.publish(Events.LoadSummaryPage, data);
@@ -36,29 +36,29 @@ hub.subscribe(Events.LoadNav, (data) => {
 
   function buildHTML() {
     return `
-              <button class="feature-button calendar-page" id="main_toCalendarPage">Calendar</button>
-              <button class="feature-button check-in" id="main_toCheckInPage">Check-in</button>
-              <button class="feature-button journal" id="main_toJournalPage">Journal</button>
-              <button class="feature-button stats" id="main_toStatsPage">Stats</button>
-              <button class="feature-button summary" id="main_toSummaryPage">Summary</button>
+              <button class="nav-btns" id="toCalendarPage">Calendar</button>
+              <button class="nav-btns" id="toCheckInPage">Check-in</button>
+              <button class="nav-btns" id="toDayPage">Today</button>
+              <button class="nav-btns" id="toJournalPage">Journal</button>
+              <button class="nav-btns" id="toSummaryPage">Summary</button>
       `;
   }
 
   function addEventListeners() {
     document
-      .getElementById("main_toCalendarPage")
+      .getElementById("toCalendarPage")
       .addEventListener("click", () => goToPage("calendar"));
     document
-      .getElementById("main_toJournalPage")
+      .getElementById("toJournalPage")
       .addEventListener("click", () => goToPage("journal"));
     document
-      .getElementById("main_toCheckInPage")
+      .getElementById("toCheckInPage")
       .addEventListener("click", () => goToPage("check-in"));
     document
-      .getElementById("main_toStatsPage")
-      .addEventListener("click", () => goToPage("stats"));
+      .getElementById("toDayPage")
+      .addEventListener("click", () => goToPage("today"));
     document
-      .getElementById("main_toSummaryPage")
+      .getElementById("toSummaryPage")
       .addEventListener("click", () => goToPage("summary"));
   }
 
@@ -69,4 +69,3 @@ hub.subscribe(Events.LoadNav, (data) => {
 
   render();
 });
-
