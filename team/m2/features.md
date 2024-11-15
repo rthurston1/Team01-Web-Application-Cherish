@@ -6,6 +6,12 @@ The visual calendar dashboard will provide users with a calendar window where th
 
 **Assigned to**: Anugrah George, Nikolay Ostroukhov
 
+## Previous and Next Month Navigation (3 pts)
+
+Within the visual calendar dashboard, users can navigate to previous and next month if they prefer to view. This is coded within the calendar component as it only impacts the calendar dashboard.
+
+**Assigned to**: Anugrah George
+
 ## Dynamic Button Navigation (3 pts)
 
 A system-wide button system that easily allows the user to switch between different pages in the application.
