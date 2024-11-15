@@ -123,3 +123,8 @@ November 14, 2024
 - **Task**: Replace the stats button with a button to today's day page.
 - **Details**: Swapped out the stats button with a button that redirects to today's day page. The button is located in the global navigation bar. Refactored a class name and button ids inside nav.js.
 - **Link to Commit**: [Commit](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/479eea30b04ae69417a92307edf8feb8a77bf72e)
+
+November 15, 2024
+
+- **Task**: Create new branch for issue #67 and start working on the edit/delete buttons for the day page.
+- **Details**: Created a new branch `feature-edit-emotion-log-niko` and `feature-edit-emotion-log-niko-2` to bring branch up to main without merging, potentially introducing css conflicts. Added edit and delete buttons to each emotion log entry on the day page.
