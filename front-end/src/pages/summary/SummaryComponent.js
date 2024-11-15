@@ -11,6 +11,9 @@ export class SummaryComponent extends BaseComponent {
     _buildHTML() {
         return `
         <div class="container">
+            <div class="center-container">
+                <h2>Summary</h2>
+            </div>
             <div class="tabs">
                 <div class="tab" id="tab-Day">Day</div>
                 <div class="tab" id="tab-Week">Week</div>
@@ -18,29 +21,20 @@ export class SummaryComponent extends BaseComponent {
                 <div class="tab" id="tab-Year">Year</div>
             </div>
             <div class="text_box">
-                <h2>Summary</h2>
                 <div id="summary-text" class="text">Click on a tab to see the summary.</div>
             </div>
             <div class="stats">
                 <h3>Stats:</h3>
-                <div class="Current Streak">
-                    <span>Current Streak ---------> </span>
-                    <span>num</span>
-            </div>
-            <div class="Longest Streak">
-                <span>Longest Streak  ---------></span>
-                <span>Num</span>
-            </div>
-            <div class="Prominent Emotions">
-                <span>Prominent Emotions ---------></span>
-                <span>String</span>
+                <div>
+                    <span>Day Rating:</span>
+                    <span id="day-rating">Fetching...</span>
                 </div>
-                <div class="Happy Avg">
-                    <span>Happy Avg ---------></span>
-                    <span>String</span>
-                </div>
+                <div>
+                    <span>Current Day:</span>
+                    <span id="current-day">Fetching...</span>
                 </div>
             </div>
+        </div>
             `;
     }
 
@@ -52,17 +46,19 @@ export class SummaryComponent extends BaseComponent {
         dayTab.addEventListener("click", () => handleClick(dayTab, "Day"));
 
         const weekTab = document.getElementById("tab-Week");
-        weekTab.addEventListener("click", () => handleClick(dayTab, "Week"));
+        weekTab.addEventListener("click", () => handleClick(weekTab, "Week"));
 
         const monthTab = document.getElementById("tab-Month");
-        monthTab.addEventListener("click", () => handleClick(dayTab, "Month"));
+        monthTab.addEventListener("click", () => handleClick(monthTab, "Month"));
 
         const yearTab = document.getElementById("tab-Year");
-        yearTab.addEventListener("click", () => handleClick(dayTab, "Year"));
+        yearTab.addEventListener("click", () => handleClick(yearTab, "Year"));
     }
 
     _render(data) {
         this.dateData = data
+        document.getElementById("day-rating").textContent = this.dateData.rating || "N/A";
+        document.getElementById("current-day").textContent = this.dateData.date_id || "N/A";
     }   
 }
 
