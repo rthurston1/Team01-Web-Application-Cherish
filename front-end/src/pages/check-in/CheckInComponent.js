@@ -245,7 +245,9 @@ export class CheckInComponent extends BaseComponent {
     // Reset after submission
     this._resetCheckIn();
     alert("Emotion Saved!");
-    this.update(Events.LoadDayPage, this.dateData);
+    if (this.editMode) {
+      this.update(Events.LoadDayPage, this.dateData);
+    }
   }
 
   // Load the emotion data into the check-in form using the emotion index if it exists
