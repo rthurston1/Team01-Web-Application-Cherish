@@ -140,11 +140,11 @@
 
 ### Fixed Issue with File Explorer
   - **Details:** Fixed issue where Check-in Page would not show up (simply had to import it into main.js and create new class).
-  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
+  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/39617ffd8bca51e64266c093183042911a16e230)
 
 ### Combined Button Navigation with My Branch
   - **Details:** Combined the button navigation Niko implemented into my own branch for testing purposes.
-  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
+  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/aad9a0aa1fd9860989bba8232a9e272adf574c53)
 
 ## November 12, 2024
 ### Added Branches
@@ -165,15 +165,15 @@
 
 ### Added Issue Template
   - **Details:** Added a new issue template for features that need to be fixed.
-  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
+  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/3ac2f71af08ed4913a6eadc964b083c5b1c5047e)
 
 ### Started Implementation of IndexedDB
   - **Details:** Brainstormed ideas with Niko and George on how to store/retrieve data from a client-side database.
-  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
+  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/9e5459b760d4196b7f8e95d44dc3262cd4feb6ad)
 
 ### Designed First Draft of IndexedDB
  - **Details:** Used indexedDB to successfully pass data between different components and saves any changes to the database.
- - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
+ - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/6986002b6429e6382a33ea3ee7819e383113d2bb)
 
 ## November 13, 2024
 ### Added Branches
@@ -189,15 +189,15 @@
 
 ### Fixed Display Bug
   - **Details:** Fixed a bug where summary view would not properly show up fully.
-  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
+  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/bf42abe466b09bde727154d6e5154d9c77c0e163)
 
 ### Fixed Day Page Format/Style
   - **Details:** Finally formatted of the day page so that the emotion log entries and journal render nicely. (There's still more to be done, but that's a much later problem).
-  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
+  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/6299b3563ebe7fd633012af50f02811121be4d62)
 
 ### Completed IndexedDB Functionality
   - **Details:** Fully integrated IndexedDB into program. Users can now safely log emotions and journal entries which then display onto the day page.
-  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
+  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/89738f634f31ff4f2e6e4889ff355972b6a0b309)
 
 ## November 14, 2024
 ### Added Branches
@@ -216,27 +216,27 @@
 
 ### Fixed Summary Page Buttons
   - **Details:** Fixed a bug where clicking on tabs would not change the text content within the page.
-  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
+  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/b13c4294bceefaba4f97ec24fad91965f9dfe455)
 
 ### Reworked CSS
   - **Details:** Fixed multiple issues with the CSS files. All global styles are set by `stylesBase.css`. This solved a lot of inconsistencies and resizing of different pages.
-  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
+  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/888e0d2a109d800ad21a94bd2bbd45b62408b12e)
 
 ### Added Way to Delete Emotion Entries
   - **Details:** Can now delete an emotion by clicking a button.
-  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
+  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/101004a4032c031daaa7492fbca2359c6e6d90fd)
 
 ### Confirmation Checks for Journal
   - **Details:** Application confirms with the user before reverting any changes made to journal entry.
-  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
+  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/f5437e3af4b3280e2dbc35ba07d88f670765ca0e)
 
 ### Tweaked Daily Rating Calculations
    - **Details:** Changed method of calculating the daily rating (It's far from being perfect). Now displays that rating on the day page.
-  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
+  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/101004a4032c031daaa7492fbca2359c6e6d90fd)
 
 ### Synced Character Count
   - **Details:** Character count now displays the correct number of characters typed when rending the Journal Page.
-  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
+  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/f5437e3af4b3280e2dbc35ba07d88f670765ca0e)
 
 ## November 15, 2024
 ### Deleted Branches
@@ -244,7 +244,7 @@
 
 ### Fix Day Page Bug
   - **Details:** Once again fixed CSS and fixed issue where having no emotions sometimes wouldn't show "NO EMOTIONS LOGGED" as intended. 
-  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
+  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/766eda5ccfd786e66eb1ee473f6b0f44e79898bb)
 
 
 
