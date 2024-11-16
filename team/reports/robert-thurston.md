@@ -74,10 +74,12 @@
   - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/dbd244dca768e7cfdf86dfba7c01cc9c4ca2ae11)
 
 ## November 3, 2024
+### Began Logging Branches
+  - **Details** Decided it would be best to report any branch creations/deletions within our report files (Since I'm the repository owner, I'm responsible for recording any branch deletions.
+
 ### Added New Branches
-  - **Details:** Created the following branches:
-    - jesse-robbie-daypage-week2
-    - robbie-daypage-week2
+  - jesse-robbie-daypage-week2
+  - robbie-daypage-week2
   
 ## November 4, 2024
 ### Added Function to BaseComponent
@@ -97,21 +99,19 @@
  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/0c1a3ddb1245fc406d04f97541d751f83da2b402)
 
 ### Added New Branch
-  - **Details:** Created the following branches:
-    - robbie-emotion-log-feature
+  - robbie-emotion-log-feature
 
 ### Deleted Branches
- - **Details:** Deleted the following branches from the repository:
-    - george-niko-mainpage
-    - testing-niko
-    - georgeAndNiko-MainPageEdits
-    - niko-frontend-starter
-    - robbie-custom-issues
-    - jesse-robbie-daypage
-    - Wacil-ChangingFileName
-    - Wacil-CheckInWindow
-    - featuremd-update-robbie
-    - robbie-daypage-week2
+  - george-niko-mainpage
+  - testing-niko
+  - georgeAndNiko-MainPageEdits
+  - niko-frontend-starter
+  - robbie-custom-issues
+  - jesse-robbie-daypage
+  - Wacil-ChangingFileName
+  - Wacil-CheckInWindow
+  - featuremd-update-robbie
+  - robbie-daypage-week2
 
 ### Report New Features
   - **Details:** Specified the Journal page and Check-In page as their own feature within feature.md.
@@ -127,18 +127,16 @@
 
 ## November 11, 2024
 ### Added Branches
- - **Details:** Created the following branches: 
   - robbie-fix-checkin-page
   - robbie-testing-niko-merge
   - robbie-passing-data-feature
 
 ### Deleted Branches
-  - **Details** Deleted the following branches:
-    - robbie-daypage
-    - robbie-fix-checkin-page
-    - jesse-dayPage
-    - jesse-robbie-daypage-week2
-    - robbie-testing-niko-merge
+  - robbie-daypage
+  - robbie-fix-checkin-page
+  - jesse-dayPage
+  - jesse-robbie-daypage-week2
+  - robbie-testing-niko-merge
 
 ### Fixed Issue with File Explorer
   - **Details:** Fixed issue where Check-in Page would not show up (simply had to import it into main.js and create new class).
@@ -150,22 +148,20 @@
 
 ## November 12, 2024
 ### Added Branches
-  - **Details:** Created the following branches: 
    - robbie-day-page-styling
    - robbie-indexedDB-feature
 
 ### Deleted Branches
-  - **Details** Deleted the following branches:
-    - experimental-navigation-niko
-    - cleanup-main-niko
-    - feature-main-page-clickable-calendar-niko
-    - robbie-passing-data-feature
-    - feature-buttons-component-niko
-    - george-fixingCSSIssue
-    - niko-documentation-updates
-    - Wacil-ReportsFile
-    - Wacil-CheckInJavaScriptFile
-    - Wacil-ChangesOnlyToCheck-inComponent.js
+  - experimental-navigation-niko
+  - cleanup-main-niko
+  - feature-main-page-clickable-calendar-niko
+  - robbie-passing-data-feature
+  - feature-buttons-component-niko
+  - george-fixingCSSIssue
+  - niko-documentation-updates
+  - Wacil-ReportsFile
+  - Wacil-CheckInJavaScriptFile
+  - Wacil-ChangesOnlyToCheck-inComponent.js
 
 ### Added Issue Template
   - **Details:** Added a new issue template for features that need to be fixed.
@@ -181,17 +177,15 @@
 
 ## November 13, 2024
 ### Added Branches
- - **Details:** Created the following branches: 
   - robbie-test-display-data
   - robbie-fix-summary-view
 
 ### Deleted Branches
-  - **Details:** Deleted the following branches:
-    - robbie-fix-summary-view
-    - Wacil-CheckInEmojis
-    - jesse-branch-from-niko-clickable-calendar
-    - robbie-day-page-styling
-    - robbie-indexedDB-feature
+  - robbie-fix-summary-view
+  - Wacil-CheckInEmojis
+  - jesse-branch-from-niko-clickable-calendar
+  - robbie-day-page-styling
+  - robbie-indexedDB-feature
 
 ### Fixed Display Bug
   - **Details:** Fixed a bug where summary view would not properly show up fully.
@@ -207,17 +201,18 @@
 
 ## November 14, 2024
 ### Added Branches
- - **Details:** Created the following branches: 
   - robbie-fix-summary-buttons
   - roobie-fix-css
 
 ### Deleted Branches
-  - **Details:** Deleted the following branches:
-    - robbie-fix-summary-view
-    - robbie-fix-summary-buttons
-    - LiamAndSam-SummaryPage
-    - bugfix-date-id-formatting-niko
-
+  - robbie-fix-summary-view
+  - robbie-fix-summary-buttons
+  - LiamAndSam-SummaryPage
+  - bugfix-date-id-formatting-niko
+  - robbie-test-display-data
+  - jesse-day-rating-feature
+  - robbie-fix-css
+  - feature-tweak-nav-button-niko
 
 ### Fixed Summary Page Buttons
   - **Details:** Fixed a bug where clicking on tabs would not change the text content within the page.
@@ -242,6 +237,10 @@
 ### Synced Character Count
   - **Details:** Character count now displays the correct number of characters typed when rending the Journal Page.
   - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
+
+## November 15, 2024
+### Deleted Branches
+  - indexeddb-experimental-george-niko
 
 
 
