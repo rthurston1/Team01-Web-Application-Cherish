@@ -6,6 +6,20 @@
     height: 10%;
 }
 
+#dayHeader h1 {
+    background-color: #ffe600; 
+    color: black; 
+    padding: 10px 20px;
+    border-radius: 10px; 
+    font-size: 2em;
+    text-align: center;
+}
+
+#dayDate {
+    margin-top: 20px; 
+    font-size: 1.5em;  
+}
+
 .day-body-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
