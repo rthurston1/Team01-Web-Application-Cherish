@@ -170,7 +170,8 @@ td {
 .days div {
   padding: 10px;
   font-size: 1em;
-  transition: background 0.3s;
+  transition: background 0.3s, border-radius 0.3s; /* Add border-radius transition */
+  border-radius: 8px; /* Ensure consistent border-radius */
 }
 
 .days .prev-date,
@@ -179,9 +180,17 @@ td {
 }
 
 .days .today {
-  background: red; /* Highlight today's date in red */
+  background: #ff69b4;
   color: white;
   font-weight: bold;
+  border-radius: 8px;
+  transition: background 0.3s, border-radius 0.3s; /* Add border-radius transition */
+}
+
+.days div:hover {
+  background: rgba(0, 0, 0, 0.1); /* Darken current color */
+  cursor: pointer;
+  border-radius: 8px;
 }
 
 /* Responsive behavior */

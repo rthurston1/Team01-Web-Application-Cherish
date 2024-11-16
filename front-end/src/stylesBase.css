@@ -5,20 +5,39 @@
   font-family: Arial, sans-serif;
 }
 
-.date-header {
-  background-color: #c7cfc7;
-  color: black;
-  padding: 1rem 2rem;
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #2320c2ab;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  min-width: 300px; /* Set a minimum width for the app */
+  max-width: 1000px; /* Set a maximum width for the app */
+  min-height: 80vh;
+  background-color: #fff;
   border-radius: 10px;
-  font-size: 1.5rem;
-  text-align: left;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 2rem;
+}
+
+.container {
   width: 100%;
-  margin-bottom: 2rem;
-  font-weight: bold;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-bottom: 2rem; /* Add margin to ensure space between container and nav */
 }
 
 .page-name-header {
-  background-color: #c7cfc7; /*Base color, change as needed in page's respective CSS file*/
+  background-color: #c7cfc7; /* Base color, change as needed in page's respective CSS file */
   color: black;
   padding: 1rem 2rem;
   border-radius: 10px;
@@ -27,59 +46,14 @@
   text-align: center;
 }
 
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100vw;
-  height: 100vh;
-  background-color: #2320c2ab;
-}
-
-.container {
-  width: 100%;
-  height: 100%;
-  padding: 2rem;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.app #content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%; /* Ensure the content div takes up the full height of its parent */
-  flex-grow: 1; /* Allow the content div to grow and fill the available space */
-}
-
-.app {
-  position: relative;
-  width: 80%;
-  padding: 2rem;
-  min-width: 300px; /* Set a minimum width for the app */
-  max-width: 1000px; /* Set a maximum width for the app */
-  min-height: 80vh;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* Navigation Button Styles */
 .nav {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
   justify-content: space-between;
   border: none;
   border-radius: 8px;
   background-color: #f0f0f0; /* Temporary background color for visibility */
   padding: 1rem; /* Temporary padding for visibility */
-  width: 90%; /* Adjust width as needed */
+  width: 100%; /* Adjust width as needed */
 }
 
 .nav-btns {
@@ -146,5 +120,40 @@ body {
   .nav-btns {
     font-size: 1rem;
     padding: 0.5rem;
+  }
+
+  .page-name-header {
+    font-size: 1.5rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .date-header {
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .day-body-container {
+    grid-template-columns: 1fr; /* Single column layout on smaller screens */
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .day-body-element {
+    margin: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  .calendar h3 {
+    font-size: 1rem;
+  }
+
+  .month h1,
+  .month p {
+    font-size: 1rem;
+  }
+
+  .weekdays div,
+  .days div {
+    font-size: 0.85em;
   }
 }
