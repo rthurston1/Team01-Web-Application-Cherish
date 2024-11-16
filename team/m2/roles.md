@@ -67,6 +67,6 @@
   2. [Commit 2](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/da4837d3521365be7f9dd21c42b0d5a710e88b46): Brought up a features idea to the team meeting.
   3. [Commit 3](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/fbf1078c7d1e63eb887a2525522c4d5edc36728c): Reviewed and edited features.md file.
 - **Milestone #3 Top 3 Commits**:
-  1. [Commit 1](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/036c4f5cd093e49d1c8be375c9d1185515b4ce43): Implemented the HTML and CSS for Check-in page
-  2. [Commit 3](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/e6cac128a64e06c8ef035f19d32cbeeb35c1f9e7);
-  3. [Commit 2](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/fa9392077531c2f0721ea361626bd0dcb750325e#diff-a766bb0958d6307800c1d49c8cd83a68d09d3437e913cd7febb8645bfd2c826c): Added 
+  1. [Commit 1](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/036c4f5cd093e49d1c8be375c9d1185515b4ce43): Implemented the HTML and CSS for Check-in page.
+  2. [Commit 2](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/fa9392077531c2f0721ea361626bd0dcb750325e#diff-a766bb0958d6307800c1d49c8cd83a68d09d3437e913cd7febb8645bfd2c826c): Added the correct emji images and deleted the old img file.
+  3. [Commit 3](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/e6cac128a64e06c8ef035f19d32cbeeb35c1f9e7): Changed name in check-in file to fit naming convention.
