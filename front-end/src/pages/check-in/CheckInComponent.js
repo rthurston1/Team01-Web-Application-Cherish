@@ -4,37 +4,37 @@ import { dateFormat } from "../day/DayComponent.js";
 
 // Gets current time, formats as (HH:MM)
 export function getCurrentTime() {
-    const now = new Date();
-    const hours = now.getHours().toString().padStart(2, '0');
-    const minutes = now.getMinutes().toString().padStart(2, '0');
-    return `${hours}:${minutes}`;
+  const now = new Date();
+  const hours = now.getHours().toString().padStart(2, "0");
+  const minutes = now.getMinutes().toString().padStart(2, "0");
+  return `${hours}:${minutes}`;
 }
 
 export const EMOTIONS = {
-  Happy: 'Happy',
-  Neutral: 'Neutral',
-  Anxious: 'Anxious',
-  Sad: 'Sad',
-  Angry: 'Angry',
-  Disgusted: 'Disgusted'
+  Happy: "Happy",
+  Neutral: "Neutral",
+  Anxious: "Anxious",
+  Sad: "Sad",
+  Angry: "Angry",
+  Disgusted: "Disgusted",
 };
 
 export function getEmotionById(emotion_id) {
   switch (emotion_id) {
-      case 0:
-          return EMOTIONS.Happy;
-      case 1:
-          return EMOTIONS.Neutral;
-      case 2:
-          return EMOTIONS.Anxious;
-      case 3:
-          return EMOTIONS.Anxious;
-      case 4:
-          return EMOTIONS.Angry;
-      case 5: 
-          return EMOTIONS.Disgusted; 
-      default:
-          return EMOTIONS.Neutral;
+    case 0:
+      return EMOTIONS.Happy;
+    case 1:
+      return EMOTIONS.Neutral;
+    case 2:
+      return EMOTIONS.Anxious;
+    case 3:
+      return EMOTIONS.Anxious;
+    case 4:
+      return EMOTIONS.Angry;
+    case 5:
+      return EMOTIONS.Disgusted;
+    default:
+      return EMOTIONS.Neutral;
   }
 }
 
@@ -42,6 +42,9 @@ export class CheckInComponent extends BaseComponent {
   constructor() {
     super("checkInPage", "./pages/check-in/stylesCheckIn.css");
     this.dateData = {};
+    this.emotionData = [];
+    this.editMode = false;
+    this.emotion_index = -1;
 
     // Elements
     this.selectEmotionLabel = document.getElementById("selectedEmotion");
@@ -143,47 +146,50 @@ export class CheckInComponent extends BaseComponent {
 
   // Method to add event listeners
   _addEventListeners() {
-    //add event listeners for all pages 
-    this.addEvent(Events.LoadCheckInPage, (data) => this.loadPage(data));
-    this.addEvent(Events.StoredDataSuccess, () => console.log(`Stored new emotion in database`))
-    this.addEvent(Events.StoredDataFailed, () => console.log(`Failed to store emotion in database`))
+    //add event listeners for all pages
+    this.addEvent(Events.LoadCheckInPage, (data, emotion) => {
+      console.log(
+        "Event LoadCheckInPage with data:",
+        data,
+        "and emotion:",
+        emotion
+      );
+      this.loadPage(data, emotion);
+    });
+    this.addEvent(Events.StoreEmotionSuccess, () =>
+      console.log(`Stored new emotion in database`)
+    );
+    this.addEvent(Events.StoreEmotionFailed, () =>
+      console.log(`Failed to store emotion in database`)
+    );
 
     //Listen for emotion selection
     document.querySelectorAll("input[name='emotion']").forEach((input) => {
       input.addEventListener("change", (event) => {
-          this.emotionData.emotion_id = event.target.id;
+        this.emotionData.emotion_id = event.target.id;
 
-          //Update the slider state based on the selected emotion
-          if (this.emotionData.emotion_id === EMOTIONS.Neutral) {
-              this.emotionData.magnitude = 1;
-              document.getElementById("emotion_intensity").value = 1; //set slider value is set to 1 when neutral emotion selected
-              document.getElementById("emotion_intensity").disabled = true; //Disable the slider
-              document.getElementById("emotion_intensity").classList.add("disabled-slider"); // Add a class to style the slider
-          } else {
-              document.getElementById("emotion_intensity").value = 5; //reset slider to midpoint 
-              document.getElementById("emotion_intensity").disabled = false; //re-enable the slider
-              document.getElementById("emotion_intensity").classList.remove("disabled-slider"); //Remove the class to style the slider
-          }
-
-          //Update the current emotion text
-          document.getElementById("selectedEmotion").textContent = this.emotionData.emotion_id;
+        // ROBBIE CHANGE: Updates the Current Emotion Text
+        this.selectEmotionLabel.textContent = this.emotionData.emotion_id;
       });
-  });
-
+    });
 
     // Listen for intensity slider change
-    document.getElementById("emotion_intensity").addEventListener("input", (event) => {
-      if (this.emotionData.emotion_id === 'neutral') {
-          this.emotionData.magnitude = 1; 
-      } else {
+    document
+      .getElementById("emotion_intensity")
+      .addEventListener("input", (event) => {
+        if (this.emotionData.emotion_id === "neutral") {
+          this.emotionData.magnitude = 1;
+        } else {
           this.emotionData.magnitude = event.target.value;
-      }
-  });
+        }
+      });
 
     // Listen for text area input for description
-    document.getElementById("description").addEventListener("input", (event) => {
-      this.emotionData.description = event.target.value;
-    });
+    document
+      .getElementById("description")
+      .addEventListener("input", (event) => {
+        this.emotionData.description = event.target.value;
+      });
 
     // Cancel button listener
     document.querySelector(".cancel").addEventListener("click", () => {
@@ -192,21 +198,19 @@ export class CheckInComponent extends BaseComponent {
 
     // Confirm button listener
     document.querySelector(".confirm").addEventListener("click", () => {
-      this._submitCheckIn();
+      this._submitCheckIn(this.editMode);
     });
   }
 
   // Reset the check-in form
   _resetCheckIn() {
-    this.emotionData = {
-      emotion_id: null,
-      magnitude: 5, // ROBBIE CHANGED: Attribute name now matches with data.md file
-      description: ""
-    };
-    document.querySelectorAll("input[name='emotion']").forEach((input) => (input.checked = false));
+    this.emotionData = { emotion_id: "", magnitude: 5, description: "" };
+    document
+      .querySelectorAll("input[name='emotion']")
+      .forEach((input) => (input.checked = false));
 
     // ROBBIE CHANGED: Added Header to Display current emotion picked
-    document.getElementById("selectedEmotion").textContent = "Pick One"; 
+    document.getElementById("selectedEmotion").textContent = "Pick One";
 
     document.getElementById("emotion_intensity").value = 5;
     document.getElementById("description").value = "";
@@ -216,34 +220,68 @@ export class CheckInComponent extends BaseComponent {
   _submitCheckIn() {
     // ROBBIE CHANGED: Validates the submission (must choose an emotion)
     if (!this.emotionData.emotion_id) {
-        alert("Please select an emotion before submitting");
-        return;
+      alert("Please select an emotion before submitting");
+      return;
     }
 
+    console.log("Submitting check-in data: ", this.emotionData);
+
     // Get timestamp
-    this.emotionData['timestamp'] = getCurrentTime();
+    this.emotionData["timestamp"] = getCurrentTime();
 
-    // Adds Emotion to Date Object
-    if (!this.dateData["emotions"]) this.dateData["emotions"] = []
-    this.dateData.emotions.push(this.emotionData);
+    if (!this.dateData.emotions) {
+      this.dateData.emotions = [];
+    }
+    // If not in edit mode, push the new emotion to the array
+    if (!this.editMode) {
+      // Clone the emotionData object before pushing it to the array
+      this.dateData.emotions.push({ ...this.emotionData });
+    } else {
+      this.dateData.emotions[this.emotion_index] = { ...this.emotionData };
+    }
 
-    this.update(Events.StoreData, this.dateData);
+    this.update(Events.StoreData, this.dateData); // Store the updated data
 
     // Reset after submission
     this._resetCheckIn();
-    alert("Emotion Saved!")
+    alert("Emotion Saved!");
+    if (this.editMode) {
+      this.update(Events.LoadDayPage, this.dateData);
+    }
+  }
+
+  // Load the emotion data into the check-in form using the emotion index if it exists
+  // Otherwise load defaults
+  _loadEmotion() {
+    // Check if this is an emotion object
+    if (
+      this.emotion_index &&
+      this.dateData &&
+      this.dateData.emotions &&
+      this.dateData.emotions.length > this.emotion_index &&
+      this.emotion_index >= 0
+    ) {
+      console.log("Loading emotion: ", this.emotion_index);
+      this.editMode = true;
+      this.emotionData = this.dateData.emotions[this.emotion_index];
+      document.getElementById(this.emotionData.emotion_id).checked = true;
+      document.getElementById("emotion_intensity").value =
+        this.emotionData.magnitude;
+      document.getElementById("description").value =
+        this.emotionData.description;
+    } else {
+      this.editMode = false;
+      console.log("Loading default check in settings.");
+      this._resetCheckIn();
+    }
   }
 
   // Render the check-in page
-  _render(data) {
+  _render(data, emotion_index) {
+    this.emotion_index = emotion_index;
+    console.log("emotion_index: ", emotion_index);
     this.dateData = data;
-    this.emotionData = {
-      emotion_id: null,
-      magnitude: 5, // Default intensity
-      description: ""
-    };
-
+    this._loadEmotion();
     this.titleDate.textContent = dateFormat(data.date_id);
   }
- 
 }
