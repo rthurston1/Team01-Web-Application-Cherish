@@ -1,4 +1,4 @@
-import { EventHub } from '../eventhub/EventHub.js';
+import { EventHub } from "../eventhub/EventHub.js";
 
 /**
  * The Service class is an abstract class that provides a common interface for
@@ -11,7 +11,7 @@ export default class Service {
   constructor() {
     if (new.target === Service) {
       throw new Error(
-        'Service is an abstract class and cannot be instantiated directly'
+        "Service is an abstract class and cannot be instantiated directly"
       );
     }
 
@@ -19,14 +19,14 @@ export default class Service {
   }
 
   addSubscriptions() {
-    throw new Error('Subclasses must implement the addSubscriptions method');
+    throw new Error("Subclasses must implement the addSubscriptions method");
   }
 
   addEvent(event, listener) {
     return EventHub.getInstance().subscribe(event, listener);
   }
 
-  update(event, data = null) {
-    EventHub.getInstance().publish(event, data);
+  update(event, data = null, emotion_index = null) {
+    EventHub.getInstance().publish(event, data, emotion_index);
   }
 }

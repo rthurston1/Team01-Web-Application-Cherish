@@ -15,9 +15,9 @@ export class EventHub {
   }
 
   // Publish an event
-  publish(event, data) {
+  publish(event, data, emotion_index = null) {
     if (!this.events[event]) return;
-    this.events[event].forEach(listener => listener(data));
+    this.events[event].forEach((listener) => listener(data, emotion_index));
   }
 
   // Unsubscribe from an event
@@ -26,7 +26,7 @@ export class EventHub {
 
     // Filter out the listener that should be removed
     this.events[event] = this.events[event].filter(
-      listener => listener !== listenerToRemove
+      (listener) => listener !== listenerToRemove
     );
   }
 
@@ -41,4 +41,3 @@ export class EventHub {
     return EventHub.instance;
   }
 }
-

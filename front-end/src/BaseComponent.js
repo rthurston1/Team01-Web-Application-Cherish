@@ -40,7 +40,7 @@ export class BaseComponent {
    * @param {any} data
    * @returns {void}
    */
-  _render(data) {
+  _render(data, emotion = null) {
     throw new Error("render method not implemented");
   }
 
@@ -49,11 +49,9 @@ export class BaseComponent {
    * Creates references to HTML elements in Component
    * Does not need to be implemented
    */
-  _createElementObjs() {
-    
-  }
+  _createElementObjs() {}
 
-// Methods
+  // Methods
 
   // Adds a custom event listener to the component
   addEvent(event, listener) {
@@ -61,21 +59,21 @@ export class BaseComponent {
   }
 
   // Publishes an event and passes data to its subscribers
-  update(event, data = null) {
-    return EventHub.getInstance().publish(event, data);
+  update(event, data = null, emotion_index = null) {
+    return EventHub.getInstance().publish(event, data, emotion_index);
   }
 
   // Switches the view and renders the page
-  loadPage(data) {
+  loadPage(data, emotion_index = null) {
     document
       .querySelectorAll(".view")
       .forEach((body) => (body.style.display = "none"));
 
-    this._render(data);
+    this._render(data, emotion_index);
     this.#changeDisplay("flex");
   }
 
-// Private Methods
+  // Private Methods
   #changeDisplay(view) {
     document.getElementById(this.bodyElement.id).style.display = view;
   }

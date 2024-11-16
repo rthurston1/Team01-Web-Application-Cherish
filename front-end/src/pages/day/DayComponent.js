@@ -183,13 +183,9 @@ export class DayComponent extends BaseComponent {
           if (e.target.tagName === "IMG") {
             const emotionEntry = e.target.closest(".day-emotion-entry");
             if (!emotionEntry) return; //if no emotion entry is found, exit
-            const index = emotionEntry.dataset.index;
+            const index = emotionEntry.dataset.index; // index of the emotion entry in the emotions array
             if (e.target.id === "check-in-icon") {
-              this.update(
-                Events.LoadCheckInPage,
-                this.dateData
-                // this.dateData.emotions[index] CANNOT DO THIS!
-              );
+              this.update(Events.LoadCheckInPage, this.dateData, index); // Load Check-In Page with emotion index
             } else if (e.target.id === "delete-icon") {
               this.#deleteEmotion(index);
             }

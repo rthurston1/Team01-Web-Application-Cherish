@@ -15,6 +15,8 @@ export class CheckInComponent extends BaseComponent {
     super("checkInPage", "./pages/check-in/stylesCheckIn.css");
     this.dateData = {};
     this.emotionData = [];
+    this.editMode = false;
+    this.emotion_index = -1;
 
     // Elements
     this.selectEmotionLabel = document.getElementById("selectedEmotion");
@@ -111,8 +113,15 @@ export class CheckInComponent extends BaseComponent {
   // Method to add event listeners
   _addEventListeners() {
     //add event listeners for all pages
-    this.addEvent(Events.LoadCheckInPage, (data) => this.loadPage(data));
-    // this.addEvent(Events.StoreEmotion, () => this._submitCheckIn());
+    this.addEvent(Events.LoadCheckInPage, (data, emotion) => {
+      console.log(
+        "Event LoadCheckInPage with data:",
+        data,
+        "and emotion:",
+        emotion
+      );
+      this.loadPage(data, emotion);
+    });
     this.addEvent(Events.StoreEmotionSuccess, () =>
       console.log(`Stored new emotion in database`)
     );
@@ -151,16 +160,8 @@ export class CheckInComponent extends BaseComponent {
 
     // Confirm button listener
     document.querySelector(".confirm").addEventListener("click", () => {
-      this._submitCheckIn();
+      this._submitCheckIn(this.editMode);
     });
-  }
-
-  _initEmotionData() {
-    return {
-      emotion_id: "",
-      magnitude: 5,
-      description: "",
-    };
   }
 
   // Reset the check-in form
@@ -190,8 +191,18 @@ export class CheckInComponent extends BaseComponent {
     // Get timestamp
     this.emotionData["timestamp"] = getCurrentTime();
 
-    this.dateData.emotions.push(this.emotionData);
-    this.update(Events.StoreData, this.dateData);
+    if (!this.dateData.emotions) {
+      this.dateData.emotions = [];
+    }
+    // If not in edit mode, push the new emotion to the array
+    if (!this.editMode) {
+      // Clone the emotionData object before pushing it to the array
+      this.dateData.emotions.push({ ...this.emotionData });
+    } else {
+      this.dateData.emotions[this.emotion_index] = { ...this.emotionData };
+    }
+
+    this.update(Events.StoreData, this.dateData); // Store the updated data
 
     // Reset after submission
     this._resetCheckIn();
@@ -199,30 +210,38 @@ export class CheckInComponent extends BaseComponent {
     this.update(Events.LoadDayPage, this.dateData);
   }
 
-  // TODO: Load emotion data if it exists
   // Load the emotion data into the check-in form using the emotion object if it exists
   // Otherwise load defaults
-  _loadEmotion(emotion = null) {
+  _loadEmotion() {
     // Check if this is an emotion object
-    if (emotion && emotion.hasOwnProperty("emotion_id")) {
-      console.log("Loading emotion: ", emotion);
-      this.emotionData = emotion;
+    if (
+      this.emotion_index &&
+      this.dateData &&
+      this.dateData.emotions &&
+      this.dateData.emotions.length > this.emotion_index &&
+      this.emotion_index >= 0
+    ) {
+      console.log("Loading emotion: ", this.emotion_index);
+      this.editMode = true;
+      this.emotionData = this.dateData.emotions[this.emotion_index];
       document.getElementById(this.emotionData.emotion_id).checked = true;
       document.getElementById("emotion_intensity").value =
         this.emotionData.magnitude;
       document.getElementById("description").value =
         this.emotionData.description;
     } else {
+      this.editMode = false;
       console.log("Loading default check in settings.");
       this._resetCheckIn();
     }
   }
 
   // Render the check-in page
-  // `data` can be a day or emotion object
-  _render(data) {
+  _render(data, emotion_index) {
+    this.emotion_index = emotion_index;
+    console.log("emotion_index: ", emotion_index);
     this.dateData = data;
-    this._loadEmotion(data); // TODO: Load emotion data if it exists
+    this._loadEmotion(); // TODO: Load emotion data if it exists
     this.titleDate.textContent = dateFormat(data.date_id);
   }
 }
