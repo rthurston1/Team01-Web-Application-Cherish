@@ -1,30 +1,9 @@
-.container#day-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  max-height: 80vh; /* Set maximum height to the viewport height */
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  overflow: hidden; /* Ensure content does not overflow the container */
-}
-
 .day-head-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; /* Center the content vertically */
   width: 100%;
-  padding: 10px; /* Add padding for spacing */
-  box-sizing: border-box; /* Include padding in the element's total width and height */
-  flex-shrink: 0.02; /* Allow the container to shrink */
-}
-
-#dayDate {
-  margin-top: 10px; /* Add margin to the top of the #dayDate element */
+  height: 10%;
 }
 
 .day-body-container {
@@ -44,22 +23,13 @@
 }
 
 .day-body-element {
-  position: relative;
-  width: 100%; /* Take up full width of the grid column */
-  min-height: 200px; /* Set a minimum height to ensure they are not too small */
+  width: 400px;
+  height: 325px;
   font-size: 1rem;
   border: 5px solid #10a3dd;
+  margin: 10px;
   padding: 10px;
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
-  overflow-y: auto; /* Allow vertical scrolling if content overflows */
   resize: none;
-  flex-shrink: 1; /* Allow the element to shrink */
-}
-
-.day-body-element#dayJournalEntry {
-  width: 100%;
-  resize: none;
-  overflow-y: hidden; /* Hide vertical overflow */
 }
 
 .day-emotion-entry {

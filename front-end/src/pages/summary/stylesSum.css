@@ -21,6 +21,14 @@
     border-radius: 30px;
 }
 
+.tab:hover {
+    background-color: rgb(121, 200, 3);
+}
+
+.active-tab {
+    background-color: green;
+}
+
 .text_box{
     display: flex;
     flex-direction: column;
@@ -31,33 +39,30 @@
     border-radius: 10px;
 }
 
-/* Hover */
-.tab:hover {
-    background-color: rgb(121, 200, 3);
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    gap: 20px;
+    padding: 10px;
 }
-.active-tab {
-    background-color: green;
-}
- .text_box h2{
-    font-size: 1.5em;
+
+.center-container h2{
+    font-size: 1.8em;
     margin-bottom: 10px;
- }
- .text_box {
+}
+
+.text_box {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-top: 20px;
-    width: 40%;
     background-color: rgb(196, 255, 225);
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
  }
-
-.active-tab {
-    background-color: green;
-}
 
 .stats h3 {
     font-size:1.2em;

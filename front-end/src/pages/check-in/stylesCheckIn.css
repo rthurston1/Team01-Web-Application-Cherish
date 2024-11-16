@@ -2,6 +2,10 @@
     justify-self: center;
 }
 
+#checkInHeader {
+    background-color: rgb(47, 255, 75); /*Override color for Check-in Page*/
+  }
+
 .container h2 {
     background-color: #c7cfc7;
     color: rgb(0, 0, 0);
@@ -105,3 +109,4 @@ input[type="radio"]:checked + .emoji {
 .confirm:hover {
     background-color: #2320c2ab;
 }
+

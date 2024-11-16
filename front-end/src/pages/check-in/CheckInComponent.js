@@ -10,6 +10,34 @@ export function getCurrentTime() {
   return `${hours}:${minutes}`;
 }
 
+export const EMOTIONS = {
+  Happy: "Happy",
+  Neutral: "Neutral",
+  Anxious: "Anxious",
+  Sad: "Sad",
+  Angry: "Angry",
+  Disgusted: "Disgusted",
+};
+
+export function getEmotionById(emotion_id) {
+  switch (emotion_id) {
+    case 0:
+      return EMOTIONS.Happy;
+    case 1:
+      return EMOTIONS.Neutral;
+    case 2:
+      return EMOTIONS.Anxious;
+    case 3:
+      return EMOTIONS.Anxious;
+    case 4:
+      return EMOTIONS.Angry;
+    case 5:
+      return EMOTIONS.Disgusted;
+    default:
+      return EMOTIONS.Neutral;
+  }
+}
+
 export class CheckInComponent extends BaseComponent {
   constructor() {
     super("checkInPage", "./pages/check-in/stylesCheckIn.css");
@@ -26,15 +54,11 @@ export class CheckInComponent extends BaseComponent {
   // Build HTML structure for the check-in page
   _buildHTML() {
     return `
-      <!-- page -->
-    <div class="container">
-        <div>
-            <h1 id="checkInDate"></h1>
-            <h2>Check-in window</h2>
-
-            <!-- ROBBIE CHANGE: New Head Element -->
-            <h2 id="selectedEmotion">Pick One</h2> 
-        </div>
+          <!-- page -->
+        <div class="container">
+          <h1 class="page-name-header" id="checkInHeader">Check-in Page</h1>
+          <div class="date-header" id="checkInDate"></div>
+          <h2 id="selectedEmotion">Care to check In?</h2>
 
         <!-- emotions section -->
         <!--emojis in order from best to worst: happy -> neutral -> anxious -> sad -> angry -->
@@ -45,23 +69,33 @@ export class CheckInComponent extends BaseComponent {
             <!-- Happy -->
             <label for="Happy">
                 <input type="radio" name="emotion" id="Happy" hidden />
-                <img src="./img/Happy.gif" alt="Happy" class="emoji" />
+                <img src="./img/happy.gif" alt="Happy" class="emoji" />
             </label>
-            <!-- Sad -->
-            <label for="Sad">
-                <input type="radio" name="emotion" id="Sad" hidden />
-                <img src="./img/Sad.gif" alt="Sad" class="emoji" />
+
+            <!-- Neutral -->
+            <label for="Neutral">
+                <input type="radio" name="emotion" id="Neutral" hidden />
+                <img src="./img/neutral.gif" alt="Neutral" class="emoji" />
             </label>
-            <!-- Angry -->
-            <label for="Angry">
-                <input type="radio" name="emotion" id="Angry" hidden />
-                <img src="./img/Angry.gif" alt="Angry" class="emoji" />
-            </label>
+
             <!-- Anxious -->
             <label for="Anxious">
                 <input type="radio" name="emotion" id="Anxious" hidden />
                 <img src="./img/Anxious.gif" alt="Anxious" class="emoji" />
             </label>
+
+            <!-- Sad -->
+            <label for="Sad">
+                <input type="radio" name="emotion" id="Sad" hidden />
+                <img src="./img/Sad.gif" alt="Sad" class="emoji" />
+            </label>
+
+            <!-- Angry -->
+            <label for="Angry">
+                <input type="radio" name="emotion" id="Angry" hidden />
+                <img src="./img/Angry.gif" alt="Angry" class="emoji" />
+            </label>
+
             <!-- Disgusted -->
             <label for="Disgusted">
                 <input type="radio" name="emotion" id="Disgusted" hidden />
@@ -129,7 +163,7 @@ export class CheckInComponent extends BaseComponent {
       console.log(`Failed to store emotion in database`)
     );
 
-    // Listen for emotion selection
+    //Listen for emotion selection
     document.querySelectorAll("input[name='emotion']").forEach((input) => {
       input.addEventListener("change", (event) => {
         this.emotionData.emotion_id = event.target.id;
@@ -143,7 +177,11 @@ export class CheckInComponent extends BaseComponent {
     document
       .getElementById("emotion_intensity")
       .addEventListener("input", (event) => {
-        this.emotionData.magnitude = event.target.value;
+        if (this.emotionData.emotion_id === "neutral") {
+          this.emotionData.magnitude = 1;
+        } else {
+          this.emotionData.magnitude = event.target.value;
+        }
       });
 
     // Listen for text area input for description
@@ -210,7 +248,7 @@ export class CheckInComponent extends BaseComponent {
     this.update(Events.LoadDayPage, this.dateData);
   }
 
-  // Load the emotion data into the check-in form using the emotion object if it exists
+  // Load the emotion data into the check-in form using the emotion index if it exists
   // Otherwise load defaults
   _loadEmotion() {
     // Check if this is an emotion object
@@ -241,7 +279,7 @@ export class CheckInComponent extends BaseComponent {
     this.emotion_index = emotion_index;
     console.log("emotion_index: ", emotion_index);
     this.dateData = data;
-    this._loadEmotion(); // TODO: Load emotion data if it exists
+    this._loadEmotion();
     this.titleDate.textContent = dateFormat(data.date_id);
   }
 }

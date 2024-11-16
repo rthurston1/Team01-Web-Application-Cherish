@@ -6,6 +6,29 @@
   overflow: hidden;
 }
 
+.date-header {
+  background-color: #c7cfc7;
+  color: black; 
+  padding: 10px 20px; 
+  border-radius: 10px; 
+  font-size: 1.5em; 
+  text-align: left; 
+  width: 100%; 
+  box-sizing: border-box; 
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.page-name-header {
+  background-color: #c7cfc7; /*Base color, change as needed in page's respective CSS file*/
+  color: black; 
+  padding: 10px 20px;
+  border-radius: 10px; 
+  margin-bottom: 20px;
+  font-size: 2em;
+  text-align: center;
+}
+
 body {
   display: flex;
   justify-content: center;

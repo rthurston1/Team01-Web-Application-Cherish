@@ -52,7 +52,7 @@
 
 ### November 14, 2024
   - **Task**: Worked more on emojis and day rating 
-  - **Details**: Met with Robbie to discuss emojis, day rating logic.
+  - **Details**: Met with Robbie to discuss emojis, day rating logic. Created new branch off main for adding neutral emoji, disabling magnitude slider when neutral is selected
 
 ### November 15, 2024
   - **Task**: Worked more on emojis and day rating, sequence diagram, Finalizing Figma   
