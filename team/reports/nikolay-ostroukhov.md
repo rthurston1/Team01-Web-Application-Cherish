@@ -128,3 +128,9 @@ November 15, 2024
 
 - **Task**: Create new branch for issue #67 and start working on the edit/delete buttons for the day page.
 - **Details**: Created a new branch `feature-edit-emotion-log-niko` and `feature-edit-emotion-log-niko-2` to bring branch up to main without merging, potentially introducing css conflicts. Added edit and delete buttons to each emotion log entry on the day page.
+
+November 16, 2024
+
+- **Task**: Create a pull request for the edit/delete buttons on the day page.
+- **Details**: Created a pull request for the edit/delete buttons on the day page.
+- **Link to Pull Request**: [Pull Request](https://github.com/rthurston1/Team01-Web-Application-Cherish/pull/84)
