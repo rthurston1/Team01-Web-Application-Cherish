@@ -4,6 +4,7 @@
   align-items: center;
   width: 100%;
   height: 100%;
+  max-height: 80vh; /* Set maximum height to the viewport height */
   padding: 20px;
   background-color: #fff;
   border-radius: 10px;
@@ -15,27 +16,50 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center; /* Center the content vertically */
   width: 100%;
-  height: 10%;
+  padding: 10px; /* Add padding for spacing */
+  box-sizing: border-box; /* Include padding in the element's total width and height */
+  flex-shrink: 0.02; /* Allow the container to shrink */
+}
+
+#dayDate {
+  margin-top: 10px; /* Add margin to the top of the #dayDate element */
 }
 
 .day-body-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(
+    2,
+    1fr
+  ); /* Two columns, each taking up half the space */
   width: 100%;
-  height: 100%;
-  margin: 20px;
+  height: calc(
+    100% - 15% - 40px
+  ); /* Adjust height to fit within the parent container, accounting for padding and header */
+  gap: 20px; /* Add some space between the elements */
+  padding: 20px;
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  flex-shrink: 1; /* Allow the container to shrink */
 }
 
 .day-body-element {
-  position: relative; /* Change to relative */
-  width: 400px;
-  height: 325px;
+  position: relative;
+  width: 100%; /* Take up full width of the grid column */
+  min-height: 200px; /* Set a minimum height to ensure they are not too small */
   font-size: 1rem;
   border: 5px solid #10a3dd;
-  margin: 10px;
   padding: 10px;
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  overflow-y: auto; /* Allow vertical scrolling if content overflows */
   resize: none;
+  flex-shrink: 1; /* Allow the element to shrink */
+}
+
+.day-body-element#dayJournalEntry {
+  width: 100%;
+  resize: none;
+  overflow-y: hidden; /* Hide vertical overflow */
 }
 
 .day-emotion-entry {
@@ -97,7 +121,10 @@
 }
 
 #dayJournalEntry {
+  width: 100%; /* Ensure it takes up the full width of the parent container */
+  max-width: 100%; /* Prevent it from exceeding the width of the parent container */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
   line-height: 1.5; /* Adjusts space between lines */
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow-y: hidden; /* Hide vertical overflow */
+  resize: none; /* Prevent resizing */
 }
