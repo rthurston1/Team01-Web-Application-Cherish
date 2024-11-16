@@ -190,8 +190,8 @@ export class CheckInComponent extends BaseComponent {
     // Get timestamp
     this.emotionData["timestamp"] = getCurrentTime();
 
-    // this.dateData.emotions.push(this.emotionData);
-    this.update(Events.StoreData, this.dateData, this.emotionData);
+    this.dateData.emotions.push(this.emotionData);
+    this.update(Events.StoreData, this.dateData);
 
     // Reset after submission
     this._resetCheckIn();
