@@ -68,63 +68,67 @@ export class DayComponent extends BaseComponent {
             base = -1;
             break;
         }
-    // Each emoji will have a baseline value from -4 to 2 
-    // To get the check-in numeric rating, we will multiply baseline emoji value by magnitude of emotion value 
-    // e.g. highest possible rating is happy with 10 magnitude (2 * 10 = 20), lowest possible rating is Disgusted with 10 magnitude (-4 * 10 = -40)
-    // Then we normalize the final rating to fit within the 1 to 10 range
-    if (!this.dateData["emotions"] || this.dateData.emotions.length === 0) {
-      this.dateData["rating"] = 0;
-      return;
-    }
-    
-    let sumRate = 0, count = 0, dailyRating = 0; 
-    const emotionsArr = this.dateData.emotions;
-    emotionsArr.forEach((emotionObj) => {
-      let base = 0; 
-      const magnitude = emotionObj.magnitude;
-      switch (emotionObj.emotion_id) {
-        case "Happy":
-          base = 2;
-          break;
-        case "Neutral":
-          base = 0; 
-          break; 
-        case "Anxious":
-          base = -1;
-          break;
-        case "Sad":
-          base = -2;
-          break; 
-        case "Angry":
-          base = -3; 
-          break; 
-        case "Disgusted":
-          base = -4; 
-          break; 
-        default:
-          base = 0; 
-          break; 
-      }
+        // Each emoji will have a baseline value from -4 to 2
+        // To get the check-in numeric rating, we will multiply baseline emoji value by magnitude of emotion value
+        // e.g. highest possible rating is happy with 10 magnitude (2 * 10 = 20), lowest possible rating is Disgusted with 10 magnitude (-4 * 10 = -40)
+        // Then we normalize the final rating to fit within the 1 to 10 range
+        if (!this.dateData["emotions"] || this.dateData.emotions.length === 0) {
+          this.dateData["rating"] = 0;
+          return;
+        }
 
+        let sumRate = 0,
+          count = 0,
+          dailyRating = 0;
+        const emotionsArr = this.dateData.emotions;
+        emotionsArr.forEach((emotionObj) => {
+          let base = 0;
+          const magnitude = emotionObj.magnitude;
+          switch (emotionObj.emotion_id) {
+            case "Happy":
+              base = 2;
+              break;
+            case "Neutral":
+              base = 0;
+              break;
+            case "Anxious":
+              base = -1;
+              break;
+            case "Sad":
+              base = -2;
+              break;
+            case "Angry":
+              base = -3;
+              break;
+            case "Disgusted":
+              base = -4;
+              break;
+            default:
+              base = 0;
+              break;
+          }
+
+          const rate = base * magnitude; //the rating for a single check-in
+          sumRate += rate; //add each check-in rating to an accumulating totalRating value
+          count++;
+        });
+
+        dailyRating = count > 0 ? sumRate / count : 0; //set daily rating to avg of all rating values in that day
+        dailyRating = parseFloat(dailyRating.toFixed(2)); // Rounds rating to two decimal points
         const rate = base * magnitude; //the rating for a single check-in
         sumRate += rate; //add each check-in rating to an accumulating totalRating value
         count++;
       });
     }
-
-    dailyRating = count > 0 ? sumRate / count : 0; //set daily rating to avg of all rating values in that day
-    dailyRating = parseFloat(dailyRating.toFixed(2)); // Rounds rating to two decimal points
-      const rate = base * magnitude; //the rating for a single check-in 
-      sumRate += rate; //add each check-in rating to an accumulating totalRating value
-      count++;  
-    });
-
     //normalize the final rating to fit within the 1 to 10 range
     const maxPossibleRating = 2 * 10; //highest possible rating (Happy with magnitude 10)
     const minPossibleRating = -4 * 10; //lowest possible rating (Disgusted with magnitude 10)
-    const normalizedRating = ((sumRate / count - minPossibleRating) / (maxPossibleRating - minPossibleRating)) * 9 + 1;
+    const normalizedRating =
+      ((sumRate / count - minPossibleRating) /
+        (maxPossibleRating - minPossibleRating)) *
+        9 +
+      1;
     dailyRating = parseFloat(normalizedRating.toFixed(2)); //rounds rating to two decimal points
-    
 
     this.dateData["rating"] = dailyRating; // Store the daily rating in dateData object
     this.update(Events.StoreData, this.dateData);
@@ -203,7 +207,7 @@ export class DayComponent extends BaseComponent {
         <h2 id="dayRating"></h2>
       </div>
     `;
-}
+  }
 
   _createElementObjs() {
     // Elements
