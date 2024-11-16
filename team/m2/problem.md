@@ -10,7 +10,6 @@ Our web app provides a simple yet impactful platform for users to reflect on and
   - Reflect their emotions daily either once or multiple times a day.
   - An overview / summary of their week or month.
   - Rate their day with emotions and see previous days that are color coded with emotions.
-  - Ability to export their data in a csv format for either personal records or sharing with a therapist.
 
 ## Why This Matters
 Tracking emotions promotes self-awareness, which is crucial for personal growth. By recognizing emotional patterns, users can make proactive changes to improve their mental well-being. Over time, the app helps users build emotional resilience and confidence as they learn to navigate their feelings more effectively. Journalism daily also encourages accountability, enabling users to track their progress and reflect on how they've handled challenges. 
