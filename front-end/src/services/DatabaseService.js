@@ -12,7 +12,7 @@ export class DatabaseService extends Service {
     this.initDB()
       .then(() => {
         this.addSubscriptions();
-        console.log("Database events initialized")
+        console.log("Database events initialized");
       })
       .catch((error) => {
         console.error(error);
@@ -30,7 +30,7 @@ export class DatabaseService extends Service {
 
       request.onupgradeneeded = (event) => {
         const db = event.target.result;
-        db.createObjectStore(this.storeName, {keyPath: "date_id"});
+        db.createObjectStore(this.storeName, { keyPath: "date_id" });
       };
 
       request.onsuccess = (event) => {
@@ -47,28 +47,29 @@ export class DatabaseService extends Service {
   }
 
   // Returns the Day Object specified by the id
-  async restoreDay(key) {
+  async restoreDay(date_id) {
     const transaction = this.db.transaction([this.storeName], "readonly");
     const objectStore = transaction.objectStore(this.storeName);
 
     return new Promise((resolve, reject) => {
-
-      const request = objectStore.get(key);
+      const request = objectStore.get(date_id);
 
       request.onsuccess = (event) => {
         // If result is undefined creates new date object
-        const obj = event.target.result ? event.target.result : {date_id: key};
+        const obj = event.target.result
+          ? event.target.result
+          : { date_id: date_id };
         resolve(obj);
       };
 
       request.onerror = () => {
-        this.update(Events.RestoredDataFailed)
+        this.update(Events.RestoredDataFailed);
         reject("Failed to retrieve data");
-      }; 
+      };
     });
   }
 
-  // Stores the day entry into the database 
+  // Stores the day entry into the database
   async storeDay(data) {
     const transaction = this.db.transaction([this.storeName], "readwrite");
     const objectStore = transaction.objectStore(this.storeName);
@@ -81,8 +82,67 @@ export class DatabaseService extends Service {
       };
 
       request.onerror = () => {
-        this.update(Events.StoredDataFailed)
+        this.update(Events.StoredDataFailed);
         reject("Failed to store data");
+      };
+    });
+  }
+
+  // Stores a specific emotion entry into the database
+  async storeEmotion(data, emotion) {
+    const transaction = this.db.transaction([this.storeName], "readwrite");
+    const objectStore = transaction.objectStore(this.storeName);
+
+    return new Promise((resolve, reject) => {
+      const request = objectStore.get(data.date_id);
+
+      request.onsuccess = (event) => {
+        const day = event.target.result || {
+          date_id: data.date_id,
+          emotions: [],
+        };
+        day.emotions = day.emotions || [];
+        day.emotions.push(emotion);
+
+        const updateRequest = objectStore.put(day);
+        updateRequest.onsuccess = () => {
+          this.update(Events.StoreEmotionSuccess);
+          resolve("Emotion Stored Successfully");
+        };
+
+        updateRequest.onerror = () => {
+          this.update(Events.StoreEmotionFailed);
+          reject("Failed to store emotion");
+        };
+      };
+
+      request.onerror = () => {
+        this.update(Events.StoreEmotionFailed);
+        reject("Failed to retrieve day data");
+      };
+    });
+  }
+
+  // Retrieves a specific emotion entry from the database
+  async restoreEmotion(date_id, index) {
+    const transaction = this.db.transaction([this.storeName], "readonly");
+    const objectStore = transaction.objectStore(this.storeName);
+
+    return new Promise((resolve, reject) => {
+      const request = objectStore.get(date_id);
+
+      request.onsuccess = (event) => {
+        const day = event.target.result;
+        if (day && day.emotions && day.emotions[index]) {
+          resolve(day.emotions[index]);
+        } else {
+          reject("Emotion not found");
+        }
+      };
+
+      request.onerror = () => {
+        this.update(Events.RestoreEmotionFailed);
+        reject("Failed to retrieve emotion");
       };
     });
   }
@@ -100,8 +160,7 @@ export class DatabaseService extends Service {
       request.onerror = () => {
         this.update(Events.ClearedDataFailed);
         reject("Failed to Clear Data");
-      }
+      };
     });
   }
-
 }

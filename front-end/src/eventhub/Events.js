@@ -22,5 +22,13 @@ export const Events = {
   StoredDataFailed: "StoredDataSuccessfully", // Failed database store call
   RestoredDataFailed: "RestoredDataSuccessfully", // Failed database restore call
   ClearedDataFailed: "ClearedDataFailed", // Failed database clear call
-  
+
+  StoreEmotion: "StoreEmotion", // Async call to store an emotion entry
+  RestoreEmotion: "RestoreEmotion", // Async call to restore/retrieve an emotion entry
+
+  StoreEmotionSuccess: "StoreEmotionSuccess", // Successful emotion store call
+  RestoreEmotionSuccess: "RestoreEmotionSuccess", // Successful emotion restore call
+
+  StoreEmotionFailed: "StoreEmotionFailed", // Failed emotion store call
+  RestoreEmotionFailed: "RestoreEmotionFailed", // Failed emotion restore call
 };
