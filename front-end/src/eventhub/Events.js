@@ -11,16 +11,16 @@ export const Events = {
 
   StoreData: "StoreData", // Async call to store any changes inputted by user
   ClearData: "ClearData", // Async call to clear all data stored in database
-  RestoreData: "RestoreDatabase", // Async call to restore/retrieve data
+  RestoreData: "RestoreData", // Async call to restore/retrieve data
 
-  InitDataSuccess: "InitDatabaseSuccess", // Successful database init call
-  StoredDataSuccess: "StoredDataSuccessfully", // Successful database store call
-  RestoredDataSuccess: "RestoredDataSuccessfully", // Successful database restore call
+  InitDataSuccess: "InitDataSuccess", // Successful database init call
+  StoredDataSuccess: "StoredDataSuccess", // Successful database store call
+  RestoredDataSuccess: "RestoredDataSuccess", // Successful database restore call
   ClearedDataSuccess: "ClearedDataSuccess", // Successful database clear call
 
-  InitDataFailed: "InitDatabaseFailed", // Failed database init call
-  StoredDataFailed: "StoredDataSuccessfully", // Failed database store call
-  RestoredDataFailed: "RestoredDataSuccessfully", // Failed database restore call
+  InitDataFailed: "InitDataFailed", // Failed database init call
+  StoredDataFailed: "StoredDataFailed", // Failed database store call
+  RestoredDataFailed: "RestoredDataFailed", // Failed database restore call
   ClearedDataFailed: "ClearedDataFailed", // Failed database clear call
 
   StoreEmotion: "StoreEmotion", // Async call to store an emotion entry

@@ -15,19 +15,14 @@ export class DatabaseService extends Service {
         console.log("Database events initialized");
       })
       .catch((error) => {
-        console.error("Failed to initialize database:", error);
+        console.error(error);
       });
   }
 
   addSubscriptions() {
     this.addEvent(Events.StoreData, (data) => this.storeDay(data));
     this.addEvent(Events.RestoreData, (id) => this.restoreDay(id));
-    this.addEvent(Events.StoreEmotion, (data, emotion) =>
-      this.storeEmotion(data, emotion)
-    );
-    this.addEvent(Events.RestoreEmotion, (date_id, index) =>
-      this.restoreEmotion(date_id, index)
-    );
+    this.addEvent(Events.ClearData, () => this.clearDatabase());
   }
 
   async initDB() {
@@ -49,112 +44,70 @@ export class DatabaseService extends Service {
         this.update(Events.InitDataFailed);
         reject(event.target.error);
       };
-
-      request.onblocked = () => {
-        console.error(
-          "Database open request is blocked. Close other tabs with this site open."
-        );
-        reject("Database open request is blocked");
-      };
     });
-  }
-
-  // Helper function to handle database transactions
-  async _performTransaction(storeName, mode, operation) {
-    const transaction = this.db.transaction([storeName], mode);
-    const objectStore = transaction.objectStore(storeName);
-
-    return new Promise((resolve, reject) => {
-      const request = operation(objectStore);
-
-      request.onsuccess = (event) => {
-        resolve(event.target.result);
-      };
-
-      request.onerror = (event) => {
-        reject(event.target.error);
-      };
-    });
-  }
-
-  // Helper function to store data
-  async _storeData(storeName, data) {
-    return this._performTransaction(storeName, "readwrite", (objectStore) =>
-      objectStore.put(data)
-    )
-      .then(() => {
-        this.update(Events.StoredDataSuccess);
-        return "Data Stored Successfully";
-      })
-      .catch((error) => {
-        this.update(Events.StoredDataFailed);
-        throw new Error("Failed to store data: " + error);
-      });
-  }
-
-  // Helper function to restore data
-  async _restoreData(storeName, key) {
-    return this._performTransaction(storeName, "readonly", (objectStore) =>
-      objectStore.get(key)
-    )
-      .then((result) => result || { date_id: key })
-      .catch((error) => {
-        this.update(Events.RestoredDataFailed);
-        throw new Error("Failed to retrieve data: " + error);
-      });
   }
 
   // Returns the Day Object specified by the id
-  async restoreDay(date_id) {
-    return this._restoreData(this.storeName, date_id);
+  async restoreDay(key) {
+    const transaction = this.db.transaction([this.storeName], "readonly");
+    const objectStore = transaction.objectStore(this.storeName);
+
+    return new Promise((resolve, reject) => {
+      const request = objectStore.get(key);
+
+      request.onsuccess = (event) => {
+        // If result is undefined creates new date object
+
+        // const obj = event.target.result
+        //   ? event.target.result
+        //   : { date_id: key };
+        resolve(event.target.result || { date_id: key });
+      };
+
+      request.onerror = () => {
+        this.update(Events.RestoredDataFailed);
+        reject("Failed to retrieve data");
+      };
+    });
   }
 
   // Stores the day entry into the database
   async storeDay(data) {
-    return this._storeData(this.storeName, data);
+    const transaction = this.db.transaction([this.storeName], "readwrite");
+    const objectStore = transaction.objectStore(this.storeName);
+
+    return new Promise((resolve, reject) => {
+      const request = objectStore.put(data); // Updates entry if already exists, adds it otherwise
+      request.onsuccess = () => {
+        this.update(Events.StoredDataSuccess);
+        resolve("Data Stored Successfully");
+      };
+
+      request.onerror = () => {
+        this.update(Events.StoredDataFailed);
+        reject("Failed to store data");
+      };
+    });
   }
 
-  // Stores a specific emotion entry into the database
-  async storeEmotion(data, emotion) {
-    console.log("Store emotion called");
-    const day = data || { date_id: data.date_id, emotions: [] };
-    day.emotions = day.emotions || [];
-    day.emotions.push(emotion);
-    console.log(day.emotions);
-    return this.storeDay(day)
-      .then(() => {
-        this.update(Events.StoreEmotionSuccess);
-        return "Emotion Stored Successfully";
-      })
-      .catch((error) => {
-        this.update(Events.StoreEmotionFailed);
-        return "Emotion Storage Failed: " + error;
-      });
-  }
-
-  // Retrieves a specific emotion entry from the database
-  async restoreEmotion(date_id, index) {
-    return this._restoreData(this.storeName, date_id)
-      .then((day) => {
-        if (day && day.emotions && day.emotions[index]) {
-          return day.emotions[index];
-        } else {
-          throw new Error("Emotion not found");
-        }
-      })
-      .catch((error) => {
-        this.update(Events.RestoreEmotionFailed);
-        throw new Error("Failed to retrieve emotion: " + error);
-      });
-  }
+  // async storeEmotion(data, emotion) {
+  //   console.log("Storing Emotion");
+  //   console.log("data: ", data);
+  //   console.log("emotion: ", emotion);
+  //   const day = data || { date_id: data.date_id, emotions: [] };
+  //   day.emotions = day.emotions || [];
+  //   day.emotions.push(emotion);
+  //   const re this.storeDay(day)
+  //     .then(() => {
+  //       this.update(Events.StoreEmotionSuccess);
+  //     })
+  //     .catch(() => {
+  //       this.update(Events.StoreEmotionFailed);
+  //     });
+  // }
 
   // Clears all Saved Data from the database
   async clearDatabase() {
-    if (!this.db) {
-      this.update(Events.ClearedDataFailed);
-      return Promise.reject("Database is not open");
-    }
-
     return new Promise((resolve, reject) => {
       const request = indexedDB.deleteDatabase(this.dbName);
 
@@ -170,5 +123,4 @@ export class DatabaseService extends Service {
     });
   }
 }
-
 export default DatabaseService;

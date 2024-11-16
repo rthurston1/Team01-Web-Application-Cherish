@@ -187,7 +187,8 @@ export class DayComponent extends BaseComponent {
             if (e.target.id === "check-in-icon") {
               this.update(
                 Events.LoadCheckInPage,
-                this.dateData.emotions[index]
+                this.dateData
+                // this.dateData.emotions[index] CANNOT DO THIS!
               );
             } else if (e.target.id === "delete-icon") {
               this.#deleteEmotion(index);
