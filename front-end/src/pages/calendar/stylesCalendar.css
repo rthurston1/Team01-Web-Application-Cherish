@@ -1,3 +1,28 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #2320c2ab;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin: 20px;
+}
+
 .main-header {
   text-align: center;
   font-size: 1.5em;
@@ -61,7 +86,7 @@ td {
 .feature-buttons {
   display: grid;
   justify-content: center;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 10px;
   margin-top: 20px;
   padding: 10px;
@@ -75,8 +100,6 @@ td {
   cursor: pointer;
   flex: 1;
   margin: 0 5px;
-  font-family: "Brush Script MT", cursive;
-  font-size: 1.2em;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
@@ -89,33 +112,17 @@ td {
 .check-in {
   background-color: green;
 }
+
 .journal {
   background-color: blue;
 }
+
 .stats {
   background-color: orange;
 }
+
 .summary {
   background-color: gray;
-}
-
-/* Container styling for responsiveness */
-.calendarContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-
-  background-color: rgb(255, 255, 255);
-}
-
-.calendar {
-  max-width: 350px; /* Adjust width as desired */
-  background-color: rgb(255, 255, 255);
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
 }
 
 .month {
@@ -153,27 +160,17 @@ td {
 .weekdays,
 .days {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(7, minmax(0, 1fr));
   gap: 10px;
   text-align: center;
   font-weight: bold;
 }
 
-.weekdays div {
-  color: #888;
-  font-size: 1em;
-}
-
+.weekdays div,
 .days div {
   padding: 10px;
   font-size: 1em;
   transition: background 0.3s;
-  border-radius: 5px;
-}
-
-.days div:hover {
-  background: #f2f2f2;
-  cursor: pointer;
 }
 
 .days .prev-date,
@@ -182,13 +179,9 @@ td {
 }
 
 .days .today {
-  background: #ff69b4;
+  background: red; /* Highlight today's date in red */
   color: white;
   font-weight: bold;
-}
-
-.days .today:hover {
-  background: #ff5599;
 }
 
 /* Responsive behavior */
@@ -197,9 +190,16 @@ td {
     max-width: 100%;
     padding: 15px;
   }
-
   .weekdays div,
   .days div {
     font-size: 0.85em;
+  }
+  .month {
+    flex-direction: column;
+    align-items: center;
+  }
+  .month h1,
+  .month p {
+    font-size: 1em;
   }
 }
