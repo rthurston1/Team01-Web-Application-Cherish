@@ -53,13 +53,9 @@ export class JournalComponent extends BaseComponent {
     _buildHTML() { 
         return `
             <div class="container">
-                <div id="journalHeader">
-                    <h1>Journal</h1>
-                </div>
-
-                <h2 id="journalDate"></h2>
+                <h1 class="page-name-header" id="journalHeader">Journal</h1>
+                <div class="date-header" id="journalDate"></div>
                 <h2>What's on your mind?</h2>
-
                 <form class="text-submission" id="daySummary">
                     <textarea id="journalSummary" placeholder="Write your summary here (2000 character limit)" maxlength="2000"></textarea>
                     <div id="wordCount">Character Count: 0</div> 

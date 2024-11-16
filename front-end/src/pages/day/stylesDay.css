@@ -1,12 +1,4 @@
-.day-head-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    height: 10%;
-}
-
-#dayHeader h1 {
+#dayHeader {
     background-color: #ffe600; 
     color: black; 
     padding: 10px 20px;

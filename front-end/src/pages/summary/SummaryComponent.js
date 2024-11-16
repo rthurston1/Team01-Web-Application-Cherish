@@ -11,9 +11,7 @@ export class SummaryComponent extends BaseComponent {
     _buildHTML() {
         return `
         <div class="container">
-            <div class="center-container">
-                <h2>Summary</h2>
-            </div>
+            <h1 class="page-name-header" id="summaryHeader">Summary</h1>
             <div class="tabs">
                 <div class="tab" id="tab-Day">Day</div>
                 <div class="tab" id="tab-Week">Week</div>

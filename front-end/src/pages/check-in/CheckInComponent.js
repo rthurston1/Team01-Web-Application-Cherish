@@ -51,15 +51,11 @@ export class CheckInComponent extends BaseComponent {
   // Build HTML structure for the check-in page
   _buildHTML() {
     return `
-      <!-- page -->
-    <div class="container">
-        <div>
-            <h1 id="checkInDate"></h1>
-            <h2>Check-in window</h2>
-
-            <!-- ROBBIE CHANGE: New Head Element -->
-            <h2 id="selectedEmotion">Pick One</h2> 
-        </div>
+          <!-- page -->
+        <div class="container">
+          <h1 class="page-name-header" id="checkInHeader">Check-in Page</h1>
+          <div class="date-header" id="checkInDate"></div>
+          <h2 id="selectedEmotion">Care to check In?</h2>
 
         <!-- emotions section -->
         <!--emojis in order from best to worst: happy -> neutral -> anxious -> sad -> angry -->
