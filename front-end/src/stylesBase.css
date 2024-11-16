@@ -8,22 +8,22 @@
 
 .date-header {
   background-color: #c7cfc7;
-  color: black; 
-  padding: 10px 20px; 
-  border-radius: 10px; 
-  font-size: 1.5em; 
-  text-align: left; 
-  width: 100%; 
-  box-sizing: border-box; 
+  color: black;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 1.5em;
+  text-align: left;
+  width: 100%;
+  box-sizing: border-box;
   margin-bottom: 20px;
   font-weight: bold;
 }
 
 .page-name-header {
   background-color: #c7cfc7; /*Base color, change as needed in page's respective CSS file*/
-  color: black; 
+  color: black;
   padding: 10px 20px;
-  border-radius: 10px; 
+  border-radius: 10px;
   margin-bottom: 20px;
   font-size: 2em;
   text-align: center;
@@ -62,10 +62,12 @@ body {
 }
 
 .app {
+  position: relative;
   width: 60%;
   padding: 20px;
   min-width: 800px; /* Set a minimum width for the app */
   max-width: 1000px; /* Set a maximum width for the app */
+  min-height: 806px;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -73,20 +75,25 @@ body {
 
 /* Navigation Button Styles */
 .nav {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   justify-content: space-between;
   border: none;
   border-radius: 8px;
-  margin-top: 30px;
   background-color: #f0f0f0; /* Temporary background color for visibility */
   padding: 10px; /* Temporary padding for visibility */
+  width: 100%; /* Adjust width as needed */
 }
 
 .nav-btns {
   display: flex;
   gap: 10px; /* Add some gap between the buttons */
-  min-width: 19%;
+  flex: 1; /* Allow buttons to grow and fill the available space */
   border: none;
+  max-width: 19%;
   border-radius: 8px;
   color: white;
   cursor: pointer;
@@ -106,7 +113,8 @@ body {
 }
 /* Give the clicked button some oompth */
 .nav-btns:active {
-  transform: scale(0.95);
+  transform: scale(1.5);
+  background-color: #2320c2ab; /* Darken color on click */
 }
 
 #toCalendarPage {
