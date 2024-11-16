@@ -41,9 +41,3 @@ Users will be able to review their weekly or monthly summary reports that highli
 
 **Assigned to**: Liam Campbell, Samuel Hernandez 
 
-## Notifications and Alerts (4' pts)
-
-This feature will allow users to set a reminder to notify them to log their day through push notifications, email, or SMS.
-
-**Assigned to**: Anugrah George and Nikolay Ostroukhov
-
