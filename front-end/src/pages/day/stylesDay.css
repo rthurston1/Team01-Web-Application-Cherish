@@ -10,6 +10,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   overflow: hidden; /* Ensure content does not overflow the container */
 }
+
 .day-head-container {
   display: flex;
   flex-direction: column;
@@ -27,6 +28,7 @@
 }
 
 .day-body-element {
+  position: relative; /* Change to relative */
   width: 400px;
   height: 325px;
   font-size: 1rem;
@@ -37,6 +39,7 @@
 }
 
 .day-emotion-entry {
+  position: relative; /* Ensure absolute positioning of children is relative to this element */
   display: grid;
   justify-items: center;
   width: 100%;
@@ -45,18 +48,25 @@
   box-sizing: border-box;
 }
 
-.day-emotion-entry #check-in-icon {
+.emotion-btns {
+  display: flex;
+  justify-content: flex-end; /* Align items to the right */
   position: absolute; /* Change to absolute */
   top: 10px; /* Adjust as needed */
   right: 10px; /* Adjust as needed */
-  display: block;
-  width: 30px; /* Adjust the width as needed */
-  height: 30px; /* Adjust the height as needed */
+  width: auto; /* Adjust the width as needed */
+  height: auto; /* Adjust the height as needed */
   padding-right: 10px;
+}
+
+.emotion-btns img {
+  padding: 5px;
+  width: 30px;
+  height: 30px;
   transition: transform 0.3s ease; /* Add transition for smooth scaling */
 }
 
-.day-emotion-entry #check-in-icon:hover {
+.emotion-btns img:hover {
   transform: scale(1.2); /* Scale the icon to 120% on hover */
 }
 
@@ -88,7 +98,6 @@
 
 #dayJournalEntry {
   line-height: 1.5; /* Adjusts space between lines */
-
   overflow-y: auto;
   overflow-x: hidden;
 }

@@ -20,14 +20,10 @@ export class DayComponent extends BaseComponent {
   // Methods
   // Removes the specified emotion element from the Emotion Log
   #deleteEmotion(emotion_entry) {
-    const filteredArr = this.dateData.emotions.filter(
-      (e) => e !== emotion_entry
-    );
-    this.dateData.emotions = filteredArr;
+    this.dateData.emotions.splice(emotion_entry, 1);
 
     this.#calculateRating();
     this.update(Events.StoreData, this.dateData);
-
     alert("Emotion deleted!");
     this._render(this.dateData);
   }
@@ -92,16 +88,17 @@ export class DayComponent extends BaseComponent {
       return;
     }
 
-    this.dateData.emotions.forEach((emotion) => {
+    this.dateData.emotions.forEach((emotion, index) => {
       const emotionEntry = document.createElement("div");
       emotionEntry.classList.add("day-emotion-entry");
+      emotionEntry.dataset.index = index;
 
       emotionEntry.innerHTML = `
        <section>
        <div class="emotion-btns">
-       <img alt="delete entry" id="delete-icon" onclick="">
-       <img alt="edit entry" id="check-in-icon" onclick="">
 
+       <img src="./img/check-in-icon.svg" alt="edit entry" id="check-in-icon" onclick="">
+        <img src="./img/x-icon.svg" alt="delete entry" id="delete-icon" onclick="">
        </div>
         
           <ul>
@@ -114,7 +111,6 @@ export class DayComponent extends BaseComponent {
         <figure>
           <img id="emotionEntryImage">
         </figure>
-        <button id="delete" type="button">Delete</button>
       `;
 
       // Adds to emotion log
@@ -125,8 +121,6 @@ export class DayComponent extends BaseComponent {
       const rating = document.getElementById("emotionEntryRating");
       const description = document.getElementById("emotionEntryDescription");
       const image = document.getElementById("emotionEntryImage");
-      const deleteButton = document.getElementById("delete");
-      const emotionEntryBtns = document.getElementsByClassName("emotion-btns");
 
       // Set Data
       time.textContent = "Time: " + emotion.timestamp;
@@ -135,23 +129,14 @@ export class DayComponent extends BaseComponent {
 
       image.src = `img/${emotion.emotion_id}.gif`;
       image.alt = emotion.emotion_id;
-      emotionEntryBtns[0].src = `./img/check-in-icon.svg`;
-      console.log(emotionEntryBtns[0]);
-
-      deleteButton.addEventListener("click", () =>
-        this.#deleteEmotion(emotion)
-      );
 
       // Remove ids (Allows next entry to use ids)
       time.removeAttribute("id");
       rating.removeAttribute("id");
       description.removeAttribute("id");
       image.removeAttribute("id");
-      deleteButton.removeAttribute("id");
 
       // Will need set src
-
-      // TODO: ADD DELETE BUTTON
     });
   }
 
@@ -184,6 +169,32 @@ export class DayComponent extends BaseComponent {
 
   _addEventListeners() {
     this.addEvent(Events.LoadDayPage, (data) => this.loadPage(data));
+
+    document.addEventListener("DOMContentLoaded", () => {
+      document
+        .querySelector("#dayEmotionLog")
+        .addEventListener("click", (e) => {
+          /* Utilize event delegation to attach event handlers to each
+             img element nested in #dayEmotionLog 
+             1. Check-in calls the click event from the nav buttons "check-in" button
+             2. Delete-icon retrieves the emotion div the user clicked in and retrieves the index from the dataset attribute 
+             2b Pass the index to deleteEmotion to remove that emotion from the emotions array
+          */
+          if (e.target.tagName === "IMG") {
+            const emotionEntry = e.target.closest(".day-emotion-entry");
+            if (!emotionEntry) return; //if no emotion entry is found, exit
+            const index = emotionEntry.dataset.index;
+            if (e.target.id === "check-in-icon") {
+              this.update(
+                Events.LoadCheckInPage,
+                this.dateData.emotions[index]
+              );
+            } else if (e.target.id === "delete-icon") {
+              this.#deleteEmotion(index);
+            }
+          }
+        });
+    });
   }
 
   // Changes view to Day Page

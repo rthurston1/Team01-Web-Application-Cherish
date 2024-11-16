@@ -15,13 +15,19 @@ export class DatabaseService extends Service {
         console.log("Database events initialized");
       })
       .catch((error) => {
-        console.error(error);
+        console.error("Failed to initialize database:", error);
       });
   }
 
   addSubscriptions() {
     this.addEvent(Events.StoreData, (data) => this.storeDay(data));
     this.addEvent(Events.RestoreData, (id) => this.restoreDay(id));
+    this.addEvent(Events.StoreEmotion, (data, emotion) =>
+      this.storeEmotion(data, emotion)
+    );
+    this.addEvent(Events.RestoreEmotion, (date_id, index) =>
+      this.restoreEmotion(date_id, index)
+    );
   }
 
   async initDB() {
@@ -43,112 +49,112 @@ export class DatabaseService extends Service {
         this.update(Events.InitDataFailed);
         reject(event.target.error);
       };
+
+      request.onblocked = () => {
+        console.error(
+          "Database open request is blocked. Close other tabs with this site open."
+        );
+        reject("Database open request is blocked");
+      };
     });
+  }
+
+  // Helper function to handle database transactions
+  async _performTransaction(storeName, mode, operation) {
+    const transaction = this.db.transaction([storeName], mode);
+    const objectStore = transaction.objectStore(storeName);
+
+    return new Promise((resolve, reject) => {
+      const request = operation(objectStore);
+
+      request.onsuccess = (event) => {
+        resolve(event.target.result);
+      };
+
+      request.onerror = (event) => {
+        reject(event.target.error);
+      };
+    });
+  }
+
+  // Helper function to store data
+  async _storeData(storeName, data) {
+    return this._performTransaction(storeName, "readwrite", (objectStore) =>
+      objectStore.put(data)
+    )
+      .then(() => {
+        this.update(Events.StoredDataSuccess);
+        return "Data Stored Successfully";
+      })
+      .catch((error) => {
+        this.update(Events.StoredDataFailed);
+        throw new Error("Failed to store data: " + error);
+      });
+  }
+
+  // Helper function to restore data
+  async _restoreData(storeName, key) {
+    return this._performTransaction(storeName, "readonly", (objectStore) =>
+      objectStore.get(key)
+    )
+      .then((result) => result || { date_id: key })
+      .catch((error) => {
+        this.update(Events.RestoredDataFailed);
+        throw new Error("Failed to retrieve data: " + error);
+      });
   }
 
   // Returns the Day Object specified by the id
   async restoreDay(date_id) {
-    const transaction = this.db.transaction([this.storeName], "readonly");
-    const objectStore = transaction.objectStore(this.storeName);
-
-    return new Promise((resolve, reject) => {
-      const request = objectStore.get(date_id);
-
-      request.onsuccess = (event) => {
-        // If result is undefined creates new date object
-        const obj = event.target.result
-          ? event.target.result
-          : { date_id: date_id };
-        resolve(obj);
-      };
-
-      request.onerror = () => {
-        this.update(Events.RestoredDataFailed);
-        reject("Failed to retrieve data");
-      };
-    });
+    return this._restoreData(this.storeName, date_id);
   }
 
   // Stores the day entry into the database
   async storeDay(data) {
-    const transaction = this.db.transaction([this.storeName], "readwrite");
-    const objectStore = transaction.objectStore(this.storeName);
-
-    return new Promise((resolve, reject) => {
-      const request = objectStore.put(data); // Updates entry if already exists, adds it otherwise
-      request.onsuccess = () => {
-        this.update(Events.StoredDataSuccess);
-        resolve("Data Stored Successfully");
-      };
-
-      request.onerror = () => {
-        this.update(Events.StoredDataFailed);
-        reject("Failed to store data");
-      };
-    });
+    return this._storeData(this.storeName, data);
   }
 
   // Stores a specific emotion entry into the database
   async storeEmotion(data, emotion) {
-    const transaction = this.db.transaction([this.storeName], "readwrite");
-    const objectStore = transaction.objectStore(this.storeName);
-
-    return new Promise((resolve, reject) => {
-      const request = objectStore.get(data.date_id);
-
-      request.onsuccess = (event) => {
-        const day = event.target.result || {
-          date_id: data.date_id,
-          emotions: [],
-        };
-        day.emotions = day.emotions || [];
-        day.emotions.push(emotion);
-
-        const updateRequest = objectStore.put(day);
-        updateRequest.onsuccess = () => {
-          this.update(Events.StoreEmotionSuccess);
-          resolve("Emotion Stored Successfully");
-        };
-
-        updateRequest.onerror = () => {
-          this.update(Events.StoreEmotionFailed);
-          reject("Failed to store emotion");
-        };
-      };
-
-      request.onerror = () => {
+    console.log("Store emotion called");
+    const day = data || { date_id: data.date_id, emotions: [] };
+    day.emotions = day.emotions || [];
+    day.emotions.push(emotion);
+    console.log(day.emotions);
+    return this.storeDay(day)
+      .then(() => {
+        this.update(Events.StoreEmotionSuccess);
+        return "Emotion Stored Successfully";
+      })
+      .catch((error) => {
         this.update(Events.StoreEmotionFailed);
-        reject("Failed to retrieve day data");
-      };
-    });
+        return "Emotion Storage Failed: " + error;
+      });
   }
 
   // Retrieves a specific emotion entry from the database
   async restoreEmotion(date_id, index) {
-    const transaction = this.db.transaction([this.storeName], "readonly");
-    const objectStore = transaction.objectStore(this.storeName);
-
-    return new Promise((resolve, reject) => {
-      const request = objectStore.get(date_id);
-
-      request.onsuccess = (event) => {
-        const day = event.target.result;
+    return this._restoreData(this.storeName, date_id)
+      .then((day) => {
         if (day && day.emotions && day.emotions[index]) {
-          resolve(day.emotions[index]);
+          return day.emotions[index];
         } else {
-          reject("Emotion not found");
+          throw new Error("Emotion not found");
         }
-      };
-
-      request.onerror = () => {
+      })
+      .catch((error) => {
         this.update(Events.RestoreEmotionFailed);
-        reject("Failed to retrieve emotion");
-      };
-    });
+        throw new Error("Failed to retrieve emotion: " + error);
+      });
   }
 
   // Clears all Saved Data from the database
   async clearDatabase() {
+    if (!this.db) {
+      this.update(Events.ClearedDataFailed);
+      return Promise.reject("Database is not open");
+    }
+
     return new Promise((resolve, reject) => {
       const request = indexedDB.deleteDatabase(this.dbName);
 
@@ -164,3 +170,5 @@ export class DatabaseService extends Service {
     });
   }
 }
+
+export default DatabaseService;

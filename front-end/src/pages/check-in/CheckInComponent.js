@@ -4,10 +4,10 @@ import { dateFormat } from "../day/DayComponent.js";
 
 // Gets current time, formats as (HH:MM)
 export function getCurrentTime() {
-    const now = new Date();
-    const hours = now.getHours().toString().padStart(2, '0');
-    const minutes = now.getMinutes().toString().padStart(2, '0');
-    return `${hours}:${minutes}`;
+  const now = new Date();
+  const hours = now.getHours().toString().padStart(2, "0");
+  const minutes = now.getMinutes().toString().padStart(2, "0");
+  return `${hours}:${minutes}`;
 }
 
 export class CheckInComponent extends BaseComponent {
@@ -109,10 +109,17 @@ export class CheckInComponent extends BaseComponent {
 
   // Method to add event listeners
   _addEventListeners() {
-    //add event listeners for all pages 
+    //add event listeners for all pages
     this.addEvent(Events.LoadCheckInPage, (data) => this.loadPage(data));
-    this.addEvent(Events.StoredDataSuccess, () => console.log(`Stored new emotion in database`))
-    this.addEvent(Events.StoredDataFailed, () => console.log(`Failed to store emotion in database`))
+    this.addEvent(Events.StoredDataSuccess, () =>
+      console.log(`Stored new emotion in database`)
+    );
+    this.addEvent(Events.StoredDataFailed, () =>
+      console.log(`Failed to store emotion in database`)
+    );
+    this.addEvent(Events.StoreEmotionFailed, () =>
+      console.log(`Failed to store emotion in database`)
+    );
 
     // Listen for emotion selection
     document.querySelectorAll("input[name='emotion']").forEach((input) => {
@@ -120,19 +127,23 @@ export class CheckInComponent extends BaseComponent {
         this.emotionData.emotion_id = event.target.id;
 
         // ROBBIE CHANGE: Updates the Current Emotion Text
-        this.selectEmotionLabel.textContent = this.emotionData.emotion_id; 
+        this.selectEmotionLabel.textContent = this.emotionData.emotion_id;
       });
     });
 
     // Listen for intensity slider change
-    document.getElementById("emotion_intensity").addEventListener("input", (event) => {
-      this.emotionData.magnitude = event.target.value;
-    });
+    document
+      .getElementById("emotion_intensity")
+      .addEventListener("input", (event) => {
+        this.emotionData.magnitude = event.target.value;
+      });
 
     // Listen for text area input for description
-    document.getElementById("description").addEventListener("input", (event) => {
-      this.emotionData.description = event.target.value;
-    });
+    document
+      .getElementById("description")
+      .addEventListener("input", (event) => {
+        this.emotionData.description = event.target.value;
+      });
 
     // Cancel button listener
     document.querySelector(".cancel").addEventListener("click", () => {
@@ -150,12 +161,14 @@ export class CheckInComponent extends BaseComponent {
     this.emotionData = {
       emotion_id: null,
       magnitude: 5, // ROBBIE CHANGED: Attribute name now matches with data.md file
-      description: ""
+      description: "",
     };
-    document.querySelectorAll("input[name='emotion']").forEach((input) => (input.checked = false));
+    document
+      .querySelectorAll("input[name='emotion']")
+      .forEach((input) => (input.checked = false));
 
     // ROBBIE CHANGED: Added Header to Display current emotion picked
-    document.getElementById("selectedEmotion").textContent = "Pick One"; 
+    document.getElementById("selectedEmotion").textContent = "Pick One";
 
     document.getElementById("emotion_intensity").value = 5;
     document.getElementById("description").value = "";
@@ -165,34 +178,46 @@ export class CheckInComponent extends BaseComponent {
   _submitCheckIn() {
     // ROBBIE CHANGED: Validates the submission (must choose an emotion)
     if (!this.emotionData.emotion_id) {
-        alert("Please select an emotion before submitting");
-        return;
+      alert("Please select an emotion before submitting");
+      return;
     }
 
     // Get timestamp
-    this.emotionData['timestamp'] = getCurrentTime();
+    this.emotionData["timestamp"] = getCurrentTime();
 
     // Adds Emotion to Date Object
-    if (!this.dateData["emotions"]) this.dateData["emotions"] = []
-    this.dateData.emotions.push(this.emotionData);
+    if (!this.dateData["emotions"]) this.dateData["emotions"] = [];
 
-    this.update(Events.StoreData, this.dateData);
+    // this.dateData.emotions.push(this.emotionData);
+    this.update(Events.StoreEmotion, this.dateData, this.emotionData);
 
     // Reset after submission
     this._resetCheckIn();
-    alert("Emotion Saved!")
+    alert("Emotion Saved!");
+    // this.update(Events.LoadDayPage, this.dateData);
+  }
+
+  // Load the emotion data into the check-in form using the emotion object if it exists
+  // Otherwise load defaults
+  _loadEmotion(emotion = null) {
+    // Check if this is an emotion object
+    if (emotion && emotion.hasOwnProperty("emotion_id")) {
+      this.emotionData = emotion;
+      document.getElementById(this.emotionData.emotion_id).checked = true;
+      document.getElementById("emotion_intensity").value =
+        this.emotionData.magnitude;
+      document.getElementById("description").value =
+        this.emotionData.description;
+    } else {
+      this._resetCheckIn();
+    }
   }
 
   // Render the check-in page
+  // `data` can be a day or emotion object
   _render(data) {
     this.dateData = data;
-    this.emotionData = {
-      emotion_id: null,
-      magnitude: 5, // Default intensity
-      description: ""
-    };
-
+    this._loadEmotion(data);
     this.titleDate.textContent = dateFormat(data.date_id);
   }
- 
 }

@@ -13,10 +13,12 @@ const hub = EventHub.getInstance();
 hub.subscribe(Events.InitDataSuccess, () => {
   console.log("Initialized database successfully");
 
-  DATABASE.restoreDay(id).then((data) => {
-    hub.publish(Events.LoadMainPage, data);
-    hub.publish(Events.LoadNav, data);
-  });
+  DATABASE.restoreDay(id)
+    .then((data) => {
+      hub.publish(Events.LoadMainPage, data);
+      hub.publish(Events.LoadNav, data);
+    })
+    .catch(() => alert("Failed to restore day!"));
 });
 
 hub.subscribe(Events.InitDataFailed, () =>
