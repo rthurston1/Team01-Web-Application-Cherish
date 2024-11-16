@@ -242,5 +242,9 @@
 ### Deleted Branches
   - indexeddb-experimental-george-niko
 
+### Fix Day Page Bug
+  - **Details:** Once again fixed CSS and fixed issue where having no emotions sometimes wouldn't show "NO EMOTIONS LOGGED" as intended. 
+  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
+
 
 
