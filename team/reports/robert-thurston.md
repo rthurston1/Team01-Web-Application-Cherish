@@ -246,5 +246,9 @@
   - **Details:** Once again fixed CSS and fixed issue where having no emotions sometimes wouldn't show "NO EMOTIONS LOGGED" as intended. 
   - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/766eda5ccfd786e66eb1ee473f6b0f44e79898bb)
 
+## November 16, 2024
+### Recorded Top Three Commits
+  -**Details:** Added my top three commits for Milestone #3.
+
 
 
