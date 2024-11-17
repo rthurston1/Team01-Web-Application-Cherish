@@ -44,6 +44,6 @@ The indexedDB design is very simple. The application can make requests to retrie
   - If the key (date clicked on) is not found in the database, then a new blank entry is initialized.
 
 ### Data Collection
-  - After the user submit a check-in or saves their journal entry for a given day, the application makes a `put` request to store/update a day entry in the database.
+  - After the user submits a check-in or saves their journal entry for a given day, the application makes a `put` request to store/update a day entry in the database.
 
 
