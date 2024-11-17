@@ -1,71 +1,116 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
 .tab {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: bisque;
-    border-radius: 10px;
-    margin: 0;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: bisque;
+  border-radius: 10px;
+  margin: 0;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .tabs {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    padding: 10px;
-    background-color: rgb(150, 151, 151);
-    border-radius: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 10px;
+  background-color: rgb(150, 151, 151);
+  border-radius: 30px;
 }
 
 .tab:hover {
-    background-color: rgb(121, 200, 3);
+  background-color: rgb(121, 200, 3);
 }
 
 .active-tab {
-    background-color: green;
-}
-
-.text_box{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    background-color: rgb(196, 255, 225);
-    border-radius: 10px;
-}
-
-.center-container {
-    display: flex;
-    justify-content: center;
-    align-items: center; 
-    gap: 20px;
-    padding: 10px;
-}
-
-.center-container h2{
-    font-size: 1.8em;
-    margin-bottom: 10px;
+  background-color: green;
 }
 
 .text_box {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    background-color: rgb(196, 255, 225);
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
- }
-
-.stats h3 {
-    font-size:1.2em;
-    margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  background-color: rgb(196, 255, 225);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 10px;
+}
+
+.center-container h2 {
+  font-size: 1.8em;
+  margin-bottom: 10px;
+}
+
+.stats h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.stats {
+  margin-top: 20px;
+}
+.summary-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 60px; /* Adjust based on the height of the header */
+  bottom: 60px; /* Adjust based on the height of the nav */
+  left: 0;
+  right: 0;
+  overflow: auto; /* Allow scrolling if content overflows */
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box; /* Include padding in the element's total width and height */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .tabs {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .tab {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .text_box {
+    padding: 15px;
+  }
+
+  .center-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .center-container h2 {
+    font-size: 1.5em;
+  }
+
+  .stats h3 {
+    font-size: 1em;
+  }
+}

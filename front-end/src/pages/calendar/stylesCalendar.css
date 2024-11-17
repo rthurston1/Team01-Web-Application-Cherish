@@ -13,6 +13,7 @@ body {
   background-color: #2320c2ab;
 }
 
+/* TODO: Stop the calendar from resizing the container */
 .container {
   display: flex;
   flex-direction: column;
