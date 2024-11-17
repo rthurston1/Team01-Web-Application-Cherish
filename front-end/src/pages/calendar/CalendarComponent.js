@@ -49,8 +49,7 @@ export class CalendarComponent extends BaseComponent {
 
   // Builds the HTML of the Calendar Page
   _buildHTML() {
-    return `<div class="container"><div class="welcome-back">Welcome back, Jack! How’s it going?</div>
-        <div class="calendarContainer">
+    return `<div class="calendar-container"><div class="welcome-back">Welcome back, Jack! How’s it going?</div>
           <div class="calendar">
             <div class="month">
               <i class="fas fa-angle-left prev"></i>

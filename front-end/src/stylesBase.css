@@ -76,6 +76,8 @@ body {
   box-sizing: border-box; /* Include padding in the element's total width and height */
 }
 
+/* Nav Button Styles */
+
 .nav {
   display: flex;
   justify-content: space-between;
@@ -86,7 +88,7 @@ body {
   width: 100%; /* Maintain the same width as the app */
   position: absolute; /* Position the nav at the bottom */
   bottom: 0; /* Anchor the nav to the bottom */
-  height: 50px; /* Set a fixed height */
+  height: 60px; /* Set a fixed height */
 }
 
 #toCalendarPage {
