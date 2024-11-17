@@ -1,12 +1,24 @@
-.container h1 {
+.check-in-container {
+  position: absolute;
+  top: 60px; /* Adjust based on the height of the header */
+  bottom: 80px; /* Adjust based on the height of the nav and any additional padding/margin */
+  left: 0;
+  right: 0;
+  overflow: auto; /* Allow scrolling if content overflows */
+  padding: 20px;
+  padding-bottom: 40px; /* Add padding to the bottom to ensure buttons are visible */
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+}
+
+.check-in-container h1 {
   justify-self: center;
 }
 
-#checkInHeader {
-  background-color: rgb(47, 255, 75); /*Override color for Check-in Page*/
-}
-
-.container h2 {
+.check-in-container h2 {
   background-color: #c7cfc7;
   color: black;
   padding: 1rem;
@@ -55,9 +67,18 @@ input[type="radio"]:checked + .emoji {
   justify-content: space-between;
 }
 
+.input-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Allow the input-container to grow and take up available space */
+}
+
 .Why {
   margin-bottom: 1.5rem;
   font-family: "Bubblegum Sans", cursive;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Allow the Why section to grow and take up available space */
 }
 
 .Why textarea {
@@ -68,6 +89,7 @@ input[type="radio"]:checked + .emoji {
   border: 1px solid black;
   resize: none;
   font-size: 1.2rem;
+  flex-grow: 1; /* Allow the textarea to grow and take up available space */
 }
 
 .buttons {

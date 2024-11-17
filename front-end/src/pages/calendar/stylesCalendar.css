@@ -15,22 +15,11 @@ body {
 
 .container {
   width: 100%;
-  max-width: 1200px;
+  height: 100%;
   padding: 20px;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  margin: 20px;
-}
-
-.main-header {
-  text-align: center;
-  font-size: 1.5em;
-  font-weight: bold;
-  margin-bottom: 20px;
-  background-color: #ccc;
-  padding: 10px;
-  border-radius: 8px;
 }
 
 .welcome-section h2 {
@@ -39,139 +28,52 @@ body {
   color: #666;
 }
 
-.calendar {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.calendar h3 {
-  font-size: 1.2em;
-  margin-bottom: 10px;
-}
-
-table {
-  width: 100%;
-  text-align: center;
-  border-collapse: collapse;
-  margin-bottom: 20px;
-}
-
-th,
-td {
-  padding: 5px;
-}
-
-.highlighted-date {
-  background-color: #ff5599;
-  color: white;
-  border-radius: 50%;
-}
-
-.welcome-back {
-  text-align: center;
-  background-color: yellow;
-  padding: 10px;
-  border-radius: 5px;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-
-.features-section h3 {
-  text-align: center;
-  font-size: 1em;
-  color: #555;
-  margin-bottom: 10px;
-}
-
-.feature-buttons {
-  display: grid;
+.calendarContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  gap: 10px;
-  margin-top: 20px;
-  padding: 10px;
+  width: 100%;
+  height: 100%;
 }
 
-.feature-button {
-  padding: 10px 15px;
-  border: none;
-  border-radius: 8px;
-  color: white;
-  cursor: pointer;
-  flex: 1;
-  margin: 0 5px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.feature-button:hover {
-  transform: scale(1.05);
-  background-color: #d45b5b; /* Darken color on hover */
-  color: #f8f9fa; /* Lighten text color */
-}
-
-.check-in {
-  background-color: green;
-}
-
-.journal {
-  background-color: blue;
-}
-
-.stats {
-  background-color: orange;
-}
-
-.summary {
-  background-color: gray;
+.calendar {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
 }
 
 .month {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 1.2em;
-  cursor: pointer;
-  margin-bottom: 8%;
+  padding: 10px;
 }
 
-.month h1 {
-  font-size: 1rem;
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.2rem;
-}
-
-.month p {
-  font-size: 1rem;
-  font-weight: 400;
-  font-weight: bolder;
-}
-
-.date h1 {
-  font-size: 1.5em;
-  margin: 0;
-}
-
-.date p {
-  font-size: 0.9em;
-  color: gray;
+.date {
+  text-align: center;
 }
 
 .weekdays,
 .days {
-  display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
-  gap: 10px;
-  text-align: center;
-  font-weight: bold;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.weekdays {
+  margin-bottom: 10px; /* Add margin to separate weekdays from days */
 }
 
 .weekdays div,
 .days div {
-  padding: 10px;
-  font-size: 1em;
-  transition: background 0.3s, border-radius 0.3s; /* Add border-radius transition */
-  border-radius: 8px; /* Ensure consistent border-radius */
+  flex: 1 0 14.28%; /* 7 columns */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100% / 6); /* Adjust to fit all days */
+  font-size: 2vw; /* Use viewport width units for responsive font size */
 }
 
 .days .prev-date,
@@ -184,16 +86,25 @@ td {
   color: white;
   font-weight: bold;
   border-radius: 8px;
-  transition: background 0.3s, border-radius 0.3s; /* Add border-radius transition */
+  transition: background 0.3s, border-radius 0.3s;
 }
 
 .days div:hover {
-  background: rgba(0, 0, 0, 0.1); /* Darken current color */
+  background: rgba(0, 0, 0, 0.1);
   cursor: pointer;
   border-radius: 8px;
 }
 
-/* Responsive behavior */
+.welcome-back {
+  margin-top: 20px;
+  text-align: center;
+  background-color: yellow;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
 @media (max-width: 600px) {
   .calendar {
     max-width: 100%;

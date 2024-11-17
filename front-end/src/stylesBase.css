@@ -5,6 +5,24 @@
   font-family: Arial, sans-serif;
 }
 
+.page-header {
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 20px;
+  background-color: #ccc;
+  padding: 10px;
+  letter-spacing: 3px;
+  border-radius: 8px;
+  position: absolute; /* Anchor to the top */
+  top: 0; /* Position at the top */
+  width: 100%; /* Ensure it takes up the full width of the app */
+  z-index: 1; /* Ensure it stays above other content */
+  color: white; /* Default text color */
+  filter: brightness(1.2); /* Increase brightness to make the color lighter */
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.9); /* Subtle black border around the text */
+}
+
 body {
   display: flex;
   justify-content: center;
@@ -39,17 +57,20 @@ body {
   margin-bottom: 2rem;
   font-size: 2rem;
   text-align: center;
+  width: 100%; /* Ensure the header takes up the full width */
 }
 
 .views {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; /* Center the content vertically and horizontally */
+  justify-content: center;
   width: 100%; /* Ensure the views take up the full width of the app */
   height: 100%; /* Ensure the views take up the full height of the app */
   flex-grow: 1; /* Allow the views to grow and fill the available space */
   overflow-y: auto; /* Allow vertical scrolling if content overflows */
+  padding: 20px; /* Add padding if needed */
+  box-sizing: border-box; /* Include padding in the element's total width and height */
 }
 
 .nav {

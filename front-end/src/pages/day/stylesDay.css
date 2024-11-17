@@ -1,3 +1,16 @@
+.day-container {
+  position: absolute;
+  top: 60px; /* Adjust based on the height of the header */
+  bottom: 60px; /* Adjust based on the height of the nav */
+  left: 0;
+  right: 0;
+  overflow: auto; /* Allow scrolling if content overflows */
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 .day-head-container {
   display: flex;
   flex-direction: column;
@@ -29,6 +42,8 @@
   border: 5px solid #10a3dd;
   margin: 1rem;
   padding: 1rem;
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  overflow-y: auto; /* Allow vertical scrolling if content overflows */
   resize: none;
 }
 
