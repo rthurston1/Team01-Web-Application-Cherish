@@ -46,20 +46,23 @@ hub.subscribe(Events.LoadNav, (data) => {
         e.target.classList.add("active");
         const headerText = e.target.getAttribute("data-header");
         const headerColor = e.target.getAttribute("data-color");
-        document.querySelector(".page-header").textContent = headerText;
-        document.querySelector(".page-header").style.backgroundColor =
-          headerColor;
+        setHeader(headerText, headerColor);
         goToPage(e.target.textContent.toLowerCase());
       }
     });
+  }
+
+  function setHeader(headerText, headerColor) {
+    const header = document.querySelector(".page-header");
+    header.textContent = headerText;
+    header.style.backgroundColor = headerColor;
   }
 
   function setInitialHeader() {
     const initialButton = document.getElementById("toCalendarPage");
     const headerText = initialButton.getAttribute("data-header");
     const headerColor = initialButton.getAttribute("data-color");
-    document.querySelector(".page-header").textContent = headerText;
-    document.querySelector(".page-header").style.backgroundColor = headerColor;
+    setHeader(headerText, headerColor);
   }
 
   function render() {
