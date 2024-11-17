@@ -15,11 +15,15 @@
 ## Liam Campbell - Timekeeper
 
 - **Role**: Liam oversees the scheduling of all team activities, ensuring that meetings begin and end punctually. He monitors deadlines and regularly reminds the team of approaching due dates.
-- **Top 3 Commits**:
+- **Milestone #2 Top 3 Commits**:
   1. [Commit 1](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/b385dc2755c762ea2c05b4679bb04bc5ca9b7f5b): Added key features and added to problems.md
   2. [Commit 2](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/6244cb5bab87484f2f0634da24e76ce88408ec89): Met with everyone and documented tasks and goals throughout the week.
   3. [Commit 3](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/4cd1cecf806156e5ecf8a0c913983a2e37ea4f95): Created the format for problems.md
-
+- **Milestone #3 Top 3 Commits**:
+  1.[Commit 1](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/8f7d6e39535393e0a1d13b2b3269d6f26ef8b230): Fixed and Completed the css and javascript files for the Summary Page
+  2. [Commit 2](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/288b1e5dd477d002e504a167327453bf746fc874): In the original HTML file, added the stats section at the bottom of the summary page, and within the css file, combined the .tabs to be all one format.
+  3. [Commit 3](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/05e6b4b8c915e32f178c48eeef3269b0fd2dd0b2): Added the _render function and fixed bugs within both the javascript file and css file.
+  
 ## Jesse Goldman - Note-Taker
 
 - **Role**: Jesse takes comprehensive notes during meetings and makes sure that all action items are clearly conveyed. After each meeting, Jesse is in charge of updating the notes file in the repository as well as the shared TODO list he created.
