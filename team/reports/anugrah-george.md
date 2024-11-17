@@ -46,3 +46,7 @@
 ### November 12th, 2024
   - **Task**: Voicing out unit / edge test cases and errors from the client's side
   - **Details**: Noticing errors from development as there could be timing issue regarding submission of data from user's end. For example, since the app is a lot like journal app that takes in present date, the app should consider the fact that user might use the app features from 11:55pm - 12:05am that results in the next day submission.
+
+### November 15th, 2024 
+  - **Task**: Create sequence diagram folder structure as well as briefed on everyone on sequence diagrams
+  - **Details**: Made sure to create folders for each team member to upload their sequence diagrams and showed everyone how to create one using mermaid syntax. 
