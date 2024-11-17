@@ -53,6 +53,14 @@
   2. [Commit 2](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/24f263514c34cd7079219bd054215bbf341cbe25): Updated my roles file, by writing a description about U.I contribution.
   3. [Commit 3](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/a6bcef1635a3b932645c958232527d1cfc2d2130): Inserted the overall UI figma implementation of our app.
 
+
+    **Top 3 Commits for Milestone 3**:
+    1. [Commit 1](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/d49ba3ac8a172f484c561858338c09fa8342b82e): Started the main skeleton structure of summary-page.
+  2. [Commit 2](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/5d900f96974d3515c1d48a4fd53c74a2a788586d):  Implemented and test it the layout, colors of the web-page 
+  3. [Commit 3](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/d51a1de2e71925660a24f02f8c32bae9005441df): Merge and checked the overall design mainly on the summary page. 
+
+
+
 ## Nikolay Ostroukhov - Quality Control
 
 - **Role**: Reviews team submissions and ensures that all deliverables meet the necessary quality standards. Nikolay is responsible for proofreading and ensuring the accuracy of all documents before submission.
