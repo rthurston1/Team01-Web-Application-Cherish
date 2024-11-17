@@ -152,8 +152,7 @@ export class DayComponent extends BaseComponent {
   // Inherited Methods from BaseComponent
   _buildHTML() {
     return `
-      <div class="container">
-        <h1 class="page-name-header" id="dayHeader">Your Day</h1>
+      <div class="day-container">
         <div class="date-header" id="dayDate"></div>
         <h2>Your day so far:</h2>
         <div class="day-body-container">
