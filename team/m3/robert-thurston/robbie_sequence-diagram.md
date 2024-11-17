@@ -1,6 +1,6 @@
 ### Sequence Diagram: When user clicks on a date on the main page calendar
 
-The sequence diagram illustrates the workflow for loading and displaying the emotions and details of a selected day in the day view. Here's what happens:
+The sequence diagram illustrates the workflow for loading and displaying the emotions and details of a selected day in the day view.
 
 - **User Interaction**: The user clicks on a date displayed within the calendar. Each date is represented as an HTML DOM element with a `day` class and a `data-date` attribute.
 
