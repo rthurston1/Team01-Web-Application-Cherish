@@ -40,7 +40,7 @@
 The indexedDB design is very simple. The application can make requests to retrieve or store data.
 
 ### Data Retrieval
-  - While on the main page (the calendar) the user clicks on any date. Then the application makes `get` request to the database to fetch the data for the clicked on day. After retrieving the data, the app loads up the day view with the stored data.
+  -  The user clicks on any date on the main page (the calendar). Then the application makes `get` request to the database to fetch the data for the clicked on day. After retrieving the data, the app loads up the day view with the stored data.
   - If the key (date clicked on) is not found in the database, then a new blank entry is initialized.
 
 ### Data Collection
