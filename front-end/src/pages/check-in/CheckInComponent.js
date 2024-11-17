@@ -146,61 +146,59 @@ export class CheckInComponent extends BaseComponent {
 
   // Method to add event listeners
   _addEventListeners() {
-    //add event listeners for all pages
-    this.addEvent(Events.LoadCheckInPage, (data, emotion) => {
-      console.log(
-        "Event LoadCheckInPage with data:",
-        data,
-        "and emotion:",
-        emotion
-      );
-      this.loadPage(data, emotion);
-    });
-    this.addEvent(Events.StoreEmotionSuccess, () =>
-      console.log(`Stored new emotion in database`)
-    );
-    this.addEvent(Events.StoreEmotionFailed, () =>
-      console.log(`Failed to store emotion in database`)
-    );
+    // Add event listeners for all pages
+    this.addEvent(Events.LoadCheckInPage, (data) => this.loadPage(data));
+    this.addEvent(Events.StoredDataSuccess, () => console.log(`Stored new emotion in database`));
+    this.addEvent(Events.StoredDataFailed, () => console.log(`Failed to store emotion in database`));
 
-    //Listen for emotion selection
+    // Listen for emotion selection
     document.querySelectorAll("input[name='emotion']").forEach((input) => {
-      input.addEventListener("change", (event) => {
-        this.emotionData.emotion_id = event.target.id;
+        input.addEventListener("change", (event) => {
+            this.emotionData.emotion_id = event.target.id;
 
-        // ROBBIE CHANGE: Updates the Current Emotion Text
-        this.selectEmotionLabel.textContent = this.emotionData.emotion_id;
-      });
+            // Update slider position depending on selected emotion
+            if (this.emotionData.emotion_id === "Neutral") {
+                this.emotionData.magnitude = 1;
+                document.getElementById("emotion_intensity").value = 1; 
+                document.getElementById("emotion_intensity").disabled = true; //disable slider when neutral is selected
+                document.getElementById("emotion_intensity").classList.add("disabled-slider"); //add class to style the slider
+            } else {
+                this.emotionData.magnitude = 5; //reset magnitude value to 5
+                document.getElementById("emotion_intensity").value = 5; //reset slider value to 5
+                document.getElementById("emotion_intensity").disabled = false; 
+                document.getElementById("emotion_intensity").classList.remove("disabled-slider"); //remove class to style the slider
+            }
+
+            // Update the current emotion text
+            document.getElementById("selectedEmotion").textContent = this.emotionData.emotion_id;
+        });
     });
 
     // Listen for intensity slider change
-    document
-      .getElementById("emotion_intensity")
-      .addEventListener("input", (event) => {
-        if (this.emotionData.emotion_id === "neutral") {
-          this.emotionData.magnitude = 1;
+    document.getElementById("emotion_intensity").addEventListener("input", (event) => {
+        if (this.emotionData.emotion_id === "Neutral") {
+            this.emotionData.magnitude = 1;
+            document.getElementById("emotion_intensity").value = 1; //set slider to 1 for neutral
         } else {
-          this.emotionData.magnitude = event.target.value;
+            this.emotionData.magnitude = event.target.value;
         }
-      });
+    });
 
     // Listen for text area input for description
-    document
-      .getElementById("description")
-      .addEventListener("input", (event) => {
+    document.getElementById("description").addEventListener("input", (event) => {
         this.emotionData.description = event.target.value;
-      });
+    });
 
     // Cancel button listener
     document.querySelector(".cancel").addEventListener("click", () => {
-      this._resetCheckIn();
+        this._resetCheckIn();
     });
 
     // Confirm button listener
     document.querySelector(".confirm").addEventListener("click", () => {
-      this._submitCheckIn(this.editMode);
+        this._submitCheckIn();
     });
-  }
+}
 
   // Reset the check-in form
   _resetCheckIn() {
