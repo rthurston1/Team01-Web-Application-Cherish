@@ -21,6 +21,7 @@
   color: white; /* Default text color */
   filter: brightness(1.2); /* Increase brightness to make the color lighter */
   text-shadow: 0 0 3px rgba(0, 0, 0, 0.9); /* Subtle black border around the text */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 body {
@@ -39,8 +40,8 @@ body {
   align-items: center;
   justify-content: center; /* Center the content vertically and horizontally */
   width: 100%;
-  max-width: 1200px; /* Set a maximum width for the app */
-  height: 100%; /* Ensure the app takes up the full height of the viewport */
+  max-width: 800px; /* Set a maximum width for the app */
+  height: 90%; /* Ensure the app takes up the full height of the viewport */
   padding: 20px;
   background-color: #fff;
   border-radius: 10px;
@@ -66,7 +67,9 @@ body {
   align-items: center;
   justify-content: center;
   width: 100%; /* Ensure the views take up the full width of the app */
-  height: 100%; /* Ensure the views take up the full height of the app */
+  height: calc(
+    100% - 60px
+  ); /* Ensure the views take up the full height of the app minus the header and nav */
   flex-grow: 1; /* Allow the views to grow and fill the available space */
   overflow-y: auto; /* Allow vertical scrolling if content overflows */
   padding: 20px; /* Add padding if needed */
@@ -79,10 +82,11 @@ body {
   border: none;
   border-radius: 8px;
   background-color: #f0f0f0; /* Temporary background color for visibility */
-  padding: 1rem; /* Temporary padding for visibility */
+  padding: 0.5rem; /* Reduce padding */
   width: 100%; /* Maintain the same width as the app */
   position: absolute; /* Position the nav at the bottom */
   bottom: 0; /* Anchor the nav to the bottom */
+  height: 50px; /* Set a fixed height */
 }
 
 #toCalendarPage {
@@ -107,7 +111,7 @@ body {
 
 .nav-btns {
   display: flex;
-  gap: 1rem; /* Add some gap between the buttons */
+  gap: 1rem; /* Increase gap between the buttons */
   flex: 1; /* Allow buttons to grow and fill the available space */
   border: none;
   max-width: 19%;
@@ -116,11 +120,11 @@ body {
   cursor: pointer;
   text-shadow: 0.07em 0 black, 0 0.07em black, -0.07em 0 black, 0 -0.07em black;
   font-family: "Brush Script MT", cursive;
-  font-size: 1.5rem;
+  font-size: 1.2rem; /* Increase font size */
   transition: background-color 0.3s ease, transform 0.2s ease;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  padding: 1rem; /* Increase padding */
 }
 
 .nav-btns:hover {
@@ -135,7 +139,7 @@ body {
     max-width: 1000px;
   }
   .nav-btns {
-    font-size: 1.2rem;
+    font-size: 1.1rem; /* Adjust font size for smaller screens */
   }
 }
 
@@ -144,7 +148,7 @@ body {
     max-width: 800px;
   }
   .nav-btns {
-    font-size: 1rem;
+    font-size: 1rem; /* Adjust font size for smaller screens */
   }
 }
 
@@ -153,6 +157,6 @@ body {
     max-width: 600px;
   }
   .nav-btns {
-    font-size: 0.8rem;
+    font-size: 0.9rem; /* Adjust font size for smaller screens */
   }
 }
