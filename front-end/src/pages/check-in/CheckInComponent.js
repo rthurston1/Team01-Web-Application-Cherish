@@ -45,10 +45,6 @@ export class CheckInComponent extends BaseComponent {
     this.emotionData = [];
     this.editMode = false;
     this.emotion_index = -1;
-
-    // Elements
-    this.selectEmotionLabel = document.getElementById("selectedEmotion");
-    this.titleDate = document.getElementById("checkInDate");
   }
 
   // Build HTML structure for the check-in page
@@ -147,7 +143,7 @@ export class CheckInComponent extends BaseComponent {
   // Method to add event listeners
   _addEventListeners() {
     //add event listeners for all pages
-    this.addEvent(Events.LoadCheckInPage, (data, emotion) => {
+    this.addCustomEventListener(Events.LoadCheckInPage, (data, emotion) => {
       console.log(
         "Event LoadCheckInPage with data:",
         data,
@@ -156,15 +152,15 @@ export class CheckInComponent extends BaseComponent {
       );
       this.loadPage(data, emotion);
     });
-    this.addEvent(Events.StoreEmotionSuccess, () =>
+    this.addCustomEventListener(Events.StoreEmotionSuccess, () =>
       console.log(`Stored new emotion in database`)
     );
-    this.addEvent(Events.StoreEmotionFailed, () =>
+    this.addCustomEventListener(Events.StoreEmotionFailed, () =>
       console.log(`Failed to store emotion in database`)
     );
 
     //Listen for emotion selection
-    document.querySelectorAll("input[name='emotion']").forEach((input) => {
+    this.inputEmotions.forEach((input) => {
       input.addEventListener("change", (event) => {
         this.emotionData.emotion_id = event.target.id;
 
@@ -174,46 +170,50 @@ export class CheckInComponent extends BaseComponent {
     });
 
     // Listen for intensity slider change
-    document
-      .getElementById("emotion_intensity")
-      .addEventListener("input", (event) => {
+    this.magnitudeSlider.addEventListener("input", (event) => {
         if (this.emotionData.emotion_id === "neutral") {
           this.emotionData.magnitude = 1;
         } else {
           this.emotionData.magnitude = event.target.value;
         }
-      });
+    });
 
     // Listen for text area input for description
-    document
-      .getElementById("description")
-      .addEventListener("input", (event) => {
-        this.emotionData.description = event.target.value;
-      });
+    this.checkInDescription.addEventListener("input", (event) => {
+      this.emotionData.description = event.target.value;
+    });
 
     // Cancel button listener
-    document.querySelector(".cancel").addEventListener("click", () => {
+    this.cancelButton.addEventListener("click", () => {
       this._resetCheckIn();
     });
 
     // Confirm button listener
-    document.querySelector(".confirm").addEventListener("click", () => {
+    this.confirmButton.addEventListener("click", () => {
       this._submitCheckIn(this.editMode);
     });
+  }
+
+  _createElementObjs() {
+    this.magnitudeSlider = document.getElementById("emotion_intensity");
+    this.checkInDescription = document.getElementById("description");
+    this.selectEmotionLabel = document.getElementById("selectedEmotion");
+    this.titleDate = document.getElementById("checkInDate");
+    this.cancelButton = document.querySelector(".cancel");
+    this.confirmButton = document.querySelector(".confirm");
+    this.inputEmotions = document.querySelectorAll("input[name='emotion']");
   }
 
   // Reset the check-in form
   _resetCheckIn() {
     this.emotionData = { emotion_id: "", magnitude: 5, description: "" };
-    document
-      .querySelectorAll("input[name='emotion']")
-      .forEach((input) => (input.checked = false));
+    this.inputEmotions.forEach((input) => (input.checked = false));
 
     // ROBBIE CHANGED: Added Header to Display current emotion picked
-    document.getElementById("selectedEmotion").textContent = "Pick One";
+    this.selectEmotionLabel.textContent = "Pick One";
 
-    document.getElementById("emotion_intensity").value = 5;
-    document.getElementById("description").value = "";
+    this.magnitudeSlider.value = 5;
+    this.checkInDescription.value = "";
   }
 
   // Submit the check-in data
@@ -264,11 +264,12 @@ export class CheckInComponent extends BaseComponent {
       console.log("Loading emotion: ", this.emotion_index);
       this.editMode = true;
       this.emotionData = this.dateData.emotions[this.emotion_index];
+
       document.getElementById(this.emotionData.emotion_id).checked = true;
-      document.getElementById("emotion_intensity").value =
-        this.emotionData.magnitude;
-      document.getElementById("description").value =
-        this.emotionData.description;
+
+      this.magnitudeSlider.value =this.emotionData.magnitude;
+      this.checkInDescription.value =this.emotionData.description;
+      this.selectEmotionLabel.textContent = this.emotionData.emotion_id;
     } else {
       this.editMode = false;
       console.log("Loading default check in settings.");
