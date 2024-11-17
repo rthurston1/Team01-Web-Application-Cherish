@@ -80,7 +80,7 @@ export class CalendarComponent extends BaseComponent {
   // Adds event listeners to the prev and next buttons as well as
   // the feature buttons
   _addEventListeners() {
-    this.addEvent(Events.LoadMainPage, (data) => this.loadPage(data));
+    this.addCustomEventListener(Events.LoadMainPage, (data) => this.loadPage(data));
 
     // Add event listener to the days container
     // When a day is clicked, load the day page and

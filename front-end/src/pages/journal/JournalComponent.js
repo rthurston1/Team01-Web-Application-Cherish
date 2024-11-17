@@ -84,11 +84,11 @@ export class JournalComponent extends BaseComponent {
 
     // Adds EventListeners that update attributes in the class
     _addEventListeners() {
-        this.addEvent(Events.LoadJournalPage, data => this.loadPage(data))
-        this.addEvent(Events.StoredDataSuccess, () => {
+        this.addCustomEventListener(Events.LoadJournalPage, data => this.loadPage(data))
+        this.addCustomEventListener(Events.StoredDataSuccess, () => {
             console.log(`Stored new journal in database:`);
           })
-          this.addEvent(Events.StoredDataFailed, () => {
+          this.addCustomEventListener(Events.StoredDataFailed, () => {
             console.log(`Failed to store journal in database`);
           })
 
