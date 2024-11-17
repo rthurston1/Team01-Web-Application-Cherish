@@ -1,37 +1,25 @@
 # Cherish Data
 
 ## Data Types
-
-### User Profile
- -**Description**: Contains personal login information.
- -_Attributes_
-   - `username` (`string`): The name chosen by the user.
-   - `name` (`string`): Preferred name of the user.
-   - `password` (`string`): An encrypted string only visible to the user.
-   - `email` (`string`): The email linked to the profile.
- - **Data Source**: User-input, when first signing up or updating.
-
 ### Calendar
   - **Description**: Hold information regarding the current month and the days. 
   - _Attributes:_
-    - `current_day` (`date`): Displays today's date.
-    - `streak` (`number`): The number of consecutive days the user has logged their daily emotion.
+    - `date` (`Date`): Displays today's date.
   - **Data Source**: System-generated, based on user's inputs for each day.
 
 ### Day
  - **Description**: Tracks an individual day's user-logged information
  - _Attributes:_
-   - `date_id` (`string`): The date corresponding to the day.
-   - `logged_in` (`boolean`): True if the user filled out information for the current day (false if the day was skipped).
+   - `date_id` (`string`): The date corresponding to the day (unique identifier in the database).
    - `emotions` (`Emotion[]`): A list of emotions that the user felt during the day.
-   - `rating` (`number`): The overall emotion score of the day. (The higher the score, the better day you had!).
+   - `rating` (`number`): The overall emotion score of the day, out of 10. (The higher the score, the better day you had!).
    - `journal` (`string`): A space for users to write an overall summary for their day (not required, can be left empty).
- - **Data Source** System-generated, based on the users inputs from the emotions they've logged. Also User-input, for recording in journal entries
+ - **Data Source** System-generated, based on the users inputs from the emotions they've logged and journal entry.
 
 ### Emotion
   - **Description**: Represents an emotion the user is feeling during the day
   - _Attributes:_
-    - `emotion_id` (`string`): A unique identifier for the emotion. (Emotions: Happy, Sad, Angry, Anxious, Disgusted)
+    - `emotion_id` (`string`): A unique identifier for the emotion. (Emotions: Happy, Sad, Angry, Anxious, Disgusted, Neutral)
     - `magnitude` (`number`): A ranking system on a scale of 1 to 10 on how strong the emotion is.
     - `description` (`string`): An explanation to why a user feels the emotion (Not required, can be left empty).
     - `timestamp` (`string`): The time (hour:minute) an emotion was logged.
@@ -46,4 +34,16 @@
 ## Data Sources
 - **User-Input Data:** Entered by the user.
 - **System-Generated Data:** Data is taken from user inputs and distributed to various sections in the application.
+- **IndexedDB:** A client-side database used to store and collect data inputted by the user.
+
+## IndexedDB Integration
+The indexedDB design is very simple. The application can make requests to retrieve or store data.
+
+### Data Retrieval
+  - While on the main page (the calendar) the user clicks on any date. Then the application makes `get` request to the database to fetch the data for the clicked on day. After retrieving the data, the app loads up the day view with the stored data.
+  - If the key (date clicked on) is not found in the database, then a new blank entry is initialized.
+
+### Data Collection
+  - After the user submit a check-in or saves their journal entry for a given day, the application makes a `put` request to store/update a day entry in the database.
+
 
