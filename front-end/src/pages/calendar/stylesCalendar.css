@@ -13,7 +13,7 @@ body {
   background-color: #2320c2ab;
 }
 
-/* TODO: Stop the calendar from resizing the container */
+/* TODO: Stop the calendar from resizing the container please dear god */
 .calendar-container {
   display: flex;
   flex-direction: column;
@@ -82,7 +82,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: calc(100% / 6); /* Adjust to fit all days */
+  height: calc(100% / 6); /* Ensure 6 rows */
   font-size: 1.2vw; /* Use viewport width units for responsive font size */
   padding-top: 20px;
   padding-bottom: 20px;
@@ -93,8 +93,7 @@ body {
   color: #ccc;
 }
 
-.days .prev-date:hover,
-.days .next-date:hover .days .today {
+.days .today {
   background: #ff69b4;
   color: white;
   font-weight: bold;
