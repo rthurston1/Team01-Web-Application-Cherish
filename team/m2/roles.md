@@ -3,10 +3,14 @@
 ## Anugrah George - Task Lead
 
 - **Role**: George manages the overall tasks that the project needs and makes sure the task structure is coordinated. He also ensures milestones are achieved, and coordinates the team's efforts.
-- **Top 3 Commits**:
+- **Milestone #2 Top 3 Commits**:
   1. [Commit 1](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/002debca589a17663e3ae6156a82ab5758d57051): Brought up an innovative project/application idea to work with the team.
   2. [Commit 2](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/d471ea48d0217f6a9b5ea471f60dc191ec0eb35e): Worked on user needs and primary audience and summarized it well by documenting users.md.
   3. [Commit 3](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/6af3a14589e6eaa7cfb0c4ec4fc658dcdc344e2e): Drafted and worked on creating a template for roles.md; making sure everyone has a role and responsibilities associated with the project.
+- **Milestone #3 Top 3 Commits**:
+  1. [Commit 1](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/5ce2afa4e72bc4cf8abc5b68a99774b077bb3287): Fixed a major CSS bug that was affecting every component in every page.
+  2. [Commit 2](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/20c0768404ec2f6e3bbd5bfc23671829c2617e7e): Applied Previous and Next month navigation via javascript.
+  3. [Commit 3](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/1569e68159874c02de6dc85a3bd246c3fda87a3a): Month days were rendering on the wrong week days as well as recorrecting how the new year calendar starts and ends.
 
 ## Liam Campbell - Timekeeper
 
