@@ -35,9 +35,11 @@ A page that allows the user to type in a summary for their day, it's a simple te
 
 **Assigned to** Robert Thurston, Jesse Goldman
 
-## Summary Reports (5 pts)
+## Summary Reports (2 pts)
 
 Users will be able to review their weekly or monthly summary reports that highlight consecutive good or bad days or significant changes in mood.
+
+Note: The summary page is not fully completed as most of it's functionality relies on the back-end. There are placeholder text for now for summary for front-end purposes.
 
 **Assigned to**: Liam Campbell, Samuel Hernandez 
 
