@@ -113,3 +113,73 @@
   - **Wacil**: Implement the `.js` file and make tweaks to HTML and CSS.  
 
 ---
+
+### November 10, 2024
+- **Work Tasks for the Week**:  
+  - **George**:  
+    - Worked on CSS.  
+    - Collaborated with Niko on backend.  
+  - **Wacil**:  
+    - Finished JS file for the check-in page.  
+    - Made a pull request.  
+  - **Robert**:  
+    - Worked on CSS and JS of day and journal pages.  
+    - Updated `featured.md` file during meetings.  
+  - **Niko**:  
+    - Implemented persistent buttons.  
+    - Got backend code working for date objects.  
+  - **Sam**:  
+    - Worked on summary page with Liam.  
+
+- **Jesse's Questions**:  
+  - The “Journal” button on the day page leads to an empty page; we should remove that button.  
+  - Clicking the cancel button from the Journal page leads to the day page, which DOES show the date. However, clicking a date on the calendar leads to the day page, which does NOT show the date.  
+
+- **TODO**:  
+  - Work on the Journal page to get the current date to show up; it seems to be invisible, possibly a CSS issue.  
+  - Update your reports file.  
+  - Change word count to character count.  
+  - Work on getting the scroll container on the day page working properly; test by adding objects.  
+  - Change the day page to a horizontal view and add a way to delete emotions from the log.  
+  - Branch off main.  
+  - Create logic for getting the day rating and showing it on the day page.  
+  - Team members should delete unused branches and update their report files.  
+  - Members should review their commits and log them for the report file.  
+  - Think about your top 3 commits to update the `roles.md` file (replace top 3 commits from milestone 2).  
+
+---
+
+### November 16, 2024
+- **Team Tasks**:  
+  - Double-checked `features.md`, `problem.md`, `roles.md`, and `user.md` files.  
+  - Individually updated top-3 commits in `roles.md` (IMPORTANT).  
+  - Discussed sequence diagrams and planned who would handle each diagram or how to approach them.  
+
+---
+
+### November 17, 2024
+- **Reflections**:  
+  - **Robert**:  
+    - Implemented IndexedDB, fixed CSS, reduced code duplication, and optimized code.  
+    - Reflections: Could have relied more on teammates and better divided labor as some features proved harder to implement, but hard work paid off. Satisfied with the project so far.  
+    - Going forward: Notify the team if a feature is harder than expected.  
+  - **Sam**:  
+    - Finished summary page design and updated Figma.  
+    - Reflections: Enjoyed collaborating with team members.  
+    - Going forward: Start tasks earlier to reduce stress as a team.  
+  - **Niko**:  
+    - Worked on the Day page—implemented editing and deleting entries, and revamped CSS.  
+    - Reflections: Enjoyed implementing persistent navigation buttons and learning from teammates’ coding styles.  
+    - Going forward: Assign someone to bug fixing/QA for backend testing.  
+  - **Liam**:  
+    - Finished summary page.  
+    - Reflections: Enjoyed integrating components.  
+    - Going forward: Start tasks earlier.  
+  - **George**:  
+    - Worked on general CSS and sequence diagram.  
+    - Reflections: Very pleased with app functionality.  
+  - **Jesse**:  
+    - Implemented dayRating, simplified code (added global `Emotions` object and global CSS class for header and date), and worked on CSS revamp (to be replaced with Niko’s code).  
+    - Reflections: Emphasized professionalism.  
+    - Going forward: Start tasks earlier and ensure communication to avoid redundant work.  
+
