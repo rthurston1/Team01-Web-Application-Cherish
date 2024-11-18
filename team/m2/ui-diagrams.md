@@ -13,4 +13,4 @@ This is a Figma diagram based off of Robbie's sketch, designed collaboratively b
 
 **Milestone #3 Figma Diagram**
 A brand new figma diagram that reflects our UI desgin created for Milestone #3.
-[Link to Figma](https://www.figma.com/design/jbxc8KqFD6NTJZysVhzeHP/New-Calendar?node-id=0-1&node-type=canvas&t=I7sXc54Kf6jXpM1C-0)
+[Link to Figma](https://www.figma.com/design/jbxc8KqFD6NTJZysVhzeHP/New-Calendar?node-id=0-1&t=jCWqzoztUZgCKt4s-1)
