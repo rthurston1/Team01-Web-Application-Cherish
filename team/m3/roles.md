@@ -4,6 +4,7 @@
 
 - **Features Assigned**:
   - Visual Calendar Dashboard (5 pts)
+  - Dynamic CSS Design (3 pts)
 - **Top 3 Commits**:
   1. [Commit 1](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/5ce2afa4e72bc4cf8abc5b68a99774b077bb3287): Fixed a major CSS bug that was affecting every component in every page.
   2. [Commit 2](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/20c0768404ec2f6e3bbd5bfc23671829c2617e7e): Applied Previous and Next month navigation via javascript.
