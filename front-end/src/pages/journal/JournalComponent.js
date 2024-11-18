@@ -66,49 +66,50 @@ export class JournalComponent extends BaseComponent {
                     </div>
                 </form>
             </div>
-        `;
-  }
+        `   
+    }
 
-  _createElementObjs() {
-    this.titleDate = document.getElementById("journalDate");
-    this.summaryElement = document.getElementById("journalSummary");
-    this.saveButton = document.getElementById("saveJournal");
-    this.cancelButton = document.getElementById("cancelJournal");
-  }
+    _createElementObjs() {
+        this.titleDate = document.getElementById('journalDate')
+        this.summaryElement = document.getElementById('journalSummary')
+        this.saveButton = document.getElementById('saveJournal')
+        this.cancelButton = document.getElementById('cancelJournal')
+    }
 
-  _createElementObjs() {
-    this.titleDate = document.getElementById("journalDate");
-    this.summaryElement = document.getElementById("journalSummary");
-    this.saveButton = document.getElementById("saveJournal");
-    this.cancelButton = document.getElementById("cancelJournal");
-  }
+    _createElementObjs() {
+        this.titleDate = document.getElementById('journalDate')
+        this.summaryElement = document.getElementById('journalSummary')
+        this.saveButton = document.getElementById('saveJournal')
+        this.cancelButton = document.getElementById('cancelJournal')
+    }
 
-  // Adds EventListeners that update attributes in the class
-  _addEventListeners() {
-    this.addEvent(Events.LoadJournalPage, (data) => this.loadPage(data));
-    this.addEvent(Events.StoredDataSuccess, () => {
-      console.log(`Stored new journal in database:`);
-    });
-    this.addEvent(Events.StoredDataFailed, () => {
-      console.log(`Failed to store journal in database`);
-    });
+    // Adds EventListeners that update attributes in the class
+    _addEventListeners() {
+        this.addCustomEventListener(Events.LoadJournalPage, data => this.loadPage(data))
+        this.addCustomEventListener(Events.StoredDataSuccess, () => {
+            console.log(`Stored new journal in database:`);
+          })
+          this.addCustomEventListener(Events.StoredDataFailed, () => {
+            console.log(`Failed to store journal in database`);
+          })
 
-    this.saveButton.addEventListener("click", () => this.#saveJournal());
-    this.cancelButton.addEventListener("click", () => this.#cancelJournal());
-    this.summaryElement.addEventListener("input", () =>
-      this.#updateCharCount()
-    );
-  }
+        this.saveButton.addEventListener("click", () => 
+            this.#saveJournal());
+        this.cancelButton.addEventListener('click', () => 
+            this.#cancelJournal());
+        this.summaryElement.addEventListener('input', () => 
+            this.#updateCharCount());
+    }
 
-  // Changes the current view to the Journal Page
-  _render(data) {
-    this.dateData = data;
+    // Changes the current view to the Journal Page
+    _render(data) {
+        this.dateData = data;
 
-    this.titleDate.textContent = dateFormat(this.dateData.date_id);
-    this.summaryElement.value = this.dateData["journal"]
-      ? this.dateData.journal
-      : "";
+        this.titleDate.textContent = dateFormat(this.dateData.date_id);
+        this.summaryElement.value = this.dateData["journal"] 
+        ? this.dateData.journal
+        : "";
 
-    this.#restoreJournal();
-  }
+        this.#restoreJournal();
+    }
 }

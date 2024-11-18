@@ -41,7 +41,7 @@ export class BaseComponent {
    * @returns {void}
    */
   _render(data, emotion = null) {
-    throw new Error("render method not implemented");
+    throw new Error("_render method not implemented");
   }
 
   /**
@@ -54,7 +54,7 @@ export class BaseComponent {
   // Methods
 
   // Adds a custom event listener to the component
-  addEvent(event, listener) {
+  addCustomEventListener(event, listener) {
     return EventHub.getInstance().subscribe(event, listener);
   }
 
@@ -92,8 +92,8 @@ export class BaseComponent {
     this.bodyElement.classList.add("view");
     this.bodyElement.id = id;
     this.bodyElement.innerHTML = this._buildHTML();
-    this._createElementObjs();
 
+    this._createElementObjs();
     this.#changeDisplay("none");
 
     // Adds EventListens

@@ -173,7 +173,7 @@ export class DayComponent extends BaseComponent {
   }
 
   _addEventListeners() {
-    this.addEvent(Events.LoadDayPage, (data) => this.loadPage(data));
+    this.addCustomEventListener(Events.LoadDayPage, (data) => this.loadPage(data));
 
     document.addEventListener("DOMContentLoaded", () => {
       document

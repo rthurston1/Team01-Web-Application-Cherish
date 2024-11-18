@@ -250,5 +250,11 @@
 ### Recorded Top Three Commits
   -**Details:** Added my top three commits for Milestone #3.
 
+## November 17, 2024
+### Added HTML Element References in Components
+  - **Details:** Added references to HTML object within each component so we don't have to rely on `document.getElementById(id)` as much.
+  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
+
+
 
 
