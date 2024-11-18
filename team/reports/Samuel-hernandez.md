@@ -28,3 +28,8 @@
 
 - **Task**: Huge improvement on the summary page.
 - **Link**: Here is the link of the commit. : https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/5d900f96974d3515c1d48a4fd53c74a2a788586d
+
+
+## November 15, 2024
+ - **Task: Finish the overall design of Figma page.
+ - **Link: Here is the link of the web-page : https://www.figma.com/design/jbxc8KqFD6NTJZysVhzeHP/New-Calendar?node-id=0-1&node-type=canvas&t=V4K5TJAe33dq0cux-0
