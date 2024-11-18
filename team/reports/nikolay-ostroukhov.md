@@ -140,3 +140,9 @@ November 16, 2024
 - **Task**: Create sequence diagram of the global navigation menu.
 - **Details**: Created a sequence diagram of the global navigation menu. The diagram shows the flow of events when a user interacts with the global navigation menu. The diagram is located in the `team/m3/nikolay-ostroukhov/feature-sequence-diagram.md` file.
 - **Link to Commit**: [Commit](https://github.com/rthurston1/Team01-Web-Application-Cherish/pull/86/commits/7916f4c3b955b20473b777cf9b07c20c2c1a79ba)
+
+November 17, 2024
+
+- **Task**: Revamp css of the entire app for resizable windows and more consistent styling.
+- **Details**: Created a new branch `css-niko` to revamp the css of the entire app. The goal is to make the app more responsive and consistent across different screen sizes.
+- **Link to Commit**: [Commit]()

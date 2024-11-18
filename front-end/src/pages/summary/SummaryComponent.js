@@ -2,10 +2,10 @@ import { Events } from "../../eventhub/Events.js";
 import { BaseComponent } from "../../BaseComponent.js";
 
 export class SummaryComponent extends BaseComponent {
-    constructor() {
-        super('summaryPage', './pages/summary/stylesSum.css'); // Call the constructor of the parent class
-        this.dateData = {};
-    } 
+  constructor() {
+    super("summaryPage", "./pages/summary/stylesSum.css"); // Call the constructor of the parent class
+    this.dateData = {};
+  }
 
     #handleClick(element, period) {
         this.tabs.forEach(tab => {
@@ -35,10 +35,9 @@ export class SummaryComponent extends BaseComponent {
         }
     }
 
-    _buildHTML() {
-        return `
-        <div class="container">
-            <h1 class="page-name-header" id="summaryHeader">Summary</h1>
+  _buildHTML() {
+    return `
+        <div class="summary-container">
             <div class="tabs">
                 <div class="tab" id="tab-Day">Day</div>
                 <div class="tab" id="tab-Week">Week</div>
@@ -61,7 +60,7 @@ export class SummaryComponent extends BaseComponent {
             </div>
         </div>
             `;
-    }
+  }
 
     _addEventListeners() {
         this.addCustomEventListener(Events.LoadSummaryPage, (data) => this.loadPage(data))
@@ -88,4 +87,5 @@ export class SummaryComponent extends BaseComponent {
         this.tabs = document.querySelectorAll(".tab");
         this.summaryText = document.getElementById("summary-text");
     }
+
 }

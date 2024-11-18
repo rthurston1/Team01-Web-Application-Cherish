@@ -32,7 +32,10 @@
   1. [Commit 1](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/6c2ea8ac552fce25074cbeb870d86d244cfaf1c3): Created notes folder and file in the main branch.
   2. [Commit 2](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/62523bf0ff089fb33cf035d9464153367bd0e915): Updated notes file after team meeting.
   3. [Commit 3](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/5a3f407e3883248521bf97da8ad44bb91acc77fe): Worked on Figma diagram of Robbie's UI sketch, updated ui-diagrams.md with a link to the figma.
-
+- **Milestone #3 Top 3 Commits**:
+  1. [Top 1 Commit](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/d345018b0cf857834776beb617036ef8c4567538): Added a character count to the Journal page 
+  2. [Top 2 Commit](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/49714ae51e7f51344e7274cac5777c055f061e6d): Implemented a day rating feature
+  3. [Top 3 Commit](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/d8e22e0f6290856666189f8d00926d6b899bf930): Finalized adding Neutral emotion, added global emotions object which all pages will use, added global date-header and page-name-header in global CSS file, updated logic for calculating day rating 
 ## Robert Thurston - Project Lead
 
 - **Role**: Robbie organizes and tracks the team's progress. He plans and leads meetings to keep everyone aligned with project goals. Robbie ensures that every team member's voice is heard, addressing any communication challenges or roadblocks that may arise.
@@ -52,6 +55,14 @@
   1. [Commit 1](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/c6da337d7228340dd19443be39f0506c9ba9aeb7): Created and linked my roles to that our group repository.
   2. [Commit 2](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/24f263514c34cd7079219bd054215bbf341cbe25): Updated my roles file, by writing a description about U.I contribution.
   3. [Commit 3](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/a6bcef1635a3b932645c958232527d1cfc2d2130): Inserted the overall UI figma implementation of our app.
+
+
+    **Top 3 Commits for Milestone 3**:
+    1. [Commit 1](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/d49ba3ac8a172f484c561858338c09fa8342b82e): Started the main skeleton structure of summary-page.
+  2. [Commit 2](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/5d900f96974d3515c1d48a4fd53c74a2a788586d):  Implemented and test it the layout, colors of the web-page 
+  3. [Commit 3](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/d51a1de2e71925660a24f02f8c32bae9005441df): Merge and checked the overall design mainly on the summary page. 
+
+
 
 ## Nikolay Ostroukhov - Quality Control
 

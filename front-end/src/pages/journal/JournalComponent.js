@@ -1,59 +1,60 @@
-import { Events } from '../../eventhub/Events.js'
-import { BaseComponent } from '../../BaseComponent.js'
-import { dateFormat } from '../day/DayComponent.js'
+import { Events } from "../../eventhub/Events.js";
+import { BaseComponent } from "../../BaseComponent.js";
+import { dateFormat } from "../day/DayComponent.js";
 
 export class JournalComponent extends BaseComponent {
-    constructor() {
-        super('journalPage', './pages/journal/stylesJournal.css')
-        this.dateData = {}
+  constructor() {
+    super("journalPage", "./pages/journal/stylesJournal.css");
+    this.dateData = {};
+  }
+
+  // Methods
+  #noChanges() {
+    if (!this.dateData["journal"]) return false;
+    return this.summaryElement.value === this.dateData.journal;
+  }
+
+  // Stores value in text area to date object
+  #saveJournal() {
+    if (this.#noChanges()) {
+      alert("No changes made");
+      return;
     }
 
-// Methods
-    #noChanges() {
-        if (!this.dateData["journal"]) return false;
-        return this.summaryElement.value === this.dateData.journal;
-    }
+    this.dateData["journal"] = this.summaryElement.value;
+    this.update(Events.StoreData, this.dateData);
 
-    // Stores value in text area to date object
-    #saveJournal() {
-        if (this.#noChanges()) {
-            alert("No changes made");
-            return;
-        }
-           
-        this.dateData['journal'] = this.summaryElement.value
-        this.update(Events.StoreData, this.dateData)
+    alert("Journal Saved!");
+  }
 
-        alert("Journal Saved!")
-    }
+  // Confirm first, then reverts any changes made
+  #cancelJournal() {
+    // No changes have been made yet
+    if (this.#noChanges() || !confirm("Cancel Changes?")) return;
+    this.#restoreJournal();
+  }
 
-    // Confirm first, then reverts any changes made
-    #cancelJournal() {
-        // No changes have been made yet
-        if ( this.#noChanges() || !confirm("Cancel Changes?")) return;
-        this.#restoreJournal();
-    }
+  // Reverts any changes to journal submission
+  #restoreJournal() {
+    this.summaryElement.value = this.dateData["journal"]
+      ? this.dateData.journal
+      : "";
+    this.#updateCharCount();
+  }
 
-    // Reverts any changes to journal submission
-    #restoreJournal() {
-        this.summaryElement.value = this.dateData['journal']
-        ? this.dateData.journal
-        : ""
-        this.#updateCharCount();
-    }
+  #updateCharCount() {
+    const journalText = document.getElementById("journalSummary").value;
+    const characterCount = journalText.length;
+    document.getElementById(
+      "wordCount"
+    ).innerText = `Character Count: ${characterCount}`;
+  }
 
-    #updateCharCount() {
-        const journalText = document.getElementById('journalSummary').value;
-        const characterCount = journalText.length; 
-        document.getElementById('wordCount').innerText = `Character Count: ${characterCount}`;
-    }
-
-// Inherited Methods
-    // Builds and returns HTML structure
-    _buildHTML() { 
-        return `
-            <div class="container">
-                <h1 class="page-name-header" id="journalHeader">Journal</h1>
+  // Inherited Methods
+  // Builds and returns HTML structure
+  _buildHTML() {
+    return `
+            <div class="journal-container">
                 <div class="date-header" id="journalDate"></div>
                 <h2>What's on your mind?</h2>
                 <form class="text-submission" id="daySummary">
@@ -111,10 +112,4 @@ export class JournalComponent extends BaseComponent {
 
         this.#restoreJournal();
     }
-
 }
-
-
-
-
-

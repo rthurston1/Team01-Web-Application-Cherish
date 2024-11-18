@@ -56,4 +56,15 @@
 
 ### November 15, 2024
   - **Task**: Worked more on emojis and day rating, sequence diagram, Finalizing Figma   
-  - **Details**: working with Sam on updating Figma to accommodate final frontend design 
+  - **Details**: working with Sam on updating Figma to accommodate final frontend design
+
+
+### November 16, 2024
+  - **Task**: Finalized neutral emoji, CSS work    
+  - **Details**: disabling slider when neutral selected, made global object for emotions, global CSS classes for dates and page headers 
+
+
+### November 17, 2024
+  - **Task**: fixed slider not disabling with neutral selected, updated notes from team meeting, updated sequence diagram, top 3 commits 
+  - **Details**: 
+

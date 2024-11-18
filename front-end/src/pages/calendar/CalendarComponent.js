@@ -20,9 +20,8 @@ export const MONTHS = [
 export class CalendarComponent extends BaseComponent {
   constructor(date) {
     super("calendarPage", "./pages/calendar/stylesCalendar.css");
-    this.currentDate = {};
-    this._loadFontAwesome();
     this.date = date; // Define `this.date` as a class property
+    this._loadFontAwesome();
   }
 
   /**
@@ -49,9 +48,7 @@ export class CalendarComponent extends BaseComponent {
 
   // Builds the HTML of the Calendar Page
   _buildHTML() {
-    return `<div class="container">
-        <header class="main-header">Main page</header>
-        <div class="calendarContainer">
+    return `<div class="calendar-container"><div class="welcome-back">Welcome back, Jack! How’s it going?</div>
           <div class="calendar">
             <div class="month">
               <i class="fas fa-angle-left prev"></i>
@@ -73,7 +70,7 @@ export class CalendarComponent extends BaseComponent {
             <div class="days"></div>
           </div>
         </div>
-          <div class="welcome-back">Welcome back, Jack! How’s it going?</div>
+          
       </div>`;
   }
 
@@ -115,8 +112,7 @@ export class CalendarComponent extends BaseComponent {
     const PREV = 0,
       CURR = 1,
       NEXT = 2;
-    //const date = new Date();
-    this.currentDate = data;
+
     this.date.setDate(1);
 
     const monthDays = document.querySelector(".days");

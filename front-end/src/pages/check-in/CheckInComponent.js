@@ -51,8 +51,7 @@ export class CheckInComponent extends BaseComponent {
   _buildHTML() {
     return `
           <!-- page -->
-        <div class="container">
-          <h1 class="page-name-header" id="checkInHeader">Check-in Page</h1>
+        <div class="check-in-container">
           <div class="date-header" id="checkInDate"></div>
           <h2 id="selectedEmotion">Care to check In?</h2>
 
@@ -120,6 +119,8 @@ export class CheckInComponent extends BaseComponent {
             </div>
         </section>
 
+       <!-- Create an input container for the text area -->
+        <div class="input-container">
         <!-- why section with text box -->
         <section class="Why">
             <label for="description">Why?</label>
@@ -130,12 +131,13 @@ export class CheckInComponent extends BaseComponent {
             maxLength="250"
             ></textarea>
         </section>
-
+        
         <!-- cancel and confirm buttons -->
         <div class="buttons">
             <button class="cancel">Cancel</button>
             <button class="confirm">Confirm</button>
         </div>
+        </div> <!-- end of input container -->
     </div>
     `;
   }
@@ -144,12 +146,6 @@ export class CheckInComponent extends BaseComponent {
   _addEventListeners() {
     //add event listeners for all pages
     this.addCustomEventListener(Events.LoadCheckInPage, (data, emotion) => {
-      console.log(
-        "Event LoadCheckInPage with data:",
-        data,
-        "and emotion:",
-        emotion
-      );
       this.loadPage(data, emotion);
     });
     this.addCustomEventListener(Events.StoreEmotionSuccess, () =>
