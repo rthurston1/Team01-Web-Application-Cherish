@@ -145,9 +145,9 @@ export class CheckInComponent extends BaseComponent {
   // Method to add event listeners
   _addEventListeners() {
     //add event listeners for all pages
-    this.addCustomEventListener(Events.LoadCheckInPage, (data, emotion) => {
-      this.loadPage(data, emotion);
-    });
+    this.addCustomEventListener(Events.LoadCheckInPage, (data, emotion) => 
+      this.loadPage(data, emotion)
+    );
     this.addCustomEventListener(Events.StoreEmotionSuccess, () =>
       console.log(`Stored new emotion in database`)
     );
@@ -181,6 +181,13 @@ export class CheckInComponent extends BaseComponent {
 
     // Cancel button listener
     this.cancelButton.addEventListener("click", () => {
+      if (this.editMode) {
+        this.emotionData = this.prevData; // Reverts to past save
+        this.dateData.emotions[this.emotion_index] = { ...this.emotionData };
+        this.update(Events.LoadDayPage, this.dateData);
+        return;
+      }
+
       this._resetCheckIn();
     });
 
@@ -256,17 +263,18 @@ export class CheckInComponent extends BaseComponent {
       this.dateData.emotions &&
       this.dateData.emotions.length > this.emotion_index &&
       this.emotion_index >= 0
-    ) {
+    ) { // Edit Mode
       console.log("Loading emotion: ", this.emotion_index);
       this.editMode = true;
       this.emotionData = this.dateData.emotions[this.emotion_index];
+      this.prevData = {...this.emotionData}; // Copy of emotion data in case user cancels changes
 
       document.getElementById(this.emotionData.emotion_id).checked = true;
 
       this.magnitudeSlider.value =this.emotionData.magnitude;
       this.checkInDescription.value =this.emotionData.description;
       this.selectEmotionLabel.textContent = this.emotionData.emotion_id;
-    } else {
+    } else { // Normal Mode
       this.editMode = false;
       console.log("Loading default check in settings.");
       this._resetCheckIn();
@@ -278,6 +286,7 @@ export class CheckInComponent extends BaseComponent {
     this.emotion_index = emotion_index;
     console.log("emotion_index: ", emotion_index);
     this.dateData = data;
+    this.prevData = {};
     this._loadEmotion();
     this.titleDate.textContent = dateFormat(data.date_id);
   }

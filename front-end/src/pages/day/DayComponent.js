@@ -21,12 +21,14 @@ export class DayComponent extends BaseComponent {
   // Methods
   // Removes the specified emotion element from the Emotion Log
   #deleteEmotion(emotion_entry) {
+    if (!confirm("Are you sure you want to delete?")) {return;} // Confirm deletion
+
     this.dateData.emotions.splice(emotion_entry, 1);
 
     this.#calculateRating();
     this.update(Events.StoreData, this.dateData);
-    alert("Emotion deleted!");
     this._render(this.dateData);
+    alert("Emotion deleted!");
   }
 
   // Calculates Daily Ranking based on emotions logged also saves any changed to database
