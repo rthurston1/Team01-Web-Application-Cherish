@@ -28,3 +28,15 @@
   - **Task** Create SummaryComponent with Sam
   - **Details** Worked with Sam to change our .html file to a _buildHTML() function within a .js and also use events. Added _addEventListeners()
   and worked on _render(data).
+
+### November 14, 2024
+  - **Task**: Continue working on SummaryComponent and its .css
+  - **Details**: Worked with Sam and continued worked on the javascript file and tweaked minor styling at the time.
+
+### November 15, 2024
+  - **Task**: Finish the SummaryPage
+  - **Details**: Finished the summary page, fixed any bugs within the javascript file and .css file. Changed the Stats container to update with User day rating and current date.
+
+### November 16-17, 2024
+  - **Task**: Meetings and sequence diagram
+  - **Details**: Created a sequence diagram for the summary page, wrapped up for milestone3, looked for any potential bugs, input my top-3 commits
