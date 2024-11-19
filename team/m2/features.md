@@ -20,18 +20,18 @@ A system-wide button system that easily allows the user to switch between differ
 
 ## Check-In Page (1 pt)
 
-Users will be able to rate how their day went from four options. Users will also be able to describe their day using a textbox (optional). We may introduce a feature that would allow the user to record an audio log instead of writing out an entry. Day ratings and day descriptions/potential audio logs will be stored for the user's analytics when summarizing a week, month, or year. 
+Users can rate their day using four options and optionally describe it in a textbox. The page offers two modes: normal and edit. In normal mode, users can log multiple emotions at once. In edit mode, users can modify an existing emotion. The cancel button resets the page to its default state, while the confirm button saves the changes.
 
 **Assigned to**: Wacil Volitaire
 
 ## Visual Day Display (3 pts)
 
-A display page where the user can view any emotions they have logged for a given day. They are also able to add a journal response to summerize their overall day. In additon, the user will be given a score out of 10 based on how good their day was. A 10 being the best, 0 being the worst.
+A display page where the user can view any emotions they have logged for a given day. They are also able to add a journal response to summerize their overall day. In additon, the user will be given a score out of 10 based on how good their day was. A 10 being the best, 0 being the worst. User can edit/delete any previously logged emotions.
 
 **Assigned to**: Robert Thurston, Jesse Goldman
 
 ## Journal Page (1 pt)
-A page that allows the user to type in a summary for their day, it's a simple text box which automatically saves when changing the view.
+A page that allows the user to type in a summary for their day, it's a simple text box.
 
 **Assigned to** Robert Thurston, Jesse Goldman
 
@@ -43,3 +43,7 @@ Note: The summary page is not fully completed as most of it's functionality reli
 
 **Assigned to**: Liam Campbell, Samuel Hernandez 
 
+## IndexedDB Data Storage (4 pts)
+Integrated a client-side database to efficiently store and retrieve data. The application seamlessly displays stored entries across various page views. Every time the user submits a journal entry or logs an emotion, the database is automatically updated to reflect these changes.
+
+**Assigned to**: Robert Thurston
