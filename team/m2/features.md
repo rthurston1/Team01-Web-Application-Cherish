@@ -16,7 +16,7 @@ Within the visual calendar dashboard, users can navigate to previous and next mo
 
 A system-wide button system that easily allows the user to switch between different pages in the application.
 
-**Assigned to**: Robert Thurston 
+**Assigned to**: Nikolay Ostroukhov 
 
 ## Check-In Page (1 pt)
 
@@ -31,7 +31,7 @@ A display page where the user can view any emotions they have logged for a given
 **Assigned to**: Robert Thurston, Jesse Goldman
 
 ## Journal Page (1 pt)
-A page that allows the user to type in a summary for their day, it's a simple text box.
+A page that allows the user to type in a summary for their day, it's a simple text box. A character counter updates whenever the user types into the textbox.
 
 **Assigned to** Robert Thurston, Jesse Goldman
 
