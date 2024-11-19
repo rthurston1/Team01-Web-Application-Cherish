@@ -142,7 +142,7 @@ export class CalendarComponent extends BaseComponent {
 
     const nextDays = 7 - lastDayIndex - 1;
 
-    document.querySelector(".date h1").innerHTML = MONTHS[this.date.getMonth()];
+    document.querySelector(".date h1").innerHTML = MONTHS[this.date.getMonth()] + " " + this.date.getFullYear();
     document.querySelector(".date p").innerHTML = new Date().toDateString();
 
     // **** Helper functions ****//
@@ -169,7 +169,8 @@ export class CalendarComponent extends BaseComponent {
     // Returns if the day is today
     const isToday = (day) =>
       day === new Date().getDate() &&
-      this.date.getMonth() === new Date().getMonth();
+      this.date.getMonth() === new Date().getMonth() &&
+      this.date.getFullYear() === new Date().getFullYear();
     // **** End of Helper functions ****//
 
     // Generate the previous month days
