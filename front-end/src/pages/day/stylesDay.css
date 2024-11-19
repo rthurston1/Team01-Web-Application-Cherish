@@ -47,6 +47,19 @@
   resize: none;
 }
 
+.day-buttons {
+  display: flex;
+  height: 5%;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.day-buttons button {
+  width: 10%;
+  height: 100%;
+}
+
 .day-emotion-entry {
   position: relative; /* Ensure absolute positioning of children is relative to this element */
   display: grid;

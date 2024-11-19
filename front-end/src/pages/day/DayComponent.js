@@ -172,8 +172,8 @@ export class DayComponent extends BaseComponent {
     return `
       <div class="day-container">
         <div class="day-buttons">
-          <button class="day-button" id="prevDay">Prev</button>
-          <button class="day-button" id="nextDay">Next</button>
+          <button id="prevDay">Prev</button>
+          <button id="nextDay">Next</button>
         </div>
         <div class="date-header" id="dayDate"></div>
         <h2>Your day so far:</h2>
