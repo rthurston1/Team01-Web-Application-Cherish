@@ -1,7 +1,7 @@
 import { Events } from "../../eventhub/Events.js";
 import { BaseComponent } from "../../BaseComponent.js";
 import { MONTHS } from "../calendar/CalendarComponent.js";
-import { EMOTIONS } from "../check-in/CheckInComponent.js";
+import { DATABASE } from "../../main.js";
 
 // Converts date id into a readable Date (ex. 11-10-2024 => November 10, 2024)
 export function dateFormat(dataId) {
@@ -17,6 +17,7 @@ export class DayComponent extends BaseComponent {
     super("dayPage", "./pages/day/stylesDay.css");
     this.dateData = {};
   }
+
 
   // Methods
   // Removes the specified emotion element from the Emotion Log
@@ -92,6 +93,21 @@ export class DayComponent extends BaseComponent {
     this.update(Events.StoreData, this.dateData);
   }
 
+  #changeDay(n) {
+    const date = new Date(this.dateData.date_id);
+    date.setDate(date.getDate() + n); // Increments/Decrements current day by n
+    const day = date.getDate();
+    const month = date.getMonth() + 1; // Months are 0 indexed
+    const year = date.getFullYear();
+
+    const newDataId = `${month}-${day}-${year}`;
+
+    DATABASE.restoreDay(newDataId).then((data) => {
+      console.log("Done!");
+      this.update(Events.LoadDayPage, data);
+    });
+  }
+
   #renderEmotions() {
     this.emotionLog.innerHTML = ""; // Clears html
     if (!this.dateData.emotions) {
@@ -108,7 +124,7 @@ export class DayComponent extends BaseComponent {
        <section>
        <div class="emotion-btns">
 
-       <img src="./img/check-in-icon.svg" alt="edit entry" id="check-in-icon" onclick="">
+        <img src="./img/check-in-icon.svg" alt="edit entry" id="check-in-icon" onclick="">
         <img src="./img/x-icon.svg" alt="delete entry" id="delete-icon" onclick="">
        </div>
         
@@ -155,6 +171,10 @@ export class DayComponent extends BaseComponent {
   _buildHTML() {
     return `
       <div class="day-container">
+        <div class="day-buttons">
+          <button class="day-button" id="prevDay">Prev</button>
+          <button class="day-button" id="nextDay">Next</button>
+        </div>
         <div class="date-header" id="dayDate"></div>
         <h2>Your day so far:</h2>
         <div class="day-body-container">
@@ -172,6 +192,8 @@ export class DayComponent extends BaseComponent {
     this.journalEntry = document.getElementById("dayJournalEntry");
     this.emotionLog = document.getElementById("dayEmotionLog");
     this.dayRating = document.getElementById("dayRating");
+    this.prevDayButton = document.getElementById("prevDay");
+    this.nextDayButton = document.getElementById("nextDay");
   }
 
   _addEventListeners() {
@@ -199,6 +221,9 @@ export class DayComponent extends BaseComponent {
           }
         });
     });
+
+    this.prevDayButton.addEventListener("click", () => this.#changeDay(-1));
+    this.nextDayButton.addEventListener("click", () => this.#changeDay(1));
   }
 
   // Changes view to Day Page
