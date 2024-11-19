@@ -110,7 +110,7 @@ export class DayComponent extends BaseComponent {
 
   #renderEmotions() {
     this.emotionLog.innerHTML = ""; // Clears html
-    if (!this.dateData.emotions) {
+    if (!this.dateData.emotions || this.dateData.emotions.length === 0) {
       this.emotionLog.textContent = "NO EMOTIONS LOGGED";
       return;
     }
