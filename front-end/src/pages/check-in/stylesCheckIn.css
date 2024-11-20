@@ -14,6 +14,38 @@
   flex-direction: column;
 }
 
+.nav-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+date-Header {
+  border-style: solid;
+  border-Color:red
+}
+
+.nav-button:hover {
+  background-color: #45a049;
+}
+
+#checkInDate {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+}
+
+#dateTitle {
+  font-size: 20px;
+  font-weight: bold;
+}
+
 .check-in-container h1 {
   justify-self: center;
 }

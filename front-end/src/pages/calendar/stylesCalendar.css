@@ -101,6 +101,20 @@ body {
   transition: background 0.3s, border-radius 0.3s;
 }
 
+/* Add this style to underline selected days */
+.days .underline {
+  text-decoration: underline;
+  font-weight: bold; /* Optional: Makes the selected day stand out more */
+  font-style: italic;
+}
+
+.days .today {
+  background: #ff69b4;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: background 0.3s, border-radius 0.3s;
+}
 .days div:hover {
   background: rgba(0, 0, 0, 0.1);
   cursor: pointer;

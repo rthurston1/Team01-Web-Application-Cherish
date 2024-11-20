@@ -16,10 +16,18 @@ export class DayComponent extends BaseComponent {
   constructor() {
     super("dayPage", "./pages/day/stylesDay.css");
     this.dateData = {};
+    this.datesWithEntries = [];  // Array to store dates with entries
   }
 
 
   // Methods
+
+   // Method to update the list of dates with entries
+   #updateDatesWithEntries(date) {
+    if (!this.datesWithEntries.includes(date)) {
+      this.datesWithEntries.push(date); // Add date to list if not already present
+    }
+  }
   // Removes the specified emotion element from the Emotion Log
   #deleteEmotion(emotion_entry) {
     if (!confirm("Are you sure you want to delete?")) {return;} // Confirm deletion
@@ -230,6 +238,11 @@ export class DayComponent extends BaseComponent {
   _render(data) {
     if (data) this.dateData = data;
 
+    // Check if this day has any entries
+    if (this.dateData.emotions && this.dateData.emotions.length > 0) {
+      this.#updateDatesWithEntries(this.dateData.date_id); // Add this date to the list
+    }
+
     this.dateData["journal"] = this.dateData["journal"]
       ? this.dateData.journal
       : "";
@@ -247,5 +260,8 @@ export class DayComponent extends BaseComponent {
       "Day Score: " +
       (this.dateData.rating === 0 ? "--" : this.dateData.rating) +
       " / 10";
+
+      // Update parent or calendar component with the list of dates with entries
+    this.update(Events.DatesWithEntries, this.datesWithEntries);
   }
 }

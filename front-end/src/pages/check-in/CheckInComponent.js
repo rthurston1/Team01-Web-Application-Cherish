@@ -50,95 +50,69 @@ export class CheckInComponent extends BaseComponent {
   // Build HTML structure for the check-in page
   _buildHTML() {
     return `
-          <!-- page -->
-        <div class="check-in-container">
-          <div class="date-header" id="checkInDate"></div>
-          <h2 id="selectedEmotion">Care to check In?</h2>
-
+      <!-- page -->
+      <div class="check-in-container">
+       <div class="date-header" id="checkInDate"> </div>
+       
+      
+      <div class="buttons">
+          <button id="previousDay" class="day-nav-button">Previous</button>
+          <button id="nextDay" class="day-nav-button">Next</button>
+        </div>
+        <h2 id="selectedEmotion">Care to check In?</h2>
+  
         <!-- emotions section -->
-        <!--emojis in order from best to worst: happy -> neutral -> anxious -> sad -> angry -->
         <section class="Emotions">
-            <!-- label for emotions -->
-            <label>Emotions:</label>
-
-            <!-- Happy -->
-            <label for="Happy">
-                <input type="radio" name="emotion" id="Happy" hidden />
-                <img src="./img/happy.gif" alt="Happy" class="emoji" />
-            </label>
-
-            <!-- Neutral -->
-            <label for="Neutral">
-                <input type="radio" name="emotion" id="Neutral" hidden />
-                <img src="./img/neutral.gif" alt="Neutral" class="emoji" />
-            </label>
-
-            <!-- Anxious -->
-            <label for="Anxious">
-                <input type="radio" name="emotion" id="Anxious" hidden />
-                <img src="./img/Anxious.gif" alt="Anxious" class="emoji" />
-            </label>
-
-            <!-- Sad -->
-            <label for="Sad">
-                <input type="radio" name="emotion" id="Sad" hidden />
-                <img src="./img/Sad.gif" alt="Sad" class="emoji" />
-            </label>
-
-            <!-- Angry -->
-            <label for="Angry">
-                <input type="radio" name="emotion" id="Angry" hidden />
-                <img src="./img/Angry.gif" alt="Angry" class="emoji" />
-            </label>
-
-            <!-- Disgusted -->
-            <label for="Disgusted">
-                <input type="radio" name="emotion" id="Disgusted" hidden />
-                <img src="./img/Disgusted.gif" alt="Disgusted" class="emoji" />
-            </label>
-
+          <label>Emotions:</label>
+  
+          <!-- Emotion options as before -->
+          <label for="Happy">
+            <input type="radio" name="emotion" id="Happy" hidden />
+            <img src="./img/happy.gif" alt="Happy" class="emoji" />
+          </label>
+          <label for="Neutral">
+            <input type="radio" name="emotion" id="Neutral" hidden />
+            <img src="./img/neutral.gif" alt="Neutral" class="emoji" />
+          </label>
+          <label for="Anxious">
+            <input type="radio" name="emotion" id="Anxious" hidden />
+            <img src="./img/Anxious.gif" alt="Anxious" class="emoji" />
+          </label>
+          <label for="Sad">
+            <input type="radio" name="emotion" id="Sad" hidden />
+            <img src="./img/Sad.gif" alt="Sad" class="emoji" />
+          </label>
+          <label for="Angry">
+            <input type="radio" name="emotion" id="Angry" hidden />
+            <img src="./img/Angry.gif" alt="Angry" class="emoji" />
+          </label>
+          <label for="Disgusted">
+            <input type="radio" name="emotion" id="Disgusted" hidden />
+            <img src="./img/Disgusted.gif" alt="Disgusted" class="emoji" />
+          </label>
         </section>
-
+  
         <!-- magnitude section -->
         <section class="MagnitudeEmotions">
-            <!-- label -->
-            <label for="emotion_intensity">Intensity of emotions:</label>
-            <!-- make a slider for the intensity -->
-            <input
-            type="range"
-            id="emotion_intensity"
-            name="emotion_intensity"
-            min="1"
-            max="10"
-            step="1"
-            />
-            <div class="range-labels">
-            <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span
-            ><span>6</span><span>7</span><span>8</span><span>9</span
-            ><span>10</span>
-            </div>
+          <label for="emotion_intensity">Intensity of emotions:</label>
+          <input type="range" id="emotion_intensity" name="emotion_intensity" min="1" max="10" step="1" />
+          <div class="range-labels">
+            <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
+          </div>
         </section>
-
-       <!-- Create an input container for the text area -->
-        <div class="input-container">
-        <!-- why section with text box -->
+  
+        <!-- why section -->
         <section class="Why">
-            <label for="description">Why?</label>
-            <textarea
-            id="description"
-            rows="4"
-            placeholder="Write your reasoning here (250 character limit)"
-            maxLength="250"
-            ></textarea>
+          <label for="description">Why?</label>
+          <textarea id="description" rows="4" placeholder="Write your reasoning here (250 character limit)" maxLength="250"></textarea>
         </section>
-        
+  
         <!-- cancel and confirm buttons -->
         <div class="buttons">
-            <button class="cancel">Cancel</button>
-            <button class="confirm">Confirm</button>
+          <button class="cancel">Cancel</button>
+          <button class="confirm">Confirm</button>
         </div>
-        </div> <!-- end of input container -->
-    </div>
+      </div>
     `;
   }
 
@@ -194,6 +168,14 @@ export class CheckInComponent extends BaseComponent {
     // Confirm button listener
     this.confirmButton.addEventListener("click", () => {
       this._submitCheckIn(this.editMode);
+    });
+
+    // Event listeners for previous and next day buttons
+    document.getElementById("previousDay").addEventListener("click", () => {
+      this.changeDay(-1); // Go to previous day
+    });
+    document.getElementById("nextDay").addEventListener("click", () => {
+      this.changeDay(1); // Go to next day
     });
   }
 
@@ -252,6 +234,14 @@ export class CheckInComponent extends BaseComponent {
       this.update(Events.LoadDayPage, this.dateData);
     }
   }
+
+  // Method to navigate days
+  changeDay(direction) {
+    const currentDate = new Date(this.titleDate.textContent);
+    currentDate.setDate(currentDate.getDate() + direction); // Adjust by 1 day
+    this.loadPage({ date: currentDate });
+  }
+
 
   // Load the emotion data into the check-in form using the emotion index if it exists
   // Otherwise load defaults

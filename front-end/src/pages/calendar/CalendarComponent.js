@@ -22,6 +22,8 @@ export class CalendarComponent extends BaseComponent {
     super("calendarPage", "./pages/calendar/stylesCalendar.css");
     this.date = date; // Define `this.date` as a class property
     this._loadFontAwesome();
+    this.datesWithEntries = [];
+
   }
 
   /**
@@ -78,7 +80,10 @@ export class CalendarComponent extends BaseComponent {
   // the feature buttons
   _addEventListeners() {
     this.addCustomEventListener(Events.LoadMainPage, (data) => this.loadPage(data));
-
+    this.addCustomEventListener(Events.DatesWithEntries, (dates) => {
+      this.datesWithEntries = dates; // Update the list of dates with entries
+      this.updateCalendar(); // Re-render the calendar with updated dates
+    });
     // Add event listener to the days container
     // When a day is clicked, load the day page and
     // pass the date as a parameter in the format "MM-DD-YYYY"
@@ -104,6 +109,20 @@ export class CalendarComponent extends BaseComponent {
     document.querySelector(".next").addEventListener("click", () => {
       this.date.setMonth(this.date.getMonth() + 1);
       this._render();
+    });
+  }
+
+   // Update calendar UI to underline dates with entries
+   updateCalendar() {
+    const dateCells = document.querySelectorAll(".day"); // Assuming these are your date cells
+
+    dateCells.forEach((cell) => {
+      const cellDate = cell.getAttribute("data-date"); // Assuming each day cell has a data-date attribute
+      if (this.datesWithEntries.includes(cellDate)) {
+        cell.classList.add("underline"); // Add the underline class to the cell
+      } else {
+        cell.classList.remove("underline"); // Remove underline if not in the list
+      }
     });
   }
 
@@ -151,6 +170,14 @@ export class CalendarComponent extends BaseComponent {
       const div = document.createElement("div");
       div.textContent = day;
       div.classList.add("day");
+
+      // Add 'underline' class if the day is in 'datesWithEntries'
+      const cellDate = `${this.date.getMonth() + monthOffset}-${day}-${this.date.getFullYear()}`;
+      if (this.datesWithEntries.includes(cellDate)) {
+        div.classList.add("underline"); // Underline the day if it has an entry
+      }
+
+      
       if (className) div.classList.add(className);
 
       let month = this.date.getMonth() + monthOffset;
