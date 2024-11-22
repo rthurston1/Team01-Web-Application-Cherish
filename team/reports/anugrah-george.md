@@ -54,3 +54,7 @@
 ### November 20th, 2024
   - **Task**: Milestone 4 feature implementation: underline/highlight the days in the calendar view.
   - **Details**: Updating the calendar view whenever a user enters their entry by underlining the day so that the users can keep track and see if they missed a day.
+
+### November 22nd, 2024  
+  - **Task**: Started documenting README.md file.
+  - **Details**: Included steps on how to run our project in local machines as well as brief accomplishments in each milestone describing the development of our app overtime.
