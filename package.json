@@ -5,17 +5,27 @@
   "main": "main.js",
   "type": "module",
   "scripts": {
-    "start-server": "http-server ./source -p 3000",
-    "test": "npx playwright test",
-    "test:ui": "npx playwright test --ui"
+    "start-server": "node back-end/src/Server.js",
+    "start-client": "http-server front-end/src -p 3000",
+    "test": "jasmine"
   },
   "license": "COMPSCI 326",
   "description": "The Cherish App",
   "dependencies": {
     "cherish-app": "file:",
-    "http-server": "^14.1.1"
+    "express": "^5.0.1",
+    "fake-indexeddb": "^6.0.0",
+    "http-server": "^14.1.1",
+    "sequelize": "^6.37.5",
+    "sqlite3": "^5.1.7"
+  },
+  "overrides": {
+    "karma-jasmine": {
+      "jasmine-core": "^5.0.0"
+    }
   },
   "devDependencies": {
-    "@playwright/test": "^1.48.1"
+    "jasmine": "^5.4.0",
+    "karma-jasmine": "^5.1.0"
   }
 }
