@@ -5,7 +5,7 @@ import { CheckInComponent } from "./pages/check-in/CheckInComponent.js";
 import { SummaryComponent } from "./pages/summary/SummaryComponent.js";
 import { EventHub } from "./eventhub/EventHub.js";
 import { Events } from "./eventhub/Events.js";
-import { DatabaseService } from "./services/DatabaseService.js";
+import { IDBService } from "./services/IDBService.js";
 
 const hub = EventHub.getInstance();
 
@@ -31,7 +31,7 @@ const dateArr = [today.getMonth() + 1, today.getDate(), today.getFullYear()];
 
 const id = dateArr.join("-");
 
-export const DATABASE = new DatabaseService();
+export const DATABASE = new IDBService();
 const calendar = new CalendarComponent(today);
 const day = new DayComponent();
 const journal = new JournalComponent();
