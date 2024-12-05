@@ -27,7 +27,7 @@ class DayRoutes {
       debugLog(`GET /days`);
       try {
         await DayController.getAllData(req, res);
-        if (res.statusCode === 200) {
+        if (res.ok) {
           debugLog(`GET /days - Success`);
         }
       } catch (error) {
@@ -41,7 +41,7 @@ class DayRoutes {
       debugLog(`GET /days/${req.params.id}`);
       try {
         await DayController.getDay(req, res);
-        if (res.statusCode === 200) {
+        if (res.ok) {
           debugLog(`GET /days/${req.params.id} - Success`);
         }
       } catch (error) {
@@ -55,7 +55,7 @@ class DayRoutes {
       debugLog(`PUT /days/${req.params.id}`);
       try {
         await DayController.addDay(req, res);
-        if (res.statusCode === 200) {
+        if (res.ok) {
           debugLog(`PUT /days/${req.params.id} - Success`);
         }
       } catch (error) {
@@ -69,7 +69,7 @@ class DayRoutes {
       debugLog(`DELETE /days/${req.params.id}`);
       try {
         await DayController.removeDay(req, res);
-        if (res.statusCode === 200 || res.statusCode === 204) {
+        if (res.statusCode.ok) {
           debugLog(`DELETE /days/${req.params.id} - Success`);
         }
       } catch (error) {
@@ -83,7 +83,7 @@ class DayRoutes {
       debugLog(`DELETE /days`);
       try {
         await DayController.clearAllData(req, res);
-        if (res.statusCode === 204) {
+        if (res.ok) {
           debugLog(`DELETE /days - Success`);
         }
       } catch (error) {
