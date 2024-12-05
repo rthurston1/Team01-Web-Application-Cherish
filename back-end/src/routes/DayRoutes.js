@@ -69,7 +69,7 @@ class DayRoutes {
       debugLog(`DELETE /days/${req.params.id}`);
       try {
         await DayController.removeDay(req, res);
-        if (res.statusCode.ok) {
+        if (res.ok) {
           debugLog(`DELETE /days/${req.params.id} - Success`);
         }
       } catch (error) {
