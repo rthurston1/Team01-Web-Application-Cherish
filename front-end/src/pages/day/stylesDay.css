@@ -112,6 +112,28 @@
   transform: scale(1.5);
 }
 
+.emotion-btns::after {
+  content: attr(data-hover);
+  position: absolute;
+  top: 100%; /* Position below the element */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s;
+  z-index: 1; /* Ensure it appears above other elements */
+}
+
+.emotion-btns:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
 .day-emotion-entry section {
   font-size: 1rem;
   width: 100%;

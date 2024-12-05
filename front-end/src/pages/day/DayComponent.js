@@ -123,10 +123,9 @@ export class DayComponent extends BaseComponent {
 
       emotionEntry.innerHTML = `
        <section>
-       <div class="emotion-btns">
-
-        <img src="./img/check-in-icon.svg" alt="edit entry" id="check-in-icon" onclick="">
-        <img src="./img/x-icon.svg" alt="delete entry" id="delete-icon" onclick="">
+ <div class="emotion-btns" data-hover="Edit or Delete">
+      <img src="./img/check-in-icon.svg" alt="edit entry" id="check-in-icon" onclick="">
+      <img src="./img/x-icon.svg" alt="delete entry" id="delete-icon" onclick="">
        </div>
         
           <ul>
