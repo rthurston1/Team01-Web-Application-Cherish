@@ -68,7 +68,7 @@ class DayRoutes {
     this.router.delete("/days/:id", async (req, res) => {
       debugLog(`DELETE /days/${req.params.id}`);
       try {
-        await DayController.deleteDay(req, res);
+        await DayController.removeDay(req, res);
         if (res.statusCode === 200 || res.statusCode === 204) {
           debugLog(`DELETE /days/${req.params.id} - Success`);
         }
