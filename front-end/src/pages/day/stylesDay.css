@@ -37,7 +37,7 @@
 
 .day-body-element {
   width: 100%;
-  height: auto;
+  height: 100%;
   font-size: 1rem;
   margin: 1rem;
   padding: 1rem;
@@ -73,6 +73,10 @@
   box-sizing: border-box;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.day-emotion-entry li {
+  list-style-type: none; /* Remove bullet points from list items */
 }
 
 .day-emotion-entry:not(:first-child) {
@@ -137,6 +141,7 @@
 #dayJournalEntry {
   width: 100%; /* Ensure it takes up the full width of the parent container */
   max-width: 100%; /* Prevent it from exceeding the width of the parent container */
+  padding-right: 1rem; /* Match the padding with other elements */
   box-sizing: border-box; /* Include padding and border in the element's total width and height */
   line-height: 1.5; /* Adjusts space between lines */
   overflow-y: auto; /* Hide vertical overflow */
@@ -144,6 +149,7 @@
   border: none; /* Remove any border */
   /* box-shadow: none; Remove any box shadow */
   text-align: center; /* Center the text */
+  outline: none; /* Remove focus outline */
 }
 
 /* Responsive adjustments */
