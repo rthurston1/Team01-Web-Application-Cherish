@@ -1,7 +1,7 @@
 import { Events } from "../eventhub/Events.js";
 import Service from "./Service.js";
 
-export class DatabaseService extends Service {
+export class IDBService extends Service {
   constructor() {
     super();
     this.dbName = "cherishDB";
@@ -123,4 +123,4 @@ export class DatabaseService extends Service {
     });
   }
 }
-export default DatabaseService;
+export default IDBService;
