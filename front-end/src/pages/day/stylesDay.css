@@ -37,22 +37,24 @@
 
 .day-body-element {
   width: 100%;
-  height: auto;
+  height: 100%;
   font-size: 1rem;
-  border: 5px solid #10a3dd;
   margin: 1rem;
   padding: 1rem;
   box-sizing: border-box; /* Include padding and border in the element's total width and height */
   overflow-y: auto; /* Allow vertical scrolling if content overflows */
   resize: none;
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2); /* Inset shadow for pushed effect */
+  background-color: #e6f7ff; /* Subtle blue hue */
 }
 
 .day-buttons {
   display: flex;
-  height: 5%;
-  width: 100%;
   justify-content: space-between;
+  width: 100%; /* Ensure buttons take up the full width */
   margin-bottom: 10px;
+  align-self: flex-start; /* Align buttons to the start of the flex container */
 }
 
 .day-buttons button {
@@ -62,23 +64,40 @@
 
 .day-emotion-entry {
   position: relative; /* Ensure absolute positioning of children is relative to this element */
-  display: grid;
-  justify-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
   width: 100%;
   padding: 2rem;
-  border-bottom: 5px solid navy;
   box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.day-emotion-entry li {
+  list-style-type: none; /* Remove bullet points from list items */
+}
+
+.day-emotion-entry:not(:first-child) {
+  border-top: 1px solid #d3d3d3;
+}
+
+.day-emotion-entry figure {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 }
 
 .emotion-btns {
+  position: absolute;
+  top: 0; /* Adjust as needed */
+  right: 0; /* Adjust as needed */
   display: flex;
-  justify-content: flex-end; /* Align items to the right */
-  position: absolute; /* Change to absolute */
-  top: 1rem; /* Adjust as needed */
-  right: 1rem; /* Adjust as needed */
-  width: auto; /* Adjust the width as needed */
-  height: auto; /* Adjust the height as needed */
-  padding-right: 1rem;
+  justify-content: flex-end;
+  padding: 1rem; /* Optional: Add padding if needed */
 }
 
 .emotion-btns img {
@@ -89,7 +108,30 @@
 }
 
 .emotion-btns img:hover {
-  transform: scale(1.2); /* Scale the icon to 120% on hover */
+  transform-style: preserve-3d;
+  transform: scale(1.5);
+}
+
+.emotion-btns::after {
+  content: attr(data-hover);
+  position: absolute;
+  top: 100%; /* Position below the element */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s;
+  z-index: 1; /* Ensure it appears above other elements */
+}
+
+.emotion-btns:hover::after {
+  opacity: 1;
+  visibility: visible;
 }
 
 .day-emotion-entry section {
@@ -121,10 +163,15 @@
 #dayJournalEntry {
   width: 100%; /* Ensure it takes up the full width of the parent container */
   max-width: 100%; /* Prevent it from exceeding the width of the parent container */
+  padding-right: 1rem; /* Match the padding with other elements */
   box-sizing: border-box; /* Include padding and border in the element's total width and height */
   line-height: 1.5; /* Adjusts space between lines */
-  overflow-y: hidden; /* Hide vertical overflow */
+  overflow-y: auto; /* Hide vertical overflow */
   resize: none; /* Prevent resizing */
+  border: none; /* Remove any border */
+  /* box-shadow: none; Remove any box shadow */
+  text-align: center; /* Center the text */
+  outline: none; /* Remove focus outline */
 }
 
 /* Responsive adjustments */
