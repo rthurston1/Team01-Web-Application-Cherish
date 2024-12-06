@@ -28,8 +28,8 @@ class DayRoutes {
         });
 
         // Authenticates the user, responds with a JWT token
-        this.router.post("/v1/login/:username/:password", async (request, response) => {
-            debugLog(`POST /v1/login/${request.params.username}/${request.params.password}`);
+        this.router.post("/v1/login", async (request, response) => {
+            debugLog(`POST /v1/login`);
             DayController.loginUser(request, response);
         });
 
@@ -40,19 +40,19 @@ class DayRoutes {
         })
 
         // Gets all the user's data
-        this.router.get("/v1/days", async(request, response) => {
+        this.router.get("/v1/days", async (request, response) => {
             debugLog("GET /v1/days");
             DayController.getUserData(request, response);
         });
         
         // Adds/Updates a day to the database
-        this.router.post("/v1/days/:date_id", async(request, response) => {
+        this.router.post("/v1/days/:date_id", async (request, response) => {
             debugLog(`POST /v1/days/${request.params.date_id}`);
             DayController.postDay(request, response);
         });
 
         // Gets a specified day based on it's id
-        this.router.get("/v1/days/:date_id", async(request, response) => {
+        this.router.get("/v1/days/:date_id", async (request, response) => {
             debugLog(`GET /v1/days/${request.params.date_id}`);
             DayController.getDay(request, response);
         });
@@ -64,9 +64,21 @@ class DayRoutes {
         });
 
         // Gets all the days in the specified year
-        this.router.get("/v1/days/:year", async(request, response) => {
+        this.router.get("/v1/days/:year", async (request, response) => {
             debugLog(`GET /v1/days/${request.params.year}`);
             DayController.getDaysOfYear(request, response);
+        });
+
+        // Adds an emotion entry to a day
+        this.router.post("/v1/emotions", async (request, response) => {
+            debugLog("POST /v1/emotions");
+            DayController.addEmotion(request, response);
+        });
+
+        // Deletes an emotion entry to a day from the given index
+        this.router.delete("/v1/emotions/:index", async (request, response) => {
+            debugLog(`DELETE /v1/emotions/${request.params.index}`);
+            DayController.deleteEmotion(request, response);
         });
     }
 }
