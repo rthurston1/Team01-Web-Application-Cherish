@@ -1,7 +1,7 @@
 import config from "./config.js";
 // do not use with sensitive data
-export function debugLog(message) {
+export function debugLog(message, label = "DEBUG") {
   if (config.debug) {
-    console.info(`DEBUG: ${message}`);
+    console.info(`[${label}] ${message}`);
   }
 }
