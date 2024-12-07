@@ -1,8 +1,10 @@
 /* The Model Factory Lets Us Swap Between Models */
 /* We can use the local model at first and swap to the SQLite model later */
+import LocalDayModel from "./LocalDayModel.js";
+import SQLiteDayModel from "./SQLiteDayModel.js";
 
 class _ModelFactory {
-  async getModel(model = "sqlite") {
+  async getModel(model = "local") {
     switch (model) {
       case "local":
         return LocalDayModel;
@@ -17,5 +19,4 @@ class _ModelFactory {
   }
 }
 
-const ModelFactory = new _ModelFactory();
-export default ModelFactory;
+export default new _ModelFactory();

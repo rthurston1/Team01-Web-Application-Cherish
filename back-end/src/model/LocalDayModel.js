@@ -8,6 +8,7 @@ import { debugLog } from "../../config/debug.js";
 
 class _LocalDayModel {
   constructor() {
+    this.name = "LocalDayModel";
     this.dateData = [];
     this.date_id = getToday();
   }

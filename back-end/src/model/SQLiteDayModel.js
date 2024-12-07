@@ -3,7 +3,10 @@
 /* Sequelize code goes here */
 
 class _SQLiteDayModel {
-  /* TODO */
+  constructor() {
+    this.name = "SQLiteDayModel";
+    // this.init();
+  }
 }
 const SQLiteDayModel = new _SQLiteDayModel();
 export default SQLiteDayModel;
