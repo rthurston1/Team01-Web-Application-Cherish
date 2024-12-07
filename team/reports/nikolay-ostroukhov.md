@@ -152,3 +152,9 @@ December 4, 2024
 - **Task**: Implement the remote service.
 - **Details**: Created a new branch `126-104-medium-task-implement-remote-service` to implement the remote service. The remote service is responsible for fetching and sending data to the server. The remote service is used by the front end to fetch and send data to the server.
 - **Link to Commit**: [Commit]()
+
+December 7, 2024
+
+- **Task**: Fix a bug in DayRoutes.js.
+- **Details**: Created a new branch `132-bug-dayroutesjs-is-missing-the-getrouter-method-niko` to fix a bug in DayRoutes.js. The export statement was calling a non-existent getRouter method. This prevented the class from being exported correctly.
+- **Link to Commit**: [Commit](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/d19704d3fa71f22c8b93dfddecf5ad2c7db76b68)
