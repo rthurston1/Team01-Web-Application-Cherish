@@ -3,6 +3,7 @@ import config from "../../config/config.js";
 import { debugLog } from "../../config/debug.js";
 import { Sequelize, DataTypes, Op } from "sequelize";
 import bcrypt from "bcrypt";
+import { successResponse, failedResponse } from "../middleware/middleware.js";
 
 /* Sequelize code goes here */
 const sequelize = new Sequelize({
@@ -88,9 +89,6 @@ Day.belongsTo(User, { foreignKey: "username" });
 Day.hasMany(Emotion, { foreignKey: "date_id", onDelete: "CASCADE" });
 Emotion.belongsTo(Day, { foreignKey: "date_id" });
 
-
-const successResponse = (data = null) => ({success: true, data});
-const failedResponse =  (error = null) => ({success: false, error});
 
 // Helper function to convert MM-DD-YYYY to YYYY-MM-DD
 const formatDateToISO = (date) => {
