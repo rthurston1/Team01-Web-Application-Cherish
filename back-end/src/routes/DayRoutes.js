@@ -10,8 +10,8 @@ class DayRoutes {
 
   createRoutes() {
     // Adds a new user to the database
-    this.router.post("/v1/users/:username", async (request, response) => {
-      debugLog(`POST /v1/users/${request.params.username}`);
+    this.router.post("/v1/users", async (request, response) => {
+      debugLog(`POST /v1/users`);
       DayController.registerUser(request, response);
     });
 
@@ -40,32 +40,32 @@ class DayRoutes {
     });
 
     // Gets all the user's data
-    this.router.get("/v1/days", async (request, response) => {
-      debugLog("GET /v1/days");
+    this.router.get("/v1/days/:username", async (request, response) => {
+      debugLog(`GET /v1/days/${request.params.username}`);
       DayController.getUserData(request, response);
     });
 
     // Adds/Updates a day to the database
-    this.router.post("/v1/days/:date_id", async (request, response) => {
-      debugLog(`POST /v1/days/${request.params.date_id}`);
+    this.router.post("/v1/days/:username/:date_id", async (request, response) => {
+      debugLog(`POST /v1/days/${request.params.username}/${request.params.date_id}`);
       DayController.postDay(request, response);
     });
 
     // Gets a specified day based on it's id
-    this.router.get("/v1/days/:date_id", async (request, response) => {
-      debugLog(`GET /v1/days/${request.params.date_id}`);
+    this.router.get("/v1/days/:username/:date_id(\\d{2}-\\d{2}-\\d{4})", async (request, response) => {
+      debugLog(`GET /v1/days/${request.params.username}/${request.params.date_id}`);
       DayController.getDay(request, response);
     });
 
     // Gets all the days in the specified month in a year
-    this.router.get("/v1/days/:month/:year", async (request, response) => {
-      debugLog(`GET /v1/days/${request.params.month}/${request.params.year}`);
+    this.router.get("/v1/days/:username/:month/:year", async (request, response) => {
+      debugLog(`GET /v1/days/${request.params.username}/${request.params.month}/${request.params.year}`);
       DayController.getDaysOfMonth(request, response);
     });
 
     // Gets all the days in the specified year
-    this.router.get("/v1/days/:year", async (request, response) => {
-      debugLog(`GET /v1/days/${request.params.year}`);
+    this.router.get("/v1/days/:username/:year", async (request, response) => {
+      debugLog(`GET /v1/days/${request.params.username}/${request.params.year}`);
       DayController.getDaysOfYear(request, response);
     });
 
