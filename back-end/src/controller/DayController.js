@@ -45,6 +45,7 @@ class DayController {
   // }
 
   // Gets all users in the database (does not include their day data)
+  // Author: @nikozbk
   async getAllUsers(request, response) {
     debugLog(`DayController.getAllUsers`);
     try {
@@ -61,6 +62,7 @@ class DayController {
 
   // Gets a user from the database
   // Request param contains the username
+  // Author: @nikozbk
   async getUserByUsername(request, response) {
     debugLog(`DayController.getUserByUsername`);
     try {
@@ -87,6 +89,7 @@ class DayController {
   /**
    * Attempts to login in the user and returns all of their data
    * Request body contains a username and password inputted by the user
+   * Author: @nikozbk
    */
   async loginUser(request, response) {
     debugLog(`DayController.loginUser`);
@@ -113,6 +116,7 @@ class DayController {
   /**
    * Posts the user's data
    * Request params contains the username
+   * Author: @nikozbk
    */
   async postUserData(request, response) {
     debugLog(`DayController.postUserData`);
@@ -135,6 +139,7 @@ class DayController {
   /**
    * Gets all the user's data
    * Request params contains the username
+   * Author: @nikozbk
    */
   async getUserData(request, response) {
     debugLog(`DayController.getUserData`);
@@ -157,6 +162,7 @@ class DayController {
   /**
    * Saves a day into the database
    * Request params contains the username and date_id
+   * Author: @nikozbk
    */
   async postDay(request, response) {
     debugLog(`DayController.postDay`);

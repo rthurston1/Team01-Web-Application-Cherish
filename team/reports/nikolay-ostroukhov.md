@@ -158,3 +158,9 @@ December 7, 2024
 - **Task**: Fix a bug in DayRoutes.js.
 - **Details**: Created a new branch `132-bug-dayroutesjs-is-missing-the-getrouter-method-niko` to fix a bug in DayRoutes.js. The export statement was calling a non-existent getRouter method. This prevented the class from being exported correctly.
 - **Link to Commit**: [Commit](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/d19704d3fa71f22c8b93dfddecf5ad2c7db76b68)
+
+December 8, 2024
+
+- **Task**: Implement more DayController methods.
+- **Details**: Created a new branch `138-implement-daycontroller-methods-niko` and implemented more methods in the DayController class. Implemented the getDay, postDay, getUserData, postUserData, loginUser, getUserByUsername, getAllUsers methods.
+- **Link to Commit**: [Commit](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/8cbeebcf6ef197aa9f5b5f58997a4bdf73d04b53)

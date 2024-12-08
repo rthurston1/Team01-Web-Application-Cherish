@@ -31,7 +31,7 @@ const Day = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        is: /^\d?\d-\d?\d-\d{4}$/, // Ensures (M)M-(D)D-YYYY format
+        is: /^\d{2}-\d{2}-\d{4}$/, // Ensures MM-DD-YYYY format
       },
     },
     rating: {
@@ -124,12 +124,12 @@ class _SQLiteDayModel {
     }
   }
 
-  // Checks if a user entry exists in the database
+  // Checks if a user entry exists in the database (Author: @rthurston1)
   async userExists(username) {
     return await User.findOne({ where: { username } });
   }
 
-  // Checks if day entry exists in the database
+  // Checks if day entry exists in the database (Author: @rthurston1)
   async dayExists(username, date_id) {
     return await Day.findOne({
       where: {
@@ -139,7 +139,7 @@ class _SQLiteDayModel {
     });
   }
 
-  // Checks if emotion entry exists in the database
+  // Checks if emotion entry exists in the database (Author: @rthurston1)
   async emotionExists(date_id, index_id) {
     return await Emotion.findOne({
       where: {
@@ -149,7 +149,7 @@ class _SQLiteDayModel {
     });
   }
 
-  // Adds a new user into the database
+  // Adds a new user into the database (Author: @rthurston1)
   async createUser(user) {
     try {
       // First check if user already exists
@@ -169,7 +169,7 @@ class _SQLiteDayModel {
     }
   }
 
-  // Attempts to login user (returns false if failed)
+  // Attempts to login user (returns false if failed) (Author: @rthurston1)
   async loginUser(username, password) {
     try {
       const user = await this.userExists(username);
@@ -192,7 +192,7 @@ class _SQLiteDayModel {
     }
   }
 
-  // Gets a user from the database without data
+  // Gets a user from the database without data (Author: @nikozbk)
   async getUser(username) {
     try {
       const user = await User.findByPk(username);
@@ -208,7 +208,7 @@ class _SQLiteDayModel {
     }
   }
 
-  // Gets a user and returns all of their data
+  // Gets a user and returns all of their data (Author: @rthurston1)
   async getUserData(username) {
     try {
       const user = await User.findOne({
@@ -345,6 +345,7 @@ class _SQLiteDayModel {
 
   // Deletes a day entry from the database
   // Returns the deleted day object
+  // Author: @rthurston1
   async deleteDay(username, date_id) {
     try {
       // Checks if data does NOT exists
@@ -366,6 +367,7 @@ class _SQLiteDayModel {
 
   // Creates/Updates all emotions for a day
   // Overwrites all emotions for a specific day
+  // Author: @rthurston1
   async saveEmotions(username, date_id, emotions) {
     try {
       // Check if the day entry exists
