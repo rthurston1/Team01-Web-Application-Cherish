@@ -36,4 +36,8 @@ export const Events = {
 
   StoreEmotionFailed: "StoreEmotionFailed", // Failed emotion store call
   RestoreEmotionFailed: "RestoreEmotionFailed", // Failed emotion restore call
+
+  GenerateSummary: "GenerateSummary", // Async call to generate a summary of the user's data
+  GenerateSummarySuccess: "GenerateSummarySuccess", // Successful summary generation call
+  GenerateSummaryFailed: "GenerateSummaryFailed", // Failed summary generation call
 };
