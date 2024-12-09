@@ -5,15 +5,16 @@ import { debugLog } from "../../config/debug.js";
 
 class DayController {
   constructor() {
-    this.initializeModel("local");
+    this.initializeModel("sqlite-fresh");
   }
 
   async initializeModel(modelType) {
     try {
       this.model = await ModelFactory.getModel(modelType);
-      debugLog(`DayController initialized with ${this.model.name}`);
+      debugLog(`DayController initialized with ${modelType}`, "INFO");
     } catch (err) {
-      debugLog(`Error initializing DayController: ${err}`);
+      debugLog(`Error initializing DayController: ${err}`, "ERROR");
+      throw new Error("Error initializing Model in DayController: " + err);
     }
   }
 
@@ -21,40 +22,48 @@ class DayController {
     this.model = model;
   }
 
-  /** Author: Nikolay Ostroukhov @nikozbk
-   *  Retrieves all data from the model and sends it as a JSON response.
-   *  Logs the process and handles any errors that occur.
-   *
-   *  @param {Object} request - The request object.
-   *  @param {Object} response - The response object.
-   *  @returns {Promise<void>} - A promise that resolves when the data is sent or an error is handled.
-   */
-  async getAllData(request, response) {
-    debugLog(`DayController.getAllData`);
+  // Handles the request and response for each method
+  // Author: @nikozbk
+  async handleRequest(request, response, modelMethod, methodName, ...params) {
+    debugLog(`DayController.${methodName}`, "CALL");
     try {
-      const data = await this.model.read();
-      debugLog(`Returning data: ${JSON.stringify(data)}`);
-      res.setHeader("Content-Type", "application/json");
-      res.json(data);
-    } catch (err) {
-      debugLog(`Error in DayController.getAllData: ${err}`);
-      res
-        .status(500)
-        .send("Error retrieving data from DayController.getAllData");
+      const data = await modelMethod(...params);
+      if (!data.success) {
+        debugLog(`Bad Request: ${data.error}`, "INFO");
+        response.status(methodName === "loginUser" ? 401 : 400).json(data);
+      } else {
+        debugLog(`Success: ${JSON.stringify(data)}`, "INFO");
+        response.setHeader("Content-Type", "application/json");
+      }
+      return response.json(data);
+    } catch (error) {
+      debugLog(error, "ERROR");
+      response.status(500).send(`Error in DayController.${methodName}`);
     }
   }
 
   // Gets all users in the database (does not include their day data)
+  // Author: @nikozbk
   async getAllUsers(request, response) {
-    debugLog(`DayController.getAllUsers`);
-    // TODO: Implement this method
+    await this.handleRequest(
+      request,
+      response,
+      this.model.getAllUsers.bind(this.model),
+      "getAllUsers"
+    );
   }
 
   // Gets a user from the database
   // Request param contains the username
+  // Author: @nikozbk
   async getUserByUsername(request, response) {
-    debugLog(`DayController.getUserByUsername`);
-    // TODO: Implement this method
+    await this.handleRequest(
+      request,
+      response,
+      this.model.getUser.bind(this.model),
+      "getUserByUsername",
+      request.params.username
+    );
   }
 
   /**
@@ -69,37 +78,63 @@ class DayController {
   /**
    * Attempts to login in the user and returns all of their data
    * Request body contains a username and password inputted by the user
+   * Author: @nikozbk
    */
   async loginUser(request, response) {
-    debugLog(`DayController.loginUser`);
-    // TODO: Implement this method
+    await this.handleRequest(
+      request,
+      response,
+      this.model.loginUser.bind(this.model),
+      "loginUser",
+      request.body.username,
+      request.body.password
+    );
   }
 
   /**
    * Posts the user's data
    * Request params contains the username
+   * Author: @nikozbk
    */
   async postUserData(request, response) {
-    debugLog(`DayController.postUserData`);
-    // TODO: Implement this method
+    await this.handleRequest(
+      request,
+      response,
+      this.model.saveUser.bind(this.model),
+      "postUserData",
+      request.params.username
+    );
   }
 
   /**
    * Gets all the user's data
    * Request params contains the username
+   * Author: @nikozbk
    */
   async getUserData(request, response) {
-    debugLog(`DayController.getUserData`);
-    // TODO: Implement this method
+    await this.handleRequest(
+      request,
+      response,
+      this.model.getUserData.bind(this.model),
+      "getUserData",
+      request.params.username
+    );
   }
 
   /**
    * Saves a day into the database
    * Request params contains the username and date_id
+   * Author: @nikozbk
    */
   async postDay(request, response) {
-    debugLog(`DayController.postDay`);
-    // TODO: Implement this method
+    await this.handleRequest(
+      request,
+      response,
+      this.model.saveDay.bind(this.model),
+      "postDay",
+      request.params.username,
+      request.body
+    );
   }
 
   /**
@@ -107,8 +142,14 @@ class DayController {
    * Request params contains the username and date_id
    */
   async getDay(request, response) {
-    debugLog(`DayController.getDay`);
-    // TODO: Implement this method
+    await this.handleRequest(
+      request,
+      response,
+      this.model.getDay.bind(this.model),
+      "getDay",
+      request.params.username,
+      request.params.date_id
+    );
   }
 
   /**
@@ -116,8 +157,15 @@ class DayController {
    * Request params contains the username, a month, and a year
    */
   async getDaysOfMonth(request, response) {
-    debugLog(`DayController.getDaysOfMonth`);
-    // TODO: Implement this method
+    await this.handleRequest(
+      request,
+      response,
+      this.model.getDaysOfMonth.bind(this.model),
+      "getDaysOfMonth",
+      request.params.username,
+      request.params.month,
+      request.params.year
+    );
   }
 
   /**
@@ -125,8 +173,14 @@ class DayController {
    * Request params contains the username and a year
    */
   async getDaysOfYear(request, response) {
-    debugLog(`DayController.getDaysOfYear`);
-    // TODO: Implement this method
+    this.handleRequest(
+      request,
+      response,
+      this.model.getDaysOfYear.bind(this.model),
+      "getDaysOfYear",
+      request.params.username,
+      request.params.year
+    );
   }
 
   async addEmotion(request, response) {
