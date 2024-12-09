@@ -175,8 +175,14 @@ class DayController {
    * Request params contains the username and a year
    */
   async getDaysOfYear(request, response) {
-    debugLog(`DayController.getDaysOfYear`);
-    // TODO: Implement this method
+    this.handleRequest(
+      request,
+      response,
+      this.model.getDaysOfYear.bind(this.model),
+      "getDaysOfYear",
+      request.params.username,
+      request.params.year
+    );
   }
 
   async addEmotion(request, response) {
