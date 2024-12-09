@@ -12,6 +12,7 @@
   "license": "COMPSCI 326",
   "description": "The Cherish App",
   "dependencies": {
+    "@google/generative-ai": "^0.21.0",
     "bcrypt": "^5.1.1",
     "cherish-app": "file:",
     "express": "^5.0.1",
