@@ -166,8 +166,6 @@ class DayController {
       request.params.month,
       request.params.year
     );
-
-    // TODO: Implement this method
   }
 
   /**
