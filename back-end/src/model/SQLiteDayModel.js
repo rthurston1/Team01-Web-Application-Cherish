@@ -296,7 +296,7 @@ class _SQLiteDayModel {
   // Creates/Updates a day
   async saveDay(username, day) {
     try {
-      const storedDay = await this.dayExists(username, date_id);
+      const storedDay = await this.dayExists(username, day.date_id);
       if (storedDay) {
         // Day exists: UPDATE
         await storedDay.update(day);

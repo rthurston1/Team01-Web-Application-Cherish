@@ -2,7 +2,6 @@ import DayController from "../controller/DayController.js";
 import ModelFactory from "../model/ModelFactory.js";
 import { createMockRequestResponse } from "../spec/helpers/mockRequestResponse.js";
 import { debugLog } from "../../config/debug.js";
-import e from "express";
 
 describe("DayController", () => {
   let mockSQLiteModel;
@@ -17,6 +16,7 @@ describe("DayController", () => {
       getUserData: jasmine.createSpy("getUserData"),
       loginUser: jasmine.createSpy("loginUser"),
       saveUser: jasmine.createSpy("saveUser"),
+      saveDay: jasmine.createSpy("saveDay"),
     };
     spyOn(ModelFactory, "getModel").and.returnValue(
       Promise.resolve(mockSQLiteModel)
@@ -26,11 +26,12 @@ describe("DayController", () => {
 
   beforeEach(async () => {
     // output the name of each test case
-    debugLog(`\tTEST START`, "TEST");
+    debugLog(`START\n`, "TEST");
   });
 
   afterEach(async () => {
-    debugLog(`\tTEST COMPLETE`, "TEST");
+    console.log("");
+    debugLog(`COMPLETE\n`, "TEST");
   });
 
   describe("getAllUsers", () => {
@@ -151,16 +152,14 @@ describe("DayController", () => {
     it("should handle errors and send a 500 status", async () => {
       const { req, res } = createMockRequestResponse();
       req.params = { username: "testUser" };
-      const mockError = errorMessage("getUser");
+      const mockError = errorMessage("getUserByUsername");
       mockSQLiteModel.getUser.and.returnValue(Promise.reject(mockError));
 
       await DayController.getUserByUsername(req, res);
 
       expect(mockSQLiteModel.getUser).toHaveBeenCalled();
       expect(res.status).toHaveBeenCalledWith(500);
-      expect(res.status().send).toHaveBeenCalledWith(
-        "Error retrieving data from DayController.getUserByUsername"
-      );
+      expect(res.status().send).toHaveBeenCalledWith(mockError);
     });
   });
 
@@ -297,32 +296,48 @@ describe("DayController", () => {
     });
   });
 
-  // describe("getAllData", () => {
-  //   it("should return all data from the model", async () => {
-  //     const { req, res } = createMockRequestResponse();
-  //     const mockData = [{ date_id: "1-1-11" }];
-  //     mockModel.read.and.returnValue(Promise.resolve(mockData));
+  describe("postDay", () => {
+    it("should save a day to the model", async () => {
+      const { req, res } = createMockRequestResponse();
+      req.params = { username: "testUser", date_id: "1-1-11" };
+      req.body = { date_id: {} };
+      const mockData = {
+        success: true,
+        data: { username: "testUser", data: { date_id: {} } },
+      };
+      mockSQLiteModel.saveDay.and.returnValue(Promise.resolve(mockData));
 
-  //     await DayController.getAllData(req, res);
+      await DayController.postDay(req, res);
 
-  //     expect(mockModel.read).toHaveBeenCalled();
-  //     expect(res.setHeader).toHaveBeenCalledWith(
-  //       "Content-Type",
-  //       "application/json"
-  //     );
-  //     expect(res.json).toHaveBeenCalledWith(mockData);
-  //   });
+      expect(mockSQLiteModel.saveDay).toHaveBeenCalled();
+      expect(res.json).toHaveBeenCalledWith(mockData);
+    });
+    it("should gracefully handle a missing date_id", async () => {
+      const { req, res } = createMockRequestResponse();
+      req.params = { username: "testUser", date_id: "" };
+      req.body = { date_id: {} };
+      const mockData = {
+        success: false,
+        error: errorMessage("postDay"),
+      };
+      mockSQLiteModel.saveDay.and.returnValue(Promise.resolve(mockData));
 
-  //   it("should handle errors and send a 500 status", async () => {
-  //     const { req, res } = createMockRequestResponse();
-  //     const mockError = "Error retrieving data from DayController.getAllData";
-  //     mockModel.read.and.returnValue(Promise.reject(mockError));
+      await DayController.postDay(req, res);
 
-  //     await DayController.getAllData(req, res);
+      expect(mockSQLiteModel.saveDay).toHaveBeenCalled();
+      expect(res.json).toHaveBeenCalledWith(mockData);
+    });
+    it("should handle errors and send a 500 status", async () => {
+      const { req, res } = createMockRequestResponse();
+      req.params = { username: "testUser", date_id: "1-1-11" };
+      const mockError = errorMessage("postDay");
+      mockSQLiteModel.saveDay.and.returnValue(Promise.reject(mockError));
 
-  //     expect(mockModel.read).toHaveBeenCalled();
-  //     expect(res.status).toHaveBeenCalledWith(500);
-  //     expect(res.status().send).toHaveBeenCalledWith(mockError);
-  //   });
-  // });
+      await DayController.postDay(req, res);
+
+      expect(mockSQLiteModel.saveDay).toHaveBeenCalled();
+      expect(res.status).toHaveBeenCalledWith(500);
+      expect(res.status().send).toHaveBeenCalledWith(mockError);
+    });
+  });
 });

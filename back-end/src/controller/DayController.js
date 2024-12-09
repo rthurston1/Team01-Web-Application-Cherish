@@ -5,13 +5,13 @@ import { debugLog } from "../../config/debug.js";
 
 class DayController {
   constructor() {
-    this.initializeModel("local");
+    this.initializeModel("sqlite-fresh");
   }
 
   async initializeModel(modelType) {
     try {
       this.model = await ModelFactory.getModel(modelType);
-      debugLog(`DayController initialized with ${this.model.name}`, "INFO");
+      debugLog(`DayController initialized with ${modelType}`, "INFO");
     } catch (err) {
       debugLog(`Error initializing DayController: ${err}`, "ERROR");
       throw new Error("Error initializing Model in DayController: " + err);
@@ -25,17 +25,19 @@ class DayController {
   // Handles the request and response for each method
   // Author: @nikozbk
   async handleRequest(request, response, modelMethod, methodName, ...params) {
-    debugLog(`DayController.${methodName}`);
+    debugLog(`DayController.${methodName}`, "CALL");
     try {
       const data = await modelMethod(...params);
       if (!data.success) {
+        debugLog(`Bad Request: ${data.error}`, "INFO");
         response.status(methodName === "loginUser" ? 401 : 400).json(data);
       } else {
+        debugLog(`Success: ${JSON.stringify(data)}`, "INFO");
         response.setHeader("Content-Type", "application/json");
       }
       return response.json(data);
     } catch (error) {
-      debugLog(`Error in DayController.${methodName}: ${error}`, "ERROR");
+      debugLog(error, "ERROR");
       response.status(500).send(`Error in DayController.${methodName}`);
     }
   }
@@ -131,7 +133,6 @@ class DayController {
       this.model.saveDay.bind(this.model),
       "postDay",
       request.params.username,
-      request.params.date_id,
       request.body
     );
   }
@@ -156,7 +157,15 @@ class DayController {
    * Request params contains the username, a month, and a year
    */
   async getDaysOfMonth(request, response) {
-    debugLog(`DayController.getDaysOfMonth`);
+    await this.handleRequest(
+      request,
+      response,
+      this.model.getDaysOfMonth.bind(this.model),
+      "getDaysOfMonth",
+      request.params.username,
+      request.params.month,
+      request.params.year
+    );
 
     // TODO: Implement this method
   }
