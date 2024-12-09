@@ -11,9 +11,10 @@ class DayController {
   async initializeModel(modelType) {
     try {
       this.model = await ModelFactory.getModel(modelType);
-      debugLog(`DayController initialized with ${this.model.name}`);
+      debugLog(`DayController initialized with ${this.model.name}`, "INFO");
     } catch (err) {
-      debugLog(`Error initializing DayController: ${err}`);
+      debugLog(`Error initializing DayController: ${err}`, "ERROR");
+      throw new Error("Error initializing Model in DayController: " + err);
     }
   }
 
@@ -21,60 +22,46 @@ class DayController {
     this.model = model;
   }
 
-  /** Author: Nikolay Ostroukhov @nikozbk
-   *  Retrieves all data from the model and sends it as a JSON response.
-   *  Logs the process and handles any errors that occur.
-   *
-   *  @param {Object} request - The request object.
-   *  @param {Object} response - The response object.
-   *  @returns {Promise<void>} - A promise that resolves when the data is sent or an error is handled.
-   */
-  // async getAllData(request, response) {
-  //   debugLog(`DayController.getAllData`);
-  //   try {
-  //     const data = await this.model.read();
-  //     debugLog(`Returning data: ${JSON.stringify(data)}`);
-  //     request.setHeader("Content-Type", "application/json");
-  //     request.json(data);
-  //   } catch (err) {
-  //     debugLog(`Error in DayController.getAllData: ${err}`);
-  //     response
-  //       .status(500)
-  //       .send("Error retrieving data from DayController.getAllData");
-  //   }
-  // }
+  // Handles the request and response for each method
+  // Author: @nikozbk
+  async handleRequest(request, response, modelMethod, methodName, ...params) {
+    debugLog(`DayController.${methodName}`);
+    try {
+      const data = await modelMethod(...params);
+      if (!data.success) {
+        response.status(methodName === "loginUser" ? 401 : 400).json(data);
+      } else {
+        response.setHeader("Content-Type", "application/json");
+      }
+      return response.json(data);
+    } catch (error) {
+      debugLog(`Error in DayController.${methodName}: ${error}`, "ERROR");
+      response.status(500).send(`Error in DayController.${methodName}`);
+    }
+  }
 
   // Gets all users in the database (does not include their day data)
   // Author: @nikozbk
   async getAllUsers(request, response) {
-    debugLog(`DayController.getAllUsers`);
-    try {
-      const data = await this.model.getAllUsers();
-      if (data.success) response.setHeader("Content-Type", "application/json");
-      return response.json(data);
-    } catch (error) {
-      debugLog(`Error in DayController.getAllUsers: ${error}`);
-      response
-        .status(500)
-        .send("Error retrieving data from DayController.getAllUsers");
-    }
+    await this.handleRequest(
+      request,
+      response,
+      this.model.getAllUsers.bind(this.model),
+      "getAllUsers"
+    );
   }
 
   // Gets a user from the database
   // Request param contains the username
   // Author: @nikozbk
   async getUserByUsername(request, response) {
-    debugLog(`DayController.getUserByUsername`);
-    try {
-      const data = await this.model.getUser(request.params.username);
-      if (data.success) response.setHeader("Content-Type", "application/json");
-      return response.json(data);
-    } catch (error) {
-      debugLog(`Error in DayController.getUserByUsername: ${error}`);
-      response
-        .status(500)
-        .send("Error retrieving data from DayController.getUserByUsername");
-    }
+    await this.handleRequest(
+      request,
+      response,
+      this.model.getUser.bind(this.model),
+      "getUserByUsername",
+      request.params.username
+    );
   }
 
   /**
@@ -92,25 +79,14 @@ class DayController {
    * Author: @nikozbk
    */
   async loginUser(request, response) {
-    debugLog(`DayController.loginUser`);
-    try {
-      const data = await this.model.loginUser(
-        request.body.username,
-        request.body.password
-      );
-      if (!data.success) {
-        response.status(401);
-      } else {
-        // response.setHeader("Authorization", data.token);
-        response.setHeader("Content-Type", "application/json");
-      }
-      response.json(data);
-    } catch (error) {
-      debugLog(`Error in DayController.loginUser: ${error}`);
-      response
-        .status(500)
-        .send("Error logging in from DayController.loginUser");
-    }
+    await this.handleRequest(
+      request,
+      response,
+      this.model.loginUser.bind(this.model),
+      "loginUser",
+      request.body.username,
+      request.body.password
+    );
   }
 
   /**
@@ -119,21 +95,13 @@ class DayController {
    * Author: @nikozbk
    */
   async postUserData(request, response) {
-    debugLog(`DayController.postUserData`);
-    try {
-      const data = await this.model.saveUser(request.params.username);
-      if (!data.success) {
-        response.status(400);
-      } else {
-        response.setHeader("Content-Type", "application/json");
-      }
-      return response.json(data);
-    } catch (error) {
-      debugLog(`Error in DayController.postUserData: ${error}`);
-      response
-        .status(500)
-        .send("Error posting data from DayController.postUserData");
-    }
+    await this.handleRequest(
+      request,
+      response,
+      this.model.saveUser.bind(this.model),
+      "postUserData",
+      request.params.username
+    );
   }
 
   /**
@@ -142,21 +110,13 @@ class DayController {
    * Author: @nikozbk
    */
   async getUserData(request, response) {
-    debugLog(`DayController.getUserData`);
-    try {
-      const data = await this.model.getUserData(request.params.username);
-      if (!data.success) {
-        response.status(400);
-      } else {
-        response.setHeader("Content-Type", "application/json");
-      }
-      return response.json(data);
-    } catch (error) {
-      debugLog(`Error in DayController.getUserData: ${error}`);
-      response
-        .status(500)
-        .send("Error retrieving data from DayController.getUserData");
-    }
+    await this.handleRequest(
+      request,
+      response,
+      this.model.getUserData.bind(this.model),
+      "getUserData",
+      request.params.username
+    );
   }
 
   /**
@@ -165,25 +125,15 @@ class DayController {
    * Author: @nikozbk
    */
   async postDay(request, response) {
-    debugLog(`DayController.postDay`);
-    try {
-      const data = await this.model.saveDay(
-        request.params.username,
-        request.params.date_id,
-        request.body
-      );
-      if (!data.success) {
-        response.status(400);
-      } else {
-        response.setHeader("Content-Type", "application/json");
-      }
-      return response.json(data);
-    } catch (error) {
-      debugLog(`Error in DayController.postDay: ${error}`);
-      response
-        .status(500)
-        .send("Error posting data from DayController.postDay");
-    }
+    await this.handleRequest(
+      request,
+      response,
+      this.model.saveDay.bind(this.model),
+      "postDay",
+      request.params.username,
+      request.params.date_id,
+      request.body
+    );
   }
 
   /**
@@ -191,24 +141,14 @@ class DayController {
    * Request params contains the username and date_id
    */
   async getDay(request, response) {
-    debugLog(`DayController.getDay`);
-    try {
-      const data = await this.model.getDay(
-        request.params.username,
-        request.params.date_id
-      );
-      if (!data.success) {
-        response.status(400);
-      } else {
-        response.setHeader("Content-Type", "application/json");
-      }
-      return response.json(data);
-    } catch (error) {
-      debugLog(`Error in DayController.getDay: ${error}`);
-      response
-        .status(500)
-        .send("Error retrieving data from DayController.getDay");
-    }
+    await this.handleRequest(
+      request,
+      response,
+      this.model.getDay.bind(this.model),
+      "getDay",
+      request.params.username,
+      request.params.date_id
+    );
   }
 
   /**
@@ -217,6 +157,7 @@ class DayController {
    */
   async getDaysOfMonth(request, response) {
     debugLog(`DayController.getDaysOfMonth`);
+
     // TODO: Implement this method
   }
 

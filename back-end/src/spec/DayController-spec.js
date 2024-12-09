@@ -2,9 +2,12 @@ import DayController from "../controller/DayController.js";
 import ModelFactory from "../model/ModelFactory.js";
 import { createMockRequestResponse } from "../spec/helpers/mockRequestResponse.js";
 import { debugLog } from "../../config/debug.js";
+import e from "express";
 
 describe("DayController", () => {
   let mockSQLiteModel;
+
+  const errorMessage = (methodName) => `Error in DayController.${methodName}`;
 
   beforeAll(async () => {
     mockSQLiteModel = {
@@ -63,31 +66,27 @@ describe("DayController", () => {
 
     it("should handle errors and send a 500 status", async () => {
       const { req, res } = createMockRequestResponse();
-      const mockError = "Error retrieving users from DayController.getAllUsers";
+      const mockError = errorMessage("getAllUsers");
       mockSQLiteModel.getAllUsers.and.returnValue(Promise.reject(mockError));
 
       await DayController.getAllUsers(req, res);
 
       expect(mockSQLiteModel.getAllUsers).toHaveBeenCalled();
       expect(res.status).toHaveBeenCalledWith(500);
-      expect(res.status().send).toHaveBeenCalledWith(
-        "Error retrieving data from DayController.getAllUsers"
-      );
+      expect(res.status().send).toHaveBeenCalledWith(mockError);
     });
 
     it("should give an error if the parameter is invalid", async () => {
       const { req, res } = createMockRequestResponse();
       req.params = { username: "testUser" };
-      const mockError = "Invalid parameter in DayController.getAllUsers";
+      const mockError = errorMessage("getAllUsers");
       mockSQLiteModel.getAllUsers.and.returnValue(Promise.reject(mockError));
 
       await DayController.getAllUsers(null, res);
 
       expect(mockSQLiteModel.getAllUsers).toHaveBeenCalled();
       expect(res.status).toHaveBeenCalledWith(500);
-      expect(res.status().send).toHaveBeenCalledWith(
-        "Error retrieving data from DayController.getAllUsers"
-      );
+      expect(res.status().send).toHaveBeenCalledWith(mockError);
     });
   });
 
@@ -152,8 +151,7 @@ describe("DayController", () => {
     it("should handle errors and send a 500 status", async () => {
       const { req, res } = createMockRequestResponse();
       req.params = { username: "testUser" };
-      const mockError =
-        "Error retrieving data from DayController.getUserByUsername";
+      const mockError = errorMessage("getUser");
       mockSQLiteModel.getUser.and.returnValue(Promise.reject(mockError));
 
       await DayController.getUserByUsername(req, res);
@@ -203,7 +201,7 @@ describe("DayController", () => {
     it("should handle errors and send a 500 status", async () => {
       const { req, res } = createMockRequestResponse();
       req.body = { username: "testUser", password: "testPassword" };
-      const mockError = "Error logging in from DayController.loginUser";
+      const mockError = errorMessage("loginUser");
       mockSQLiteModel.loginUser.and.returnValue(Promise.reject(mockError));
 
       await DayController.loginUser(req, res);
