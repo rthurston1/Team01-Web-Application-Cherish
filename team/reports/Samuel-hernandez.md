@@ -40,3 +40,17 @@
 ## November 17, 2024
  - **Task**: Finish the overall design of Figma page.
  - **Link**: Here is the link of the web-page : https://www.figma.com/design/jbxc8KqFD6NTJZysVhzeHP/New-Calendar?node-id=0-1&node-type=canvas&t=V4K5TJAe33dq0cux-0
+## December 4, 2024
+- **Task**: Brainstormed for the daily quote api implementation.
+- **Link**: Here is the link of the commit. : https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/f27202273838bf2e036e02cf934d69cbdd6dd4d4
+
+
+## December 4, 2024
+ - **Task** : Got the api call working and fully implemented the motivational quote.
+ - **Link** : Here is the link of the commit: https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/b39c0e865835dce7a87dcb8a7588977ea143dcbd
+
+## December 9,2024
+ - **Task**: Fetchquote function and api fully implemented. 
+ - **Link**: Here is the link of the commit : https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/90bd8a6990eecd8c74280d7b931d3f0c428b4f61
+ 
+ 
