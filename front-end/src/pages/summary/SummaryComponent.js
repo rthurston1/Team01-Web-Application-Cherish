@@ -1,7 +1,6 @@
 import { Events } from "../../eventhub/Events.js";
 import { BaseComponent } from "../../BaseComponent.js";
 import { DATABASE } from "../../main.js"; //remoteService 
-//import globalUsername from loginComponent //placeholder for username to import from loginComponent
 
 export class SummaryComponent extends BaseComponent {
   constructor() {
@@ -13,9 +12,54 @@ export class SummaryComponent extends BaseComponent {
    * 
    * @returns an object containing mostFrequentEmotion, averageRating, emotionCounts, and longestStreak
    */
-  #calculateTrendData(startDate, endDate) {
+  #calculateTrendData(startDate, endDate){
     const userData = DATABASE.restoreUserData(); //get the user data
-    // TODO: complete this logic for calculating the trend data 
+
+    //filter out data according to user-selected range
+    const filteredData = Object.values(userData).filter(day => {
+      const dayDate = new Date(day.date_id);
+      return dayDate >= new Date(startDate) && dayDate <= new Date(endDate);
+    });
+
+    const emotionCounts = {};
+    let totalRating = 0;
+    let totalDays = 0;
+    let longestStreak = {emotion: null, length: 0};
+    let currentStreak = {emotion: null, length: 0};
+
+    //iterate over filtered date data to calculate trends
+    filteredData.forEach(day => {
+      totalRating += day.rating;
+      totalDays += 1;
+
+      day.emotions.forEach(emotion => {
+        if(!emotionCounts[emotion.emotion_id]) {
+          emotionCounts[emotion.emotion_id] = 0;
+        }
+        emotionCounts[emotion.emotion_id] += 1;
+
+        if(currentStreak.emotion === emotion.emotion_id) {
+          currentStreak.length += 1;
+        }else{
+          if(currentStreak.length > longestStreak.length){
+            longestStreak = {...currentStreak};
+          }
+          currentStreak = {emotion: emotion.emotion_id, length: 1};
+        }
+      });
+    });
+
+    if(currentStreak.length > longestStreak.length) {
+      longestStreak = {...currentStreak};
+    }
+
+    const mostFrequentEmotion = Object.keys(emotionCounts).reduce((acc, curr) => emotionCounts[acc] > emotionCounts[curr] ? acc : curr);
+    return {
+      mostFrequentEmotion,
+      averageRating: totalRating / totalDays,
+      emotionCounts,
+      longestStreak
+    };
   }
 
     #handleClick(element, period) {

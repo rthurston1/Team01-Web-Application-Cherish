@@ -1,7 +1,7 @@
 import { Events } from "../eventhub/Events.js";
 import Service from "./Service.js";
 import { debugLog } from "../config/debug.js";
-// TODO import globalUser from loginComponent ; 
+// TODO: import globalUser from loginComponent once loginComponent is merged into main; 
 
 export class RemoteService extends Service {
   DAYS_ENDPOINT = "/v1/days/";
