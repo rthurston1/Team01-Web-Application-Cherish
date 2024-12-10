@@ -28,6 +28,7 @@ class DayController {
     debugLog(`DayController.${methodName}`, "CALL");
     try {
       const data = await modelMethod(...params);
+      debugLog(`Data: ${JSON.stringify(data)}`, "INFO");
       if (!data.success) {
         debugLog(`Bad Request: ${data.error}`, "INFO");
         response.status(methodName === "loginUser" ? 401 : 400).json(data);
@@ -35,10 +36,15 @@ class DayController {
         debugLog(`Success: ${JSON.stringify(data)}`, "INFO");
         response.setHeader("Content-Type", "application/json");
       }
-      return response.json(data);
+      response.json(data);
     } catch (error) {
       debugLog(error, "ERROR");
-      response.status(500).send(`Error in DayController.${methodName}`);
+      // don't send headers if already sent
+      if (!response.headersSent) {
+        response.status(500).send(`Error in DayController.${methodName}`);
+      } else {
+        response.send(`Error in DayController.${methodName}`);
+      }
     }
   }
 
@@ -72,7 +78,11 @@ class DayController {
    */
   async registerUser(request, response) {
     debugLog(`DayController.registerUser`);
-    // TODO: Implement this method
+    // Implement user registration logic here
+    // Example:
+    // const { username, password } = request.body;
+    // const result = await this.model.registerUser(username, password);
+    // return response.json(result);
   }
 
   /**
@@ -185,12 +195,20 @@ class DayController {
 
   async addEmotion(request, response) {
     debugLog(`DayController.addEmotion`);
-    // TODO: Implement this method
+    // Implement add emotion logic here
+    // Example:
+    // const { username, date_id, emotion } = request.body;
+    // const result = await this.model.addEmotion(username, date_id, emotion);
+    // return response.json(result);
   }
 
   async deleteEmotion(request, response) {
     debugLog(`DayController.deleteEmotion`);
-    // TODO: Implement this method
+    // Implement delete emotion logic here
+    // Example:
+    // const { username, date_id, index } = request.params;
+    // const result = await this.model.deleteEmotion(username, date_id, index);
+    // return response.json(result);
   }
 }
 

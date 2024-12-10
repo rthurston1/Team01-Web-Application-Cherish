@@ -4,10 +4,18 @@ import { debugLog } from "../../config/debug.js";
 import { Sequelize, DataTypes, Op } from "sequelize";
 import bcrypt from "bcrypt";
 import { successResponse, failedResponse } from "../middleware/middleware.js";
+import {
+  getToday,
+  convertDateToISO,
+  convertISOToDate,
+  isISO,
+  isMMDDYY,
+} from "../../../front-end/src/utils/dateUtils.js";
 
 /* Sequelize code goes here */
 const sequelize = new Sequelize({
   dialect: "sqlite",
+  logging: false, // toggle to see sql queries
   storage: config.debug ? "database_test.sqlite" : "database.sqlite",
 });
 
@@ -102,18 +110,6 @@ Day.belongsTo(User, { foreignKey: "username" });
 Day.hasMany(Emotion, { foreignKey: "date_id", onDelete: "CASCADE" });
 Emotion.belongsTo(Day, { foreignKey: "date_id" });
 
-// Convert MM-DD-YYYY to YYYY-MM-DD
-const convertDateToISO = (date) => {
-  const [month, day, year] = date.split("-");
-  return `${year}-${month}-${day}`;
-};
-
-// Convert YYYY-MM-DD to MM-DD-YYYY
-const convertISOToDate = (iso) => {
-  const [year, month, day] = iso.split("-");
-  return `${month}-${day}-${year}`;
-};
-
 class _SQLiteDayModel {
   constructor() {}
 
@@ -128,6 +124,28 @@ class _SQLiteDayModel {
     if (fresh) {
       await this.clearAllData();
     }
+
+    // Create Test User
+    await this.createUser({
+      username: "testUser",
+      password: "testPassword",
+    });
+
+    // Create Test Day
+    await this.saveDay("testUser", {
+      date_id: getToday(), // getToday() defaults to MM-DD-YYYY
+      rating: 5,
+      journal: "Test Journal Entry",
+    });
+
+    await this.saveUser("testUser");
+
+    // Debug:
+    await this.getDay("testUser", getToday()); // getToday() defaults to MM-DD-YYYY
+    await this.getUserData("testUser");
+
+    // Create Test Emotions
+    // TODO
   }
 
   // Checks if a user entry exists in the database (Author: @rthurston1)
@@ -325,6 +343,9 @@ class _SQLiteDayModel {
   // Gets a day based on it's id
   async getDay(username, date_id) {
     try {
+      if (!isISO(date_id)) {
+        date_id = convertDateToISO(date_id);
+      }
       // Find the user with the specific date_id
       const day = await Day.findOne({
         where: {
@@ -344,7 +365,9 @@ class _SQLiteDayModel {
       }
 
       // Converts YYYY-MM-DD to MM-DD-YYYY
-      day.date_id = convertISOToDate(day.date_id)
+      if (isISO(day.date_id)) {
+        day.date_id = convertISOToDate(day.date_id);
+      }
 
       debugLog("Fetched day successfully", "SUCCESS");
       return successResponse(day);
@@ -360,7 +383,10 @@ class _SQLiteDayModel {
   async deleteDay(username, date_id) {
     try {
       // Checks if data does NOT exists
-      const deletedDay = await this.dayExists(username, convertDateToISO(date_id));
+      const deletedDay = await this.dayExists(
+        username,
+        convertDateToISO(date_id)
+      );
 
       if (!deletedDay) {
         debugLog("Day does not exist", "INFO");
@@ -464,7 +490,7 @@ class _SQLiteDayModel {
       }
 
       // Converts all date_id from YYYY-MM-DD to MM-DD-YYYY
-      const formattedDays = days.map(day => {
+      const formattedDays = days.map((day) => {
         day.date_id = convertISOToDate(day.date_id);
         return day;
       });

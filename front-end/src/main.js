@@ -6,8 +6,9 @@ import { SummaryComponent } from "./pages/summary/SummaryComponent.js";
 import { EventHub } from "./eventhub/EventHub.js";
 import { Events } from "./eventhub/Events.js";
 import { IDBService } from "./services/IDBService.js";
+import { RemoteService } from "./services/RemoteService.js";
 import { LoginComponent } from "./pages/log-in/LoginComponent.js";
-
+import StorageServiceFactory from "./services/StorageServiceFactory.js";
 
 const hub = EventHub.getInstance();
 const header = document.querySelector(".page-header");
@@ -16,7 +17,6 @@ const nav = document.querySelector(".nav");
 // Initially hide header and nav
 header.style.display = "none";
 nav.style.display = "none";
-
 
 // Subscribe to LoadLoginPage to render the login page
 hub.subscribe(Events.LoadLoginPage, () => {
@@ -31,23 +31,22 @@ hub.publish(Events.LoadLoginPage, {});
 hub.subscribe(Events.LoginSuccess, (data) => {
   console.log(`User logged in: ${data.username}`);
 
-// Show header and navigation bar after login
-header.style.display = "block";
-nav.style.display = "flex";
+  // Show header and navigation bar after login
+  header.style.display = "block";
+  nav.style.display = "flex";
 
-// Initialize and render the calendar page by default
-const calendar = new CalendarComponent(new Date());
-calendar.loadPage();
+  // Initialize and render the calendar page by default
+  const calendar = new CalendarComponent(new Date());
+  calendar.loadPage();
 
-// Publish the event to load the navigation bar
-hub.publish(Events.LoadNav, {});
+  // Publish the event to load the navigation bar
+  hub.publish(Events.LoadNav, {});
 
   // Initialize other components after login
   const day = new DayComponent();
   const journal = new JournalComponent();
   const checkIn = new CheckInComponent();
   const summary = new SummaryComponent();
-
 });
 // Initializes database then loads in Main Page
 hub.subscribe(Events.InitDataSuccess, () => {
@@ -62,10 +61,10 @@ hub.subscribe(Events.InitDataSuccess, () => {
 });
 
 hub.subscribe(Events.InitDataFailed, () => {
-  console.log("Failed to initialize database")
+  console.log("Failed to initialize database");
 });
 
-export const DATABASE = new IDBService();
+export const DATABASE = StorageServiceFactory.getService("Remote");
 const today = new Date();
 
 const dateArr = [today.getMonth() + 1, today.getDate(), today.getFullYear()];

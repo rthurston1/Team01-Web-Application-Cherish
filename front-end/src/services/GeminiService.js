@@ -3,16 +3,33 @@ import { Events } from "../eventhub/Events.js";
 import { RemoteService } from "./RemoteService.js";
 import Service from "./Service.js";
 import { debugLog } from "../config/debug.js";
+import { getToday } from "../utils/dateUtils.js";
+// import { DATABASE } from "../main.js";
+
 // Please do not do this (storing API key in code and in plain text) in the real world
 export const _API_KEY = "AIzaSyCGfZMVVSpTalW31tkK-pO3qYTkxJWVv40";
+
 const MODEL = "gemini-1.5-flash";
+const GENERATION_CONFIG = {
+  candidateCount: 1, //specifies the number of generated responses to return. Currently, this value can only be set to 1.
+  maxOutputTokens: 300, //sets the maximum number of tokens to include in a candidate.
+  temperature: 0.3, //sets the randomness of the output. The higher the temperature, the more random the output.
+};
+const SYSTEM_INSTRUCTION = `
+  You are a psychologist who is analyzing a patient's journal and emotion log entries. 
+  The data consists of a description of how the person is feeling and the magnitude of the emotion recorded for that time of day. 
+  Write a summary of the patient's data in a few sentences, with suggestions on how to improve their mood if they are feeling sad or angry. 
+Ratings scale from 1 to 10 with 1 being the worst and 10 being the best. Magnitude of emotion is also on a scale from 1 to 10, varying in intensity. 
+`;
 
 class GeminiService extends Service {
-  constructor() {
+  constructor(period = "day", summarizeJournal = false) {
     super();
     this.genAI = null;
-    this.period = "day";
-    this.summarizeJournal = false;
+    this.period = this.setPeriod(period);
+    this.summarizeJournal = summarizeJournal;
+    this.remoteService = new RemoteService();
+    this.initAI(this.period);
   }
 
   addSubscriptions() {
@@ -28,7 +45,6 @@ class GeminiService extends Service {
   }
 
   setPeriod(period) {
-    period = period.toLowerCase();
     if (/^(day|week|month|year)$/.test(period)) {
       this.period = period;
     } else {
@@ -36,12 +52,7 @@ class GeminiService extends Service {
     }
   }
 
-  async initAI(
-    period = null,
-    systemInstruction = `You are a friendly therapist and you are helping a client to reflect on their ${
-      period ? period : this.period
-    }.`
-  ) {
+  async initAI(systemInstruction = SYSTEM_INSTRUCTION) {
     try {
       if (!this.genAI) {
         this.genAI = new GoogleGenerativeAI(_API_KEY);
@@ -49,7 +60,8 @@ class GeminiService extends Service {
 
       const model = this.genAI.getGenerativeModel({
         model: MODEL,
-        systemInstruction,
+        SYSTEM_INSTRUCTION,
+        generationConfig: GENERATION_CONFIG,
       });
 
       return model;
@@ -59,19 +71,44 @@ class GeminiService extends Service {
     }
   }
 
-  async generateSummary(period = null, prompt = null, data = null) {
+  async getData(period) {
+    let response;
+    const today = getToday();
+    switch (period) {
+      case "day": // get today's data
+        response = await this.remoteService.restoreDay(today);
+        break;
+      case "week": // get last 7 days' data (including today)
+        // response = await this.remoteService.restoreWeek();
+        break;
+      case "month": // get last 30 days' data (including today)
+        // response = await this.remoteService.restoreMonth();
+        break;
+      case "year": // get last 365 days' data (including today)
+        // response = await this.remoteService.restoreYear();
+        break;
+      default:
+        throw new Error("Invalid period");
+    }
+    return response;
+  }
+
+  async generateSummary(period, data = null) {
     try {
       const model = await this.initAI(period);
 
       if (!data) {
         // Need to fetch the period's data with remote service
+        try {
+          const response = await this.getData(period);
+          data = JSON.stringify(response.data);
+        } catch (e) {
+          debugLog(e, "ERROR");
+          throw new Error("Failed to fetch data");
+        }
       }
 
-      const prompt = prompt
-        ? prompt
-        : `For the following text, generate a summary for the ${
-            period ? period : this.period
-          } in a few sentences`;
+      const prompt = `Generate a friendly and personable summary for the ${period} in a few sentences given this data: ${data}`;
       const result = await model.generateContent(prompt);
       const summary = result.response.text();
 

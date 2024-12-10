@@ -1,12 +1,13 @@
 import { Events } from "../eventhub/Events.js";
 import Service from "./Service.js";
 import { debugLog } from "../config/debug.js";
+import { endpoints } from "./endpoints.js";
 
 export class RemoteService extends Service {
-  DAYS_ENDPOINT = "/v1/days/";
-
   constructor() {
     super();
+
+    this.TEST_USER = "testUser";
 
     // Initialize the database
     this._initCalendar()
@@ -38,13 +39,22 @@ export class RemoteService extends Service {
   async _initCalendar() {
     return new Promise(async (resolve, reject) => {
       try {
-        const request = await fetch(DAYS_ENDPOINT);
+        const url = new URL(endpoints.getUserData(this.TEST_USER));
+        const response = await fetch(url);
 
-        if (request.ok) {
-          const data = await request.json();
+        if (response.ok) {
+          debugLog(
+            `Successfully fetched calendar data for user ${this.TEST_USER}`,
+            "SUCCESS"
+          );
+          const data = await response.json();
           this.update(Events.InitDataSuccess, data);
           resolve(data);
         } else {
+          debugLog(
+            `Failed to fetch calendar data: ${response.statusText}`,
+            "ERROR"
+          );
           this.update(Events.InitDataFailed);
           reject("Failed to initialize database");
         }
@@ -69,21 +79,21 @@ export class RemoteService extends Service {
     return new Promise(async (resolve, reject) => {
       try {
         debugLog(`restoreDay(${date_id})`);
-        const request = await fetch(`${DAYS_ENDPOINT}${date_id}`);
+        const response = await fetch(endpoints.getDay(this.TEST_USER, date_id));
 
-        if (request.ok) {
+        if (response.ok) {
           debugLog(`restoreDay(${date_id}) request.ok`);
-          const data = await request.json();
+          const data = await response.json();
           debugLog(`Successfully restored data for ${date_id}`);
           this.update(Events.RestoredDataSuccess, data);
           resolve(data);
         } else {
-          debugLog(`Failed to restore data for ${date_id}`);
+          debugLog(`Failed to restore data for ${date_id}`, "INFO");
           this.update(Events.RestoredDataFailed);
           reject("Failed to retrieve data");
         }
       } catch (error) {
-        debugLog(`Failed to restore data for ${date_id}`);
+        debugLog(`Failed to restore data for ${date_id}`, "ERROR");
         this.update(Events.RestoredDataFailed);
         reject(error);
       }
@@ -102,17 +112,22 @@ export class RemoteService extends Service {
    */
   async storeDay(data) {
     return new Promise(async (resolve, reject) => {
+      // stringify the data if needed
+      if (typeof data === "object") {
+        data = JSON.stringify(data);
+      }
       debugLog(`storeDay(${data.date_id})`);
       try {
         const date_id = data?.date_id || data;
-        const request = await fetch(`${DAYS_ENDPOINT}${date_id}`, {
+        const url = new URL(endpoints.postUserData(this.TEST_USER, date_id));
+        const response = await fetch(url, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(data),
         });
-        if (request.ok) {
+        if (response.ok) {
           debugLog(`Successfully stored data for ${data.date_id}`);
           this.update(Events.StoredDataSuccess);
           resolve("Data Stored Successfully");
@@ -141,10 +156,10 @@ export class RemoteService extends Service {
   async clearDatabase() {
     return new Promise(async (resolve, reject) => {
       try {
-        const request = await fetch(this.DAYS_ENDPOINT, {
+        const response = await fetch(endpoints.daysRoot, {
           method: "DELETE",
         });
-        if (request.ok) {
+        if (response.ok) {
           this.update(Events.ClearedDataSuccess);
           resolve("Data Cleared Successfully");
         } else {
