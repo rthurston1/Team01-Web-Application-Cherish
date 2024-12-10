@@ -58,7 +58,7 @@ class DayRoutes {
 
     // Gets a specified day based on it's id
     this.router.get(
-      "/v1/days/:username/:date_id(\\d{2}-\\d{2}-\\d{4})",
+      "/v1/days/:username/:date_id",
       async (request, response) => {
         debugLog(
           `GET /v1/days/${request.params.username}/${request.params.date_id}`
@@ -96,6 +96,37 @@ class DayRoutes {
     this.router.delete("/v1/emotions/:index", async (request, response) => {
       debugLog(`DELETE /v1/emotions/${request.params.index}`);
       DayController.deleteEmotion(request, response);
+    });
+
+    // Function to convert data into CSV format
+    const convertToCSV = (data, fields) => {
+      const header = fields.join(","); //After every Data, join with a ','
+
+      // Maps over the data array to generate the rows of data
+      const rows = data.map(row =>
+          fields.map(field => (row[field] !== undefined ? row[field] : "")).join(",") //map function, if field exist, print -> else undefended or ""
+      );
+      
+      //Combines the headers and rows into a single csv string that are separated by new lines
+      return [header, ...rows].join("\n");
+    };
+
+    //Route for exporting data as a csv file
+    this.router.get("/export-csv", async (req, res) => {
+      try {
+          const data = await data
+          const fields = ["date_id", "rating", "emotion", "journal"]; //fields
+          const csv = convertToCSV(data, fields); //converts to csv using the data and fields
+
+          //Everything below is what creates the csv file and the file's name when downloaded
+          res.setHeader("Content-Type", "text/csv");
+          res.setHeader("Content-Disposition", "attachment; filename=summary.csv");
+          res.status(200).send(csv);
+          //Catches error if an error occurs and sends a 500 status error if failed
+      } catch (error) {
+          console.error("Error exporting CSV:", error);
+          res.status(500).send("Failed to generate CSV");
+      }
     });
   }
 
