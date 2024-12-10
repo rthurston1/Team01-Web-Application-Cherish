@@ -84,7 +84,7 @@
   - **Task**: Working on Emotion Trend Analysis: Implemented restoreUserData() 
   - **Details**: Scrapped old branch since many changes were made to main and began new approach to feature. Got help from Niko on implementation outline. restoreUserData() sends a request to the "/v1/days/{username}" endpoint to retrieve all of the user's data. This will be called in summaryComponent to get the data for computing Trend Analysis.
 
- ### December 9, 2024
+ ### December 10, 2024
   - **Task**: More work on Emotion Trend Analysis, Upadted notes file in the team's repository
   - **Details**: Added notes from our final official meeting to the repo. 
 
