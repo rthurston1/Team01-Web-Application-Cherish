@@ -5,6 +5,7 @@ import { CheckInComponent } from "./pages/check-in/CheckInComponent.js";
 import { SummaryComponent } from "./pages/summary/SummaryComponent.js";
 import { EventHub } from "./eventhub/EventHub.js";
 import { Events } from "./eventhub/Events.js";
+import { getToday } from "./utils/dateUtils.js";
 import { IDBService } from "./services/IDBService.js";
 import { RemoteService } from "./services/RemoteService.js";
 import { LoginComponent } from "./pages/log-in/LoginComponent.js";
@@ -52,7 +53,7 @@ hub.subscribe(Events.LoginSuccess, (data) => {
 hub.subscribe(Events.InitDataSuccess, () => {
   console.log("Initialized database successfully");
 
-  DATABASE.restoreDay(id)
+  DATABASE.restoreDay(getToday())
     .then((data) => {
       hub.publish(Events.LoadMainPage, data);
       hub.publish(Events.LoadNav, data);
@@ -65,12 +66,6 @@ hub.subscribe(Events.InitDataFailed, () => {
 });
 
 export const DATABASE = StorageServiceFactory.getService("Remote");
-const today = new Date();
-
-const dateArr = [today.getMonth() + 1, today.getDate(), today.getFullYear()];
-
-const id = dateArr.join("-");
-// Retrieves data for the current day, on success passes data through an event
 
 console.log("Login page loaded and waiting for user interaction.");
 

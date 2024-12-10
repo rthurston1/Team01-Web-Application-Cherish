@@ -64,11 +64,19 @@ const Day = sequelize.define(
 const Emotion = sequelize.define(
   "emotions",
   {
+    date_id: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        is: /^\d{4}-\d{2}-\d{2}$/, // Ensures YYYY-MM-DD format
+      },
+    },
     index_id: {
       // Position in the Emotion array for that day
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
     },
+
     emotion_id: {
       // Name of the emotion, e.g., Happy, Sad
       type: DataTypes.STRING,
@@ -90,7 +98,7 @@ const Emotion = sequelize.define(
     },
     timestamp: {
       // Timestamp when the emotion was logged
-      type: DataTypes.DATE,
+      type: DataTypes.STRING,
       allowNull: false,
     },
   },
@@ -133,7 +141,7 @@ class _SQLiteDayModel {
 
     // Create Test Day
     await this.saveDay("testUser", {
-      date_id: getToday(), // getToday() defaults to MM-DD-YYYY
+      date_id: getToday(), // getToday() defaults to YYYY-MM-DD
       rating: 5,
       journal: "Test Journal Entry",
     });
@@ -141,7 +149,7 @@ class _SQLiteDayModel {
     await this.saveUser("testUser");
 
     // Debug:
-    await this.getDay("testUser", getToday()); // getToday() defaults to MM-DD-YYYY
+    await this.getDay("testUser", getToday()); // getToday() defaults to YYYY-MM-DD
     await this.getUserData("testUser");
 
     // Create Test Emotions
@@ -320,8 +328,13 @@ class _SQLiteDayModel {
   // Creates/Updates a day
   async saveDay(username, day) {
     try {
-      // Converts MM-DD-YYYY to YYYY-MM-DD
-      day.date_id = convertDateToISO(day.date_id);
+      if (!isISO(day.date_id)) {
+        if (!isMMDDYY(day.date_id)) {
+          return failedResponse("Invalid date format");
+        }
+        day.date_id = convertDateToISO(day.date_id);
+      }
+
       const storedDay = await this.dayExists(username, day.date_id);
       if (storedDay) {
         // Day exists: UPDATE
@@ -344,17 +357,20 @@ class _SQLiteDayModel {
   async getDay(username, date_id) {
     try {
       if (!isISO(date_id)) {
+        if (!isMMDDYY(date_id)) {
+          return failedResponse("Invalid date format");
+        }
         date_id = convertDateToISO(date_id);
       }
-      // Find the user with the specific date_id
+
       const day = await Day.findOne({
         where: {
-          date_id: date_id, // The date of the day you want
-          username: username, // Make sure it's the correct user
+          date_id: date_id,
+          username: username,
         },
         include: [
           {
-            model: Emotion, // Include the emotions associated with that day
+            model: Emotion,
           },
         ],
       });
@@ -362,11 +378,6 @@ class _SQLiteDayModel {
       if (!day) {
         debugLog("Day does not exist", "INFO");
         return failedResponse("Day does not exist");
-      }
-
-      // Converts YYYY-MM-DD to MM-DD-YYYY
-      if (isISO(day.date_id)) {
-        day.date_id = convertISOToDate(day.date_id);
       }
 
       debugLog("Fetched day successfully", "SUCCESS");
@@ -382,11 +393,14 @@ class _SQLiteDayModel {
   // Author: @rthurston1
   async deleteDay(username, date_id) {
     try {
+      if (!isISO(date_id)) {
+        if (!isMMDDYY(date_id)) {
+          return failedResponse("Invalid date format");
+        }
+        date_id = convertDateToISO(date_id);
+      }
       // Checks if data does NOT exists
-      const deletedDay = await this.dayExists(
-        username,
-        convertDateToISO(date_id)
-      );
+      const deletedDay = await this.dayExists(username, date_id);
 
       if (!deletedDay) {
         debugLog("Day does not exist", "INFO");
@@ -406,14 +420,26 @@ class _SQLiteDayModel {
   // Overwrites all emotions for a specific day
   // Author: @rthurston1
   async saveEmotions(username, date_id, emotions) {
+    console.log(`made it to saveEmotions`);
     try {
-      const iso_date_id = convertDateToISO(date_id);
-
       // Check if the day entry exists
-      if (!(await this.dayExists(username, iso_date_id))) {
-        debugLog("Day not does not exist", "INFO");
+      const dayExists = await this.dayExists(username, date_id);
+      if (!dayExists) {
+        debugLog("Day does not exist", "INFO");
         return failedResponse("Day does not exist");
       }
+
+      debugLog(`Processing emotions ${JSON.stringify(emotions)}`, "EMOTION");
+
+      // Validate and convert timestamp format
+      emotions.forEach((emotion) => {
+        if (!emotion.timestamp.includes("T")) {
+          emotion.timestamp = `${date_id}T${emotion.timestamp}:00.000Z`;
+        }
+        if (isNaN(Date.parse(emotion.timestamp))) {
+          throw new Error(`Invalid timestamp: ${emotion.timestamp}`);
+        }
+      });
 
       // Begin a transaction as there are multiple operations done on the database
       const transaction = await sequelize.transaction();
@@ -421,7 +447,7 @@ class _SQLiteDayModel {
       try {
         // Delete all existing emotions for that day
         await Emotion.destroy({
-          where: { iso_date_id },
+          where: { date_id },
           transaction, // Ensure this happens within the same transaction
         });
 
@@ -429,7 +455,7 @@ class _SQLiteDayModel {
         const newEmotions = await Emotion.bulkCreate(
           emotions.map((emotion) => ({
             ...emotion,
-            iso_date_id,
+            date_id,
           })),
           {
             transaction, // Ensure this happens within the same transaction
@@ -488,12 +514,6 @@ class _SQLiteDayModel {
         debugLog("No days found for the specified date range", "INFO");
         return failedResponse("No days found");
       }
-
-      // Converts all date_id from YYYY-MM-DD to MM-DD-YYYY
-      const formattedDays = days.map((day) => {
-        day.date_id = convertISOToDate(day.date_id);
-        return day;
-      });
 
       debugLog("Fetched days by date range successfully", "SUCCESS");
       return successResponse(formattedDays);

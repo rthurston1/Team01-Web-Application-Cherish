@@ -13,6 +13,8 @@ export const endpoints = {
   getUserData: (username) => createURL(`days/${username}`),
   postDay: (username, date_id) => createURL(`days/${username}/${date_id}`),
   getDay: (username, date_id) => createURL(`days/${username}/${date_id}`),
+  postEmotions: (username, date_id) =>
+    createURL(`emotions/${username}/${date_id}`),
   getDaysOfMonth: (username, month, year) =>
     createURL(`days/${username}/${month}/${year}`),
   getDaysOfYear: (username, year) => createURL(`days/${username}/${year}`),

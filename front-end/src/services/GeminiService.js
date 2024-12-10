@@ -1,9 +1,9 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import { GoogleGenerativeAI } from "https://esm.sh/@google/generative-ai";
 import { Events } from "../eventhub/Events.js";
-import { RemoteService } from "./RemoteService.js";
 import Service from "./Service.js";
 import { debugLog } from "../config/debug.js";
 import { getToday } from "../utils/dateUtils.js";
+import StorageServiceFactory from "./StorageServiceFactory.js";
 // import { DATABASE } from "../main.js";
 
 // Please do not do this (storing API key in code and in plain text) in the real world
@@ -28,7 +28,7 @@ class GeminiService extends Service {
     this.genAI = null;
     this.period = this.setPeriod(period);
     this.summarizeJournal = summarizeJournal;
-    this.remoteService = new RemoteService();
+    this.remoteService = StorageServiceFactory.getService("Remote");
     this.initAI(this.period);
   }
 
@@ -45,8 +45,9 @@ class GeminiService extends Service {
   }
 
   setPeriod(period) {
-    if (/^(day|week|month|year)$/.test(period)) {
-      this.period = period;
+    const p = period.toLowerCase();
+    if (/^(day|week|month|year)$/.test(p)) {
+      this.period = p;
     } else {
       throw new Error("Invalid period");
     }
@@ -95,12 +96,13 @@ class GeminiService extends Service {
 
   async generateSummary(period, data = null) {
     try {
-      const model = await this.initAI(period);
+      this.setPeriod(period);
+      const model = await this.initAI(this.period);
 
       if (!data) {
         // Need to fetch the period's data with remote service
         try {
-          const response = await this.getData(period);
+          const response = await this.getData(this.period);
           data = JSON.stringify(response.data);
         } catch (e) {
           debugLog(e, "ERROR");
@@ -108,7 +110,7 @@ class GeminiService extends Service {
         }
       }
 
-      const prompt = `Generate a friendly and personable summary for the ${period} in a few sentences given this data: ${data}`;
+      const prompt = `Generate a friendly and personable summary for the ${this.period} in a few sentences given this data: ${data}`;
       const result = await model.generateContent(prompt);
       const summary = result.response.text();
 

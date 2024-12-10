@@ -2,6 +2,7 @@
 /* DayRoutes.js tells the Day Controller which calls to place  */
 import ModelFactory from "../model/ModelFactory.js";
 import { debugLog } from "../../config/debug.js";
+import { isISO, isMMDDYY } from "../../../front-end/src/utils/dateUtils.js";
 
 class DayController {
   constructor() {
@@ -27,15 +28,21 @@ class DayController {
   async handleRequest(request, response, modelMethod, methodName, ...params) {
     debugLog(`DayController.${methodName}`, "CALL");
     try {
+      if (params.includes("date_id") && !isISO(Date.parse(params.date_id))) {
+        throw new Error(
+          `Invalid date_id. Provided: ${params.date_id} Expected: YYYY-MM-DD`
+        );
+      }
       const data = await modelMethod(...params);
       debugLog(`Data: ${JSON.stringify(data)}`, "INFO");
       if (!data.success) {
         debugLog(`Bad Request: ${data.error}`, "INFO");
-        response.status(methodName === "loginUser" ? 401 : 400).json(data);
+        // response.status(methodName === "loginUser" ? 401 : 400).json(data); this is throwing set header error
       } else {
         debugLog(`Success: ${JSON.stringify(data)}`, "INFO");
-        response.setHeader("Content-Type", "application/json");
+        // response.setHeader("Content-Type", "application/json");
       }
+      debugLog(`DayController.${methodName} + data = ${data}`, "RETURN");
       response.json(data);
     } catch (error) {
       debugLog(error, "ERROR");
@@ -78,11 +85,7 @@ class DayController {
    */
   async registerUser(request, response) {
     debugLog(`DayController.registerUser`);
-    // Implement user registration logic here
-    // Example:
-    // const { username, password } = request.body;
-    // const result = await this.model.registerUser(username, password);
-    // return response.json(result);
+    // TODO: Implement this method
   }
 
   /**
@@ -193,22 +196,27 @@ class DayController {
     );
   }
 
+  async saveEmotions(request, response) {
+    debugLog(`DayController.saveEmotions`);
+    this.handleRequest(
+      request,
+      response,
+      this.model.saveEmotions.bind(this.model),
+      "saveEmotions",
+      request.params.username,
+      request.params.date_id,
+      request.body // Ensure request.body is correctly parsed
+    );
+  }
+
   async addEmotion(request, response) {
     debugLog(`DayController.addEmotion`);
-    // Implement add emotion logic here
-    // Example:
-    // const { username, date_id, emotion } = request.body;
-    // const result = await this.model.addEmotion(username, date_id, emotion);
-    // return response.json(result);
+    // TODO: Implement this method
   }
 
   async deleteEmotion(request, response) {
     debugLog(`DayController.deleteEmotion`);
-    // Implement delete emotion logic here
-    // Example:
-    // const { username, date_id, index } = request.params;
-    // const result = await this.model.deleteEmotion(username, date_id, index);
-    // return response.json(result);
+    // TODO: Implement this method
   }
 }
 

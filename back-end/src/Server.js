@@ -19,16 +19,10 @@ class Server {
   }
 
   configureMiddleware() {
-    // Static files from the front-end - Liam
-    this.app.use(express.static(path.join(__dirname, "../../front-end/src")));
-
-    // Parses the json body and limits it to 10mb - Liam
-    this.app.use(express.json({ limit: "10mb" }));
-
     // Serve JavaScript files with the correct MIME type - Niko
     this.app.use((req, res, next) => {
       if (req.path.endsWith(".js")) {
-        res.setHeader("Content-Type", "text/javascript");
+        res.setHeader("Content-Type", "application/javascript");
       } else if (req.path.endsWith(".css")) {
         res.setHeader("Content-Type", "text/css");
       } else if (req.path.endsWith(".json")) {
@@ -42,6 +36,12 @@ class Server {
       }
       next();
     });
+
+    // Static files from the front-end - Liam
+    this.app.use(express.static(path.join(__dirname, "../../front-end/src")));
+
+    // Parses the json body and limits it to 10mb - Liam
+    this.app.use(express.json({ limit: "10mb" }));
 
     // Set Content Security Policy headers
     // this.app.use((req, res, next) => {

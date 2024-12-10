@@ -25,6 +25,7 @@ export class RemoteService extends Service {
     this.addEvent(Events.StoreData, (data) => this.storeDay(data));
     this.addEvent(Events.RestoreData, (id) => this.restoreDay(id));
     this.addEvent(Events.ClearData, () => this.clearDatabase());
+    this.addEvent(Events.StoreEmotion, (data) => this.storeEmotions(data));
   }
 
   /** (Function written by Nikolay Ostroukhov @nikozbk)
@@ -79,7 +80,8 @@ export class RemoteService extends Service {
     return new Promise(async (resolve, reject) => {
       try {
         debugLog(`restoreDay(${date_id})`);
-        const response = await fetch(endpoints.getDay(this.TEST_USER, date_id));
+        const url = new URL(endpoints.getDay(this.TEST_USER, date_id));
+        const response = await fetch(url);
 
         if (response.ok) {
           debugLog(`restoreDay(${date_id}) request.ok`);
@@ -116,19 +118,19 @@ export class RemoteService extends Service {
       if (typeof data === "object") {
         data = JSON.stringify(data);
       }
-      debugLog(`storeDay(${data.date_id})`);
+      debugLog(`storeDay(${data})`);
       try {
         const date_id = data?.date_id || data;
-        const url = new URL(endpoints.postUserData(this.TEST_USER, date_id));
+        const url = new URL(endpoints.postDay(this.TEST_USER, date_id));
         const response = await fetch(url, {
-          method: "PUT",
+          method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(data),
+          body: data,
         });
         if (response.ok) {
-          debugLog(`Successfully stored data for ${data.date_id}`);
+          debugLog(`Successfully stored data for ${date_id}`);
           this.update(Events.StoredDataSuccess);
           resolve("Data Stored Successfully");
         } else {
@@ -139,6 +141,44 @@ export class RemoteService extends Service {
       } catch (error) {
         debugLog(`Failed to store data for ${data.date_id}`);
         this.update(Events.StoredDataFailed);
+        reject("Failed to store data");
+      }
+    });
+  }
+
+  async storeEmotions(data) {
+    return new Promise(async (resolve, reject) => {
+      const date_id = data.data.date_id;
+      const emotions = data.emotions;
+      debugLog(`storeEmotions(${JSON.stringify(emotions)})`);
+      try {
+        // Ensure emotions have valid timestamps
+        emotions.forEach((emotion) => {
+          if (!emotion.timestamp.includes("T")) {
+            emotion.timestamp = `${date_id}T${emotion.timestamp}:00.000Z`;
+          }
+        });
+
+        const url = new URL(endpoints.postEmotions(this.TEST_USER, date_id));
+        const response = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(emotions), // Ensure emotions are stringified
+        });
+        if (response.ok) {
+          debugLog(`Successfully stored emotions for ${date_id}`);
+          this.update(Events.StoreEmotionSuccess);
+          resolve("Emotion Data Stored Successfully");
+        } else {
+          debugLog(`Failed to store emotions for ${date_id}`);
+          this.update(Events.StoreEmotionFailed);
+          reject("Failed to store data");
+        }
+      } catch (error) {
+        debugLog(`Failed to store emotions for ${date_id}`);
+        this.update(Events.StoreEmotionFailed);
         reject("Failed to store data");
       }
     });

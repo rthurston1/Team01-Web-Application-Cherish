@@ -1,15 +1,15 @@
-// Returns the current date as a string in the format "MM-DD-YYYY"
-function getToday(format = "MM-DD-YYYY") {
+// Returns the current date as a string in the format "YYYY-MM-DD"
+function getToday(format = "YYYY-MM-DD") {
   const today = new Date();
   const month = String(today.getMonth() + 1).padStart(2, "0");
   const day = String(today.getDate()).padStart(2, "0");
   const year = today.getFullYear();
 
   switch (format) {
-    case "MM-DD-YYYY":
-      return `${month}-${day}-${year}`;
     case "YYYY-MM-DD":
       return `${year}-${month}-${day}`;
+    case "MM-DD-YYYY":
+      return `${month}-${day}-${year}`;
     default:
       throw new Error(
         "Invalid date format. Please use MM-DD-YYYY or YYYY-MM-DD."
@@ -51,15 +51,15 @@ const convertISOToDate = (iso) => {
   return `${month}-${day}-${year}`;
 };
 
-// Converts a Date object to a string in the format "MM-DD-YYYY"
+// Converts a Date object to a string in the format "YYYY-MM-DD"
 function convertDateToID(date) {
-  if (!date instanceof Date) {
+  if (!(date instanceof Date)) {
     throw new Error("Invalid date format. Please use a Date object.");
   }
   const month = String(date.getMonth() + 1).padStart(2, "0");
   const day = String(date.getDate()).padStart(2, "0");
   const year = date.getFullYear();
-  return `${month}-${day}-${year}`;
+  return `${year}-${month}-${day}`;
 }
 
 // Returns the day of the week as a word (e.g. "Monday", "Tuesday", etc.)
