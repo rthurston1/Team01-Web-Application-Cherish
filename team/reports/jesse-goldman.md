@@ -72,4 +72,21 @@
   - **Task**: Created issue feature proposal for Emotion Trend Analysis 
   - **Details**: Emotion Trend Analysis will allow users to monitor emotional patterns and trends over any given date range. A user will select a date range, and based on that range, emotion data will be aggregated and converted into statistics
 
+ ### December 5, 2024
+  - **Task**: Working on Emotion Trend Analysis , created new feature branch 
+  - **Details**: Experimented with backend files
+
+ ### December 6, 2024
+  - **Task**: Working on Emotion Trend Analysis 
+  - **Details**: Experimented with backend files
+
+ ### December 9, 2024
+  - **Task**: Working on Emotion Trend Analysis: Implemented restoreUserData() 
+  - **Details**: Scrapped old branch since many changes were made to main and began new approach to feature. Got help from Niko on implementation outline. restoreUserData() sends a request to the "/v1/days/{username}" endpoint to retrieve all of the user's data. This will be called in summaryComponent to get the data for computing Trend Analysis.
+
+ ### December 9, 2024
+  - **Task**: More work on Emotion Trend Analysis, Upadted notes file in the team's repository
+  - **Details**: Added notes from our final official meeting to the repo. 
+
+
 
