@@ -9,6 +9,11 @@ export const Events = {
   LoadCheckInPage: "LoadCheckInPage", // Loads Check-in Page
   LoadSummaryPage: "LoadSummaryPage", // Loads Summary Page, context based on all data stored
 
+  //Authentication Events
+  LoadLoginPage: "LoadLoginPage",
+  LoginSuccess: "LoginSuccess",
+  LoginFailed: "LoginFailed", // Failed login event (if needed in the future)
+
   StoreData: "StoreData", // Async call to store any changes inputted by user
   ClearData: "ClearData", // Async call to clear all data stored in database
   RestoreData: "RestoreData", // Async call to restore/retrieve data

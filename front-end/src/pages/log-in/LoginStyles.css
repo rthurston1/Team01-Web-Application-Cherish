@@ -1,0 +1,129 @@
+/* Center the login container */
+body {
+  background: linear-gradient(to bottom, #4a90e2, #9013fe); /* Keep the gradient background */
+  font-family: Arial, sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+/* Add styles for the secondary button */
+.secondary-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #f50057; /* Secondary button color */
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 15px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.secondary-btn:hover {
+  background-color: #d4004f;
+  transform: translateY(-2px);
+}
+
+.secondary-btn:active {
+  transform: translateY(1px);
+}
+
+.login-container {
+  width: 100%;
+  max-width: 500px; /* Increased width */
+  background: white;
+  padding: 40px; /* Increased padding for a larger appearance */
+  border-radius: 15px; /* More rounded corners */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  position: relative;
+}
+
+/* Header styling for the login form */
+.login-container h2 {
+  margin: 0 0 20px 0;
+  padding: 10px;
+  background: rgb(251, 161, 176);
+  color: white;
+  font-size: 2em; /* Larger font size */
+  border-radius: 8px 8px 0 0;
+  font-weight: bold;
+}
+
+/* Style the input fields */
+.login-container input {
+  width: 100%;
+  padding: 15px; /* More padding for larger inputs */
+  margin: 15px 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #f9f9f9;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.login-container input:focus {
+  border-color: #4a90e2;
+  outline: none;
+  box-shadow: 0 0 6px rgba(74, 144, 226, 0.6);
+}
+
+/* Button styling */
+.login-container button {
+  width: 100%;
+  padding: 15px; /* Larger button */
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 1.2rem; /* Larger font size for button */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-weight: bold;
+}
+
+.login-container button:hover {
+  background: linear-gradient(to right, #4a90e2, #6a11cb);
+  transform: translateY(-2px);
+}
+
+.login-container button:active {
+  transform: translateY(1px);
+}
+
+/* Error message styling */
+#login-error {
+  display: none;
+  color: red;
+  margin-top: 10px;
+  font-size: 1rem;
+}
+
+/* Optional: Make it responsive */
+@media screen and (max-width: 768px) {
+  .login-container {
+    padding: 20px;
+    border-radius: 8px;
+  }
+
+  .login-container h2 {
+    font-size: 1.8em;
+  }
+
+  .login-container input {
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+
+  .login-container button {
+    padding: 12px;
+    font-size: 1rem;
+  }
+}
