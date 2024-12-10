@@ -11,7 +11,7 @@ export class SummaryComponent extends BaseComponent {
   
   /** (Function written by Jesse Goldman @jss4830)
    * 
-   * @returns {Promise<Object>} A promise that resolves with the day's data if the request is successful, or rejects with an error message if the request fails.
+   * @returns an object containing mostFrequentEmotion, averageRating, emotionCounts, and longestStreak
    */
   #calculateTrendData(startDate, endDate) {
     const userData = DATABASE.restoreUserData(); //get the user data
