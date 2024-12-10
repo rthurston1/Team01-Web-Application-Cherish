@@ -1,6 +1,7 @@
 import { Events } from "../eventhub/Events.js";
 import Service from "./Service.js";
 import { debugLog } from "../config/debug.js";
+// TODO import globalUser from loginComponent ; 
 
 export class RemoteService extends Service {
   DAYS_ENDPOINT = "/v1/days/";
@@ -84,6 +85,42 @@ export class RemoteService extends Service {
         }
       } catch (error) {
         debugLog(`Failed to restore data for ${date_id}`);
+        this.update(Events.RestoredDataFailed);
+        reject(error);
+      }
+    });
+  }
+  
+
+  /** (Function written by Jesse Goldman @jss4830)
+   * Restores all of a user's data by fetching it from the server.
+   *
+   * This function sends a request to the "/v1/days/{username}" endpoint to retrieve all of the user's data.
+   * If the request is successful, it updates the calendar with the retrieved data and resolves the promise.
+   * If the request fails, it updates the calendar with a failure event and rejects the promise with an error message.
+   *
+   * @returns {Promise<Object>} A promise that resolves with the day's data if the request is successful, or rejects with an error message if the request fails.
+   */
+  async restoreUserData(){
+    const userName = globalUser; 
+    return new Promise(async (resolve, reject) => {
+      try {
+        debugLog(`restoreUserData(${userName})`);
+        const request = await fetch(`/v1/days/${userName}`);
+
+        if (request.ok) {
+          debugLog(`restoreUserData(${userName}) request.ok`);
+          const data = await request.json();
+          debugLog(`Successfully restored data for ${userName}`);
+          this.update(Events.RestoredDataSuccess, data);
+          resolve(data);
+        } else {
+          debugLog(`Failed to restore data for ${userName}`);
+          this.update(Events.RestoredDataFailed);
+          reject("Failed to retrieve data");
+        }
+      } catch (error) {
+        debugLog(`Failed to restore data for ${userName}`);
         this.update(Events.RestoredDataFailed);
         reject(error);
       }

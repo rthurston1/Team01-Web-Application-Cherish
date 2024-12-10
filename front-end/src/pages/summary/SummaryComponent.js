@@ -1,10 +1,21 @@
 import { Events } from "../../eventhub/Events.js";
 import { BaseComponent } from "../../BaseComponent.js";
+import { DATABASE } from "../../main.js"; //remoteService 
+//import globalUsern from loginComponent //placeholder for username to import from loginComponent
 
 export class SummaryComponent extends BaseComponent {
   constructor() {
     super("summaryPage", "./pages/summary/stylesSum.css"); // Call the constructor of the parent class
     this.dateData = {};
+  }
+  
+  /** (Function written by Jesse Goldman @jss4830)
+   * 
+   * @returns {Promise<Object>} A promise that resolves with the day's data if the request is successful, or rejects with an error message if the request fails.
+   */
+  #calculateTrendData(startDate, endDate) {
+    const userData = DATABASE.restoreUserData(); //get the user data
+    // TODO: complete this logic for calculating the trend data 
   }
 
     #handleClick(element, period) {
