@@ -1,7 +1,7 @@
 import { Events } from "../../eventhub/Events.js";
 import { BaseComponent } from "../../BaseComponent.js";
 import { DATABASE } from "../../main.js"; //remoteService 
-//import globalUsern from loginComponent //placeholder for username to import from loginComponent
+//import globalUsername from loginComponent //placeholder for username to import from loginComponent
 
 export class SummaryComponent extends BaseComponent {
   constructor() {
