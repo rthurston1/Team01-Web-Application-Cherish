@@ -31,7 +31,7 @@ const Day = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        is: /^\d{2}-\d{2}-\d{4}$/, // Ensures MM-DD-YYYY format
+        is: /^\d{4}-\d{2}-\d{2}$/, // Ensures YYYY-MM-DD format
       },
     },
     rating: {
@@ -102,10 +102,16 @@ Day.belongsTo(User, { foreignKey: "username" });
 Day.hasMany(Emotion, { foreignKey: "date_id", onDelete: "CASCADE" });
 Emotion.belongsTo(Day, { foreignKey: "date_id" });
 
-// Helper function to convert MM-DD-YYYY to YYYY-MM-DD
-const formatDateToISO = (date) => {
+// Convert MM-DD-YYYY to YYYY-MM-DD
+const convertDateToISO = (date) => {
   const [month, day, year] = date.split("-");
-  return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
+  return `${year}-${month}-${day}`;
+};
+
+// Convert YYYY-MM-DD to MM-DD-YYYY
+const convertISOToDate = (iso) => {
+  const [year, month, day] = iso.split("-");
+  return `${month}-${day}-${year}`;
 };
 
 class _SQLiteDayModel {
@@ -296,6 +302,8 @@ class _SQLiteDayModel {
   // Creates/Updates a day
   async saveDay(username, day) {
     try {
+      // Converts MM-DD-YYYY to YYYY-MM-DD
+      day.date_id = convertDateToISO(day.date_id);
       const storedDay = await this.dayExists(username, day.date_id);
       if (storedDay) {
         // Day exists: UPDATE
@@ -335,6 +343,9 @@ class _SQLiteDayModel {
         return failedResponse("Day does not exist");
       }
 
+      // Converts YYYY-MM-DD to MM-DD-YYYY
+      day.date_id = convertISOToDate(day.date_id)
+
       debugLog("Fetched day successfully", "SUCCESS");
       return successResponse(day);
     } catch (error) {
@@ -349,7 +360,7 @@ class _SQLiteDayModel {
   async deleteDay(username, date_id) {
     try {
       // Checks if data does NOT exists
-      const deletedDay = await this.dayExists(username, date_id);
+      const deletedDay = await this.dayExists(username, convertDateToISO(date_id));
 
       if (!deletedDay) {
         debugLog("Day does not exist", "INFO");
@@ -370,8 +381,10 @@ class _SQLiteDayModel {
   // Author: @rthurston1
   async saveEmotions(username, date_id, emotions) {
     try {
+      const iso_date_id = convertDateToISO(date_id);
+
       // Check if the day entry exists
-      if (!(await this.dayExists(username, date_id))) {
+      if (!(await this.dayExists(username, iso_date_id))) {
         debugLog("Day not does not exist", "INFO");
         return failedResponse("Day does not exist");
       }
@@ -382,7 +395,7 @@ class _SQLiteDayModel {
       try {
         // Delete all existing emotions for that day
         await Emotion.destroy({
-          where: { date_id },
+          where: { iso_date_id },
           transaction, // Ensure this happens within the same transaction
         });
 
@@ -390,7 +403,7 @@ class _SQLiteDayModel {
         const newEmotions = await Emotion.bulkCreate(
           emotions.map((emotion) => ({
             ...emotion,
-            date_id,
+            iso_date_id,
           })),
           {
             transaction, // Ensure this happens within the same transaction
@@ -433,17 +446,14 @@ class _SQLiteDayModel {
   // QUERY METHODS
 
   // Gets a range of days between a start and end date
+  // Author: @rthurston1
   async filterDaysByDateRange(username, startDate, endDate) {
     try {
-      // Converts date format of MM-DD-YYYY to YYYY-MM-DD
-      const startDateFormatted = formatDateToISO(startDate);
-      const endDateFormatted = formatDateToISO(endDate);
-
       const days = await Day.findAll({
         where: {
           username: username,
           date_id: {
-            [Op.between]: [startDateFormatted, endDateFormatted],
+            [Op.between]: [startDate, endDate],
           },
         },
       });
@@ -453,8 +463,14 @@ class _SQLiteDayModel {
         return failedResponse("No days found");
       }
 
+      // Converts all date_id from YYYY-MM-DD to MM-DD-YYYY
+      const formattedDays = days.map(day => {
+        day.date_id = convertISOToDate(day.date_id);
+        return day;
+      });
+
       debugLog("Fetched days by date range successfully", "SUCCESS");
-      return successResponse(days);
+      return successResponse(formattedDays);
     } catch (error) {
       debugLog(`Error filtering days by date range: ${error}`, "ERROR");
       return failedResponse(error);
@@ -462,15 +478,17 @@ class _SQLiteDayModel {
   }
 
   // Function to get all the days in a given year
+  // Author: @rthurston1
   async getDaysOfYear(username, year) {
     return await this.filterDaysByDateRange(
       username,
-      `01-01-${year}`,
-      `12-31-${year}`
+      `${year}-01-01`,
+      `${year}-12-31`
     );
   }
 
   // Function to get all the days in a given month
+  // Author: @rthurston1
   async getDaysOfMonth(username, month, year) {
     // Check if the year is a leap year
     const isLeapYear = year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
@@ -484,8 +502,8 @@ class _SQLiteDayModel {
     }
     return await this.filterDaysByDateRange(
       username,
-      `${month}-01-${year}`,
-      `${month}-${lastDay}-${year}`
+      `${year}-${month}-01`,
+      `${year}-${month}-${lastDay}`
     );
   }
 }

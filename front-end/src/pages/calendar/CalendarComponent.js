@@ -163,7 +163,9 @@ export class CalendarComponent extends BaseComponent {
         month = 12;
         year--;
       }
-      div.dataset.date = `${month}-${day}-${year}`;
+
+      // Adds padding: Stores data_id as MM-DD-YYYY 
+      div.dataset.date = `${month.toString().padStart(2, "0")}-${day.toString().padStart(2, "0")}-${year.toString().padStart(4, "0")}`;
       return div;
     };
     // Returns if the day is today
