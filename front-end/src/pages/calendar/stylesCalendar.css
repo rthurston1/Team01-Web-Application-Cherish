@@ -52,6 +52,19 @@ body {
   width: 100%;
   height: 100%;
 }
+.quote-container {
+  display: flex;
+  background-color: aqua;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.quote-author {
+  margin-top: 10px; /* Add space above the author */
+  font-style: italic;
+} 
 
 .month {
   display: flex;

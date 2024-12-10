@@ -58,7 +58,7 @@ class DayRoutes {
 
     // Gets a specified day based on it's id
     this.router.get(
-      "/v1/days/:username/:date_id(\\d{2}-\\d{2}-\\d{4})",
+   "/v1/days/:username/:date_id",
       async (request, response) => {
         debugLog(
           `GET /v1/days/${request.params.username}/${request.params.date_id}`
