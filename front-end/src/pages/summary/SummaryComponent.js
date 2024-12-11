@@ -119,6 +119,10 @@ export class SummaryComponent extends BaseComponent {
     this.yearTabButton.addEventListener("click", () =>
       this.#handleClick(this.yearTabButton, "Year")
     );
+
+    this.csvExport.addEventListener("click", () => {
+      this.#exportCSV();
+    });
   }
 
   _render(data) {
@@ -136,5 +140,6 @@ export class SummaryComponent extends BaseComponent {
     this.currentDayLabel = document.getElementById("current-day");
     this.tabs = document.querySelectorAll(".tab");
     this.summaryText = document.getElementById("summary-text");
+    this.csvExport = document.getElementById("export-csv-btn");
   }
 }
