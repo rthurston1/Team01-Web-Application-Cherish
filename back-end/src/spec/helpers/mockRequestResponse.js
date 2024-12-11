@@ -1,3 +1,5 @@
+/*  Helper function to create a mock request and response for the unit testing */
+/* Author: Nikolay Ostroukhov @nikozbk */
 export function createMockRequestResponse(params = {}) {
   const req = {
     body: params,
