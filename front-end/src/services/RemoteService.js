@@ -3,7 +3,6 @@ import Service from "./Service.js";
 import { debugLog } from "../config/debug.js";
 import { endpoints } from "./endpoints.js";
 import { APP_DATA } from "../main.js";
-import { getUsername } from "../main.js";
 
 export class RemoteService extends Service {
   constructor() {
