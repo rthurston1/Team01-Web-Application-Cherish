@@ -1,6 +1,7 @@
 import { Events } from "../../eventhub/Events.js";
 import { BaseComponent } from "../../BaseComponent.js";
 import { DATABASE } from "../../main.js";
+import { APP_DATA } from "../../main.js";
 
 function capitalizeFirst(username) {
   if (!username || typeof username !== 'string') {
@@ -111,6 +112,7 @@ export class CalendarComponent extends BaseComponent {
   // Builds the HTML of the Calendar Page
   _buildHTML() {
     return `<div class="calendar-container"><div class="welcome-back" id="welcomeBack"></div>
+          <div class="quote-container"> </div>
           <div class="calendar">
             <div class="month">
               <i class="fas fa-angle-left prev"></i>
@@ -173,7 +175,7 @@ export class CalendarComponent extends BaseComponent {
 
   _render(data) {
     // Displays username
-    document.getElementById("welcomeBack").textContent = `Welcome back ${capitalizeFirst(data.username)}! How's it going?`;
+    document.getElementById("welcomeBack").textContent = `Welcome back ${capitalizeFirst(APP_DATA.getUsername())}! How's it going?`;
 
     // Month offset constants for previous, current, and next month
     const PREV = 0,

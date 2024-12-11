@@ -2,7 +2,7 @@ import { Events } from "../eventhub/Events.js";
 import Service from "./Service.js";
 import { debugLog } from "../config/debug.js";
 import { endpoints } from "./endpoints.js";
-import { USERNAME } from "../main.js";
+import { APP_DATA } from "../main.js";
 // TODO: import globalUser from loginComponent once loginComponent is merged into main; 
 
 export class RemoteService extends Service {
@@ -81,7 +81,7 @@ export class RemoteService extends Service {
   async restoreDay(date_id) {
     try {
       // Construct the endpoint URL
-      const endpoint = `/v1/days/${USERNAME.getUsername()}/${date_id}`;
+      const endpoint = `/v1/days/${APP_DATA.getUsername()}/${date_id}`;
   
       // Perform the GET fetch request
       const response = await fetch(endpoint, {
@@ -156,7 +156,7 @@ export class RemoteService extends Service {
     try {
       const today_id = "2024-12-10"; // Placeholder bc day doesn't contain date_id for some reason
       // Construct the endpoint URL
-      const endpoint = `/v1/days/${USERNAME.getUsername()}/${today_id}`;
+      const endpoint = `/v1/days/${APP_DATA.getUsername()}/${today_id}`;
   
       const obj = {...day, date_id: today_id};
 

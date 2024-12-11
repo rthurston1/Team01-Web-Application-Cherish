@@ -12,7 +12,7 @@ import { LoginComponent } from "./pages/log-in/LoginComponent.js";
 import StorageServiceFactory from "./services/StorageServiceFactory.js";
 
 
-class UserData {
+class ApplicationData {
   constructor () {}
 
   setUsername(username) {
@@ -45,7 +45,7 @@ hub.publish(Events.LoadLoginPage, {});
 // Subscribe to LoginSuccess to load the main application
 hub.subscribe(Events.LoginSuccess, (loginData) => {
   console.log(`User logged in: ${loginData.username}`);
-  USERNAME.setUsername(loginData.username);
+  APP_DATA.setUsername(loginData.username);
 
   // Show header and navigation bar after login
   header.style.display = "block";
@@ -66,7 +66,7 @@ hub.subscribe(Events.LoginSuccess, (loginData) => {
 });
 
 export const DATABASE = StorageServiceFactory.getService("Remote");
-export const USERNAME = new UserData();
+export const APP_DATA = new ApplicationData();
 
 console.log("Login page loaded and waiting for user interaction.");
 
