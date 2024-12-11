@@ -86,7 +86,7 @@
 
  ### December 10, 2024
   - **Task**: More work on Emotion Trend Analysis, Upadted notes file in the team's repository
-  - **Details**: Added notes from our final official meeting to the repo. 
+  - **Details**: Added notes from our final official meeting to the repo. Added frontend implementation for Emotion Trend Analysis and finalized how the data is retrieved and used for trend analysis. 
 
 
 
