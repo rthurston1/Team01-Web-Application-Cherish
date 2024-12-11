@@ -37,7 +37,7 @@ export class SummaryComponent extends BaseComponent {
 
     //export csv Function made by Liam Campbell @ChronoSpirit
     #exportCSV() {
-        const fields = ["date_id", "rating", "emotion", "journal"]; //Data -> fix date_id and emotion
+        const fields = ["date_id", "rating", "emotion", "journal"];
         const data = Array.isArray(this.dateData) ? this.dateData : [this.dateData];
     
         const header = fields.join(",");
