@@ -1,11 +1,46 @@
 import { Events } from "../../eventhub/Events.js";
 import { BaseComponent } from "../../BaseComponent.js";
 import { DATABASE } from "../../main.js"; //remoteService 
+import GeminiService from "../../services/GeminiService.js";
 
 export class SummaryComponent extends BaseComponent {
   constructor() {
     super("summaryPage", "./pages/summary/stylesSum.css"); // Call the constructor of the parent class
     this.dateData = {};
+    this.geminiService = new GeminiService();
+  }
+
+  async generateSummary(period) {
+    return await this.geminiService.generateSummary(period);
+  }
+
+  async #handleClick(element, period) {
+    this.tabs.forEach((tab) => {
+      tab.classList.remove("active-tab");
+    });
+
+    // Add 'active-tab' class to the clicked tab
+    element.classList.add("active-tab");
+    const summary = await this.generateSummary(period);
+    // Update the summary text based on the clicked tab
+    switch (period) {
+      case "Day":
+        this.summaryText.textContent = summary;
+        break;
+      case "Week":
+        // this.summaryText.textContent = summary;
+        break;
+      case "Month":
+        // this.summaryText.textContent = summary;
+        break;
+      case "Year":
+        // this.summaryText.textContent = summary;
+        break;
+      default:
+        this.summaryText.textContent = "Click on a tab to see the summary.";
+        break;
+    }
+  }
   }
   
   /** (Function written by Jesse Goldman @jss4830)
@@ -152,33 +187,44 @@ export class SummaryComponent extends BaseComponent {
             `;
   }
 
-    _addEventListeners() {
-        this.addCustomEventListener(Events.LoadSummaryPage, (data) => this.loadPage(data))
+  _addEventListeners() {
+    this.addCustomEventListener(Events.LoadSummaryPage, (data) =>
+      this.loadPage(data)
+    );
 
-        this.dayTabButton.addEventListener("click", () => this.#handleClick(this.dayTabButton, "Day"));
-        this.weekTabButton.addEventListener("click", () => this.#handleClick(this.weekTabButton, "Week"));
-        this.monthTabButton.addEventListener("click", () => this.#handleClick(this.monthTabButton, "Month"));
-        this.yearTabButton.addEventListener("click", () => this.#handleClick(this.yearTabButton, "Year"));
+    this.dayTabButton.addEventListener("click", () =>
+      this.#handleClick(this.dayTabButton, "Day")
+    );
+    this.weekTabButton.addEventListener("click", () =>
+      this.#handleClick(this.weekTabButton, "Week")
+    );
+    this.monthTabButton.addEventListener("click", () =>
+      this.#handleClick(this.monthTabButton, "Month")
+    );
+    this.yearTabButton.addEventListener("click", () =>
+      this.#handleClick(this.yearTabButton, "Year")
+    );
 
-        this.exportCsvBtn.addEventListener("click", () => this.#exportCSV());
-    }
+    this.csvExport.addEventListener("click", () => {
+      this.#exportCSV();
+    });
+  }
 
-    _render(data) {
-        this.dateData = data;
-        this.dayRatingLabel.textContent = this.dateData.rating || "N/A";
-        this.currentDayLabel.textContent = this.dateData.date_id || "N/A";
-    }   
+  _render(data) {
+    this.dateData = data;
+    this.dayRatingLabel.textContent = this.dateData.rating || "N/A";
+    this.currentDayLabel.textContent = this.dateData.date_id || "N/A";
+  }
 
-    _createElementObjs() {
-        this.dayTabButton = document.getElementById("tab-Day");
-        this.weekTabButton = document.getElementById("tab-Week");
-        this.monthTabButton = document.getElementById("tab-Month");
-        this.yearTabButton = document.getElementById("tab-Year");
-        this.dayRatingLabel = document.getElementById("day-rating");
-        this.currentDayLabel = document.getElementById("current-day");
-        this.tabs = document.querySelectorAll(".tab");
-        this.summaryText = document.getElementById("summary-text");
-        this.exportCsvBtn = document.getElementById("export-csv-btn");
-    }
-
+  _createElementObjs() {
+    this.dayTabButton = document.getElementById("tab-Day");
+    this.weekTabButton = document.getElementById("tab-Week");
+    this.monthTabButton = document.getElementById("tab-Month");
+    this.yearTabButton = document.getElementById("tab-Year");
+    this.dayRatingLabel = document.getElementById("day-rating");
+    this.currentDayLabel = document.getElementById("current-day");
+    this.tabs = document.querySelectorAll(".tab");
+    this.summaryText = document.getElementById("summary-text");
+    this.csvExport = document.getElementById("export-csv-btn");
+  }
 }

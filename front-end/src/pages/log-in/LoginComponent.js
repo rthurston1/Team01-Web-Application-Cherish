@@ -12,13 +12,13 @@ export class LoginComponent extends BaseComponent {
     return `
       <div class="login-container">
         <h2>Login</h2>
+        <h3 id="login-error">Enter Username and Password</h3>
         <form id="login-form">
           <input type="text" id="username" placeholder="Username" required />
           <input type="password" id="password" placeholder="Password" required />
           <button type="submit">Log In</button>
         </form>
         <button id="signup-button" class="secondary-btn">Sign Up</button>
-        <p id="login-error" class="hidden">Invalid username or password!</p>
       </div>
     `;
   }
@@ -26,20 +26,42 @@ export class LoginComponent extends BaseComponent {
   _addEventListeners() {
     const loginForm = document.getElementById("login-form");
     const loginError = document.getElementById("login-error");
+    const signup = document.getElementById("signup-button");
 
-    loginForm.addEventListener("submit", (event) => {
+    loginForm.addEventListener("submit", async (event) => {
       event.preventDefault();
 
       const username = document.getElementById("username").value.trim();
       const password = document.getElementById("password").value.trim();
 
-      if (this._validateCredentials(username, password)) {
-        this.update(Events.LoginSuccess, { username }); // Notify other components of login success
-        loginError.classList.add("hidden"); // Hide error message
-      } else {
-        loginError.classList.remove("hidden"); // Show error message
-      }
+      try {
+        const userData = await DATABASE.loginUser(username, password);
+        if (!userData) return;
+
+        this.update(Events.LoginSuccess, userData); // Notify other components of login success  
+
+      } catch (error) {
+        document.getElementById("login-error").textContent = "Invalid username or password";
+      } 
     });
+
+    signup.addEventListener("click", async() => {
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      try {
+        const userData = await DATABASE.registerUser(username, password);
+        if (!userData) return;
+
+        document.getElementById("login-error").textContent = "Account created";
+      } catch (error) {
+        document.getElementById("login-error").textContent = "Couldn't register account";
+      }
+
+      
+    });
+
+  
   }
 
   _validateCredentials(username, password) {

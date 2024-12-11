@@ -1,6 +1,15 @@
 import { Events } from "../../eventhub/Events.js";
 import { BaseComponent } from "../../BaseComponent.js";
 import { DATABASE } from "../../main.js";
+import { APP_DATA } from "../../main.js";
+
+function capitalizeFirst(username) {
+  if (!username || typeof username !== 'string') {
+      return '';
+  }
+  return username.charAt(0).toUpperCase() + username.slice(1);
+}
+
 
 export const MONTHS = [
   "January",
@@ -102,8 +111,8 @@ export class CalendarComponent extends BaseComponent {
 
   // Builds the HTML of the Calendar Page
   _buildHTML() {
-    return `<div class="calendar-container"><div class="welcome-back">Welcome back, Jack! How’s it going?</div>
-       <div class="quote-container"> </div>
+    return `<div class="calendar-container"><div class="welcome-back" id="welcomeBack"></div>
+          <div class="quote-container"> </div>
           <div class="calendar">
             <div class="month">
               <i class="fas fa-angle-left prev"></i>
@@ -132,7 +141,9 @@ export class CalendarComponent extends BaseComponent {
   // Adds event listeners to the prev and next buttons as well as
   // the feature buttons
   _addEventListeners() {
-    this.addCustomEventListener(Events.LoadMainPage, (data) => this.loadPage(data));
+    this.addCustomEventListener(Events.LoadMainPage, (data) =>
+      this.loadPage(data)
+    );
 
     // Add event listener to the days container
     // When a day is clicked, load the day page and
@@ -163,6 +174,9 @@ export class CalendarComponent extends BaseComponent {
   }
 
   _render(data) {
+    // Displays username
+    document.getElementById("welcomeBack").textContent = `Welcome back ${capitalizeFirst(APP_DATA.getUsername())}! How's it going?`;
+
     // Month offset constants for previous, current, and next month
     const PREV = 0,
       CURR = 1,
@@ -197,7 +211,8 @@ export class CalendarComponent extends BaseComponent {
 
     const nextDays = 7 - lastDayIndex - 1;
 
-    document.querySelector(".date h1").innerHTML = MONTHS[this.date.getMonth()] + " " + this.date.getFullYear();
+    document.querySelector(".date h1").innerHTML =
+      MONTHS[this.date.getMonth()] + " " + this.date.getFullYear();
     document.querySelector(".date p").innerHTML = new Date().toDateString();
 
     // **** Helper functions ****//
@@ -219,8 +234,10 @@ export class CalendarComponent extends BaseComponent {
         year--;
       }
 
-      // Adds padding: Stores data_id as MM-DD-YYYY 
-      div.dataset.date = `${month.toString().padStart(2, "0")}-${day.toString().padStart(2, "0")}-${year.toString().padStart(4, "0")}`;
+      // Adds padding: Stores data_id as YYYY-MM-DD
+      div.dataset.date = `${year.toString().padStart(4, "0")}-${month
+        .toString()
+        .padStart(2, "0")}-${day.toString().padStart(2, "0")}`;
       return div;
     };
     // Returns if the day is today

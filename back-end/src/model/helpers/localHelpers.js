@@ -1,14 +1,14 @@
 import { Day } from "../../../../front-end/src/utils/Day.js";
 import { Emotion } from "../../../../front-end/src/utils/Emotion.js";
 
-// a valid id is a string in the format "(M)M-(D)D-YYYY, with () being optional"
+// a valid id is a string in the format YYYY-MM-DD
 function isValidDateID(date_id) {
-  const datePattern = /^\d?\d-\d?\d-\d{4}$/;
+  const datePattern = /^\d{4}-\d{2}-\d{2}$/;
   return datePattern.test(date_id);
 }
 
 function isValidRating(rating) {
-  return !isNaN(rating) && rating >= 0 && rating <= 10;
+  return !isNaN(rating) && rating >= 1 && rating <= 10;
 }
 
 // Helper function to verify Day object

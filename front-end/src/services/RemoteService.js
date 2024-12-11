@@ -1,30 +1,33 @@
 import { Events } from "../eventhub/Events.js";
 import Service from "./Service.js";
 import { debugLog } from "../config/debug.js";
+import { endpoints } from "./endpoints.js";
+import { APP_DATA } from "../main.js";
 import { getUsername } from "../main.js";
 
 export class RemoteService extends Service {
-  DAYS_ENDPOINT = "/v1/days/";
-
   constructor() {
     super();
 
-    // Initialize the database
-    this._initCalendar()
-      .then(() => {
-        this.addSubscriptions();
-        debugLog("Database events initialized");
-      })
-      .catch((error) => {
-        debugLog("Failed to initialize database");
-        console.error(error);
-      });
+    this.TEST_USER = "testUser";
+
+    // // Initialize the database
+    // this._initCalendar()
+    //   .then(() => {
+    //     this.addSubscriptions();
+    //     debugLog("Database events initialized");
+    //   })
+    //   .catch((error) => {
+    //     debugLog("Failed to initialize database");
+    //     console.error(error);
+    //   });
   }
 
   addSubscriptions() {
     this.addEvent(Events.StoreData, (data) => this.storeDay(data));
     this.addEvent(Events.RestoreData, (id) => this.restoreDay(id));
     this.addEvent(Events.ClearData, () => this.clearDatabase());
+    this.addEvent(Events.StoreEmotion, (data) => this.storeEmotions(data));
   }
 
   /** (Function written by Nikolay Ostroukhov @nikozbk)
@@ -39,13 +42,22 @@ export class RemoteService extends Service {
   async _initCalendar() {
     return new Promise(async (resolve, reject) => {
       try {
-        const request = await fetch(DAYS_ENDPOINT);
+        const url = new URL(endpoints.getUserData(this.TEST_USER));
+        const response = await fetch(url);
 
-        if (request.ok) {
-          const data = await request.json();
+        if (response.ok) {
+          debugLog(
+            `Successfully fetched calendar data for user ${this.TEST_USER}`,
+            "SUCCESS"
+          );
+          const data = await response.json();
           this.update(Events.InitDataSuccess, data);
           resolve(data);
         } else {
+          debugLog(
+            `Failed to fetch calendar data: ${response.statusText}`,
+            "ERROR"
+          );
           this.update(Events.InitDataFailed);
           reject("Failed to initialize database");
         }
@@ -56,7 +68,7 @@ export class RemoteService extends Service {
     });
   }
 
-  /** (Function written by Nikolay Ostroukhov @nikozbk)
+  /** (Function written by Nikolay Ostroukhov @nikozbk, modified by @rthurston1)
    * Restores a specific day's data by fetching it from the server.
    *
    * This function sends a request to the "/v1/days/{date_id}" endpoint to retrieve the data for a specific day.
@@ -67,28 +79,31 @@ export class RemoteService extends Service {
    * @returns {Promise<Object>} A promise that resolves with the day's data if the request is successful, or rejects with an error message if the request fails.
    */
   async restoreDay(date_id) {
-    return new Promise(async (resolve, reject) => {
-      try {
-        debugLog(`restoreDay(${date_id})`);
-        const request = await fetch(`${DAYS_ENDPOINT}${date_id}`);
-
-        if (request.ok) {
-          debugLog(`restoreDay(${date_id}) request.ok`);
-          const data = await request.json();
-          debugLog(`Successfully restored data for ${date_id}`);
-          this.update(Events.RestoredDataSuccess, data);
-          resolve(data);
-        } else {
-          debugLog(`Failed to restore data for ${date_id}`);
-          this.update(Events.RestoredDataFailed);
-          reject("Failed to retrieve data");
-        }
-      } catch (error) {
-        debugLog(`Failed to restore data for ${date_id}`);
-        this.update(Events.RestoredDataFailed);
-        reject(error);
+    try {
+      // Construct the endpoint URL
+      const endpoint = `/v1/days/${APP_DATA.getUsername()}/${date_id}`;
+  
+      // Perform the GET fetch request
+      const response = await fetch(endpoint, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json', // Optional for GET but included for consistency
+        },
+      });
+  
+      // Check if the response is OK (status 200-299)
+      if (!response.ok) {
+        throw new Error(`Failed to retrieve day: ${response.statusText}`);
       }
-    });
+  
+      // Parse and return the JSON response
+      const day = await response.json();
+      console.log('Day retrieved successfully:', day);
+      return day.data;
+    } catch (error) {
+      console.error('Error retrieving day:', error);
+      throw error;
+    }
   }
   
 
@@ -127,7 +142,7 @@ export class RemoteService extends Service {
     });
   }
 
-  /** (Function written by Nikolay Ostroukhov @nikozbk)
+  /** (Function written by Nikolay Ostroukhov @nikozbk modified by @rthurston1)
    * Stores a specific day's data by sending it to the server.
    *
    * This function sends a PUT request to the "/v1/days/{date_id}" endpoint to store the data for a specific day.
@@ -137,30 +152,71 @@ export class RemoteService extends Service {
    * @param {Object} data - The data to be stored, including the date_id.
    * @returns {Promise<string>} A promise that resolves with a success message if the request is successful, or rejects with an error message if the request fails.
    */
-  async storeDay(data) {
+  async storeDay(day) {
+    try {
+      const today_id = "2024-12-10"; // Placeholder bc day doesn't contain date_id for some reason
+      // Construct the endpoint URL
+      const endpoint = `/v1/days/${APP_DATA.getUsername()}/${today_id}`;
+  
+      const obj = {...day, date_id: today_id};
+
+      // Perform the POST fetch request
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json', // Ensure the server knows to expect JSON
+        },
+        body: JSON.stringify(obj), // Convert the day object to JSON
+      });
+  
+      // Check if the response is OK (status 200-299)
+      if (!response.ok) {
+        throw new Error(`Failed to post day: ${response.statusText}`);
+      }
+  
+      // Parse and return the JSON response
+      const storeDay = await response.json();
+      console.log('Day posted successfully:', day);
+      return storeDay.data;
+    } catch (error) {
+      console.error('Error posting day:', error);
+      throw error;
+    }
+  }
+
+  async storeEmotions(data) {
     return new Promise(async (resolve, reject) => {
-      debugLog(`storeDay(${data.date_id})`);
+      const date_id = data.data.date_id;
+      const emotions = data.emotions;
+      debugLog(`storeEmotions(${JSON.stringify(emotions)})`);
       try {
-        const date_id = data?.date_id || data;
-        const request = await fetch(`${DAYS_ENDPOINT}${date_id}`, {
-          method: "PUT",
+        // Ensure emotions have valid timestamps
+        emotions.forEach((emotion) => {
+          if (!emotion.timestamp.includes("T")) {
+            emotion.timestamp = `${date_id}T${emotion.timestamp}:00.000Z`;
+          }
+        });
+
+        const url = new URL(endpoints.postEmotions(this.TEST_USER, date_id));
+        const response = await fetch(url, {
+          method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(data),
+          body: JSON.stringify(emotions), // Ensure emotions are stringified
         });
-        if (request.ok) {
-          debugLog(`Successfully stored data for ${data.date_id}`);
-          this.update(Events.StoredDataSuccess);
-          resolve("Data Stored Successfully");
+        if (response.ok) {
+          debugLog(`Successfully stored emotions for ${date_id}`);
+          this.update(Events.StoreEmotionSuccess);
+          resolve("Emotion Data Stored Successfully");
         } else {
-          debugLog(`Failed to store data for ${data.date_id}`);
-          this.update(Events.StoredDataFailed);
+          debugLog(`Failed to store emotions for ${date_id}`);
+          this.update(Events.StoreEmotionFailed);
           reject("Failed to store data");
         }
       } catch (error) {
-        debugLog(`Failed to store data for ${data.date_id}`);
-        this.update(Events.StoredDataFailed);
+        debugLog(`Failed to store emotions for ${date_id}`);
+        this.update(Events.StoreEmotionFailed);
         reject("Failed to store data");
       }
     });
@@ -178,10 +234,10 @@ export class RemoteService extends Service {
   async clearDatabase() {
     return new Promise(async (resolve, reject) => {
       try {
-        const request = await fetch(this.DAYS_ENDPOINT, {
+        const response = await fetch(endpoints.daysRoot, {
           method: "DELETE",
         });
-        if (request.ok) {
+        if (response.ok) {
           this.update(Events.ClearedDataSuccess);
           resolve("Data Cleared Successfully");
         } else {
@@ -194,5 +250,90 @@ export class RemoteService extends Service {
       }
     });
   }
+
+
+  /** (Function written by Robbie Thurston @rthurston1)
+   *  Adds/Registers a user by making a POST request to the "/v1/users/" endpoint.
+   *  
+   *  @param {*} username the name of the user
+   *  @param {*} password password entered
+   * 
+   *  @returns {Promise<Object>} an object containing the username and encrypted password.
+   */
+  async registerUser(username, password) {
+    const endpoint = "/v1/users"; // API endpoint
+    const userData = {
+      username: username,
+      password: password,
+    };
+  
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST", // HTTP method
+        headers: {
+          "Content-Type": "application/json", // Specify JSON payload
+        },
+        body: JSON.stringify(userData), // Convert object to JSON
+      });
+  
+      // Check if the response is successful
+      if (!response.ok) {
+        const errorDetails = await response.json();
+        throw new Error(`Error ${response.status}: ${errorDetails.message}`);
+      }
+  
+      const user = await response.json();
+      console.log("User registered successfully:", user);
+      return user.data;
+    } catch (error) {
+      console.error("Failed to register user:", error.message);
+      throw error;
+    }
+  }
+  
+  /** (Function written by Robbie Thurston @rthurston1)
+   *  Adds/Registers a user by making a POST request to the "/v1/users/" endpoint.
+   *  
+   *  @param {*} username the name of the user
+   *  @param {*} password password entered
+   * 
+   *  @returns {Promise<Object>} an object containing the username, encrypted password, and all the users data.
+   */
+  async loginUser(username, password) {
+    const endpoint = "/v1/login"; // API endpoint
+    const userData = {
+      username: username,
+      password: password,
+    };
+
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+        "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData)
+      });
+
+      if (!response.ok) {
+        const errorDetails = await response.json();
+        throw new Error(`Error ${response.status}: ${errorDetails.message}`);
+      }
+
+      const user = await response.json();
+
+      if (!user.success) {
+        throw new Error(user.error);
+      }
+
+
+      console.log("User registered successfully:", user);
+      return user.data;
+    } catch (error) {
+      console.error("Failed to login user:", error.message);
+      throw error;
+    }
+  }
+  
 }
 export default RemoteService;

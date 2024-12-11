@@ -9,7 +9,7 @@ export function dateFormat(dataId) {
     return;
   }
   const arr = dataId.split("-");
-  return `${MONTHS[parseInt(arr[0], 10) - 1]} ${arr[1]}, ${arr[2]}`;
+  return `${MONTHS[parseInt(arr[1], 10) - 1]} ${arr[2]}, ${arr[0]}`;
 }
 
 export class DayComponent extends BaseComponent {
@@ -97,13 +97,9 @@ export class DayComponent extends BaseComponent {
   #changeDay(n) {
     const date = new Date(this.dateData.date_id);
     date.setDate(date.getDate() + n); // Increments/Decrements current day by n
-    const day = date.getDate();
-    const month = date.getMonth() + 1; // Months are 0 indexed
-    const year = date.getFullYear();
+    const newDateId = date.toISOString().split("T")[0]; // Convert to "YYYY-MM-DD"
 
-    const newDataId = `${month}-${day}-${year}`;
-
-    DATABASE.restoreDay(newDataId).then((data) => {
+    DATABASE.restoreDay(newDateId).then((data) => {
       console.log("Done!");
       this.update(Events.LoadDayPage, data);
     });
