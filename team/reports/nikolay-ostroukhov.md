@@ -147,20 +147,42 @@ November 17, 2024
 - **Details**: Created a new branch `css-niko` to revamp the css of the entire app. The goal is to make the app more responsive and consistent across different screen sizes.
 - **Link to Commit**: [Commit]()
 
+November 26, 2024
+
+- **Task**: #104 Implement SQLite model
+- **Details**: Created a new branch `backend-scaffolding-niko` to begin work on the backend. Implemented the SQLite model.
+- **Link to Commit**: [Commit](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/27875b168fa48556285d387fb454c2a8f72167bd)
+
+November 27, 2024
+
+- **Task**: #104 Create Cherish Repo Factory
+
 December 4, 2024
 
-- **Task**: Implement the remote service.
+- **Task**: #104 Implement the remote service.
 - **Details**: Created a new branch `126-104-medium-task-implement-remote-service` to implement the remote service. The remote service is responsible for fetching and sending data to the server. The remote service is used by the front end to fetch and send data to the server.
 - **Link to Commit**: [Commit]()
 
 December 7, 2024
 
-- **Task**: Fix a bug in DayRoutes.js.
+- **Task**: #104 Fix a bug in DayRoutes.js.
 - **Details**: Created a new branch `132-bug-dayroutesjs-is-missing-the-getrouter-method-niko` to fix a bug in DayRoutes.js. The export statement was calling a non-existent getRouter method. This prevented the class from being exported correctly.
 - **Link to Commit**: [Commit](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/d19704d3fa71f22c8b93dfddecf5ad2c7db76b68)
 
 December 8, 2024
 
-- **Task**: Implement more DayController methods.
+- **Task**: #104 Implement more DayController methods.
 - **Details**: Created a new branch `138-implement-daycontroller-methods-niko` and implemented more methods in the DayController class. Implemented the getDay, postDay, getUserData, postUserData, loginUser, getUserByUsername, getAllUsers methods.
 - **Link to Commit**: [Commit](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/8cbeebcf6ef197aa9f5b5f58997a4bdf73d04b53)
+
+December 10, 2024
+
+- **Task**: #103 Implement preliminary Gemini AI summary feature.
+- **Details**: Created a new branch `feature-ai-summary-niko` to implement the Gemini AI summary feature. The Gemini AI summary feature reads the user's data and generates a summary of their mood and journal entries. The feature is still in the early stages of development but the day summary is working.
+- **Link to Commit**: [Commit](https://github.com/rthurston1/Team01-Web-Application-Cherish/commit/e3e08464e8921c181daac4ebb9409356f6ff673f)
+
+December 10, 2024
+
+- **Task**: #103 Implement the GeminiService class.
+- **Details**: Implemented the GeminiService class to interact with the Gemini AI API. The GeminiService class is responsible for sending and receiving data from the Gemini AI API.
+- **Link to Commit**: [Commit](https://github.com/rthurston1/Team01-Web-Application-Cherish/pull/147/commits/fc1f8822d1690566507e0b21c3e711ca945ff1bc)
