@@ -12,18 +12,7 @@ import { LoginComponent } from "./pages/log-in/LoginComponent.js";
 import StorageServiceFactory from "./services/StorageServiceFactory.js";
 
 
-class ApplicationData {
-  constructor () {}
-
-  setUsername(username) {
-    this.username = username;
-  }
-
-  getUsername() {
-    return this.username ? this.username : "placeholder";
-  }
-}
-
+let globalUser = null; //once login is successful, save the username to be imported to other classes as needed
 
 const hub = EventHub.getInstance();
 const header = document.querySelector(".page-header");
@@ -44,6 +33,7 @@ hub.publish(Events.LoadLoginPage, {});
 
 // Subscribe to LoginSuccess to load the main application
 hub.subscribe(Events.LoginSuccess, (loginData) => {
+  globalUser = loginData.username;
   console.log(`User logged in: ${loginData.username}`);
   APP_DATA.setUsername(loginData.username);
 
@@ -69,6 +59,9 @@ export const DATABASE = StorageServiceFactory.getService("Remote");
 export const APP_DATA = new ApplicationData();
 
 console.log("Login page loaded and waiting for user interaction.");
+
+const getUsername = () => globalUser; 
+export { getUsername }; 
 
 // hub.subscribe(Events.ClearedDataSuccess, () => console.log("Data cleared"));
 // hub.subscribe(Events.ClearedDataFailed, () => console.log("Failed to clear data"));
