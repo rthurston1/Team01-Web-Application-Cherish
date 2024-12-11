@@ -98,7 +98,7 @@ class DayRoutes {
       DayController.deleteEmotion(request, response);
     });
 
-    // Function to convert data into CSV format
+    // Function to convert data into CSV format - Made by Liam Campbell @ChronoSpirit
     const convertToCSV = (data, fields) => {
       const header = fields.join(","); //After every Data, join with a ','
 
@@ -111,10 +111,10 @@ class DayRoutes {
       return [header, ...rows].join("\n");
     };
 
-    //Route for exporting data as a csv file
+    //Route for exporting data as a csv file - Made by Liam Campbell @ChronoSpirit
     this.router.get("/export-csv", async (req, res) => {
       try {
-          const data = await data
+          const data = await data;
           const fields = ["date_id", "rating", "emotion", "journal"]; //fields
           const csv = convertToCSV(data, fields); //converts to csv using the data and fields
 

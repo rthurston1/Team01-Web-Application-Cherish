@@ -35,7 +35,7 @@ export class SummaryComponent extends BaseComponent {
         }
     }
 
-    
+    //export csv Function made by Liam Campbell @ChronoSpirit
     #exportCSV() {
         const fields = ["date_id", "rating", "emotion", "journal"]; //Data -> fix date_id and emotion
         const data = Array.isArray(this.dateData) ? this.dateData : [this.dateData];
@@ -47,7 +47,6 @@ export class SummaryComponent extends BaseComponent {
         const csvContent = [header, ...rows].join("\n");
     
         // Tries -> creating a blob with the csv content desired and sets it as a text/csv type, a url would be created (this is for downloading purposes)
-        // 
         try {
             //creates a Blob object with csv content and sets the MIME type to text/csv
             const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
@@ -108,7 +107,7 @@ export class SummaryComponent extends BaseComponent {
     }
 
     _render(data) {
-        this.dateData = data
+        this.dateData = data;
         this.dayRatingLabel.textContent = this.dateData.rating || "N/A";
         this.currentDayLabel.textContent = this.dateData.date_id || "N/A";
     }   
