@@ -1,6 +1,6 @@
 import DayController from "../controller/DayController.js";
 import ModelFactory from "../model/ModelFactory.js";
-import { createMockRequestResponse } from "../spec/helpers/mockRequestResponse.js";
+import { createMockRequestResponse } from "./helpers/mockRequestResponse.js";
 import { debugLog } from "../../config/debug.js";
 
 describe("DayController", () => {

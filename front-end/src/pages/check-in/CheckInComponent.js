@@ -145,7 +145,7 @@ export class CheckInComponent extends BaseComponent {
   // Method to add event listeners
   _addEventListeners() {
     //add event listeners for all pages
-    this.addCustomEventListener(Events.LoadCheckInPage, (data, emotion) => 
+    this.addCustomEventListener(Events.LoadCheckInPage, (data, emotion) =>
       this.loadPage(data, emotion)
     );
     this.addCustomEventListener(Events.StoreEmotionSuccess, () =>
@@ -167,11 +167,11 @@ export class CheckInComponent extends BaseComponent {
 
     // Listen for intensity slider change
     this.magnitudeSlider.addEventListener("input", (event) => {
-        if (this.emotionData.emotion_id === "neutral") {
-          this.emotionData.magnitude = 1;
-        } else {
-          this.emotionData.magnitude = event.target.value;
-        }
+      if (this.emotionData.emotion_id === "neutral") {
+        this.emotionData.magnitude = 1;
+      } else {
+        this.emotionData.magnitude = event.target.value;
+      }
     });
 
     // Listen for text area input for description
@@ -263,18 +263,20 @@ export class CheckInComponent extends BaseComponent {
       this.dateData.emotions &&
       this.dateData.emotions.length > this.emotion_index &&
       this.emotion_index >= 0
-    ) { // Edit Mode
+    ) {
+      // Edit Mode
       console.log("Loading emotion: ", this.emotion_index);
       this.editMode = true;
       this.emotionData = this.dateData.emotions[this.emotion_index];
-      this.prevData = {...this.emotionData}; // Copy of emotion data in case user cancels changes
+      this.prevData = { ...this.emotionData }; // Copy of emotion data in case user cancels changes
 
       document.getElementById(this.emotionData.emotion_id).checked = true;
 
-      this.magnitudeSlider.value =this.emotionData.magnitude;
-      this.checkInDescription.value =this.emotionData.description;
+      this.magnitudeSlider.value = this.emotionData.magnitude;
+      this.checkInDescription.value = this.emotionData.description;
       this.selectEmotionLabel.textContent = this.emotionData.emotion_id;
-    } else { // Normal Mode
+    } else {
+      // Normal Mode
       this.editMode = false;
       console.log("Loading default check in settings.");
       this._resetCheckIn();
