@@ -5,6 +5,7 @@ import { endpoints } from "./endpoints.js";
 import { APP_DATA } from "../main.js";
 import { getUsername } from "../main.js";
 
+
 export class RemoteService extends Service {
   constructor() {
     super();
