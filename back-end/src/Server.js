@@ -17,6 +17,7 @@ class Server {
     this.setupRoutes();
   }
 
+  
   configureMiddleware() {
     // Static files from the front-end - Liam
     this.app.use(express.static(path.join(__dirname, "../../front-end/src")));
