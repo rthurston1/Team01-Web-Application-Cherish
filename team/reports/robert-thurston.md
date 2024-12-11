@@ -255,6 +255,40 @@
   - **Details:** Added references to HTML object within each component so we don't have to rely on `document.getElementById(id)` as much.
   - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/)
 
+## November 25, 2024
+### Looked into User Authentication
+  - **Details:** Did some research and looked an some example code of how to implement user authentication.
+
+## December 4, 2024
+### Updated Issue Tab
+  - **Details:** Added an issue template for assigning tasks.
+  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/3545d48f9ec146ce821c18ca93edeb737538acb2)
+
+## December 5, 2024
+### Implemented Model Factory
+  - **Details:** #114 Rewrote the model factory class for selecting which database model to use.
+  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/42a62e4ca6bd6a7cec227fa0607c3c7051b9204a)
+
+## December 6, 2024
+### Setup Route Endpoints
+  - **Details:** #113 Implemented route endpoints so our application can make fetch requests to our database.
+  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/26e009c5a7b377422605ec3a40a6f2b997d4f364)
+
+### Tweaked Some Endpoints
+  - **Details:** Added routes to add/delete emotions. Login route no longer stores username and password in request param to increase security.
+  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/42a62e4ca6bd6a7cec227fa0607c3c7051b9204a)
+
+## December 8, 2024
+### Implemented SQLite Database
+  - **Details:** #121 Implemented the SQLite database for storing all our data. Also added some functions to easily query the data.
+  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/dadc9cd510a4c36dd86f9633dac0cc2533d741e2)
+
+## December 9, 2024
+### Designed the User Authentication Feature
+  - **Details:** #119 Created the functionality of the user authentication feature. User can create an account then sign-in.
+  - [Link to Commit](https://github.com/rthurston1/Team01-Web-Application-Concept-Design/commit/dadc9cd510a4c36dd86f9633dac0cc2533d741e2)
+
+
 
 
 
