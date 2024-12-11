@@ -2,7 +2,7 @@
 
 In this README file, you will find a summary of what the Cherish App is all about and a brief explanation of all things we have acheived in each milestone. We will also list out all the requirements you will need in order to run this app in your local machines.
 
-## Instructions to run the app (once back end is integrated, update this as needed)
+## Instructions to run the app
 
 1. Clone the github repo into your VS code.
 2. Once its cloned, make sure you are in the main branch. Open up a terminal and run `npm install`.
