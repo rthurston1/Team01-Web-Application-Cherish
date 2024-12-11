@@ -1,7 +1,7 @@
 import { Events } from "../eventhub/Events.js";
 import Service from "./Service.js";
 import { debugLog } from "../config/debug.js";
-// TODO: import globalUser from loginComponent once loginComponent is merged into main; 
+import { getUsername } from "../main.js";
 
 export class RemoteService extends Service {
   DAYS_ENDPOINT = "/v1/days/";
@@ -102,7 +102,7 @@ export class RemoteService extends Service {
    * @returns {Promise<Object>} A promise that resolves with the day's data if the request is successful, or rejects with an error message if the request fails.
    */
   async restoreUserData(){
-    const userName = globalUser; 
+    const userName = getUsername(); //call getUsername which retrieved the validated username from main
     return new Promise(async (resolve, reject) => {
       try {
         debugLog(`restoreUserData(${userName})`);

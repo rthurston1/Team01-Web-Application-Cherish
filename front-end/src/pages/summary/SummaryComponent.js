@@ -10,6 +10,8 @@ export class SummaryComponent extends BaseComponent {
   
   /** (Function written by Jesse Goldman @jss4830)
    * 
+   * Emotion Trend Analysis allows users to monitor emotional trends over a given date range. A user selects a date range, and based on that range, emotion data will be aggregated into these statistics:
+      Most frequent emotion, Average daily rating over that date range, Count of each emotion selected over that range, Longest streak of a given emotion
    * @returns an object containing mostFrequentEmotion, averageRating, emotionCounts, and longestStreak
    */
   #calculateTrendData(startDate, endDate){

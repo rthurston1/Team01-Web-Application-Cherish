@@ -8,6 +8,7 @@ import { Events } from "./eventhub/Events.js";
 import { IDBService } from "./services/IDBService.js";
 import { LoginComponent } from "./pages/log-in/LoginComponent.js";
 
+let globalUser = null; //once login is successful, save the username to be imported to other classes as needed
 
 const hub = EventHub.getInstance();
 const header = document.querySelector(".page-header");
@@ -29,6 +30,7 @@ hub.publish(Events.LoadLoginPage, {});
 
 // Subscribe to LoginSuccess to load the main application
 hub.subscribe(Events.LoginSuccess, (data) => {
+  globalUser = data.username;
   console.log(`User logged in: ${data.username}`);
 
 // Show header and navigation bar after login
@@ -74,6 +76,9 @@ const id = dateArr.join("-");
 // Retrieves data for the current day, on success passes data through an event
 
 console.log("Login page loaded and waiting for user interaction.");
+
+const getUsername = () => globalUser; 
+export { getUsername }; 
 
 // hub.subscribe(Events.ClearedDataSuccess, () => console.log("Data cleared"));
 // hub.subscribe(Events.ClearedDataFailed, () => console.log("Failed to clear data"));
