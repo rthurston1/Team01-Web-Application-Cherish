@@ -40,3 +40,11 @@
 ### November 16-17, 2024
   - **Task**: Meetings and sequence diagram
   - **Details**: Created a sequence diagram for the summary page, wrapped up for milestone3, looked for any potential bugs, input my top-3 commits
+
+### December 4, 2024
+  - **Task**: Implement server.js
+  - **Details**: Implemented the server.js for back-end for our web app.
+  
+### December 6-10, 2024
+  - **Task**: Worked on the csv implementation
+  - **Details**: Got a near functioning csv exporter
