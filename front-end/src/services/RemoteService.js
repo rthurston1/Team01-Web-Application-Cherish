@@ -251,6 +251,15 @@ export class RemoteService extends Service {
     });
   }
 
+
+  /** (Function written by Robbie Thurston @rthurston1)
+   *  Adds/Registers a user by making a POST request to the "/v1/users/" endpoint.
+   *  
+   *  @param {*} username the name of the user
+   *  @param {*} password password entered
+   * 
+   *  @returns {Promise<Object>} an object containing the username and encrypted password.
+   */
   async registerUser(username, password) {
     const endpoint = "/v1/users"; // API endpoint
     const userData = {
@@ -282,6 +291,14 @@ export class RemoteService extends Service {
     }
   }
   
+  /** (Function written by Robbie Thurston @rthurston1)
+   *  Adds/Registers a user by making a POST request to the "/v1/users/" endpoint.
+   *  
+   *  @param {*} username the name of the user
+   *  @param {*} password password entered
+   * 
+   *  @returns {Promise<Object>} an object containing the username, encrypted password, and all the users data.
+   */
   async loginUser(username, password) {
     const endpoint = "/v1/login"; // API endpoint
     const userData = {
