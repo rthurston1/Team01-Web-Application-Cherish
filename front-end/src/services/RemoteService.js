@@ -2,6 +2,7 @@ import { Events } from "../eventhub/Events.js";
 import Service from "./Service.js";
 import { debugLog } from "../config/debug.js";
 import { endpoints } from "./endpoints.js";
+import { USERNAME } from "../main.js";
 
 export class RemoteService extends Service {
   constructor() {
@@ -9,16 +10,16 @@ export class RemoteService extends Service {
 
     this.TEST_USER = "testUser";
 
-    // Initialize the database
-    this._initCalendar()
-      .then(() => {
-        this.addSubscriptions();
-        debugLog("Database events initialized");
-      })
-      .catch((error) => {
-        debugLog("Failed to initialize database");
-        console.error(error);
-      });
+    // // Initialize the database
+    // this._initCalendar()
+    //   .then(() => {
+    //     this.addSubscriptions();
+    //     debugLog("Database events initialized");
+    //   })
+    //   .catch((error) => {
+    //     debugLog("Failed to initialize database");
+    //     console.error(error);
+    //   });
   }
 
   addSubscriptions() {
@@ -66,7 +67,7 @@ export class RemoteService extends Service {
     });
   }
 
-  /** (Function written by Nikolay Ostroukhov @nikozbk)
+  /** (Function written by Nikolay Ostroukhov @nikozbk, modified by @rthurston1)
    * Restores a specific day's data by fetching it from the server.
    *
    * This function sends a request to the "/v1/days/{date_id}" endpoint to retrieve the data for a specific day.
@@ -77,32 +78,34 @@ export class RemoteService extends Service {
    * @returns {Promise<Object>} A promise that resolves with the day's data if the request is successful, or rejects with an error message if the request fails.
    */
   async restoreDay(date_id) {
-    return new Promise(async (resolve, reject) => {
-      try {
-        debugLog(`restoreDay(${date_id})`);
-        const url = new URL(endpoints.getDay(this.TEST_USER, date_id));
-        const response = await fetch(url);
-
-        if (response.ok) {
-          debugLog(`restoreDay(${date_id}) request.ok`);
-          const data = await response.json();
-          debugLog(`Successfully restored data for ${date_id}`);
-          this.update(Events.RestoredDataSuccess, data);
-          resolve(data);
-        } else {
-          debugLog(`Failed to restore data for ${date_id}`, "INFO");
-          this.update(Events.RestoredDataFailed);
-          reject("Failed to retrieve data");
-        }
-      } catch (error) {
-        debugLog(`Failed to restore data for ${date_id}`, "ERROR");
-        this.update(Events.RestoredDataFailed);
-        reject(error);
+    try {
+      // Construct the endpoint URL
+      const endpoint = `/v1/days/${USERNAME.getUsername()}/${date_id}`;
+  
+      // Perform the GET fetch request
+      const response = await fetch(endpoint, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json', // Optional for GET but included for consistency
+        },
+      });
+  
+      // Check if the response is OK (status 200-299)
+      if (!response.ok) {
+        throw new Error(`Failed to retrieve day: ${response.statusText}`);
       }
-    });
+  
+      // Parse and return the JSON response
+      const day = await response.json();
+      console.log('Day retrieved successfully:', day);
+      return day.data;
+    } catch (error) {
+      console.error('Error retrieving day:', error);
+      throw error;
+    }
   }
 
-  /** (Function written by Nikolay Ostroukhov @nikozbk)
+  /** (Function written by Nikolay Ostroukhov @nikozbk modified by @rthurston1)
    * Stores a specific day's data by sending it to the server.
    *
    * This function sends a PUT request to the "/v1/days/{date_id}" endpoint to store the data for a specific day.
@@ -112,38 +115,36 @@ export class RemoteService extends Service {
    * @param {Object} data - The data to be stored, including the date_id.
    * @returns {Promise<string>} A promise that resolves with a success message if the request is successful, or rejects with an error message if the request fails.
    */
-  async storeDay(data) {
-    return new Promise(async (resolve, reject) => {
-      // stringify the data if needed
-      if (typeof data === "object") {
-        data = JSON.stringify(data);
+  async storeDay(day) {
+    try {
+      const today_id = "2024-12-10"; // Placeholder bc day doesn't contain date_id for some reason
+      // Construct the endpoint URL
+      const endpoint = `/v1/days/${USERNAME.getUsername()}/${today_id}`;
+  
+      const obj = {...day, date_id: today_id};
+
+      // Perform the POST fetch request
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json', // Ensure the server knows to expect JSON
+        },
+        body: JSON.stringify(obj), // Convert the day object to JSON
+      });
+  
+      // Check if the response is OK (status 200-299)
+      if (!response.ok) {
+        throw new Error(`Failed to post day: ${response.statusText}`);
       }
-      debugLog(`storeDay(${data})`);
-      try {
-        const date_id = data?.date_id || data;
-        const url = new URL(endpoints.postDay(this.TEST_USER, date_id));
-        const response = await fetch(url, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: data,
-        });
-        if (response.ok) {
-          debugLog(`Successfully stored data for ${date_id}`);
-          this.update(Events.StoredDataSuccess);
-          resolve("Data Stored Successfully");
-        } else {
-          debugLog(`Failed to store data for ${data.date_id}`);
-          this.update(Events.StoredDataFailed);
-          reject("Failed to store data");
-        }
-      } catch (error) {
-        debugLog(`Failed to store data for ${data.date_id}`);
-        this.update(Events.StoredDataFailed);
-        reject("Failed to store data");
-      }
-    });
+  
+      // Parse and return the JSON response
+      const storeDay = await response.json();
+      console.log('Day posted successfully:', day);
+      return storeDay.data;
+    } catch (error) {
+      console.error('Error posting day:', error);
+      throw error;
+    }
   }
 
   async storeEmotions(data) {
@@ -212,5 +213,73 @@ export class RemoteService extends Service {
       }
     });
   }
+
+  async registerUser(username, password) {
+    const endpoint = "/v1/users"; // API endpoint
+    const userData = {
+      username: username,
+      password: password,
+    };
+  
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST", // HTTP method
+        headers: {
+          "Content-Type": "application/json", // Specify JSON payload
+        },
+        body: JSON.stringify(userData), // Convert object to JSON
+      });
+  
+      // Check if the response is successful
+      if (!response.ok) {
+        const errorDetails = await response.json();
+        throw new Error(`Error ${response.status}: ${errorDetails.message}`);
+      }
+  
+      const user = await response.json();
+      console.log("User registered successfully:", user);
+      return user.data;
+    } catch (error) {
+      console.error("Failed to register user:", error.message);
+      throw error;
+    }
+  }
+  
+  async loginUser(username, password) {
+    const endpoint = "/v1/login"; // API endpoint
+    const userData = {
+      username: username,
+      password: password,
+    };
+
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+        "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData)
+      });
+
+      if (!response.ok) {
+        const errorDetails = await response.json();
+        throw new Error(`Error ${response.status}: ${errorDetails.message}`);
+      }
+
+      const user = await response.json();
+
+      if (!user.success) {
+        throw new Error(user.error);
+      }
+
+
+      console.log("User registered successfully:", user);
+      return user.data;
+    } catch (error) {
+      console.error("Failed to login user:", error.message);
+      throw error;
+    }
+  }
+  
 }
 export default RemoteService;

@@ -190,6 +190,12 @@ class _SQLiteDayModel {
         return failedResponse("User already exists");
       }
 
+      // Encrypts password
+      const saltRounds = 10;
+
+      // Generate the hashed password
+      user.password = await bcrypt.hash(user.password, saltRounds);
+
       // Adds user to database
       const newUser = await User.create(user);
       debugLog("User created successfully");
@@ -325,16 +331,8 @@ class _SQLiteDayModel {
     }
   }
 
-  // Creates/Updates a day
   async saveDay(username, day) {
     try {
-      if (!isISO(day.date_id)) {
-        if (!isMMDDYY(day.date_id)) {
-          return failedResponse("Invalid date format");
-        }
-        day.date_id = convertDateToISO(day.date_id);
-      }
-
       const storedDay = await this.dayExists(username, day.date_id);
       if (storedDay) {
         // Day exists: UPDATE
@@ -352,17 +350,10 @@ class _SQLiteDayModel {
       return failedResponse(error);
     }
   }
-
-  // Gets a day based on it's id
+  
+  // Gets a day based on its ID
   async getDay(username, date_id) {
     try {
-      if (!isISO(date_id)) {
-        if (!isMMDDYY(date_id)) {
-          return failedResponse("Invalid date format");
-        }
-        date_id = convertDateToISO(date_id);
-      }
-
       const day = await Day.findOne({
         where: {
           date_id: date_id,
@@ -374,12 +365,31 @@ class _SQLiteDayModel {
           },
         ],
       });
-
-      if (!day) {
-        debugLog("Day does not exist", "INFO");
-        return failedResponse("Day does not exist");
+  
+      if (!day) { // Day doesn't exist? Create one
+        debugLog("Day does not exist, creating new one", "INFO");
+        const saveResponse = await this.saveDay(username, { date_id });
+  
+        if (saveResponse.status === "failure") {
+          return saveResponse; // Propagate the failure response
+        }
+  
+        const newDay = await Day.findOne({
+          where: {
+            date_id: date_id,
+            username: username,
+          },
+          include: [
+            {
+              model: Emotion,
+            },
+          ],
+        });
+  
+        debugLog("Fetched day successfully", "SUCCESS");
+        return successResponse(newDay);
       }
-
+  
       debugLog("Fetched day successfully", "SUCCESS");
       return successResponse(day);
     } catch (error) {
@@ -387,18 +397,13 @@ class _SQLiteDayModel {
       return failedResponse(error);
     }
   }
+  
 
   // Deletes a day entry from the database
   // Returns the deleted day object
   // Author: @rthurston1
   async deleteDay(username, date_id) {
     try {
-      if (!isISO(date_id)) {
-        if (!isMMDDYY(date_id)) {
-          return failedResponse("Invalid date format");
-        }
-        date_id = convertDateToISO(date_id);
-      }
       // Checks if data does NOT exists
       const deletedDay = await this.dayExists(username, date_id);
 

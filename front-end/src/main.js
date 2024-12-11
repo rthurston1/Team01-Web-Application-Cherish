@@ -11,6 +11,20 @@ import { RemoteService } from "./services/RemoteService.js";
 import { LoginComponent } from "./pages/log-in/LoginComponent.js";
 import StorageServiceFactory from "./services/StorageServiceFactory.js";
 
+
+class UserData {
+  constructor () {}
+
+  setUsername(username) {
+    this.username = username;
+  }
+
+  getUsername() {
+    return this.username ? this.username : "placeholder";
+  }
+}
+
+
 const hub = EventHub.getInstance();
 const header = document.querySelector(".page-header");
 const nav = document.querySelector(".nav");
@@ -29,8 +43,9 @@ hub.subscribe(Events.LoadLoginPage, () => {
 hub.publish(Events.LoadLoginPage, {});
 
 // Subscribe to LoginSuccess to load the main application
-hub.subscribe(Events.LoginSuccess, (data) => {
-  console.log(`User logged in: ${data.username}`);
+hub.subscribe(Events.LoginSuccess, (loginData) => {
+  console.log(`User logged in: ${loginData.username}`);
+  USERNAME.setUsername(loginData.username);
 
   // Show header and navigation bar after login
   header.style.display = "block";
@@ -38,10 +53,10 @@ hub.subscribe(Events.LoginSuccess, (data) => {
 
   // Initialize and render the calendar page by default
   const calendar = new CalendarComponent(new Date());
-  calendar.loadPage();
+  calendar.loadPage(loginData);
 
   // Publish the event to load the navigation bar
-  hub.publish(Events.LoadNav, {});
+  hub.publish(Events.LoadNav, loginData);
 
   // Initialize other components after login
   const day = new DayComponent();
@@ -49,26 +64,28 @@ hub.subscribe(Events.LoginSuccess, (data) => {
   const checkIn = new CheckInComponent();
   const summary = new SummaryComponent();
 });
-// Initializes database then loads in Main Page
-hub.subscribe(Events.InitDataSuccess, () => {
-  console.log("Initialized database successfully");
-
-  DATABASE.restoreDay(getToday())
-    .then((data) => {
-      hub.publish(Events.LoadMainPage, data);
-      hub.publish(Events.LoadNav, data);
-    })
-    .catch(() => alert("Failed to restore day!"));
-});
-
-hub.subscribe(Events.InitDataFailed, () => {
-  console.log("Failed to initialize database");
-});
 
 export const DATABASE = StorageServiceFactory.getService("Remote");
+export const USERNAME = new UserData();
 
 console.log("Login page loaded and waiting for user interaction.");
 
 // hub.subscribe(Events.ClearedDataSuccess, () => console.log("Data cleared"));
 // hub.subscribe(Events.ClearedDataFailed, () => console.log("Failed to clear data"));
 // DATABASE.clearDatabase().then()
+
+// Initializes database then loads in Main Page
+// hub.subscribe(Events.InitDataSuccess, () => {
+//   console.log("Initialized database successfully");
+
+//   DATABASE.restoreDay(getToday())
+//     .then((data) => {
+//       hub.publish(Events.LoadMainPage, data);
+//       hub.publish(Events.LoadNav, data);
+//     })
+//     .catch(() => alert("Failed to restore day!"));
+// });
+
+// hub.subscribe(Events.InitDataFailed, () => {
+//   console.log("Failed to initialize database");
+// });

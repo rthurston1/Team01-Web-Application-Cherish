@@ -82,12 +82,40 @@ class DayController {
   /**
    * Adds a new user into the database and returns a JWT session token
    * Request body contains the username and password (password needs to be encrypted)
+   * Author: @rthurston1
    */
   async registerUser(request, response) {
-    debugLog(`DayController.registerUser`);
-    // TODO: Implement this method
-  }
+    const methodName = "registerUser"; // Method name for debug logs
+    debugLog(`DayController.${methodName} called`);
+    debugLog(`username: ${request.body.username}, password: ${request.body.password}`);
+  
+    try {
+      // Fetch data from the database using the model
+      const data = await this.model.createUser(request.body);
+  
+      if (!data.success) {
+        // Handle failure (e.g., username already exists)
+        debugLog(`DayController.${methodName} failed with message: ${data.message}`);
+        return response.status(400).json({ success: false, message: data.message });
+      }
 
+      // Successful creation, return success response
+      debugLog(`DayController.${methodName} succeeded: ${JSON.stringify(data)}`);
+      return response.status(201).json(data);
+  
+    } catch (error) {
+      // Log the error
+      debugLog(`Error in DayController.${methodName}: ${error}`, "ERROR");
+  
+      // Handle server errors gracefully
+      if (!response.headersSent) {
+        return response.status(500).json({ success: false, message: `Internal Server Error: ${error.message}` });
+      } else {
+        return response.end(); // Ensure no duplicate headers are sent
+      }
+    }
+  }
+  
   /**
    * Attempts to login in the user and returns all of their data
    * Request body contains a username and password inputted by the user

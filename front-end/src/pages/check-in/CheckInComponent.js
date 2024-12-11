@@ -243,7 +243,7 @@ export class CheckInComponent extends BaseComponent {
       this.dateData.emotions[this.emotion_index] = { ...this.emotionData };
     }
 
-    this.update(Events.StoreEmotion, this.dateData); // Store the updated data
+    this.update(Events.StoreData, this.dateData); // Store the updated data
 
     // Reset after submission
     this._resetCheckIn();
