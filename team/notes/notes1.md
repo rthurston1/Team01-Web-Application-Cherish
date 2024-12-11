@@ -181,5 +181,16 @@
   - **Jesse**:  
     - Implemented dayRating, simplified code (added global `Emotions` object and global CSS class for header and date), and worked on CSS revamp (to be replaced with Niko’s code).  
     - Reflections: Emphasized professionalism.  
-    - Going forward: Start tasks earlier and ensure communication to avoid redundant work.  
+    - Going forward: Start tasks earlier and ensure communication to avoid redundant work.
 
+---
+
+### November 20, 2024
+- **Team Reflection**:  
+  - Team is somewhat stressed about the tight deadline of Milestone 4: Only 2 weeks to complete this task.  
+- **Milestone 4 Requirements**:  
+  - **ExpressJS**, **SQLite**, **Sequelize**.  
+  - Each team member must implement 1 large feature they design and implement independently.  
+  - The feature must support the front-end in some way or form.  
+
+---

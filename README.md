@@ -15,8 +15,10 @@ For M1, we formed our group of 7 members: Anugrah George, Nikolay Ostroukhov, Ro
 For M2, we came up with the idea for our project - Cherish. The app is very similar to most of the journal / mood tracking apps you see today where the users can log in their emotions or journal and the app will give certain feedbacks that help their users for their mental health. During this milestone, all of our members collaborated on their team member reports and how they can contribute towards the development of this app. We also sketched our front end design through Figma and figured out all the interactive functions and pages users can utilize.
 
 ## Milestone 3 - Front End Design
-For M3, we began bringing our app to life starting with the front end. We uesd the figma design which was helpful to visualize what the app should look like. We created our important components and made sure each page has its own components that can talk to other pages as well.
+For M3, we began bringing our app to life starting with the front end. We used the Figma design which was helpful in visualizing what the app should look like. We created our important components and made sure each page has its own components that could talk to other pages as well.
 
 ## Milestone 4 - Back End Design
-For M4, we assigned a lot of features to ourselves to add functionality to our app but not limited to team work. Here you will find what each member mostly worked on:
- 1. Calendar Streak: **George** brought up this feature proposal where the calendar page shows you how many days in a row the user has been logging in their emotions / journal entries. Each day will be underlined if the user has at least 1 entry logged in. This will be useful as most users today love the idea of keeping a streak therefore encouraging them to track how they are feeling.
+For M4, we assigned a lot of features to ourselves to add functionality to our app but not limited to teamwork. Here you will find what each member mostly worked on:
+ 1. Calendar Streak: **George** brought up this feature proposal where the calendar page shows you how many days in a row the user has been logging in their emotions/journal entries. Each day will be underlined if the user has at least 1 entry logged in. This will be useful as most users today love the idea of keeping a streak, encouraging them to track their feelings.
+
+2. Daily motivational quote: **Samuel** This feature proposal allows the user to stay motivated through the longevity of use with  our app. There has been a new function created called fetchquote which is the one in charge on making this feature possible. An API functionality has also been implemented  which gets the motivational quotes and their proper author.

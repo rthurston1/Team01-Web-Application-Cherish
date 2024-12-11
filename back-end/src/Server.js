@@ -18,6 +18,7 @@ class Server {
     this.setupRoutes();
   }
 
+  
   configureMiddleware() {
     // Serve JavaScript files with the correct MIME type - Niko
     this.app.use((req, res, next) => {
