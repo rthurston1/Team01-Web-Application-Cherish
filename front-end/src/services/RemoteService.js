@@ -102,7 +102,7 @@ export class RemoteService extends Service {
    * @returns {Promise<Object>} A promise that resolves with the day's data if the request is successful, or rejects with an error message if the request fails.
    */
   async restoreUserData(){
-    const userName = getUsername(); //call getUsername which retrieved the validated username from main
+    const userName = getUsername(); //call getUsername which retrieves the validated username from main
     return new Promise(async (resolve, reject) => {
       try {
         debugLog(`restoreUserData(${userName})`);
