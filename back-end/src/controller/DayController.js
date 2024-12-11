@@ -8,7 +8,7 @@ class DayController {
   constructor() {
     this.initializeModel("sqlite-fresh");
   }
-
+  // Initializes the model (sqlite or sqlite-fresh
   async initializeModel(modelType) {
     try {
       this.model = await ModelFactory.getModel(modelType);
