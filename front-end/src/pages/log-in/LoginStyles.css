@@ -100,8 +100,6 @@ body {
 
 /* Error message styling */
 #login-error {
-  display: none;
-  color: red;
   margin-top: 10px;
   font-size: 1rem;
 }

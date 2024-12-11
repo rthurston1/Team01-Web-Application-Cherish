@@ -1,4 +1,3 @@
-import { getToday } from "./dateUtils.js";
 class Emotion {
   #emotion_types = this.#getListOfEmotions();
 
@@ -15,25 +14,15 @@ class Emotion {
         timestamp (string): The time (hour:minute) an emotion was logged.
     */
   constructor(
-    date_id = getToday(),
     emotion_id = "Neutral",
     magnitude = 5,
     description = "",
     timestamp = ""
   ) {
-    this.setDateId(date_id);
     this.setEmotionId(emotion_id);
     this.setMagnitude(magnitude);
     this.setDescription(description);
     this.setTimestamp(timestamp);
-  }
-
-  setDateId(date_id) {
-    const datePattern = /^\d?\d-\d?\d-\d{4}$/;
-    if (!datePattern.test(date_id)) {
-      throw new Error("Invalid date format. Please use (M)M-(D)D-YYYY.");
-    }
-    this.date_id = date_id;
   }
 
   setEmotionId(emotion_id) {
