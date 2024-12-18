@@ -6,9 +6,6 @@ import { getToday } from "../utils/dateUtils.js";
 import StorageServiceFactory from "./StorageServiceFactory.js";
 // import { DATABASE } from "../main.js";
 
-// Please do not do this (storing API key in code and in plain text) in the real world
-export const _API_KEY = "AIzaSyCGfZMVVSpTalW31tkK-pO3qYTkxJWVv40";
-
 const MODEL = "gemini-1.5-flash";
 const GENERATION_CONFIG = {
   candidateCount: 1, //specifies the number of generated responses to return. Currently, this value can only be set to 1.
