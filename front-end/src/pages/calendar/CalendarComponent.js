@@ -50,7 +50,6 @@ export class CalendarComponent extends BaseComponent {
     }
   }
   fetchQuote() {
-    const API_KEY = 'ZxGOe+KJv5SmlSdnVrswfQ==A311wlLd9vmgnYuW';
     const API_URL = 'https://api.api-ninjas.com/v1/quotes?category=happiness';
     
     const quoteData = JSON.parse(localStorage.getItem('dailyQuote')) || {};
