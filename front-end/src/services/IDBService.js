@@ -20,9 +20,9 @@ export class IDBService extends Service {
   }
 
   addSubscriptions() {
-    this.addEvent(Events.StoreData, (data) => this.storeDay(data));
-    this.addEvent(Events.RestoreData, (id) => this.restoreDay(id));
-    this.addEvent(Events.ClearData, () => this.clearDatabase());
+    // this.addEvent(Events.StoreData, (data) => this.storeDay(data));
+    // this.addEvent(Events.RestoreData, (id) => this.restoreDay(id));
+    // this.addEvent(Events.ClearData, () => this.clearDatabase());
   }
 
   async initDB() {

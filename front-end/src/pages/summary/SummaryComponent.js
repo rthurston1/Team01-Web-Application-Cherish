@@ -2,6 +2,7 @@ import { Events } from "../../eventhub/Events.js";
 import { BaseComponent } from "../../BaseComponent.js";
 import { DATABASE } from "../../main.js"; //remoteService
 import GeminiService from "../../services/GeminiService.js";
+import APP_DATA from "../../config/ApplicationData.js";
 
 export class SummaryComponent extends BaseComponent {
   constructor() {
@@ -17,7 +18,7 @@ export class SummaryComponent extends BaseComponent {
    * @returns an object containing mostFrequentEmotion, averageRating, emotionCounts, and longestStreak
    */
   #calculateTrendData(startDate, endDate) {
-    const userData = DATABASE.restoreUserData(); //get the user data
+    const userData = DATABASE.restoreUserData(APP_DATA.getUsername()); //get the user data
 
     //filter out data according to user-selected range
     const filteredData = Object.values(userData).filter((day) => {
@@ -82,22 +83,8 @@ export class SummaryComponent extends BaseComponent {
     element.classList.add("active-tab");
     const summary = await this.generateSummary(period);
     // Update the summary text based on the clicked tab
-    switch (period) {
-      case "Day":
-        this.summaryText.textContent = summary;
-        break;
-      case "Week":
-        // this.summaryText.textContent = summary;
-        break;
-      case "Month":
-        // this.summaryText.textContent = summary;
-        break;
-      case "Year":
-        // this.summaryText.textContent = summary;
-        break;
-      default:
-        this.summaryText.textContent = "Click on a tab to see the summary.";
-        break;
+    if (summary) {
+      this.summaryText.textContent = summary;
     }
   }
 
@@ -228,6 +215,7 @@ export class SummaryComponent extends BaseComponent {
   }
 
   _render(data) {
+    this.summaryText.textContent = "Click on a tab to see the summary.";
     this.dateData = data;
     this.dayRatingLabel.textContent = this.dateData.rating || "N/A";
     this.currentDayLabel.textContent = this.dateData.date_id || "N/A";

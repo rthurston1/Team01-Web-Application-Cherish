@@ -65,6 +65,7 @@ const Emotion = sequelize.define(
   "emotions",
   {
     date_id: {
+      primaryKey: true,
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
@@ -106,7 +107,7 @@ const Emotion = sequelize.define(
     indexes: [
       {
         unique: true,
-        fields: ["date_id", "index_id"], // Ensure unique emotion index for each day
+        fields: ["date_id" /*, "index_id"*/], // Ensure unique emotion index for each day
       },
     ],
   }
@@ -135,22 +136,35 @@ class _SQLiteDayModel {
 
     // Create Test User
     await this.createUser({
-      username: "testUser",
-      password: "testPassword",
+      username: "user",
+      password: "pass",
     });
 
+
+
     // Create Test Day
-    await this.saveDay("testUser", {
+    await this.saveDay("user", {
       date_id: getToday(), // getToday() defaults to YYYY-MM-DD
       rating: 5,
       journal: "Test Journal Entry",
     });
 
-    await this.saveUser("testUser");
+    // Create Test Emotion
+    await Emotion.create({
+      date_id: getToday(), // getToday() defaults to YYYY-MM-DD
+      index_id: 0,
+      emotion_id: "Happy",
+      magnitude: 10,
+      description: "Test Description",
+      timestamp: new Date().toISOString(),
+
+    })
+
+    await this.saveUser("user");
 
     // Debug:
-    await this.getDay("testUser", getToday()); // getToday() defaults to YYYY-MM-DD
-    await this.getUserData("testUser");
+    await this.getDay("user", getToday()); // getToday() defaults to YYYY-MM-DD
+    await this.getUserData("user");
 
     // Create Test Emotions
     // TODO
@@ -175,7 +189,7 @@ class _SQLiteDayModel {
   async emotionExists(date_id, index_id) {
     return await Emotion.findOne({
       where: {
-        index_id: index_id,
+        // index_id: index_id,
         date_id: date_id,
       },
     });
@@ -302,7 +316,13 @@ class _SQLiteDayModel {
         return failedResponse("User not found");
       }
 
-      await savedUser.save();
+      const response = await savedUser.save();
+
+      if (!response || response.status === "failure") {
+        debugLog("Failed to save user data", "ERROR");
+        return response; // Propagate the failure response
+      }
+
       debugLog("Saved user data successfully", "SUCCESS");
 
       return successResponse(savedUser);
@@ -336,12 +356,29 @@ class _SQLiteDayModel {
       const storedDay = await this.dayExists(username, day.date_id);
       if (storedDay) {
         // Day exists: UPDATE
-        await storedDay.update(day);
+        const response = await storedDay.update(day);
+        if (response.status === "failure") {
+          debugLog("Failed to update day", "ERROR");
+          return response; // Propagate the failure response
+        }
+        debugLog(`response: ${JSON.stringify(response)}`, "SAVE DAY");
         debugLog("Updated day successfully", "SUCCESS");
         return successResponse(storedDay);
       } else {
+        debugLog(
+          `Attempting to create day: ${JSON.stringify(day)}`,
+          "SAVE DAY"
+        );
         // Day does NOT exist: CREATE
         const newDay = await Day.create({ ...day, username });
+        if (day.emotions && day.emotions.length > 0) {
+          const emotions = day.emotions.map((emotion, index) => ({
+            ...emotion,
+            date_id: day.date_id,
+            index_id: index,
+          }));
+          await Emotion.bulkCreate(emotions);
+        }
         debugLog("Created day successfully", "SUCCESS");
         return successResponse(newDay);
       }
@@ -350,46 +387,25 @@ class _SQLiteDayModel {
       return failedResponse(error);
     }
   }
-  
+
   // Gets a day based on its ID
   async getDay(username, date_id) {
     try {
-      const day = await Day.findOne({
-        where: {
-          date_id: date_id,
-          username: username,
-        },
-        include: [
-          {
-            model: Emotion,
-          },
-        ],
-      });
-  
-      if (!day) { // Day doesn't exist? Create one
+      const day = await this.dayExists(username, date_id);
+
+      if (!day) {
+        // Day doesn't exist? Create one
         debugLog("Day does not exist, creating new one", "INFO");
         const saveResponse = await this.saveDay(username, { date_id });
-  
-        if (saveResponse.status === "failure") {
+
+        if (!saveResponse || saveResponse.status === "failure") {
+          debugLog("SQLiteDayModel.getDay() failed to create day", "ERROR");
           return saveResponse; // Propagate the failure response
         }
-  
-        const newDay = await Day.findOne({
-          where: {
-            date_id: date_id,
-            username: username,
-          },
-          include: [
-            {
-              model: Emotion,
-            },
-          ],
-        });
-  
-        debugLog("Fetched day successfully", "SUCCESS");
-        return successResponse(newDay);
+
+        return successResponse(saveResponse.data);
       }
-  
+
       debugLog("Fetched day successfully", "SUCCESS");
       return successResponse(day);
     } catch (error) {
@@ -397,7 +413,6 @@ class _SQLiteDayModel {
       return failedResponse(error);
     }
   }
-  
 
   // Deletes a day entry from the database
   // Returns the deleted day object
@@ -421,57 +436,93 @@ class _SQLiteDayModel {
     }
   }
 
+  async saveEmotion(username, date_id, data) {
+    const emotion = data.emotions[0];
+    console.log(`saveEmotion: ${JSON.stringify(emotion)}`);
+    try {
+      const storedEmotion = await Emotion.findOne({
+        where: {
+          date_id,
+          timestamp: emotion.timestamp,
+          description: emotion.description,
+          magnitude: emotion.magnitude,
+        },
+      });
+
+      if (storedEmotion) {
+        // Emotion exists: UPDATE
+        const response = await storedEmotion.update(emotion);
+        if (response.status === "failure") {
+          debugLog("Failed to update emotion", "ERROR");
+          return response; // Propagate the failure response
+        }
+        debugLog("Updated emotion successfully", "SUCCESS");
+        return successResponse(storedEmotion);
+      } else {
+        // Emotion does NOT exist: CREATE
+        const newEmotion = await Emotion.create({ ...emotion, date_id });
+        debugLog("Created emotion successfully", "SUCCESS");
+        return successResponse(newEmotion);
+      }
+    } catch (error) {
+      debugLog(`Error creating emotion: ${error}`, "ERROR");
+      return failedResponse(error);
+    }
+  }
+
   // Creates/Updates all emotions for a day
   // Overwrites all emotions for a specific day
   // Author: @rthurston1
+  // emotions: {index_id, emotions}
   async saveEmotions(username, date_id, emotions) {
     console.log(`made it to saveEmotions`);
     try {
       // Check if the day entry exists
       const dayExists = await this.dayExists(username, date_id);
+      console.log(`dayExists: ${JSON.stringify(dayExists)}`);
       if (!dayExists) {
         debugLog("Day does not exist", "INFO");
         return failedResponse("Day does not exist");
       }
 
-      debugLog(`Processing emotions ${JSON.stringify(emotions)}`, "EMOTION");
-
-      // Validate and convert timestamp format
-      emotions.forEach((emotion) => {
-        if (!emotion.timestamp.includes("T")) {
-          emotion.timestamp = `${date_id}T${emotion.timestamp}:00.000Z`;
-        }
-        if (isNaN(Date.parse(emotion.timestamp))) {
-          throw new Error(`Invalid timestamp: ${emotion.timestamp}`);
-        }
-      });
+      debugLog(
+        `Processing emotions ${JSON.stringify(emotions.emotions)}`,
+        "EMOTION"
+      );
 
       // Begin a transaction as there are multiple operations done on the database
       const transaction = await sequelize.transaction();
 
       try {
-        // Delete all existing emotions for that day
-        await Emotion.destroy({
-          where: { date_id },
-          transaction, // Ensure this happens within the same transaction
-        });
+        for (const emotion of emotions.emotions) {
+          const existingEmotion = await Emotion.findOne({
+            where: {
+              date_id,
+              timestamp: emotion.timestamp,
+              description: emotion.description,
+              magnitude: emotion.magnitude,
+            },
+            transaction,
+          });
 
-        // Create new emotions
-        const newEmotions = await Emotion.bulkCreate(
-          emotions.map((emotion) => ({
-            ...emotion,
-            date_id,
-          })),
-          {
-            transaction, // Ensure this happens within the same transaction
+          if (existingEmotion) {
+            // Update if the existing emotion's timestamp is older
+            if (
+              new Date(existingEmotion.timestamp) < new Date(emotion.timestamp)
+            ) {
+              await existingEmotion.update(emotion, { transaction });
+            }
+          } else {
+            // Create new emotion if it doesn't exist
+            await Emotion.create({ ...emotion, date_id }, { transaction });
           }
-        );
+        }
 
         // Commit the transaction
         await transaction.commit();
 
         debugLog("Emotions updated successfully");
-        return successResponse(newEmotions);
+        return successResponse();
       } catch (error) {
         // If anything fails, roll back the transaction
         await transaction.rollback();

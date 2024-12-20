@@ -10,22 +10,7 @@ import { IDBService } from "./services/IDBService.js";
 import { RemoteService } from "./services/RemoteService.js";
 import { LoginComponent } from "./pages/log-in/LoginComponent.js";
 import StorageServiceFactory from "./services/StorageServiceFactory.js";
-
-let globalUser = null; //once login is successful, save the username to be imported to other classes as needed
-
-
-class ApplicationData {
-  constructor () {}
-
-  setUsername(username) {
-    this.username = username;
-  }
-
-  getUsername() {
-    return this.username ? this.username : "placeholder";
-  }
-}
-
+import APP_DATA from "./config/ApplicationData.js";
 
 const hub = EventHub.getInstance();
 const header = document.querySelector(".page-header");
@@ -41,12 +26,9 @@ hub.subscribe(Events.LoadLoginPage, () => {
   login.loadPage();
 });
 
-// Publish event to load the login page
-hub.publish(Events.LoadLoginPage, {});
-
+export const DATABASE = StorageServiceFactory.getService("Remote");
 // Subscribe to LoginSuccess to load the main application
 hub.subscribe(Events.LoginSuccess, (loginData) => {
-  globalUser = loginData.username;
   console.log(`User logged in: ${loginData.username}`);
   APP_DATA.setUsername(loginData.username);
 
@@ -56,25 +38,22 @@ hub.subscribe(Events.LoginSuccess, (loginData) => {
 
   // Initialize and render the calendar page by default
   const calendar = new CalendarComponent(new Date());
-  calendar.loadPage(loginData);
 
   // Publish the event to load the navigation bar
   hub.publish(Events.LoadNav, loginData);
-
-  // Initialize other components after login
+  hub.publish(Events.LoadMainPage, loginData);
   const day = new DayComponent();
   const journal = new JournalComponent();
   const checkIn = new CheckInComponent();
   const summary = new SummaryComponent();
 });
 
-export const DATABASE = StorageServiceFactory.getService("Remote");
-export const APP_DATA = new ApplicationData();
+// Publish event to load the login page
+hub.publish(Events.LoadLoginPage);
+
+// Initialize other components after login
 
 console.log("Login page loaded and waiting for user interaction.");
-
-const getUsername = () => globalUser; 
-export { getUsername }; 
 
 // hub.subscribe(Events.ClearedDataSuccess, () => console.log("Data cleared"));
 // hub.subscribe(Events.ClearedDataFailed, () => console.log("Failed to clear data"));

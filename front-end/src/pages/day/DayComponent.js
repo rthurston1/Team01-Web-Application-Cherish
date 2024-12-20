@@ -91,7 +91,7 @@ export class DayComponent extends BaseComponent {
     dailyRating = parseFloat(normalizedRating.toFixed(2)); //rounds rating to two decimal points
 
     this.dateData["rating"] = dailyRating; // Store the daily rating in dateData object
-    this.update(Events.StoreData, this.dateData);
+    // this.update(Events.StoreData, this.dateData);
   }
 
   #changeDay(n) {
@@ -194,9 +194,10 @@ export class DayComponent extends BaseComponent {
   }
 
   _addEventListeners() {
-    this.addCustomEventListener(Events.LoadDayPage, (data) =>
-      this.loadPage(data)
-    );
+    this.addCustomEventListener(Events.LoadDayPage, (data) => {
+      console.log(`DayComponent: Loaded data for ${JSON.stringify(data)}`);
+      this.loadPage(data);
+    });
 
     document.addEventListener("DOMContentLoaded", () => {
       document

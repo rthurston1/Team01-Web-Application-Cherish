@@ -1,7 +1,7 @@
 import { BaseComponent } from "../../BaseComponent.js";
 import { Events } from "../../eventhub/Events.js";
 import { DATABASE } from "../../main.js"; // Import the database service
-
+import APP_DATA from "../../config/ApplicationData.js";
 
 export class LoginComponent extends BaseComponent {
   constructor() {
@@ -24,6 +24,7 @@ export class LoginComponent extends BaseComponent {
   }
 
   _addEventListeners() {
+    this.addCustomEventListener(Events.LoadLoginPage, () => this._render());
     const loginForm = document.getElementById("login-form");
     const loginError = document.getElementById("login-error");
     const signup = document.getElementById("signup-button");
@@ -38,14 +39,17 @@ export class LoginComponent extends BaseComponent {
         const userData = await DATABASE.loginUser(username, password);
         if (!userData) return;
 
-        this.update(Events.LoginSuccess, userData); // Notify other components of login success  
+        // Now set the username in the application data
+        APP_DATA.setUsername(userData.username);
 
+        this.update(Events.LoginSuccess, userData); // Notify other components of login success
       } catch (error) {
-        document.getElementById("login-error").textContent = "Invalid username or password";
-      } 
+        document.getElementById("login-error").textContent =
+          "Invalid username or password";
+      }
     });
 
-    signup.addEventListener("click", async() => {
+    signup.addEventListener("click", async () => {
       const username = document.getElementById("username").value.trim();
       const password = document.getElementById("password").value.trim();
 
@@ -55,13 +59,10 @@ export class LoginComponent extends BaseComponent {
 
         document.getElementById("login-error").textContent = "Account created";
       } catch (error) {
-        document.getElementById("login-error").textContent = "Couldn't register account";
+        document.getElementById("login-error").textContent =
+          "Couldn't register account";
       }
-
-      
     });
-
-  
   }
 
   _validateCredentials(username, password) {

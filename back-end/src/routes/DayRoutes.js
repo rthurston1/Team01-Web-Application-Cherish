@@ -100,13 +100,13 @@ class DayRoutes {
     // Gets a specified day based on its id
     this.router.get(
       "/v1/days/:username/:date_id",
-      async (request, response) => {
+      handleRoute(async (request, response) => {
         debugLog(
           `GET /v1/days/${request.params.username}/${request.params.date_id}`
         );
         await DayController.getDay(request, response);
-    });
-  
+      })
+    );
 
     // Gets all the days in the specified month in a year
     this.router.get(

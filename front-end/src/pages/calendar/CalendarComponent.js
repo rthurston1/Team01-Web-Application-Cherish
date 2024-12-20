@@ -1,15 +1,14 @@
 import { Events } from "../../eventhub/Events.js";
 import { BaseComponent } from "../../BaseComponent.js";
 import { DATABASE } from "../../main.js";
-import { APP_DATA } from "../../main.js";
+import APP_DATA from "../../config/ApplicationData.js";
 
 function capitalizeFirst(username) {
-  if (!username || typeof username !== 'string') {
-      return '';
+  if (!username || typeof username !== "string") {
+    return "";
   }
   return username.charAt(0).toUpperCase() + username.slice(1);
 }
-
 
 export const MONTHS = [
   "January",
@@ -33,7 +32,6 @@ export class CalendarComponent extends BaseComponent {
     this._loadFontAwesome();
 
     this.fetchQuote();
-
   }
 
   /**
@@ -50,56 +48,62 @@ export class CalendarComponent extends BaseComponent {
     }
   }
   fetchQuote() {
-    const API_KEY = 'ZxGOe+KJv5SmlSdnVrswfQ==A311wlLd9vmgnYuW';
-    const API_URL = 'https://api.api-ninjas.com/v1/quotes?category=happiness';
-    
-    const quoteData = JSON.parse(localStorage.getItem('dailyQuote')) || {};
-    const today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
-  
+    const API_KEY = "ZxGOe+KJv5SmlSdnVrswfQ==A311wlLd9vmgnYuW";
+    const API_URL = "https://api.api-ninjas.com/v1/quotes?category=happiness";
+
+    const quoteData = JSON.parse(localStorage.getItem("dailyQuote")) || {};
+    const today = new Date().toISOString().split("T")[0]; // Get today's date in YYYY-MM-DD format
+
     if (quoteData.date === today) {
       // Use the stored quote
       this.displayQuote(quoteData.quote, quoteData.author);
-      this.update(Events.LoadQuoteSuccess, { quote: quoteData.quote, author: quoteData.author });
+      this.update(Events.LoadQuoteSuccess, {
+        quote: quoteData.quote,
+        author: quoteData.author,
+      });
     } else {
       // Fetch a new quote
       this.update(Events.LoadQuote);
-  
+
       fetch(API_URL, {
         headers: {
-          'X-Api-Key': API_KEY
-        }
+          "X-Api-Key": API_KEY,
+        },
       })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then(data => {
-        const quote = data[0].quote;
-        const author = data[0].author;
-        this.displayQuote(quote, author);
-  
-        // Store the new quote and date
-        localStorage.setItem('dailyQuote', JSON.stringify({ date: today, quote, author }));
-  
-        this.update(Events.LoadQuoteSuccess, { quote, author });
-      })
-      .catch(error => {
-        console.error('Error fetching the quote:', error);
-        this.update(Events.LoadQuoteFailed, { error });
-      });
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then((data) => {
+          const quote = data[0].quote;
+          const author = data[0].author;
+          this.displayQuote(quote, author);
+
+          // Store the new quote and date
+          localStorage.setItem(
+            "dailyQuote",
+            JSON.stringify({ date: today, quote, author })
+          );
+
+          this.update(Events.LoadQuoteSuccess, { quote, author });
+        })
+        .catch((error) => {
+          console.error("Error fetching the quote:", error);
+          this.update(Events.LoadQuoteFailed, { error });
+        });
     }
   }
-  
+
   // Helper function to display the quote
   displayQuote(quote, author) {
-    document.querySelector('.quote-container').innerHTML = `
+    document.querySelector(".quote-container").innerHTML = `
       <p>"${quote}"</p>
       <p class="quote-author"><strong>- ${author}</strong></p>
     `;
   }
-  
+
   /**
    * Navigates to the specified page by publishing an event to the EventHub.
    * Depending on the page parameter, it publishes different load page events.
@@ -154,7 +158,8 @@ export class CalendarComponent extends BaseComponent {
         const date = t.dataset.date;
         // Restore the data for the selected day
         DATABASE.restoreDay(date).then((data) => {
-          console.log("Done!");
+          console.log(`CalendarComponent: Loaded data for ${date}`);
+          console.log(`${JSON.stringify(data)}`);
           this.update(Events.LoadDayPage, data);
         });
 
@@ -175,7 +180,11 @@ export class CalendarComponent extends BaseComponent {
 
   _render(data) {
     // Displays username
-    document.getElementById("welcomeBack").textContent = `Welcome back ${capitalizeFirst(APP_DATA.getUsername())}! How's it going?`;
+    document.getElementById(
+      "welcomeBack"
+    ).textContent = `Welcome back ${capitalizeFirst(
+      APP_DATA.getUsername()
+    )}! How's it going?`;
 
     // Month offset constants for previous, current, and next month
     const PREV = 0,

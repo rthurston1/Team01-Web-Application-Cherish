@@ -3,7 +3,7 @@ import { Events } from "../eventhub/Events.js";
 import Service from "./Service.js";
 import { debugLog } from "../config/debug.js";
 import { getToday } from "../utils/dateUtils.js";
-import StorageServiceFactory from "./StorageServiceFactory.js";
+import { DATABASE } from "../main.js";
 // import { DATABASE } from "../main.js";
 
 // Please do not do this (storing API key in code and in plain text) in the real world
@@ -28,7 +28,7 @@ class GeminiService extends Service {
     this.genAI = null;
     this.period = this.setPeriod(period);
     this.summarizeJournal = summarizeJournal;
-    this.remoteService = StorageServiceFactory.getService("Remote");
+    this.remoteService = DATABASE;
     this.initAI(this.period);
   }
 

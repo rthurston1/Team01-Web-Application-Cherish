@@ -8,6 +8,7 @@ export class BaseComponent {
 
   constructor(id, cssLink) {
     this.#initialize(id, cssLink);
+    this._eventListenersAdded = false;
   }
 
   // Abstract Methods
@@ -97,6 +98,9 @@ export class BaseComponent {
     this.#changeDisplay("none");
 
     // Adds EventListens
-    this._addEventListeners();
+    if (!this._eventListenersAdded) {
+      this._addEventListeners();
+      this._eventListenersAdded = true;
+    }
   }
 }

@@ -34,15 +34,19 @@ class DayController {
         );
       }
       const data = await modelMethod(...params);
-      debugLog(`Data: ${JSON.stringify(data)}`, "INFO");
+      const json = JSON.stringify(data);
+      debugLog(`Data: ${json}`, "INFO");
       if (!data.success) {
         debugLog(`Bad Request: ${data.error}`, "INFO");
         // response.status(methodName === "loginUser" ? 401 : 400).json(data); this is throwing set header error
       } else {
-        debugLog(`Success: ${JSON.stringify(data)}`, "INFO");
+        debugLog(`Success: ${json}`, "INFO");
         // response.setHeader("Content-Type", "application/json");
       }
-      debugLog(`DayController.${methodName} + data = ${data}`, "RETURN");
+      debugLog(
+        `DayController.${methodName} data = ${JSON.stringify(data)}`,
+        "RETURN"
+      );
       response.json(data);
     } catch (error) {
       debugLog(error, "ERROR");
@@ -87,35 +91,49 @@ class DayController {
   async registerUser(request, response) {
     const methodName = "registerUser"; // Method name for debug logs
     debugLog(`DayController.${methodName} called`);
-    debugLog(`username: ${request.body.username}, password: ${request.body.password}`);
-  
+    debugLog(
+      `username: ${request.body.username}, password: ${request.body.password}`
+    );
+
     try {
       // Fetch data from the database using the model
       const data = await this.model.createUser(request.body);
-  
+
       if (!data.success) {
         // Handle failure (e.g., username already exists)
-        debugLog(`DayController.${methodName} failed with message: ${data.message}`);
-        return response.status(400).json({ success: false, message: data.message });
+        debugLog(
+          `DayController.${methodName} failed with message: ${data.message}`
+        );
+        return response
+          .status(400)
+          .json({ success: false, message: data.message });
       }
 
       // Successful creation, return success response
-      debugLog(`DayController.${methodName} succeeded: ${JSON.stringify(data)}`);
+      debugLog(
+        `DayController.${methodName} succeeded: ${JSON.stringify(data)}`
+      );
+
+      // Save the user's data in the database
+      await this.model.saveUser(request.body.username);
+
       return response.status(201).json(data);
-  
     } catch (error) {
       // Log the error
       debugLog(`Error in DayController.${methodName}: ${error}`, "ERROR");
-  
+
       // Handle server errors gracefully
       if (!response.headersSent) {
-        return response.status(500).json({ success: false, message: `Internal Server Error: ${error.message}` });
+        return response.status(500).json({
+          success: false,
+          message: `Internal Server Error: ${error.message}`,
+        });
       } else {
         return response.end(); // Ensure no duplicate headers are sent
       }
     }
   }
-  
+
   /**
    * Attempts to login in the user and returns all of their data
    * Request body contains a username and password inputted by the user
@@ -229,11 +247,11 @@ class DayController {
     this.handleRequest(
       request,
       response,
-      this.model.saveEmotions.bind(this.model),
-      "saveEmotions",
+      this.model.saveEmotion.bind(this.model),
+      "saveEmotion",
       request.params.username,
       request.params.date_id,
-      request.body // Ensure request.body is correctly parsed
+      request.body // Emotions array
     );
   }
 

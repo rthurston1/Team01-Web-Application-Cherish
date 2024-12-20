@@ -10,12 +10,14 @@ class StorageServiceFactory {
       switch (type) {
         case "IDB":
           debugLog("Creating IDBService", "INFO");
-          return new IDBService();
+          this.services[type] = new IDBService();
+          break;
         case "Remote":
           debugLog("Creating RemoteService", "INFO");
-          return new RemoteService();
+          this.services[type] = new RemoteService();
+          break;
         default:
-          throw new Error("Invalid storage service type");
+          throw new Error("Invalid storage service type: " + type);
       }
     }
     return this.services[type];

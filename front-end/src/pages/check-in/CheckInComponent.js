@@ -28,7 +28,7 @@ export function getEmotionById(emotion_id) {
     case 2:
       return EMOTIONS.Anxious;
     case 3:
-      return EMOTIONS.Anxious;
+      return EMOTIONS.Sad;
     case 4:
       return EMOTIONS.Angry;
     case 5:
@@ -44,7 +44,7 @@ export class CheckInComponent extends BaseComponent {
     this.dateData = {};
     this.emotionData = [];
     this.editMode = false;
-    this.emotion_index = -1;
+    this.emotion_index = 0;
   }
 
   // Build HTML structure for the check-in page
@@ -144,6 +144,10 @@ export class CheckInComponent extends BaseComponent {
 
   // Method to add event listeners
   _addEventListeners() {
+    // Ensure this method is not called multiple times
+    if (this._eventListenersAdded) return;
+    this._eventListenersAdded = true;
+
     //add event listeners for all pages
     this.addCustomEventListener(Events.LoadCheckInPage, (data, emotion) =>
       this.loadPage(data, emotion)
@@ -211,6 +215,7 @@ export class CheckInComponent extends BaseComponent {
   _resetCheckIn() {
     this.emotionData = { emotion_id: "", magnitude: 5, description: "" };
     this.inputEmotions.forEach((input) => (input.checked = false));
+    this.emotion_index = 0;
 
     // ROBBIE CHANGED: Added Header to Display current emotion picked
     this.selectEmotionLabel.textContent = "Pick One";
@@ -239,18 +244,19 @@ export class CheckInComponent extends BaseComponent {
     if (!this.editMode) {
       // Clone the emotionData object before pushing it to the array
       this.dateData.emotions.push({ ...this.emotionData });
+      this.emotion_index = this.dateData.emotions.length - 1;
     } else {
       this.dateData.emotions[this.emotion_index] = { ...this.emotionData };
     }
-
-    this.update(Events.StoreData, this.dateData); // Store the updated data
+    const date_id = this.dateData.createdAt.substring(0, 10);
+    this.update(Events.StoreEmotion, {
+      date_id: date_id,
+      emotions: { index_id: this.emotion_index, emotions: this.dateData.emotions },
+    }); // Store the updated data
 
     // Reset after submission
     this._resetCheckIn();
     alert("Emotion Saved!");
-    if (this.editMode) {
-      this.update(Events.LoadDayPage, this.dateData);
-    }
   }
 
   // Load the emotion data into the check-in form using the emotion index if it exists
@@ -286,7 +292,6 @@ export class CheckInComponent extends BaseComponent {
   // Render the check-in page
   _render(data, emotion_index) {
     this.emotion_index = emotion_index;
-    console.log("emotion_index: ", emotion_index);
     this.dateData = data;
     this.prevData = {};
     this._loadEmotion();
