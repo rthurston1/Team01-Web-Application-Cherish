@@ -1,4 +1,5 @@
 # Cherish App
+![image](https://github.com/user-attachments/assets/efb6252e-accd-41c4-a57a-1e2f4ba350a3)
 
 In this README file, you will find a summary of what the Cherish App is all about and a brief explanation of all things we have acheived in each milestone. We will also list out all the requirements you will need in order to run this app in your local machines.
 
